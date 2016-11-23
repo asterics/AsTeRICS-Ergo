@@ -1,3 +1,5 @@
+This is an AsTeRICS based edition for occupational therapy. It will contain parametrizable models for environmental control, game accessibility and other use cases with easy configurator user interfaces.
+
 ### Install and build instructions of prerequisites 
 
 AsTeRICS-Ergo is based on the current master branch of [AsTeRICS](https://github.com/asterics/AsTeRICS).
