@@ -1,0 +1,15 @@
+Ideas for FS20 support:
+The user should be able to define action strings (housecode_address_action) for a button. But how to tell which button should send it?
+
+
+Need Features/Improvements:
+*)
+SSE:
+ARE should be able to send plugin errors with SSE: But actually it should work, because WebACS must also support this.
+E.g. If the FS20 is not connected or cannot be started there should be an error message indicating the problem. The error message should be sent to the webclient through SSE.
+
+*)
+Add REST-function which supports setting an array of properties, because setting many properties is very annoying due to callBack mechanism.
+
+
+
