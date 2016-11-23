@@ -1,4 +1,8 @@
+## AsTeRICS Models for occupational therapy
 This is an AsTeRICS based edition for occupational therapy. It will contain parametrizable models for environmental control, game accessibility and other use cases with easy configurator user interfaces.
+
+The model files are located in [custom/bin/ARE/models](custom/bin/ARE/models).
+The document root of the embedded webserver is located at [custom/bin/ARE/data/webservice](custom/bin/ARE/data/webservice)
 
 ### Install and build instructions of prerequisites 
 
@@ -27,8 +31,9 @@ git clone https://github.com/asterics/AsTeRICS-Ergo.git
 
 * Open a terminal window in the root folder of the repository and call  
 ```ant APE-copy```
-* To test the result, go to the ```build\merged\bin\ARE``` subfolder and start the ARE.  
+* To test the result, go to the ```build\merged\bin\ARE``` subfolder, start the ARE and open the starting webpage.
 ```
 cd build\merged\bin\ARE
 start_debug-webservice.bat
-```  
+``` 
+* Open [http://localhost:8081](http://localhost:8081)
