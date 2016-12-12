@@ -1,0 +1,1 @@
+angular.bootstrap(document.getElementById(are.app), [are.app], {strictDi: true});

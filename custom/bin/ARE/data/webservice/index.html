@@ -1,205 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="javascript/JSmap.js"></script> 
-		<script src="javascript/areCommunicator.js"></script>
-		 
-		<title>AsTeRICS-ERGO Test Client</title>
-		
-		
-		<script type="text/javascript">
-			/* This is an example of how to use the ARE Javascipt framework for the communication
-				with the ARE Restfull Services.
-				
-				The location of the server should be defined with the 'setBaseURI(<url>)' method.
-				
-				A success-callback function and an error-callback function should be passed as an argument
-				for every function.
-			*/
-		
-			setBaseURI("http://localhost:8081/rest/");
-		
-			function START_errorCallback(HTTPstatus, AREerrorMessage) { alert(AREerrorMessage); }
-			function DepMF_errorCallback(HTTPstatus, AREerrorMessage) { alert(AREerrorMessage); }
-					
-			/*
-			big fat part of AsTeRICS ERGO functions
-			*/
-			
-			function applySettingsToModel() {
-				var cameraSource = document.getElementById("cameraSource");
-				var cameraSourceIdx = cameraSource.options[cameraSource.selectedIndex].value;
-				setRuntimeComponentProperty(apply1_successCallback, errorCallback, 'XFacetrackerLK.1', 'cameraSelection', cameraSourceIdx);
-			}
-			
-			function apply1_successCallback(data, HTTPstatus) {
-				var speed = document.getElementById("speed").value;
-				setRuntimeComponentProperty(apply2_successCallback, errorCallback, 'Slider.1', 'default', speed);				
-			}
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>AsTeRICS-ERGO Test Client TEST</title>
+    </head>
 
-			function apply2_successCallback(data, HTTPstatus) {
-				var averager = document.getElementById("averager").value;
-				setRuntimeComponentProperty(apply3_successCallback, errorCallback, 'Averager.1', 'bufferSize', averager);
-			}
-			function apply3_successCallback(data, HTTPstatus) {
-				var averager = document.getElementById("averager").value;
-				setRuntimeComponentProperty(apply4_successCallback, errorCallback, 'Averager.1.1', 'bufferSize', averager);
-			}
-			function apply4_successCallback(data, HTTPstatus) {
-				//left click: don't know how to set it by now
-			
-			
-				//Finally start model! - Yippie!!
-				startModel(Empty_successCallback, START_errorCallback);
-			}			
+    <body>
+    <div id="areApp">
+        <are-startpage/>
+    </div>
 
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="javascript/JSmap.js"></script>
+        <script src="javascript/areCommunicator.js"></script>
 
-			//-------------------------------------
-			function updateFieldsFromModel(){
-				getRuntimeComponentProperty(getCameraSourceProp_successCallback, errorCallback, 'XFacetrackerLK.1', 'cameraSelection');
-				getRuntimeComponentProperty(getSpeedProp_successCallback, errorCallback, 'Slider.1', 'default');
-				getRuntimeComponentProperty(getAveragerProp_successCallback, errorCallback, 'Averager.1', 'bufferSize');
-			}
-
-			function getCameraSourceProp_successCallback(data, HTTPstatus) {
-				document.getElementById("cameraSource").selectedIndex=data;
-			}
-			
-			function getSpeedProp_successCallback(data, HTTPstatus) {
-				document.getElementById("speed").value=data;
-			}
-
-			function getAveragerProp_successCallback(data, HTTPstatus) {
-				document.getElementById("averager").value=data;
-			}
-			
-			//-------------------------------------
-			function applyAndStart() {
-				deployModelFromFile(DepMF_XFacetrackerLK_successCallback, DepMF_errorCallback, 'XFaceTrackerMouse-no-osk.acs');
-			}
-			
-			function DepMF_XFacetrackerLK_successCallback(data, HTTPstatus) {
-				applySettingsToModel();
-			}
-
-			function Empty_successCallback(data, HTTPstatus) {}
-			function errorCallback(HTTPstatus, AREerrorMessage) { alert(AREerrorMessage); }
-			
-			function saveSettings() {
-				//apply settings of fields before starting.
-				
-				//Saving the deployed model directly to a file is not supported by the API
-				//But we can do it in 2 steps: 
-				//1) download deployed model
-				//2) store modelInXML
-				downloadDeployedModel(saveSettings_download_successCallback, DDM_errorCallback);
-			}
-			function saveSettings_download_successCallback(data, HTTPstatus) {
-				var filepath = document.getElementById("saveSettingsFilename").value;
-				var modelInXML = data;
-				storeModel(STORE_successCallback, STORE_errorCallback, filepath, modelInXML);
-			}
-			
-			function loadSettings() {
-				//deploy the saved model file
-				var filepath = document.getElementById("loadSettingsFilename").value;
-				deployModelFromFile(loadSettings_DepMF_successCallback, DepMF_errorCallback, filepath);
-			}
-			
-			function loadSettings_DepMF_successCallback(data, HTTPstatus) {
-				//now read properties and update fields.
-				updateFieldsFromModel();
-			}
-			
-			<!-- start FS20 tests -->
-			function applyAndStartFS20Actions() {
-				deployModelFromFile(function(data, HTTPstatus) {
-					var action1FS20Action = document.getElementById("action1FS20Action");
-					var action1FS20ActionValue = action1FS20Action.options[action1FS20Action.selectedIndex].value;
-					var action1HousecodeAddress = document.getElementById("action1HousecodeAddress").value;
-					if(action1HousecodeAddress == '') {
-						action1HousecodeAddress='11111111_1111';
-					}
-					var actionString='@FS20:'+action1HousecodeAddress+'_'+action1FS20ActionValue;
-					console.log('action string: '+actionString);
-					
-					setRuntimeComponentProperty(applyAction1ActionString_successCallback, errorCallback, 'CellBoard.1', 'actionText1', actionString);
-
-				}, 
-				DepMF_errorCallback, 'FS20-SwitchLightsAndRadio(W).acs');
-			}
-			
-			function applyAction1ActionString_successCallback(data, HTTPstatus) {
-				var action1Label = document.getElementById("action1Label").value;
-				if(action1Label == '') {
-					action1Label='Kitchen';
-				}									
-				setRuntimeComponentProperty(startModelCallback,errorCallback,'CellBoard.1','cellText1',action1Label);
-			}
-			function startModelCallback(data, HTTPstatus) {
-				//Finally start model! - Yippie!!
-				startModel(Empty_successCallback, START_errorCallback);
-			}
-		</script>
-		
-	</head>
-	
-	<body>
-		<hr>
-
-		<h1> AsTeRICS Ergo Test Client </h1>
-		<h2>Parametrized Camera Mouse</h2>
-		<p>
-		<label for="cameraSource">Choose Camera: </label>
-		<select id="cameraSource">
-		  <option value="0">First camera</option>
-		  <option value="1">Second camera</option>
-		  <option value="2">Third camera</option>
-		  <option value="3">Fourth camera</option>
-		</select>		
-		
-		<br>
-		<label for="speed">Mouse Speed: </label>
-		<input title="Mouse speed" type="range" id="speed" value="90">
-		<br>
-		<label for="averager">Reduce Jitter (Moving average window): </label>
-		<input title="Reduce Jitter" type="range" id="averager" value="10">
-		<br>
-		<label for="leftClick">Left Click by: </label>
-		<select id="leftClick">
-		  <option value="0">Dwelling</option>
-		  <option value="1">Key press</option>
-		  <option value="2">Mouth open gesture</option>
-		  <option value="3">Eye blink gesture</option>
-		</select>		
-		
-		
-		<br><br>
-
-		<button onclick="applyAndStart()" title="Description: Applies all settings and starts the model"> Apply and Start Model </button>
-		<br><br>
-		
-		<label for="saveSettingsFilename">Filename: </label>
-		<input title="Save Settings file name" type="input" id="saveSettingsFilename">
-		<button onclick="saveSettings()" title="Description: Saves all settings with a given name."> Save Settings </button>
-		<br><br>
-		<label for="loadSettingsFilename">Filename: </label>
-		<input title="Load Settings file name" type="input" id="loadSettingsFilename">
-		<button onclick="loadSettings()" title="Description: Loads all settings of a given file."> Load Settings </button>		
-		
-		<br><hr><br>
-		<h2>Parametrized FS20 Environmental Control</h2>
-		<label for="action1HousecodeAddress">Label Action1: </label>
-		<input title="Label for Action1" type="input" id="action1Label">
-		<input title="Housecode and address" type="input" id="action1HousecodeAddress" placeholder="11111111_1111">
-		<select id="action1FS20Action">
-		  <option value="0">Off</option>
-		  <option value="16">On</option>
-		  <option value="18">Toggle</option>
-		</select>
-		<button onclick="applyAndStartFS20Actions()" title="Description: Applies all settings and starts the model"> Apply and Start Model </button>
-	</body>
-	
+        <script src="javascript/lib/angular-1.6.0.min.js"></script>
+        <script src="angular/areApp.js"></script>
+        <script src="angular/service/AREService.js"></script>
+        <script src="angular/component/AREStartpage.js"></script>
+        <script src="angular/app-bootstrap.js"></script>
+    </body>
 </html>
