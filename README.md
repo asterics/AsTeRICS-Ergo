@@ -37,3 +37,11 @@ cd build\merged\bin\ARE
 start_debug-webservice.bat
 ``` 
 * Open [http://localhost:8081](http://localhost:8081)
+
+### Recommended workflow for development
+
+1. Save custom files (models, images, config files,...) to the custom/bin/ARE folder or modify them
+2. Call 
+```ant APE-copy```
+3. Start and test program
+4. Kill program and go to step 1
