@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="D:\z_Code\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2016_12_22_13_19" version="20130320">
+  <modelDescription>
+    <shortDescription />
+    <requirements />
+    <description />
+  </modelDescription>
+  <components>
+    <component id="FS20Sender.1" type_id="asterics.FS20Sender">
+      <description>Sends FS20 commands</description>
+      <ports>
+        <inputPort portTypeID="Housecode">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="Address">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="Action">
+          <properties />
+        </inputPort>
+      </ports>
+      <properties>
+        <property name="Housecode" value="11111111" />
+        <property name="Address" value="1111" />
+      </properties>
+      <layout>
+        <posX>828</posX>
+        <posY>394</posY>
+      </layout>
+    </component>
+    <component id="TextSender.1" type_id="asterics.TextSender">
+      <description>Send text when gets event</description>
+      <ports>
+        <inputPort portTypeID="setText">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="output">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="text" value="This is a sample text." />
+      </properties>
+      <layout>
+        <posX>652</posX>
+        <posY>429</posY>
+      </layout>
+    </component>
+  </components>
+  <channels>
+    <channel id="binding.0">
+      <source>
+        <component id="TextSender.1" />
+        <port id="output" />
+      </source>
+      <target>
+        <component id="FS20Sender.1" />
+        <port id="Action" />
+      </target>
+    </channel>
+  </channels>
+  <modelGUI>
+    <Decoration>false</Decoration>
+    <Fullscreen>false</Fullscreen>
+    <AlwaysOnTop>false</AlwaysOnTop>
+    <ToSystemTray>false</ToSystemTray>
+    <ShopControlPanel>false</ShopControlPanel>
+    <AREGUIWindow>
+      <posX>6150</posX>
+      <posY>244</posY>
+      <width>3812</width>
+      <height>7333</height>
+    </AREGUIWindow>
+  </modelGUI>
+</model>
