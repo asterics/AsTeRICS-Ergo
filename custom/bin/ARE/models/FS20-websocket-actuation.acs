@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="D:\AsTeRICS\AsTeRICS-Ergo\custom\bin\ARE\models\FS20-websocket-actuation.acs_2016_12_22_11_16" version="20130320">
+  <components>
+    <component id="FS20Sender.1" type_id="asterics.FS20Sender">
+      <description>Sends FS20 commands</description>
+      <ports>
+        <inputPort portTypeID="Housecode">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="Address">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="Action">
+          <properties />
+        </inputPort>
+      </ports>
+      <properties>
+        <property name="Housecode" value="11111111" />
+        <property name="Address" value="1111" />
+      </properties>
+      <layout>
+        <posX>401</posX>
+        <posY>193</posY>
+      </layout>
+    </component>
+    <component id="WebSocket.1" type_id="asterics.WebSocket">
+      <description>This plugin uses a websocket connection to send and read data. The default websocket URI is ws://{hostname}:8082/ws/astericsData. You have to start the ARE with --webservice flag. You can test the connection with http://localhost:8082/
+        </description>
+      <ports>
+        <inputPort portTypeID="InA">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="OutA">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties />
+      <layout>
+        <posX>171</posX>
+        <posY>196</posY>
+      </layout>
+    </component>
+    <component id="StringFilter.1" type_id="asterics.StringFilter">
+      <description>removes a substring from a string and/or pass the string if the substring is contained</description>
+      <ports>
+        <inputPort portTypeID="in">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="out">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="filterText" value="dummy" />
+        <property name="passOnlyIfContains" value="true" />
+        <property name="cropFilterText" value="true" />
+      </properties>
+      <layout>
+        <posX>247</posX>
+        <posY>376</posY>
+      </layout>
+    </component>
+  </components>
+  <channels>
+    <channel id="binding.0">
+      <source>
+        <component id="WebSocket.1" />
+        <port id="OutA" />
+      </source>
+      <target>
+        <component id="FS20Sender.1" />
+        <port id="Action" />
+      </target>
+    </channel>
+  </channels>
+  <modelGUI>
+    <Decoration>true</Decoration>
+    <Fullscreen>false</Fullscreen>
+    <AlwaysOnTop>false</AlwaysOnTop>
+    <ToSystemTray>false</ToSystemTray>
+    <ShopControlPanel>true</ShopControlPanel>
+    <AREGUIWindow>
+      <posX>0</posX>
+      <posY>0</posY>
+      <width>9000</width>
+      <height>5000</height>
+    </AREGUIWindow>
+  </modelGUI>
+</model>
