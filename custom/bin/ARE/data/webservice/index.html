@@ -6,18 +6,21 @@
     </head>
 
     <body>
-    <div id="areApp">
-        <are-startpage/>
-    </div>
+        <div id="areApp">
+            <are-startpage/>
+        </div>
 
+        <!-- libs -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script src="javascript/JSmap.js"></script>
-        <script src="javascript/areCommunicator.js"></script>
-
         <script src="javascript/lib/angular-1.6.0.min.js"></script>
         <script src="angular/areApp.js"></script>
-        <script src="angular/service/AREService.js"></script>
-        <script src="angular/component/AREStartpage.js"></script>
+
+        <!-- services -->
+        <script src="angular/service/areService.js"></script>
+        <script src="angular/service/envControlService.js"></script>
+
+        <!-- components -->
+        <script src="angular/component/areStartpage.js"></script>
         <script src="angular/app-bootstrap.js"></script>
     </body>
 </html>
