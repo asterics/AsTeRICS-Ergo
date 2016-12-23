@@ -1,4 +1,4 @@
-angular.module(are.app)
+angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
@@ -14,6 +14,6 @@ angular.module(are.app)
                 });
             }
         }],
-        controllerAs: 'areStartpageCtrl',
+        controllerAs: 'envControlCtrl',
         templateUrl: "angular/envControl/component/envControlMain.html"
     });

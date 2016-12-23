@@ -1,4 +1,4 @@
-angular.module(are.app).directive('cellBoardElement', ['$compile', function ($compile) {
+angular.module(asterics.appComponents).directive('cellBoardElement', ['$compile', function ($compile) {
     return {
         scope: {
             item: '='

@@ -1,4 +1,4 @@
-angular.module(are.app)
+angular.module(asterics.appServices)
     .service('fsService', ['areService', function (areService) {
         var thiz = this;
         var fs20SenderName = 'FS20Sender.1';

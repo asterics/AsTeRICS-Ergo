@@ -1,1 +1,1 @@
-angular.bootstrap(document.getElementById(are.app), [are.app], {strictDi: true});
+angular.bootstrap(document.getElementById(asterics.app), [asterics.app], {strictDi: true});

@@ -1,4 +1,4 @@
-angular.module(are.app)
+angular.module(asterics.appServices)
     .service('areService', ['$http', '$q', function ($http, $q) {
         var thiz = this;
         //The base URI that ARE runs at

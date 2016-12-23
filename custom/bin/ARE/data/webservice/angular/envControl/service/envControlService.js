@@ -1,4 +1,4 @@
-angular.module(are.app)
+angular.module(asterics.appServices)
     .service('envControlService', ['areService', function (areService) {
         var thiz = this;
         var envModelName = 'envControl.acs';

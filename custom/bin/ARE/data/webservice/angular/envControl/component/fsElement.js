@@ -1,4 +1,4 @@
-angular.module(are.app)
+angular.module(asterics.appComponents)
     .component('fsElement', {
 
         bindings: {},
