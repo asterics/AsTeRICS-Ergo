@@ -1,0 +1,7 @@
+<div>
+    <input type="button" value="addElement" ng-click="cellBoardCtrl.addItem('fs-element')"/>
+    <div ng-repeat="item in cellBoardCtrl.items track by $index">
+        <div cell-board-element item="item"/>
+        <input type="button" value="X" ng-click="cellBoardCtrl.removeItem($index)"/>
+    </div>
+</div>
