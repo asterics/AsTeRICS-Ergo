@@ -15,5 +15,5 @@ angular.module(are.app)
             }
         }],
         controllerAs: 'areStartpageCtrl',
-        templateUrl: "angular/component/envControlMain.html"
+        templateUrl: "angular/envControl/component/envControlMain.html"
     });

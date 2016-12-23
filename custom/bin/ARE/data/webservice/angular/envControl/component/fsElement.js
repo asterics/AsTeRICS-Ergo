@@ -10,5 +10,5 @@ angular.module(are.app)
             };
         }],
         controllerAs: 'fsElementCtrl',
-        templateUrl: "angular/component/fsElement.html"
+        templateUrl: "angular/envControl/component/fsElement.html"
     });

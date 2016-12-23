@@ -14,5 +14,5 @@ angular.module(are.app)
             };
         }],
         controllerAs: 'cellBoardCtrl',
-        templateUrl: "angular/component/cellBoard.html"
+        templateUrl: "angular/global/component/cellBoard.html"
     });
