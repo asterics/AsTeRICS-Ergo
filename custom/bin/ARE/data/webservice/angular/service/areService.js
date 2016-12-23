@@ -1,5 +1,5 @@
 angular.module(are.app)
-    .service('areService', ['$http', function ($http) {
+    .service('areService', ['$http', '$q', function ($http, $q) {
         var thiz = this;
         //The base URI that ARE runs at
         var _baseURI = "http://localhost:8081/rest/";
@@ -25,6 +25,38 @@ angular.module(are.app)
                 method: 'PUT',
                 url: _baseURI + "runtime/model/state/stop"
             });
+        };
+
+        thiz.getModelState = function () {
+            return $http({
+                method: 'GET',
+                url: _baseURI + "runtime/model/state"
+            });
+        };
+
+        thiz.getModelName = function () {
+            return $http({
+                method: 'GET',
+                url: _baseURI + "runtime/model/name"
+            });
+        };
+
+        thiz.isModelStarted = function (modelName) {
+            var def = $q.defer();
+            thiz.getModelName().then(function (response) {
+                if (!response.data || response.data.indexOf(modelName) === -1) {
+                    def.resolve(false);
+                } else {
+                    thiz.getModelState().then(function (response) {
+                        def.resolve(response.data === "started");
+                    }, function error() {
+                        def.resolve(false);
+                    });
+                }
+            }, function error() {
+                def.resolve(false);
+            });
+            return def.promise;
         };
 
         thiz.deployModelFromFile = function (filepath) {
@@ -55,5 +87,5 @@ angular.module(are.app)
             }
 
             return encoded;
-        };
+        }
     }]);

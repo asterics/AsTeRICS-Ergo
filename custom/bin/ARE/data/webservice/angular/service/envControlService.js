@@ -1,5 +1,5 @@
 angular.module(are.app)
-    .service('envControlService', ['areService', function (areService) {
+    .service('envControlService', ['areService', '$q', function (areService, $q) {
         var thiz = this;
         var envModelName = 'envControl.acs';
         var fs20SenderName = 'FS20Sender.1';
@@ -8,6 +8,10 @@ angular.module(are.app)
 
         thiz.startEnvModel = function () {
             return areService.deployAndStartModel(envModelName);
+        };
+
+        thiz.isEnvModelStarted = function() {
+            return areService.isModelStarted(envModelName);
         };
 
         thiz.fs20Action = function (deviceCode, actionCode) {
