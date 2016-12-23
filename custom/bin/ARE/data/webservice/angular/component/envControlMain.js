@@ -1,5 +1,5 @@
 angular.module(are.app)
-    .component('areStartpage', {
+    .component('envControl', {
 
         bindings: {},
         controller: ['envControlService', function (envControlService) {
@@ -7,13 +7,13 @@ angular.module(are.app)
 
             init();
             function init() {
-                envControlService.isEnvModelStarted().then(function(isStarted) {
-                    if(!isStarted) {
+                envControlService.isEnvModelStarted().then(function (isStarted) {
+                    if (!isStarted) {
                         envControlService.startEnvModel();
                     }
                 });
             }
         }],
         controllerAs: 'areStartpageCtrl',
-        templateUrl: "angular/component/areStartpage.html"
+        templateUrl: "angular/component/envControlMain.html"
     });
