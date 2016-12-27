@@ -13,10 +13,10 @@ angular.module(asterics.app, [
 
     $stateProvider
         .state("home", {
-            url: '/',
-            template: 'homepage - START'
+            url: '/home',
+            template: '<main-menu/>'
         });
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
 }]);
 
 angular.module(asterics.appServices, []);

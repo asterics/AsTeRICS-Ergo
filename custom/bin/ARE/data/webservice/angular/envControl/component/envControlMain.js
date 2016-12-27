@@ -2,8 +2,21 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', function (envControlService) {
+        controller: ['envControlService', 'fsService', function (envControlService, fsService) {
             var thiz = this;
+
+            thiz.element = {
+                title: "FS20-Toggle",
+                imgUrl: "fs20.png",
+                clickAction: function(){
+                    fsService.fs20Toggle("11111111_1111");
+                }
+            };
+            thiz.chosableElementTypes = [thiz.element];
+
+            thiz.addItem = function(){
+                thiz.chosableElementTypes.push(thiz.element);
+            };
 
             init();
             function init() {

@@ -1,10 +1,10 @@
 angular.module(asterics.appComponents).directive('cellBoardElement', ['$compile', function ($compile) {
     return {
         scope: {
-            item: '='
+            directiveName: '='
         },
         link: function (scope, element) {
-            var generatedTemplate = '<' + scope.item + '/>';
+            var generatedTemplate = '<' + scope.directiveName + '/>';
             element.append($compile(generatedTemplate)(scope));
         }
     };

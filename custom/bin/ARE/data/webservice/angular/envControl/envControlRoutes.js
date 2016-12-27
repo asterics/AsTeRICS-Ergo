@@ -2,6 +2,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
     $stateProvider
         .state("envControl", {
             url: '/envcontrol',
-            template: '<env-control/>'
+            templateUrl: 'angular/envControl/component/envControlContainer.html'
+        })
+        .state("envControl.add", {
+            url: '/add',
+            template: '<env-control-add/>'
         });
 }]);
