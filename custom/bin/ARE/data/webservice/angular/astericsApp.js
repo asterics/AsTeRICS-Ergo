@@ -12,11 +12,11 @@ angular.module(asterics.app, [
 ]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state("start", {
-            url: '/start/',
-            template: '<env-control/>'
+        .state("home", {
+            url: '/',
+            template: 'homepage - START'
         });
-    $urlRouterProvider.otherwise('/start/');
+    $urlRouterProvider.otherwise('/');
 }]);
 
 angular.module(asterics.appServices, []);
