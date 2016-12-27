@@ -5,20 +5,12 @@ angular.module(asterics.appComponents)
         controller: ['envControlService', function (envControlService) {
             var thiz = this;
             thiz.chosableElementTypes = [
-                {
-                    title: "Steckdose",
-                    imgUrl: "steckdose.png",
-                    clickAction: function () {
-                        alert("steckdose clicked!");
-                    }
-                },
-                {
-                    title: "IR",
-                    imgUrl: "ir.png",
-                    clickAction: function () {
-                        alert("IR clicked!");
-                    }
-                }
+                asterics.utils.createCellBoardItem('Steckdose', 'steckdose.png', function () {
+                    alert("steckdose clicked!");
+                }),
+                asterics.utils.createCellBoardItem('IR', 'ir.png', function () {
+                    alert("IR clicked!");
+                })
             ];
         }],
         controllerAs: 'envControlAddCtrl',

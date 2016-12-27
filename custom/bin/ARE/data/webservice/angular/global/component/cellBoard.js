@@ -46,13 +46,9 @@ angular.module(asterics.appComponents)
                 if(enableConfig) {
                     title = 'Konfig aktivieren';
                 }
-                return {
-                    title: title,
-                    imgUrl: 'config.png',
-                    clickAction: function() {
-                        thiz.setConfigState(enableConfig);
-                    }
-                };
+                return asterics.utils.createCellBoardItem(title, 'config.png', function () {
+                    thiz.setConfigState(enableConfig);
+                });
             }
         }],
         controllerAs: 'cellBoardCtrl',
