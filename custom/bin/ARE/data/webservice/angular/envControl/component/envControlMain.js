@@ -2,11 +2,11 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'fsService', function (envControlService, fsService) {
+        controller: ['envControlService', 'envControlFsService', function (envControlService, envControlFsService) {
             var thiz = this;
 
             thiz.element = asterics.utils.createCellBoardItem('FS20-Toggle', 'fs20.png', function(){
-                fsService.fs20Toggle("11111111_1111");
+                envControlFsService.fs20Toggle("11111111_1111");
             });
             thiz.chosableElementTypes = [thiz.element];
 

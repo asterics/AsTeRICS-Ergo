@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('fsService', ['areService', function (areService) {
+    .service('envControlFsService', ['areService', function (areService) {
         var thiz = this;
         var fs20SenderName = 'FS20Sender.1';
         var fs20ActionInput = 'Action';
