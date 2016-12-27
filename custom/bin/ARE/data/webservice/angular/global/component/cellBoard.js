@@ -2,7 +2,8 @@ angular.module(asterics.appComponents)
     .component('cellBoard', {
 
         bindings: {
-            chooseItems: '='
+            chooseItems: '=',
+            configurable: "="
         },
         controller: ['envControlService', function (envControlService) {
             var thiz = this;
@@ -10,7 +11,10 @@ angular.module(asterics.appComponents)
             thiz.configItems = [generateConfigItem(true)];
 
             thiz.getItems = function() {
-                return (thiz.chooseItems || []).concat(thiz.configItems);
+                if(thiz.configurable) {
+                    return (thiz.chooseItems || []).concat(thiz.configItems);
+                }
+                return thiz.chooseItems;
             };
 
             thiz.itemClicked = function(item) {
