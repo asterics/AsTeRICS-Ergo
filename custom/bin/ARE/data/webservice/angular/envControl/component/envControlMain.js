@@ -2,20 +2,13 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlFsService', function (envControlService, envControlFsService) {
+        controller: ['envControlService', 'envControlDataService', function (envControlService, envControlDataService) {
             var thiz = this;
-
-            thiz.element = asterics.utils.createCellBoardItem('FS20-Toggle', 'lightbulb-o', function(){
-                envControlFsService.fs20Toggle("11111111_1111");
-            });
-            thiz.chosableElementTypes = [thiz.element];
-
-            thiz.addItem = function(){
-                thiz.chosableElementTypes.push(thiz.element);
-            };
+            thiz.cellBoardElements = [];
 
             init();
             function init() {
+                thiz.cellBoardElements = envControlDataService.getCellBoardElements();
                 envControlService.isEnvModelStarted().then(function (isStarted) {
                     if (!isStarted) {
                         envControlService.startEnvModel();

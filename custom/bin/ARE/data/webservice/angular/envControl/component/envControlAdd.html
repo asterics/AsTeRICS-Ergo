@@ -1,1 +1,23 @@
-<cell-board choose-items="envControlAddCtrl.chosableElementTypes"/>
+<div>
+    <h2>Neue Komponente zu Umgebungssteuerung hinzufügen</h2>
+    <ol>
+        <li>
+            <label for="inputType">Bitte Typ der gewünschten Steuerung auswählen</label>
+            <select id="inputType" ng-options="item as item.title for item in envControlAddCtrl.selectTypes"
+                    ng-model="envControlAddCtrl.selectedType"/><br/>
+        </li>
+        <li ng-if="envControlAddCtrl.stepCompleted(1)" ng-model-options="{debounce: 500}">
+            <label for="inputLabel">Bitte Namen für das neue Gerät auswählen</label>
+            <input type="text" id="inputLabel" ng-model="envControlAddCtrl.selectedLabel"/><br/>
+        </li>
+        <li ng-if="envControlAddCtrl.stepCompleted(2)">
+            <label for="inputTrain">Bitte Drücken Sie auf den roten Button am Gerät, bis er rot zu blinken beginnt.</label>
+            <button id="inputTrain" ng-click="envControlAddCtrl.trainCode()">Ok, Button blinkt!</button><br/>
+        </li>
+        <li ng-if="envControlAddCtrl.stepCompleted(3)">
+            <span>Kontrollieren Sie ob das Blinken aufgehört hat und klicken Sie auf "Fertigstellen".</span><br/>
+            <button ng-click="envControlAddCtrl.addCellBoardItemAndReturn()">Fertigstellen</button>
+            <button ng-click="envControlAddCtrl.trainCode()">Blinken hat nicht aufgehört!</button>
+        </li>
+    </ol>
+</div>

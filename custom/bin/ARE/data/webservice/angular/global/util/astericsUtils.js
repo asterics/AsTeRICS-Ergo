@@ -1,9 +1,15 @@
 asterics.utils = {
-    createCellBoardItem: function(title, imgUrl, clickAction) {
+    createCellBoardItem: function(title, faIcon, clickAction) {
         return {
             title: title,
-            faIcon: imgUrl,
+            faIcon: faIcon,
             clickAction: clickAction
+        };
+    },
+    createSelectItem: function(title, faIcon) {
+        return {
+            title: title,
+            faIcon: faIcon
         };
     }
 };
