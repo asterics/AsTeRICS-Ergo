@@ -1,1 +1,14 @@
-<cell-board choose-items="envControlCtrl.cellBoardElements" remove-handler="envControlCtrl.removeHandler(item)" configurable="true"/>
+<div>
+    <h2>Konfiguration</h2>
+    <div>
+        <cell-board choose-items="envControlCtrl.cellBoardConfig"/>
+    </div>
+</div>
+<div>
+    <h2>Geräte steuern</h2>
+    <span ng-if="envControlCtrl.cellBoardEnvControl.length == 0"><b>Derzeit keine Steuerungsmöglichkeiten.</b><br/>Klicken Sie auf "Neue Steuerungsmöglichkeit hinzufügen".</span>
+    <div ng-if="envControlCtrl.cellBoardEnvControl.length > 0">
+        <cell-board choose-items="envControlCtrl.cellBoardEnvControl" remove-handler="envControlCtrl.removeHandler(item)" action-mode="envControlCtrl.cellBoardMode"/>
+    </div>
+</div>
+

@@ -1,8 +1,7 @@
 <div>
-    <div ng-repeat="item in cellBoardCtrl.getItems() track by $index">
+    <div ng-repeat="item in cellBoardCtrl.chooseItems track by $index" class="span4">
         <button ng-click="cellBoardCtrl.itemClicked(item)">
-            <div ng-if="cellBoardCtrl.isCustomComponent(item)" cell-board-element directive-name="cellBoardCtrl.getDirectiveName(item)"/>
-            <div ng-if="!cellBoardCtrl.isCustomComponent(item)">
+            <div>
                 <cell-board-chooser item="item"/>
             </div>
         </button>
