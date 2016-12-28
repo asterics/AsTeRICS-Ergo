@@ -6,6 +6,10 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cellBoardElements = [];
 
+            thiz.removeHandler = function(item) {
+                thiz.cellBoardElements = envControlDataService.removeCellBoardElement(item);
+            };
+
             init();
             function init() {
                 thiz.cellBoardElements = envControlDataService.getCellBoardElements();

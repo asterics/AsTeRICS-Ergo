@@ -2,6 +2,7 @@ angular.module(asterics.appServices)
     .service('envControlDataService', ['areService', 'envControlUtilService', function (areService, envControlUtilService) {
         var thiz = this;
         var _cellBoardElements = [envControlUtilService.createCellBoardItemFs20('Lampe1', 'lightbulb-o', '11111111_1111')];
+        var houseCode = '11111111';
 
         thiz.getCellBoardElements = function() {
             return _cellBoardElements;
@@ -12,11 +13,19 @@ angular.module(asterics.appServices)
             _cellBoardElements.push(element);
         };
 
+        thiz.removeCellBoardElement = function(element) {
+            _cellBoardElements = _.without(_cellBoardElements, element);
+            return _cellBoardElements;
+        };
+
         thiz.getNewFs20Code = function() {
-            var codesString = _.map(_cellBoardElements, 'code');
-            var codes = _.map(codesString, function(elem) {return parseInt(elem.substr(-4))});
-            var housecode = codesString[0].split('_')[0];
-            var max = _.max(codes);
-            return housecode + '_' + (max+1);
+            if(_cellBoardElements.length > 0) {
+                var codesString = _.map(_cellBoardElements, 'code');
+                var codes = _.map(codesString, function(elem) {return parseInt(elem.substr(-4))});
+                housecode = codesString[0].split('_')[0];
+                var max = _.max(codes);
+                return housecode + '_' + (max+1);
+            }
+            return houseCode + '_1111';
         };
     }]);

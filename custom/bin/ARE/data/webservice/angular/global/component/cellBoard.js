@@ -2,8 +2,9 @@ angular.module(asterics.appComponents)
     .component('cellBoard', {
 
         bindings: {
-            chooseItems: '=',
-            configurable: "="
+            chooseItems: '<',
+            configurable: "<",
+            removeHandler: "&"
         },
         controller: ['envControlService', function (envControlService) {
             var thiz = this;
@@ -19,7 +20,7 @@ angular.module(asterics.appComponents)
 
             thiz.itemClicked = function(item) {
                 if(thiz.configEnabled && !_.includes(thiz.configItems, item)) {
-                    thiz.chooseItems = _.without(thiz.chooseItems, item);
+                    thiz.removeHandler({item: item});
                 } else {
                     item.clickAction();
                 }
@@ -46,7 +47,7 @@ angular.module(asterics.appComponents)
                 if(enableConfig) {
                     title = 'Konfig aktivieren';
                 }
-                return asterics.utils.createCellBoardItem(title, 'config.png', function () {
+                return asterics.utils.createCellBoardItem(title, 'snowflake-o', function () {
                     thiz.setConfigState(enableConfig);
                 });
             }
