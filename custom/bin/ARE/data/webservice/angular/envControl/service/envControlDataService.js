@@ -1,7 +1,7 @@
 angular.module(asterics.appServices)
     .service('envControlDataService', ['areService', 'envControlUtilService', function (areService, envControlUtilService) {
         var thiz = this;
-        var _cellBoardElements = [envControlUtilService.createCellBoardItemFs20('Lampe1', 'lightbulb-o', '11111111_1111')];
+        var _cellBoardElements = [];
         var houseCode = '11111111';
 
         thiz.getCellBoardElements = function() {

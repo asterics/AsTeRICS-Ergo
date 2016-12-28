@@ -7,7 +7,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl')];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedLabel = null;
-            thiz.selectedIcon = 'bolt';
+            thiz.selectedIcon = 'lightbulb-o';
             thiz.selectedType = null;
             thiz.trained = false;
             thiz.selectTypes = [
