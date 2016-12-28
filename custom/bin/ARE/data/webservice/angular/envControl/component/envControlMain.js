@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlService', 'envControlDataService', '$state', 'utilService', function (envControlService, envControlDataService, $state, utilService) {
             var thiz = this;
             thiz.configDeleteItem = generateDeleteModeItem(true);
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('Zurück', 'arrow-left', 'home'), utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'), thiz.configDeleteItem];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('home'), utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'), thiz.configDeleteItem];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
 

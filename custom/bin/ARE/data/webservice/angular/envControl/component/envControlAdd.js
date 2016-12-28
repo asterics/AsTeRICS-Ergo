@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', function (envControlDataService, $state, envControlFsService, utilService) {
             var thiz = this;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('Zurück', 'arrow-left', 'envControl')];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl')];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedLabel = null;
             thiz.selectedIcon = 'bolt';
