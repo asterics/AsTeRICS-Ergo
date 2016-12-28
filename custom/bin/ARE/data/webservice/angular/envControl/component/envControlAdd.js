@@ -2,16 +2,17 @@ angular.module(asterics.appComponents)
     .component('envControlAdd', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlFsService', function (envControlDataService, $state, envControlFsService) {
+        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', function (envControlDataService, $state, envControlFsService, utilService) {
             var thiz = this;
+            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('Zurück', 'arrow-left', 'envControl')];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedLabel = null;
             thiz.selectedIcon = 'bolt';
             thiz.selectedType = null;
             thiz.trained = false;
             thiz.selectTypes = [
-                asterics.utils.createSelectItem('Steckdose'),
-                asterics.utils.createSelectItem('IR-Commando')
+                utilService.createSelectItem('Steckdose'),
+                utilService.createSelectItem('IR-Commando')
             ];
 
             thiz.trainCode = function() {

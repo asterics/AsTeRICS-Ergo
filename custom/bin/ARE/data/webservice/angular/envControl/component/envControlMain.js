@@ -2,14 +2,14 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', function (envControlService, envControlDataService, $state) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', function (envControlService, envControlDataService, $state, utilService) {
             var thiz = this;
             thiz.configDeleteItem = generateDeleteModeItem(true);
-            thiz.cellBoardConfig = [generateAddItem(),thiz.configDeleteItem];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('Zurück', 'arrow-left', 'home'), utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'), thiz.configDeleteItem];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
 
-            thiz.removeHandler = function(item) {
+            thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(item);
             };
 
@@ -25,23 +25,17 @@ angular.module(asterics.appComponents)
 
             function generateDeleteModeItem(enableDeleteMode) {
                 var title = 'Löschen deaktivieren';
-                if(enableDeleteMode) {
+                if (enableDeleteMode) {
                     title = 'Löschen aktivieren';
                 }
-                return asterics.utils.createCellBoardItem(title, 'trash', function () {
-                    if(thiz.cellBoardMode === asterics.const.CELLB_MODE_NORMAL) {
+                return utilService.createCellBoardItem(title, 'trash', function () {
+                    if (thiz.cellBoardMode === asterics.const.CELLB_MODE_NORMAL) {
                         thiz.cellBoardMode = asterics.const.CELLB_MODE_DELETE;
                     } else {
                         thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
                     }
                     var index = thiz.cellBoardConfig.indexOf(thiz.configDeleteItem);
                     thiz.cellBoardConfig.splice(index, 1, generateDeleteModeItem(!enableDeleteMode));
-                });
-            }
-
-            function generateAddItem() {
-                return asterics.utils.createCellBoardItem('neues Element', 'plus', function() {
-                    $state.go('envControl.add');
                 });
             }
         }],
