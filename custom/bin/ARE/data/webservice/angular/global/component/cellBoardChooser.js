@@ -6,6 +6,11 @@ angular.module(asterics.appComponents)
         },
         controller: ['envControlService', function (envControlService) {
             var thiz = this;
+            thiz.getFaClass = function() {
+                if(thiz.item && thiz.item.faIcon) {
+                    return 'fa fa-3x fa-' +  thiz.item.faIcon;
+                }
+            }
         }],
         controllerAs: 'cellBoardChooserCtrl',
         templateUrl: "angular/global/component/cellBoardChooser.html"

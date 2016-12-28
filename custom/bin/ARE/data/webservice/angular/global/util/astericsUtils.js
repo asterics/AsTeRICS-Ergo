@@ -2,7 +2,7 @@ asterics.utils = {
     createCellBoardItem: function(title, imgUrl, clickAction) {
         return {
             title: title,
-            imgUrl: imgUrl,
+            faIcon: imgUrl,
             clickAction: clickAction
         };
     }
