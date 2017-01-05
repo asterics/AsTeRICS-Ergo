@@ -5,6 +5,5 @@ angular.module(asterics.appComponents)
         controller: function () {
             var thiz = this;
         },
-        controllerAs: 'mainHeaderCtrl',
         templateUrl: "angular/global/component/mainHeader.html"
     });

@@ -19,6 +19,5 @@ angular.module(asterics.appComponents)
                 return thiz.selectedType.id === asterics.envControl.ID_IR;
             };
         }],
-        controllerAs: 'envControlAddCtrl',
         templateUrl: "angular/envControl/component/envControlAdd.html"
     });

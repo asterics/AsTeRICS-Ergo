@@ -12,6 +12,5 @@ angular.module(asterics.appComponents)
                 }
             }
         }],
-        controllerAs: 'cellBoardChooserCtrl',
         templateUrl: "angular/global/component/cellBoardChooser.html"
     });

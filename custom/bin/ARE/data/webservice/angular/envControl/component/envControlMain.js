@@ -39,6 +39,5 @@ angular.module(asterics.appComponents)
                 });
             }
         }],
-        controllerAs: 'envControlCtrl',
         templateUrl: "angular/envControl/component/envControlMain.html"
     });

@@ -17,6 +17,5 @@ angular.module(asterics.appComponents)
                 }
             };
         }],
-        controllerAs: 'cellBoardCtrl',
         templateUrl: "angular/global/component/cellBoard.html"
     });

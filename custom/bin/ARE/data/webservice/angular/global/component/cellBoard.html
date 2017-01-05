@@ -1,6 +1,6 @@
 <div>
-    <div ng-repeat="item in cellBoardCtrl.chooseItems track by $index" class="span2">
-        <button ng-click="cellBoardCtrl.itemClicked(item)">
+    <div ng-repeat="item in $ctrl.chooseItems track by $index" class="span2">
+        <button ng-click="$ctrl.itemClicked(item)">
             <div>
                 <cell-board-chooser item="item"/>
             </div>

@@ -6,6 +6,5 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('Umgebungssteuerung', 'home', 'envControl')];
         }],
-        controllerAs: 'mainMenuCtrl',
         templateUrl: "angular/global/component/mainMenu.html"
     });
