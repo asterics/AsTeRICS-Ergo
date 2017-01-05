@@ -11,17 +11,7 @@
             <select id="inputType" ng-options="item as item.title for item in envControlAddCtrl.selectTypes"
                     ng-model="envControlAddCtrl.selectedType"/><br/>
         </li>
-        <li ng-if="envControlAddCtrl.stepCompleted(1)" ng-model-options="{debounce: 500}">
-            <label for="inputLabel">Bitte Namen für das neue Gerät auswählen</label>
-            <input type="text" id="inputLabel" ng-model="envControlAddCtrl.selectedLabel"/><br/>
-        </li>
-        <li ng-if="envControlAddCtrl.stepCompleted(2)">
-            <label for="inputTrain">Bitte Drücken Sie auf den roten Button am Gerät, bis er rot zu blinken beginnt.</label>
-            <button id="inputTrain" ng-click="envControlAddCtrl.trainCode()">Ok, Button blinkt!</button><br/>
-        </li>
-        <li ng-if="envControlAddCtrl.stepCompleted(3)">
-            <span>Kontrollieren Sie ob das Blinken aufgehört hat und klicken Sie auf "Fertigstellen".</span><br/>
-            <button ng-click="envControlAddCtrl.addCellBoardItemAndReturn()">Fertigstellen</button>
-        </li>
+        <env-control-add-fs ng-if="envControlAddCtrl.enableFs()"></env-control-add-fs>
+        <env-control-add-ir ng-if="envControlAddCtrl.enableIr()"></env-control-add-ir>
     </ol>
 </div>

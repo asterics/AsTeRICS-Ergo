@@ -2,41 +2,21 @@ angular.module(asterics.appComponents)
     .component('envControlAdd', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', function (envControlDataService, $state, envControlFsService, utilService) {
+        controller: ['utilService', function (utilService) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl')];
-            thiz.code = envControlDataService.getNewFs20Code();
-            thiz.selectedLabel = null;
-            thiz.selectedIcon = 'lightbulb-o';
-            thiz.selectedType = null;
-            thiz.trained = false;
+            thiz.selectedType = {};
             thiz.selectTypes = [
-                utilService.createSelectItem('Steckdose'),
-                utilService.createSelectItem('IR-Commando')
+                utilService.createSelectItem('Steckdose', asterics.envControl.ID_FS20),
+                utilService.createSelectItem('IR-Commando', asterics.envControl.ID_IR)
             ];
 
-            thiz.trainCode = function() {
-                envControlFsService.trainCode(thiz.code);
-                thiz.trained = true;
+            thiz.enableFs = function () {
+                return thiz.selectedType.id === asterics.envControl.ID_FS20;
             };
 
-            thiz.addCellBoardItemAndReturn = function() {
-                envControlDataService.addCellBoardElement(thiz.selectedLabel, thiz.selectedIcon, thiz.code);
-                $state.go('envControl');
-            };
-
-            thiz.stepCompleted = function(nr) {
-                var ret = true;
-                if(nr >= 1) {
-                    ret = ret && thiz.selectedType;
-                }
-                if(nr >= 2) {
-                    ret = ret && thiz.selectedLabel;
-                }
-                if(nr >= 3) {
-                    ret = ret && thiz.trained;
-                }
-                return ret;
+            thiz.enableIr = function () {
+                return thiz.selectedType.id === asterics.envControl.ID_IR;
             };
         }],
         controllerAs: 'envControlAddCtrl',

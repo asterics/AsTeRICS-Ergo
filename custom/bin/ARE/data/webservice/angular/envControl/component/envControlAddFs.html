@@ -1,0 +1,12 @@
+<li ng-model-options="{debounce: 500}">
+    <label for="inputLabel">Bitte Namen für das neue Gerät auswählen</label>
+    <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
+</li>
+<li ng-if="$ctrl.stepCompleted(1)">
+    <label for="inputTrain">Bitte Drücken Sie auf den roten Button am Gerät, bis er rot zu blinken beginnt.</label>
+    <button id="inputTrain" ng-click="$ctrl.trainCode()">Ok, Button blinkt!</button><br/>
+</li>
+<li ng-if="$ctrl.stepCompleted(2)">
+    <span>Kontrollieren Sie ob das Blinken aufgehört hat und klicken Sie auf "Fertigstellen".</span><br/>
+    <button ng-click="$ctrl.addCellBoardItemAndReturn()">Fertigstellen</button>
+</li>

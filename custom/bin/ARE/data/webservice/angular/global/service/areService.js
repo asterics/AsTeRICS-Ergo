@@ -79,6 +79,14 @@ angular.module(asterics.appServices)
             });
         };
 
+        thiz.getRuntimeComponentProperty = function (componentId, componentKey) {
+            if ((componentId == "") || (componentKey == "")) return;
+            return $http({
+                method: 'GET',
+                url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(componentKey)
+            });
+        };
+
         //encodes PathParametes
         function encodeParam(text) {
             encoded = "";

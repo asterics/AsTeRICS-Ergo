@@ -28,7 +28,7 @@ angular.module(asterics.appComponents)
                 if (enableDeleteMode) {
                     title = 'Löschen aktivieren';
                 }
-                return utilService.createCellBoardItem(title, 'trash', function () {
+                return utilService.createCellBoardItem(title, 'trash', asterics.envControl.CB_TYPE_FN, function () {
                     if (thiz.cellBoardMode === asterics.const.CELLB_MODE_NORMAL) {
                         thiz.cellBoardMode = asterics.const.CELLB_MODE_DELETE;
                     } else {
