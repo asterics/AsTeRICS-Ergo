@@ -29,12 +29,12 @@ angular.module(asterics.appServices)
         };
 
         thiz.irSend = function (cmd) {
-            return thiz.irAction('Asndhex H' + cmd);
+            return thiz.irAction('sndhex H' + cmd);
         };
 
         thiz.irLearn = function () {
             var def = $q.defer();
-            thiz.irAction('Alearn').then(function (response) {
+            thiz.irAction('learn').then(function (response) {
                 var index = response.indexOf(learnCmdResponse);
                 if (index == -1) {
                     def.reject();
