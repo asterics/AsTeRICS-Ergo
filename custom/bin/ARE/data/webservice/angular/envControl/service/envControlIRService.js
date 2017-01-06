@@ -10,11 +10,20 @@ angular.module(asterics.appServices)
             var def = $q.defer();
             var actionString = '@IRTRANS:' + cmd;
             console.log("sending: " + actionString);
-            areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString).then(function () {
-                areService.getRuntimeComponentProperty(IrTransName, propCmdResult).then(function (result) {
-                    console.log("result: " + result.data);
-                    def.resolve(result.data);
-                });
+
+            var successCallback = function (response) {
+                areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
+                console.log('ir response: ' + response.data);
+                def.resolve(response.data);
+            };
+            var errorCallback = function error() {
+                areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
+                def.reject();
+            };
+            areService.getComponentDataChannelsIds(IrTransName, 'output').then(function (response) {
+                var channelIds = Object.keys(response.data);
+                areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
+                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString);
             });
             return def.promise;
         };

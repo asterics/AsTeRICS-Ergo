@@ -88,6 +88,14 @@ angular.module(asterics.appServices)
             });
         };
 
+        thiz.getComponentDataChannelsIds = function (componentId, portId) {
+            if (componentId == "") return;
+            return $http({
+                method: 'GET',
+                url: _baseURI + "runtime/model/components/"+encodeParam(componentId) + "/" + encodeParam(portId) + "/channels/data/ids"
+            });
+        };
+
         /**********************************
          *    Subscription to SSE events
          **********************************/
@@ -95,7 +103,9 @@ angular.module(asterics.appServices)
         thiz.subscribeSSE = function (successCallback, errorCallback, eventType, channelId) {
             var resource = '';
             if ((typeof EventSource) === "undefined") {
-                console.error("Error: SSE not supported by browser");
+                var msg = "Error: SSE not supported by browser";
+                console.error(msg);
+                errorCallback(msg);
                 return;
             }
             closeEventSource(eventType);
@@ -117,7 +127,9 @@ angular.module(asterics.appServices)
                     resource = "runtime/model/components/properties/listener";
                     break;
                 default:
-                    console.error("ERROR: Unknown event type given as a parameter '" + eventType + "'");
+                    var msg = "ERROR: Unknown event type given as a parameter '" + eventType + "'";
+                    console.error(msg);
+                    errorCallback(msg);
                     return;
             }
 
@@ -126,12 +138,12 @@ angular.module(asterics.appServices)
 
             //adding listener for specific events
             eventSource.addEventListener("event", function (e) {
-                successCallback(e.data, 200);
+                successCallback(JSON.parse(e.data), 200);
             }, false);
 
             // After SSE handshake constructed
             eventSource.onopen = function (e) {
-                console.log("Waiting message...");
+                console.log("opened SSE for: " + eventType);
             };
 
             // Error handler
@@ -162,6 +174,7 @@ angular.module(asterics.appServices)
 
             if (eventSource) {
                 eventSource.close();
+                console.log("closed SSE for: " + eventType);
                 return true;
             } else {
                 return false;

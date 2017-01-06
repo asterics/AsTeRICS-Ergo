@@ -11,7 +11,6 @@ angular.module(asterics.appComponents)
 
             thiz.trainCode = function () {
                 envControlIRService.irLearn().then(function (response) {
-                    console.log(response);
                     thiz.code = response;
 
                 });
