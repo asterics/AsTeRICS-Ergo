@@ -5,6 +5,7 @@ angular.module(asterics.appServices)
         var _baseURI = "http://localhost:8081/rest/";
         //delimiter used for encoding
         var delimiter = "-";
+        var _eventSourceMap = {};
 
         thiz.deployAndStartModel = function (filepath) {
             return $http({
@@ -86,6 +87,86 @@ angular.module(asterics.appServices)
                 url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(componentKey)
             });
         };
+
+        /**********************************
+         *    Subscription to SSE events
+         **********************************/
+
+        thiz.subscribeSSE = function (successCallback, errorCallback, eventType, channelId) {
+            var resource = '';
+            if ((typeof EventSource) === "undefined") {
+                console.error("Error: SSE not supported by browser");
+                return;
+            }
+            closeEventSource(eventType);
+
+            switch (eventType) {
+                case asterics.const.ServerEventTypes.MODEL_CHANGED:
+                    resource = "runtime/deployment/listener";
+                    break;
+                case asterics.const.ServerEventTypes.MODEL_STATE_CHANGED:
+                    resource = "runtime/model/state/listener";
+                    break;
+                case asterics.const.ServerEventTypes.EVENT_CHANNEL_TRANSMISSION:
+                    resource = "runtime/model/channels/event/listener";
+                    break;
+                case asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION:
+                    resource = "runtime/model/channels/data/" + encodeParam(channelId) + "/listener";
+                    break;
+                case asterics.const.ServerEventTypes.PROPERTY_CHANGED:
+                    resource = "runtime/model/components/properties/listener";
+                    break;
+                default:
+                    console.error("ERROR: Unknown event type given as a parameter '" + eventType + "'");
+                    return;
+            }
+
+            eventSource = new EventSource(_baseURI + resource); // Connecting to SSE service
+            _eventSourceMap[eventType] = eventSource;
+
+            //adding listener for specific events
+            eventSource.addEventListener("event", function (e) {
+                successCallback(e.data, 200);
+            }, false);
+
+            // After SSE handshake constructed
+            eventSource.onopen = function (e) {
+                console.log("Waiting message...");
+            };
+
+            // Error handler
+            eventSource.onerror = function (e) {
+                switch (e.target.readyState) {
+                    case EventSource.CONNECTING:
+                        console.log(400, 'reconnecting');
+                        break;
+                    case EventSource.CLOSED:
+                        console.log(400, 'connectionLost');
+                        break;
+                    default:
+                        errorCallback(400, 'someErrorOccurred');
+                        console.log("Error occured");
+                }
+            };
+        };
+
+
+        thiz.unsubscribeSSE = function (eventType) {
+            closeEventSource(eventType);
+        };
+
+
+        function closeEventSource(eventType) {
+            var eventSource = _eventSourceMap[eventType];
+            _eventSourceMap[eventType] = null;
+
+            if (eventSource) {
+                eventSource.close();
+                return true;
+            } else {
+                return false;
+            }
+        }
 
         //encodes PathParametes
         function encodeParam(text) {
