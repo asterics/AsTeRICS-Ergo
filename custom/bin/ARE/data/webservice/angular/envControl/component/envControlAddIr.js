@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.selectedLabel = null;
             thiz.code = null;
-            thiz.selectedIcon = 'lightbulb-o';
+            thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
 
             thiz.trainCode = function () {
