@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', function (envControlDataService, $state, envControlIRService, utilService) {
             var thiz = this;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
+            thiz.cellBoardConfig = [];
             thiz.selectedLabel = 'Fernseher';
             thiz.irElements = [
                 createIrElement('EIN/AUS', 'power-off'),
@@ -18,17 +18,25 @@ angular.module(asterics.appComponents)
             thiz.selectedIcon = 'wifi';
 
             thiz.trainCode = function (irElement, index) {
-                envControlIRService.irLearn().then(function (response) {
+                function success(response) {
                     irElement.code = response;
                     if (index < thiz.irElements.length - 1) {
                         thiz.trainCode(thiz.irElements[index + 1], index + 1);
                     }
-                });
+                }
+
+                function error() {
+                    if (thiz.inLearn) {
+                        thiz.trainCode(thiz.irElements[index], index);
+                    }
+                }
+
+                envControlIRService.irLearn().then(success, error);
                 thiz.inLearn = true;
             };
 
             thiz.addCellBoardItemsAndReturn = function () {
-                angular.forEach(thiz.irElements, function(e) {
+                angular.forEach(thiz.irElements, function (e) {
                     envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code);
                 });
                 $state.go('envControl');
@@ -46,7 +54,15 @@ angular.module(asterics.appComponents)
             };
 
             thiz.allCodesLearned = function () {
-                return thiz.irElements[thiz.irElements.length-1].code;
+                return thiz.irElements[thiz.irElements.length - 1].code;
+            };
+
+            thiz.abortLearning = function () {
+                thiz.inLearn = false;
+                angular.forEach(thiz.irElements, function (e) {
+                    e.code = null;
+                });
+                envControlIRService.abortAction();
             };
 
             function createIrElement(label, icon) {
@@ -54,6 +70,12 @@ angular.module(asterics.appComponents)
                     label: label,
                     icon: icon
                 };
+            }
+
+            init();
+            function init() {
+                //add item here to ensure thiz.abortLearning is defined
+                thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add', thiz.abortLearning)];
             }
         }],
         templateUrl: "angular/envControl/component/add/envControlAddTv.html"

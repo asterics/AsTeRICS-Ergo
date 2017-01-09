@@ -68,7 +68,7 @@ angular.module(asterics.appServices)
             });
         };
 
-        thiz.sendDataToInputPort = function (componentId, componentKey, value) {
+        thiz.sendDataToInputPort = function (componentId, componentKey, value, canceler) {
             return $http({
                 method: 'PUT',
                 url: _baseURI + "runtime/model/components/input/" + encodeParam(componentId) + "/" + encodeParam(componentKey),
@@ -76,7 +76,8 @@ angular.module(asterics.appServices)
                 headers: {
                     "Content-Type": "text/plain"
                 },
-                data: value
+                data: value,
+                config: getConfigCanceler(canceler)
             });
         };
 
@@ -88,11 +89,12 @@ angular.module(asterics.appServices)
             });
         };
 
-        thiz.getComponentDataChannelsIds = function (componentId, portId) {
+        thiz.getComponentDataChannelsIds = function (componentId, portId, canceler) {
             if (componentId == "") return;
             return $http({
                 method: 'GET',
-                url: _baseURI + "runtime/model/components/"+encodeParam(componentId) + "/" + encodeParam(portId) + "/channels/data/ids"
+                url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(portId) + "/channels/data/ids",
+                config: getConfigCanceler(canceler)
             });
         };
 
@@ -189,5 +191,13 @@ angular.module(asterics.appServices)
             }
 
             return encoded;
+        }
+
+        function getConfigCanceler(canceler) {
+            var config = {}
+            if (canceler) {
+                config.timeout = canceler.promise;
+            }
+            return config;
         }
     }]);

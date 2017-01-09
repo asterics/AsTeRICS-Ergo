@@ -3,8 +3,9 @@ angular.module(asterics.appServices)
         var thiz = this;
         var IrTransName = 'IrTrans.1';
         var IrTransActionInput = 'action';
-        var propCmdResult = 'cmdResult';
         var learnCmdResponse = 'LEARN ';
+        var resultError = 'ERROR';
+        thiz.canceler = $q.defer();
 
         thiz.irAction = function (cmd) {
             var def = $q.defer();
@@ -20,10 +21,10 @@ angular.module(asterics.appServices)
                 areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
                 def.reject();
             };
-            areService.getComponentDataChannelsIds(IrTransName, 'output').then(function (response) {
+            areService.getComponentDataChannelsIds(IrTransName, 'output', thiz.canceler).then(function (response) {
                 var channelIds = Object.keys(response.data);
                 areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
-                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString);
+                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString, thiz.canceler);
             });
             return def.promise;
         };
@@ -36,11 +37,19 @@ angular.module(asterics.appServices)
             var def = $q.defer();
             thiz.irAction('learn').then(function (response) {
                 var index = response.indexOf(learnCmdResponse);
-                if (index == -1) {
+                if (index == -1 || response.indexOf(resultError) !== -1) {
                     def.reject();
+                } else {
+                    def.resolve(response.substring(index + learnCmdResponse.length));
                 }
-                def.resolve(response.substring(index + learnCmdResponse.length));
             });
             return def.promise;
+        };
+
+        //aborts a current action, unsubscribes from SSE
+        thiz.abortAction = function () {
+            thiz.canceler.resolve();
+            thiz.canceler = $q.defer();
+            return areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
         };
     }]);
