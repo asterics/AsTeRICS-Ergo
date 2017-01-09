@@ -1,17 +1,13 @@
-<div>
-    <h2>Neue Komponente zu Umgebungssteuerung hinzufügen</h2>
+<div ui-view="">
     <div>
         <cell-board choose-items="$ctrl.cellBoardConfig"/>
     </div>
     <div class="clearfix"/>
-    <br/>
-    <ol>
-        <li>
-            <label for="inputType">Bitte Typ der gewünschten Steuerung auswählen</label>
-            <select id="inputType" ng-options="item as item.title for item in $ctrl.selectTypes"
-                    ng-model="$ctrl.selectedType"/><br/>
-        </li>
-        <env-control-add-fs ng-if="$ctrl.enableFs()"></env-control-add-fs>
-        <env-control-add-ir ng-if="$ctrl.enableIr()"></env-control-add-ir>
-    </ol>
+    <h2>Neue Komponente zu Umgebungssteuerung hinzufügen</h2>
+    <div>
+        <label for="cellBoardType">Bitte Typ der gewünschten Steuerung auswählen</label>
+        <div id="cellBoardType">
+            <cell-board choose-items="$ctrl.cellBoardChoose"/>
+        </div>
+    </div>
 </div>

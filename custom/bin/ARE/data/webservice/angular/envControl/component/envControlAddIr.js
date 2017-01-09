@@ -2,8 +2,9 @@ angular.module(asterics.appComponents)
     .component('envControlAddIr', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlIRService', function (envControlDataService, $state, envControlIRService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', function (envControlDataService, $state, envControlIRService, utilService) {
             var thiz = this;
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
             thiz.selectedLabel = null;
             thiz.code = null;
             thiz.selectedIcon = 'wifi';

@@ -1,15 +1,24 @@
-<li ng-model-options="{debounce: 500}">
-    <label for="inputLabel">Bitte Namen für den Befehl auswählen</label>
-    <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
-</li>
-<li ng-if="$ctrl.stepCompleted(1)">
-    <label for="inputTrain">Klicken Sie auf "Lernen starten" um den Befehl anzulernen. Danach müssen Sie den zu lernenden Knopf auf der Fernbedienung drücken und sie richtung IRTrans richten.</label>
-    <button id="inputTrain" ng-click="$ctrl.trainCode()">Lernen starten</button><br/>
-</li>
-<li ng-if="$ctrl.stepCompleted(2)">
-    <span>Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!</span><br/>
-</li>
-<li ng-if="$ctrl.stepCompleted(3)">
-    <span>IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
-    <button ng-click="$ctrl.addCellBoardItemAndReturn()">Fertigstellen</button>
-</li>
+<div>
+    <cell-board choose-items="$ctrl.cellBoardConfig"/>
+</div>
+<div class="clearfix"/>
+<h2>Neuen Fernbedienungs-Befehl hinzufügen</h2>
+<ol>
+    <li ng-model-options="{debounce: 500}">
+        <label for="inputLabel">Bitte Namen für den Befehl auswählen</label>
+        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
+    </li>
+    <li ng-if="$ctrl.stepCompleted(1)">
+        <label for="inputTrain">Klicken Sie auf "Lernen starten" um den Befehl anzulernen. Danach müssen Sie den zu
+            lernenden Knopf auf der Fernbedienung drücken und sie richtung IRTrans richten.</label>
+        <button id="inputTrain" ng-click="$ctrl.trainCode()">Lernen starten</button>
+        <br/>
+    </li>
+    <li ng-if="$ctrl.stepCompleted(2)">
+        <span>Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!</span><br/>
+    </li>
+    <li ng-if="$ctrl.stepCompleted(3)">
+        <span>IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
+        <button ng-click="$ctrl.addCellBoardItemAndReturn()">Fertigstellen</button>
+    </li>
+</ol>
