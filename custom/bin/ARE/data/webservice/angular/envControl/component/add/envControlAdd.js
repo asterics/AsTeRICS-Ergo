@@ -10,5 +10,5 @@ angular.module(asterics.appComponents)
                 utilService.createCellBoardItemNav('Fernbedienungs-Befehl', 'wifi', 'envControl.add.ir')
             ];
         }],
-        templateUrl: "angular/envControl/component/envControlAdd.html"
+        templateUrl: "angular/envControl/component/add/envControlAdd.html"
     });

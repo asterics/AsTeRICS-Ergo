@@ -37,5 +37,5 @@ angular.module(asterics.appComponents)
                 return ret;
             };
         }],
-        templateUrl: "angular/envControl/component/envControlAddIr.html"
+        templateUrl: "angular/envControl/component/add/envControlAddIr.html"
     });

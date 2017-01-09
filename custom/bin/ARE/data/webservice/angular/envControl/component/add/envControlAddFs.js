@@ -31,5 +31,5 @@ angular.module(asterics.appComponents)
                 return ret;
             };
         }],
-        templateUrl: "angular/envControl/component/envControlAddFs.html"
+        templateUrl: "angular/envControl/component/add/envControlAddFs.html"
     });
