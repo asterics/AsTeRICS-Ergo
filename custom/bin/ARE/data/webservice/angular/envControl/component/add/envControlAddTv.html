@@ -1,0 +1,23 @@
+<div>
+    <cell-board choose-items="$ctrl.cellBoardConfig"/>
+</div>
+<div class="clearfix"/>
+<h2>Neuen Fernseher steuern</h2>
+<ol>
+    <li ng-model-options="{debounce: 500}">
+        <label for="inputLabel">Bitte Namen für den Fernseher auswählen</label>
+        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
+    </li>
+    <li ng-if="$ctrl.selectedLabel">
+        <label for="inputTrain">Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Fernsehers bereit.</label>
+        <button id="inputTrain" ng-click="$ctrl.trainCode($ctrl.irElements[0], 0)">Lernen starten</button>
+        <br/>
+    </li>
+    <li ng-repeat="element in $ctrl.irElements track by $index" ng-if="$ctrl.prevElementLearned(element)">
+        <span>Drücken Sie jetzt den Knopf '{{element.label}}' <i ng-class="'fa fa-' + element.icon"/></span><br/>
+    </li>
+    <li ng-if="$ctrl.allCodesLearned()">
+        <span>Alle Codes erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
+        <button ng-click="$ctrl.addCellBoardItemsAndReturn()">Fertigstellen</button>
+    </li>
+</ol>

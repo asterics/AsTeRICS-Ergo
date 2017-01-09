@@ -8,6 +8,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/add',
             template: '<env-control-add/>'
         })
+        .state("envControl.add.tv", {
+            url: '/tv',
+            template: '<env-control-add-tv/>'
+        })
         .state("envControl.add.fs20", {
             url: '/fs20',
             template: '<env-control-add-fs/>'
