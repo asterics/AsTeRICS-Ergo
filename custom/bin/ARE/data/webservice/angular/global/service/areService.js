@@ -68,10 +68,10 @@ angular.module(asterics.appServices)
             });
         };
 
-        thiz.sendDataToInputPort = function (componentId, componentKey, value, canceler) {
+        thiz.sendDataToInputPort = function (componentId, inputId, value, canceler) {
             return $http({
                 method: 'PUT',
-                url: _baseURI + "runtime/model/components/input/" + encodeParam(componentId) + "/" + encodeParam(componentKey),
+                url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/ports/" + encodeParam(inputId) + "/data",
                 dataType: 'text',
                 headers: {
                     "Content-Type": "text/plain"
