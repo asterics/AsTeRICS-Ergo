@@ -24,7 +24,9 @@ angular.module(asterics.appServices)
             areService.getComponentDataChannelsIds(IrTransName, 'output', thiz.canceler).then(function (response) {
                 var channelIds = Object.keys(response.data);
                 areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
-                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString, thiz.canceler);
+                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString, thiz.canceler).then(function success(){}, function error() {
+                    def.reject();
+                });
             });
             return def.promise;
         };
@@ -42,6 +44,8 @@ angular.module(asterics.appServices)
                 } else {
                     def.resolve(response.substring(index + learnCmdResponse.length));
                 }
+            }, function error() {
+                def.reject();
             });
             return def.promise;
         };

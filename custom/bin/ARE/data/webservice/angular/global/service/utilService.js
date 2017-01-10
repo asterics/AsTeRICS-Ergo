@@ -19,17 +19,14 @@ angular.module(asterics.appServices)
             };
         };
 
-        thiz.createCellBoardItemNav = function (title, faIcon, navState, preStateChangeFunction) {
+        thiz.createCellBoardItemNav = function (title, faIcon, navState) {
             var element = thiz.createCellBoardItem(title, faIcon, asterics.const.CB_TYPE_NAV, function () {
-                if (_.isFunction(preStateChangeFunction)) {
-                    preStateChangeFunction();
-                }
                 $state.go(navState);
             });
             return element;
         };
 
-        thiz.createCellBoardItemBack = function (navState, preStateChangeFunction) {
-            return thiz.createCellBoardItemNav('Zurück', 'arrow-left', navState, preStateChangeFunction);
+        thiz.createCellBoardItemBack = function (navState) {
+            return thiz.createCellBoardItemNav('Zurück', 'arrow-left', navState);
         };
     }]);

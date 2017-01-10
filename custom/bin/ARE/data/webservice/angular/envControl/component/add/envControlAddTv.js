@@ -2,9 +2,9 @@ angular.module(asterics.appComponents)
     .component('envControlAddTv', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', function (envControlDataService, $state, envControlIRService, utilService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $scope) {
             var thiz = this;
-            thiz.cellBoardConfig = [];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
             thiz.selectedLabel = 'Fernseher';
             thiz.irElements = [
                 createIrElement('EIN/AUS', 'power-off'),
@@ -72,11 +72,11 @@ angular.module(asterics.appComponents)
                 };
             }
 
-            init();
-            function init() {
-                //add item here to ensure thiz.abortLearning is defined
-                thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add', thiz.abortLearning)];
-            }
+            //aborting all current learning when leaving the page
+            $scope.$on("$destroy", function () {
+                thiz.abortLearning();
+            });
+
         }],
         templateUrl: "angular/envControl/component/add/envControlAddTv.html"
     });
