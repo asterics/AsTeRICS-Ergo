@@ -16,4 +16,21 @@ angular.module(asterics.appServices)
             element.code = code;
             return element;
         };
+
+        thiz.getIrElementsTv = function () {
+            return [
+                createIrElement('EIN/AUS', 'power-off'),
+                createIrElement('Kanal +', 'arrow-up'),
+                createIrElement('Kanal -', 'arrow-down'),
+                createIrElement('Volume +', 'volume-up'),
+                createIrElement('Volume -', 'volume-down')
+            ];
+        };
+
+        function createIrElement(label, icon) {
+            return {
+                label: label,
+                icon: icon
+            };
+        }
     }]);

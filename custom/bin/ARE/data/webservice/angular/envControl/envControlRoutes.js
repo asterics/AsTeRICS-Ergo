@@ -10,7 +10,15 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
         })
         .state("envControl.add.tv", {
             url: '/tv',
-            template: '<env-control-add-tv/>'
+            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel"/>',
+            resolve: {
+                learnItems: function (envControlUtilService) {
+                    return envControlUtilService.getIrElementsTv();
+                },
+                selectedLabel: function () { //TODO: inject $translate and translate
+                    return 'Fernseher'
+                }
+            }
         })
         .state("envControl.add.fs20", {
             url: '/fs20',

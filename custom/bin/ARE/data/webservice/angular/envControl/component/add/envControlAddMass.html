@@ -11,10 +11,10 @@
     <li ng-if="$ctrl.selectedLabel">
         <label for="inputTrain">Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die
             originale Fernbedienung des Fernsehers bereit.</label>
-        <button id="inputTrain" ng-click="$ctrl.trainCode($ctrl.irElements[0], 0)" ng-disabled="$ctrl.inLearn">Lernen starten</button>
+        <button id="inputTrain" ng-click="$ctrl.trainCode($ctrl.learnItems[0], 0)" ng-disabled="$ctrl.inLearn">Lernen starten</button>
         <br/>
     </li>
-    <li ng-repeat="element in $ctrl.irElements track by $index" ng-if="$ctrl.prevElementLearned(element)">
+    <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.prevElementLearned(element)">
         <span>Drücken Sie jetzt den Knopf '{{element.label}}' <i ng-class="'fa fa-2x fa-' + element.icon"/></span>
         <span ng-if="!element.code">
             <button ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> Lernen abbrechen</button>
