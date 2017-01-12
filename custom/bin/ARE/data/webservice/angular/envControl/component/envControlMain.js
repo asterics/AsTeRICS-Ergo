@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlService', 'envControlDataService', '$state', 'utilService', function (envControlService, envControlDataService, $state, utilService) {
             var thiz = this;
             thiz.configDeleteItem = generateDeleteModeItem(true);
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('home'), utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'), thiz.configDeleteItem];
+            thiz.cellBoardConfig = [generateBackItem(), utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'), thiz.configDeleteItem];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
 
@@ -37,6 +37,14 @@ angular.module(asterics.appComponents)
                     var index = thiz.cellBoardConfig.indexOf(thiz.configDeleteItem);
                     thiz.cellBoardConfig.splice(index, 1, generateDeleteModeItem(!enableDeleteMode));
                 });
+            }
+
+            function generateBackItem() {
+                if($state.current.name === asterics.envControl.STATE_MAIN) {
+                    return utilService.createCellBoardItemBack('home');
+                } else {
+                    return utilService.createCellBoardItemBack('^');
+                }
             }
         }],
         templateUrl: "angular/envControl/component/envControlMain.html"

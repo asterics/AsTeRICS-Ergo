@@ -29,12 +29,10 @@ angular.module(asterics.appServices)
             var parentCellBoardState = envControlUtilService.getLastStateNoAdd();
             var cellBoardName = parentCellBoardState + '.' + title.toLowerCase();
             var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, cellBoardName);
-            var backElement = utilService.createCellBoardItemBack(parentCellBoardState);
             _cellBoardElements[parentCellBoardState].unshift(navToCbElement);
             if (!_cellBoardElements[cellBoardName]) _cellBoardElements[cellBoardName] = [];
-            _cellBoardElements[cellBoardName].unshift(backElement);
             asterics.$stateProvider.state(cellBoardName, {
-                url: '/' + title.toLowerCase(),
+                url: '/cb/' + title.toLowerCase(),
                 template: '<env-control/>'
             });
             return cellBoardName;
