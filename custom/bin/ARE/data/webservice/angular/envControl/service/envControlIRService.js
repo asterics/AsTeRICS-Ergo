@@ -24,7 +24,8 @@ angular.module(asterics.appServices)
             areService.getComponentDataChannelsIds(IrTransName, 'output', thiz.canceler).then(function (response) {
                 var channelIds = Object.keys(response.data);
                 areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
-                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString, thiz.canceler).then(function success(){}, function error() {
+                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString, thiz.canceler).then(function success() {
+                }, function error() {
                     def.reject();
                 });
             });
@@ -37,7 +38,7 @@ angular.module(asterics.appServices)
 
         thiz.irLearn = function () {
             var def = $q.defer();
-            thiz.irAction('learn').then(function (response) {
+            thiz.irAction('learn ,,,,,W2').then(function (response) { //W2 means timeout of 2 seconds
                 var index = response.indexOf(learnCmdResponse);
                 if (index == -1 || response.indexOf(resultError) !== -1) {
                     def.reject();

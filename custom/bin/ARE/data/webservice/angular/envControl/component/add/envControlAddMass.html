@@ -3,7 +3,7 @@
 </div>
 <div class="clearfix"/>
 <h2>Neuen Fernseher steuern</h2>
-<ol>
+<ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">Bitte Namen für den Fernseher auswählen</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
@@ -11,18 +11,25 @@
     <li ng-if="$ctrl.selectedLabel">
         <label for="inputTrain">Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die
             originale Fernbedienung des Fernsehers bereit.</label>
-        <button id="inputTrain" ng-click="$ctrl.trainCode($ctrl.learnItems[0], 0)" ng-disabled="$ctrl.inLearn">Lernen starten</button>
+        <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn || $ctrl.learningAborted">Lernen starten</button>
         <br/>
     </li>
-    <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.prevElementLearned(element)">
+    <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
         <span>Drücken Sie jetzt den Knopf '{{element.label}}' <i ng-class="'fa fa-2x fa-' + element.icon"/></span>
         <span ng-if="!element.code">
             <button ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> Lernen abbrechen</button>
         </span>
         <span ng-if="element.code"><i class="fa fa-check"/> Gelernt!</span>
     </li>
+    <li ng-if="$ctrl.learningAborted">
+        <span>Lernen abgebrochen. Bisher wurden {{$ctrl.numberOfLearnedCodes()}} Befehle gelernt.</span>
+        <div class="clearfix"/>
+        <button ng-click="$ctrl.trainCode()">Lernen fortsetzen</button>
+        <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.clearItemsAndRestartLearning()">Lernen neu starten</button>
+        <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.addCellBoardItemsAndReturn()">Bisher gelernte Befehle übernehmen</button>
+    </li>
     <li ng-if="$ctrl.allCodesLearned()">
-        <span>Alle Codes erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
+        <span>Alle Befehle erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
         <button ng-click="$ctrl.addCellBoardItemsAndReturn()">Fertigstellen</button>
     </li>
-</ol>
+</ul>
