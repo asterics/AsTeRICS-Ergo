@@ -4,8 +4,9 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['envControlService', 'envControlDataService', '$state', 'utilService', function (envControlService, envControlDataService, $state, utilService) {
             var thiz = this;
+            thiz.cellBoardId = $state.current.name;
             thiz.configDeleteItem = generateDeleteModeItem(true);
-            thiz.cellBoardConfig = [generateBackItem(), utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'), thiz.configDeleteItem];
+            thiz.cellBoardConfig = [thiz.configDeleteItem];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
 
@@ -15,7 +16,8 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                thiz.cellBoardEnvControl = envControlDataService.getCellBoard($state.current.name);
+                thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
+                thiz.cellBoardConfig = generateDynamicItems().concat(thiz.cellBoardConfig);
                 envControlService.isEnvModelStarted().then(function (isStarted) {
                     if (!isStarted) {
                         envControlService.startEnvModel();
@@ -39,12 +41,18 @@ angular.module(asterics.appComponents)
                 });
             }
 
-            function generateBackItem() {
-                if($state.current.name === asterics.envControl.STATE_MAIN) {
-                    return utilService.createCellBoardItemBack('home');
+            function generateDynamicItems() {
+                var items = [];
+                if(thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
+                    items.push(utilService.createCellBoardItemBack('home'));
+                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'));
+                } else if(_.includes(thiz.cellBoardId, '-')) {
+                    items.push(utilService.createCellBoardItemBack(thiz.cellBoardId.substring(0, thiz.cellBoardId.lastIndexOf('-'))));
                 } else {
-                    return utilService.createCellBoardItemBack('^');
+                    items.push(utilService.createCellBoardItemBack('^'));
+                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.addsub', {cellBoardId: thiz.cellBoardId}));
                 }
+                return items;
             }
         }],
         templateUrl: "angular/envControl/component/envControlMain.html"

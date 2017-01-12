@@ -1,6 +1,6 @@
 angular.module(asterics.appComponents).config(['$stateProvider', function ($stateProvider) {
     $stateProvider
-        .state("envControl", {
+        .state(asterics.envControl.STATE_MAIN, {
             url: '/envcontrol',
             templateUrl: 'angular/envControl/component/envControlContainer.html'
         })
@@ -8,12 +8,16 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/add',
             template: '<env-control-add/>'
         })
+        .state("envControl.addsub", {
+            url: '/addsub/:cellBoardId',
+            template: '<env-control-add-sub/>'
+        })
         .state("envControl.add.fs20", {
-            url: '/fs20',
+            url: '/fs20/:cellBoardId',
             template: '<env-control-add-fs/>'
         })
         .state("envControl.add.ir", {
-            url: '/ir',
+            url: '/ir/:cellBoardId',
             template: '<env-control-add-ir/>'
         })
         .state("envControl.add.lamp", {
@@ -28,7 +32,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
 
     function configRouteAddIrMass(substateName, selectedLabel) {
         var configObject = {
-            url: '/' + substateName,
+            url: '/' + substateName + "/:cellBoardId",
             template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel"/>',
             resolve: {
                 learnItems: function (envControlUtilService) {

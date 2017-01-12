@@ -15,7 +15,8 @@
         <br/>
     </li>
     <li ng-if="$ctrl.stepCompleted(2)">
-        <span>Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!</span><br/>
+        <span>Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!</span>
+        <button ng-if="!$ctrl.code" ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> Lernen abbrechen</button>
     </li>
     <li ng-if="$ctrl.stepCompleted(3)">
         <span>IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>

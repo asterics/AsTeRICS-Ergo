@@ -7,7 +7,7 @@ angular.module(asterics.appServices)
 
         thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
             if (!cellBoard) {
-                cellBoard = envControlUtilService.getLastStateNoAdd();
+                cellBoard = asterics.envControl.STATE_MAIN;
             }
             var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
             _cellBoardElements[cellBoard].push(element);
@@ -15,7 +15,7 @@ angular.module(asterics.appServices)
 
         thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
             if (!cellBoard) {
-                cellBoard = envControlUtilService.getLastStateNoAdd();
+                cellBoard = asterics.envControl.STATE_MAIN;
             }
             var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
             _cellBoardElements[cellBoard].push(element);
@@ -25,14 +25,22 @@ angular.module(asterics.appServices)
             return _cellBoardElements[state];
         };
 
-        thiz.addSubCellboard = function (title, faIcon) {
-            var parentCellBoardState = envControlUtilService.getLastStateNoAdd();
-            var cellBoardName = parentCellBoardState + '.' + title.toLowerCase();
+        //TODO - un-hack this method
+        thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {
+            if (!parentCellBoardState) {
+                parentCellBoardState = asterics.envControl.STATE_MAIN;
+            }
+            var cellBoardName;
+            if (utilService.isSubState(parentCellBoardState)) {
+                cellBoardName = parentCellBoardState + '-' + title.toLowerCase();
+            } else {
+                cellBoardName = asterics.envControl.STATE_MAIN + '.' + title.toLowerCase();
+            }
             var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, cellBoardName);
             _cellBoardElements[parentCellBoardState].unshift(navToCbElement);
             if (!_cellBoardElements[cellBoardName]) _cellBoardElements[cellBoardName] = [];
             asterics.$stateProvider.state(cellBoardName, {
-                url: '/cb/' + title.toLowerCase(),
+                url: '/cb/' + cellBoardName.substring(cellBoardName.indexOf('.') + 1).replace('-', '/'),
                 template: '<env-control/>'
             });
             return cellBoardName;

@@ -19,9 +19,9 @@ angular.module(asterics.appServices)
             };
         };
 
-        thiz.createCellBoardItemNav = function (title, faIcon, navState) {
+        thiz.createCellBoardItemNav = function (title, faIcon, navState, stateParams) {
             var element = thiz.createCellBoardItem(title, faIcon, asterics.const.CB_TYPE_NAV, function () {
-                $state.go(navState);
+                $state.go(navState, stateParams);
             });
             return element;
         };
@@ -29,4 +29,8 @@ angular.module(asterics.appServices)
         thiz.createCellBoardItemBack = function (navState) {
             return thiz.createCellBoardItemNav('Zurück', 'arrow-left', navState);
         };
+
+        thiz.isSubState = function(stateName) {
+            return _.includes(stateName, '.');
+        }
     }]);

@@ -5,8 +5,9 @@ angular.module(asterics.appComponents)
             learnItems: '<',
             selectedLabel: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $scope) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams) {
             var thiz = this;
+            thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
             thiz.inLearn = false;
             thiz.learningAborted = false;
@@ -47,7 +48,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.addCellBoardItemsAndReturn = function () {
-                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, 'tv');
+                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, 'tv', thiz.cbToAdd); //TODO - change 'tv'
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);

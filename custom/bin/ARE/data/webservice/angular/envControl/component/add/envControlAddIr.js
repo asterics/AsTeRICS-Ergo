@@ -2,8 +2,9 @@ angular.module(asterics.appComponents)
     .component('envControlAddIr', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', function (envControlDataService, $state, envControlIRService, utilService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', function (envControlDataService, $state, envControlIRService, utilService, $stateParams) {
             var thiz = this;
+            thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
             thiz.selectedLabel = null;
             thiz.code = null;
@@ -13,13 +14,21 @@ angular.module(asterics.appComponents)
             thiz.trainCode = function () {
                 envControlIRService.irLearn().then(function (response) {
                     thiz.code = response;
-
+                }, function error() {
+                    if(thiz.inTrain) {
+                        thiz.trainCode();
+                    }
                 });
                 thiz.inTrain = true;
             };
 
+            thiz.abortLearning = function () {
+                thiz.inTrain = false;
+                envControlIRService.abortAction();
+            };
+
             thiz.addCellBoardItemAndReturn = function () {
-                envControlDataService.addCellBoardElementIrTrans(thiz.selectedLabel, thiz.selectedIcon, thiz.code);
+                envControlDataService.addCellBoardElementIrTrans(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
                 $state.go('envControl');
             };
 

@@ -1,7 +1,6 @@
 angular.module(asterics.appServices)
     .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', '$rootScope', function (envControlFsService, envControlIRService, utilService, $rootScope) {
         var thiz = this;
-        var _lastStateNoAdd = 'envControl';
 
         thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
             var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.CB_TYPE_FS20, function () {
@@ -17,10 +16,6 @@ angular.module(asterics.appServices)
             });
             element.code = code;
             return element;
-        };
-
-        thiz.getLastStateNoAdd = function() {
-            return _lastStateNoAdd;
         };
 
         thiz.getIrElements = function (substateName) {
@@ -73,15 +68,6 @@ angular.module(asterics.appServices)
                     return;
             }
         };
-
-        init();
-        function init() {
-            $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-                if(from.name && !_.includes(from.name, '.add')) {
-                    _lastStateNoAdd = from.name;
-                }
-            });
-        }
 
         function createIrElement(label, icon) {
             return {
