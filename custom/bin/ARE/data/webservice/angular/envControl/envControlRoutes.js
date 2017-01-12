@@ -8,18 +8,6 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/add',
             template: '<env-control-add/>'
         })
-        .state("envControl.add.tv", {
-            url: '/tv',
-            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel"/>',
-            resolve: {
-                learnItems: function (envControlUtilService) {
-                    return envControlUtilService.getIrElementsTv();
-                },
-                selectedLabel: function () { //TODO: inject $translate and translate
-                    return 'Fernseher'
-                }
-            }
-        })
         .state("envControl.add.fs20", {
             url: '/fs20',
             template: '<env-control-add-fs/>'
@@ -28,4 +16,25 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/ir',
             template: '<env-control-add-ir/>'
         });
+
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'Fernseher');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_DVD, 'DVD-Player');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_HIFI, 'Musik-Player');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'Nummern');
+
+    function configRouteAddIrMass(substateName, selectedLabel) {
+        var configObject = {
+            url: '/' + substateName,
+            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel"/>',
+            resolve: {
+                learnItems: function (envControlUtilService) {
+                    return envControlUtilService.getIrElements(substateName);
+                },
+                selectedLabel: function () { //TODO: inject $translate and translate
+                    return selectedLabel;
+                }
+            }
+        };
+        $stateProvider.state('envControl.add.' + substateName, configObject);
+    }
 }]);
