@@ -3,7 +3,7 @@
 </div>
 <div class="clearfix"/>
 <h2>Neuen Fernbedienungs-Befehl hinzufügen</h2>
-<ol>
+<ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">Bitte Namen für den Befehl auswählen</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
@@ -21,4 +21,4 @@
         <span>IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
         <button ng-click="$ctrl.addCellBoardItemAndReturn()">Fertigstellen</button>
     </li>
-</ol>
+</ul>
