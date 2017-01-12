@@ -15,6 +15,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
         .state("envControl.add.ir", {
             url: '/ir',
             template: '<env-control-add-ir/>'
+        })
+        .state("envControl.add.lamp", {
+            url: '/lamp',
+            template: '<env-control-add-fs selected-label="Lampe"/>'
         });
 
     configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'Fernseher');
