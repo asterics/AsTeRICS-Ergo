@@ -15,7 +15,7 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                thiz.cellBoardEnvControl = envControlDataService.getCellBoardElements();
+                thiz.cellBoardEnvControl = envControlDataService.getCellBoard($state.current.name);
                 envControlService.isEnvModelStarted().then(function (isStarted) {
                     if (!isStarted) {
                         envControlService.startEnvModel();

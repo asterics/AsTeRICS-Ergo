@@ -47,9 +47,10 @@ angular.module(asterics.appComponents)
             };
 
             thiz.addCellBoardItemsAndReturn = function () {
+                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, 'tv');
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
-                        envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code);
+                        envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
                     }
                 });
                 $state.go('envControl');

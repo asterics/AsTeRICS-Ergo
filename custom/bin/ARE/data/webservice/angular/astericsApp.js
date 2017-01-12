@@ -17,6 +17,7 @@ angular.module(asterics.app, [
             template: '<main-menu/>'
         });
     $urlRouterProvider.otherwise('/home');
+    asterics.$stateProvider = $stateProvider; //TODO: not save globally, but create service like here (tried it, but it did not work) http://stackoverflow.com/questions/25866387/angular-ui-router-programmatically-add-states
 }]);
 
 angular.module(asterics.appServices, []);

@@ -10,6 +10,7 @@ asterics.envControl.CB_TYPE_FN = 'CB_TYPE_FN';
 asterics.envControl.ID_FS20 = 'ID_FS20';
 asterics.envControl.ID_IR = 'ID_IR';
 
+asterics.envControl.STATE_MAIN = 'envControl';
 asterics.envControl.SUBSTATE_ADD_TV = 'tv';
 asterics.envControl.SUBSTATE_ADD_DVD = 'dvd';
 asterics.envControl.SUBSTATE_ADD_HIFI = 'hifi';

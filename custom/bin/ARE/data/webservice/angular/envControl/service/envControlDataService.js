@@ -1,28 +1,51 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areService', 'envControlUtilService', function (areService, envControlUtilService) {
+    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', function (areService, utilService, envControlUtilService) {
         var thiz = this;
-        var _cellBoardElements = [];
+        var _cellBoardElements = {};
+        _cellBoardElements[asterics.envControl.STATE_MAIN] = [];
         var houseCode = '11111111';
 
-        thiz.getCellBoardElements = function () {
-            return _cellBoardElements;
-        };
-
-        thiz.addCellBoardElementFs20 = function (title, faIcon, code) {
+        thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
+            if (!cellBoard) {
+                cellBoard = envControlUtilService.getLastStateNoAdd();
+            }
             var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
-            _cellBoardElements.push(element);
+            _cellBoardElements[cellBoard].push(element);
         };
 
-        thiz.addCellBoardElementIrTrans = function (title, faIcon, code) {
+        thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
+            if (!cellBoard) {
+                cellBoard = envControlUtilService.getLastStateNoAdd();
+            }
             var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
-            _cellBoardElements.push(element);
+            _cellBoardElements[cellBoard].push(element);
         };
 
-        thiz.removeCellBoardElement = function (element) {
-            _cellBoardElements = _.without(_cellBoardElements, element);
-            return _cellBoardElements;
+        thiz.getCellBoard = function (state) {
+            return _cellBoardElements[state];
         };
 
+        thiz.addSubCellboard = function (title, faIcon) {
+            var parentCellBoardState = envControlUtilService.getLastStateNoAdd();
+            var cellBoardName = parentCellBoardState + '.' + title.toLowerCase();
+            var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, cellBoardName);
+            var backElement = utilService.createCellBoardItemBack(parentCellBoardState);
+            _cellBoardElements[parentCellBoardState].unshift(navToCbElement);
+            if (!_cellBoardElements[cellBoardName]) _cellBoardElements[cellBoardName] = [];
+            _cellBoardElements[cellBoardName].unshift(backElement);
+            asterics.$stateProvider.state(cellBoardName, {
+                url: '/' + title.toLowerCase(),
+                template: '<env-control/>'
+            });
+            return cellBoardName;
+        };
+
+        thiz.removeCellBoardElement = function (state, element) {
+            _cellBoardElements[state] = _.without(_cellBoardElements[state], element);
+            return _cellBoardElements[state];
+        };
+
+        //TODO
         thiz.getNewFs20Code = function () {
             if (_.filter(_cellBoardElements, {type: asterics.envControl.CB_TYPE_FS20}).length > 0) {
                 var codesString = _.map(_cellBoardElements, 'code');
