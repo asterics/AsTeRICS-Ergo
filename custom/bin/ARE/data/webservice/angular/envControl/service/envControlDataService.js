@@ -36,6 +36,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {
+            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots in order to not interfere with states and paths
             if (!parentCellBoardState) {
                 parentCellBoardState = asterics.envControl.STATE_MAIN;
             }
