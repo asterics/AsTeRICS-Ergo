@@ -10,3 +10,5 @@ asterics.const.ServerEventTypes = {
     DATA_CHANNEL_TRANSMISSION: "data_channel_transmission",
     PROPERTY_CHANGED: "property_changed"
 };
+
+asterics.const.STATE_HOME = 'home';

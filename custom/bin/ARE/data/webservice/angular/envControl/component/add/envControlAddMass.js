@@ -9,7 +9,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('home.envControl.add')];
             thiz.inLearn = false;
             thiz.learningAborted = false;
 
@@ -75,7 +75,7 @@ angular.module(asterics.appComponents)
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
                     }
                 });
-                $state.go('envControl');
+                $state.go('home.envControl');
             };
 
             thiz.numberOfLearnedCodes = function () {

@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('stateUtilService', function () {
+    .service('stateUtilService', ['$state', function ($state) {
         var thiz = this;
 
         thiz.addSubState = function (parentState, newName) {
@@ -47,4 +47,14 @@ angular.module(asterics.appServices)
             var lastPart = thiz.getLastPart(stateName);
             return lastPart[0].toUpperCase() + lastPart.substring(1);
         };
-    });
+
+        thiz.getBreadCrumbStates = function () {
+            var states = [$state.current.name];
+            var nextState = $state.current.name;
+            while(nextState && nextState !== asterics.const.STATE_HOME) {
+                nextState = thiz.cutLastPart(nextState);
+                states.unshift(nextState);
+            }
+            return states;
+        }
+    }]);

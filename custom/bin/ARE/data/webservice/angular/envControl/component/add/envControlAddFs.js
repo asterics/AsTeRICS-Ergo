@@ -7,7 +7,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', function (envControlDataService, $state, envControlFsService, utilService, $stateParams) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('home.envControl.add')];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedIcon = 'lightbulb-o';
             thiz.trained = false;
@@ -19,7 +19,7 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                $state.go('envControl');
+                $state.go('home.envControl');
             };
 
             thiz.stepCompleted = function (nr) {

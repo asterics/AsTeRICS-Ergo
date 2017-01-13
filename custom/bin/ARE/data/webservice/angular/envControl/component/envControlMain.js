@@ -45,10 +45,10 @@ angular.module(asterics.appComponents)
                 var items = [];
                 if(thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                     items.push(utilService.createCellBoardItemBack('home'));
-                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'));
+                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'home.envControl.add'));
                 } else {
                     items.push(utilService.createCellBoardItemBack(stateUtilService.cutLastPart($state.current.name)));
-                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.addsub', {cellBoardId: thiz.cellBoardId}));
+                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'home.envControl.addsub', {cellBoardId: thiz.cellBoardId}));
                 }
                 return items;
             }

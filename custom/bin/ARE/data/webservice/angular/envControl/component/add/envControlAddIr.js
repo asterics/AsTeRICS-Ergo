@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', function (envControlDataService, $state, envControlIRService, utilService, $stateParams) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack('home.envControl.add')];
             thiz.selectedLabel = null;
             thiz.code = null;
             thiz.selectedIcon = 'wifi';
@@ -29,7 +29,7 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlDataService.addCellBoardElementIrTrans(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                $state.go('envControl');
+                $state.go('home.envControl');
             };
 
             thiz.stepCompleted = function (nr) {
