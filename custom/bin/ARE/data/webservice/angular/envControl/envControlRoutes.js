@@ -16,7 +16,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/fs20/:cellBoardId',
             template: '<env-control-add-fs/>'
         })
-        .state(asterics.envControl.STATE_ADD_FS20, {
+        .state(asterics.envControl.STATE_ADD_IR, {
             url: '/ir/:cellBoardId',
             template: '<env-control-add-ir/>'
         })
