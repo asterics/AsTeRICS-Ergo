@@ -3,7 +3,8 @@ angular.module(asterics.appComponents)
 
         bindings: {
             learnItems: '<',
-            selectedLabel: '<'
+            selectedLabel: '<',
+            selectedIcon: '<'
         },
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService) {
             var thiz = this;
@@ -68,7 +69,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.addCellBoardItemsAndReturn = function () {
-                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, 'tv', thiz.cbToAdd); //TODO - change 'tv'
+                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, thiz.cbToAdd);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);

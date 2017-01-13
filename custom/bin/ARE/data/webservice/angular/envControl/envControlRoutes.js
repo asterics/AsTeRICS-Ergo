@@ -25,21 +25,24 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             template: '<env-control-add-fs selected-label="Lampe"/>'
         });
 
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'Fernseher');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_DVD, 'DVD-Player');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_HIFI, 'Musik-Player');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'Nummern');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'Fernseher', 'tv');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_DVD, 'DVD-Player', 'circle');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_HIFI, 'Musik-Player', 'music');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'Nummern', 'th');
 
-    function configRouteAddIrMass(substateName, selectedLabel) {
+    function configRouteAddIrMass(substateName, selectedLabel, selectedIcon) {
         var configObject = {
             url: '/' + substateName + "/:cellBoardId",
-            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel"/>',
+            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel" selected-icon="$resolve.selectedIcon"/>',
             resolve: {
                 learnItems: function (envControlUtilService) {
                     return envControlUtilService.getIrElements(substateName);
                 },
                 selectedLabel: function () { //TODO: inject $translate and translate
                     return selectedLabel;
+                },
+                selectedIcon: function () {
+                    return selectedIcon;
                 }
             }
         };
