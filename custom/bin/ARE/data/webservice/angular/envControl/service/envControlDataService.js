@@ -32,6 +32,9 @@ angular.module(asterics.appServices)
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
+            if(element.type === asterics.const.CB_TYPE_NAV && element.toState) {
+                _cellBoards[element.toState] = []; //delete items of sub-cellboard
+            }
             return _cellBoards[cellBoardName];
         };
 
@@ -42,6 +45,7 @@ angular.module(asterics.appServices)
             }
             var newStateName = stateUtilService.addSubState(parentCellBoardState, title);
             var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, newStateName);
+            navToCbElement.toState = newStateName;
             thiz.addCellBoardElement(parentCellBoardState, navToCbElement);
             initCellBoard(newStateName);
             stateUtilService.addState(newStateName, {
