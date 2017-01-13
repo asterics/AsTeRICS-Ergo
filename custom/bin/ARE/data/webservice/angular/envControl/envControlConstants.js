@@ -11,6 +11,11 @@ asterics.envControl.ID_FS20 = 'ID_FS20';
 asterics.envControl.ID_IR = 'ID_IR';
 
 asterics.envControl.STATE_MAIN = 'home.envControl';
+asterics.envControl.STATE_ADD = 'home.envControl.add';
+asterics.envControl.STATE_ADDSUB = 'home.envControl.addsub';
+asterics.envControl.STATE_ADD_FS20 = 'home.envControl.add.fs20';
+asterics.envControl.STATE_ADD_IR = 'home.envControl.add.ir';
+asterics.envControl.STATE_ADD_LAMP = 'home.envControl.add.lamp';
 asterics.envControl.SUBSTATE_ADD_TV = 'tv';
 asterics.envControl.SUBSTATE_ADD_DVD = 'dvd';
 asterics.envControl.SUBSTATE_ADD_HIFI = 'hifi';

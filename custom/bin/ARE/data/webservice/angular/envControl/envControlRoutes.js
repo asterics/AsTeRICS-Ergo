@@ -4,23 +4,23 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/envcontrol',
             templateUrl: 'angular/envControl/component/envControlContainer.html'
         })
-        .state("home.envControl.add", {
+        .state(asterics.envControl.STATE_ADD, {
             url: '/add',
             template: '<env-control-add/>'
         })
-        .state("home.envControl.addsub", {
+        .state(asterics.envControl.STATE_ADDSUB, {
             url: '/addsub/:cellBoardId',
             template: '<env-control-add-sub/>'
         })
-        .state("home.envControl.add.fs20", {
+        .state(asterics.envControl.STATE_ADD_FS20, {
             url: '/fs20/:cellBoardId',
             template: '<env-control-add-fs/>'
         })
-        .state("home.envControl.add.ir", {
+        .state(asterics.envControl.STATE_ADD_FS20, {
             url: '/ir/:cellBoardId',
             template: '<env-control-add-ir/>'
         })
-        .state("home.envControl.add.lamp", {
+        .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
             template: '<env-control-add-fs selected-label="Lampe"/>'
         });
@@ -46,6 +46,6 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
                 }
             }
         };
-        $stateProvider.state('home.envControl.add.' + substateName, configObject);
+        $stateProvider.state(asterics.envControl.STATE_ADD + '.' + substateName, configObject);
     }
 }]);
