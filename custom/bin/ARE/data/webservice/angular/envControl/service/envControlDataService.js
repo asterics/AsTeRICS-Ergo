@@ -1,16 +1,25 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', function (areService, utilService, envControlUtilService) {
+    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', 'stateUtilService', function (areService, utilService, envControlUtilService, stateUtilService) {
         var thiz = this;
-        var _cellBoardElements = {};
-        _cellBoardElements[asterics.envControl.STATE_MAIN] = [];
+        var _cellBoards = {};
+        _cellBoards[asterics.envControl.STATE_MAIN] = [];
         var houseCode = '11111111';
+
+        thiz.getCellBoard = function (cellBoardName) {
+            return _cellBoards[cellBoardName];
+        };
+
+        thiz.addCellBoardElement = function (cellBoardName, element) {
+            initCellBoard(cellBoardName);
+            _cellBoards[cellBoardName].unshift(element);
+        };
 
         thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
             var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
-            _cellBoardElements[cellBoard].push(element);
+            _cellBoards[cellBoard].push(element);
         };
 
         thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
@@ -18,43 +27,33 @@ angular.module(asterics.appServices)
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
             var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
-            _cellBoardElements[cellBoard].push(element);
+            _cellBoards[cellBoard].push(element);
         };
 
-        thiz.getCellBoard = function (state) {
-            return _cellBoardElements[state];
+        thiz.removeCellBoardElement = function (cellBoardName, element) {
+            _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
+            return _cellBoards[cellBoardName];
         };
 
-        //TODO - un-hack this method
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {
             if (!parentCellBoardState) {
                 parentCellBoardState = asterics.envControl.STATE_MAIN;
             }
-            var cellBoardName;
-            if (utilService.isSubState(parentCellBoardState)) {
-                cellBoardName = parentCellBoardState + '-' + title.toLowerCase();
-            } else {
-                cellBoardName = asterics.envControl.STATE_MAIN + '.' + title.toLowerCase();
-            }
-            var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, cellBoardName);
-            _cellBoardElements[parentCellBoardState].unshift(navToCbElement);
-            if (!_cellBoardElements[cellBoardName]) _cellBoardElements[cellBoardName] = [];
-            asterics.$stateProvider.state(cellBoardName, {
-                url: '/cb/' + cellBoardName.substring(cellBoardName.indexOf('.') + 1).replace('-', '/'),
+            var newStateName = stateUtilService.addSubState(parentCellBoardState, title);
+            var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, newStateName);
+            thiz.addCellBoardElement(parentCellBoardState, navToCbElement);
+            initCellBoard(newStateName);
+            stateUtilService.addState(newStateName, {
+                url: '/cb/' + stateUtilService.getSubState(newStateName),
                 template: '<env-control/>'
             });
-            return cellBoardName;
+            return newStateName;
         };
 
-        thiz.removeCellBoardElement = function (state, element) {
-            _cellBoardElements[state] = _.without(_cellBoardElements[state], element);
-            return _cellBoardElements[state];
-        };
-
-        //TODO
         thiz.getNewFs20Code = function () {
-            if (_.filter(_cellBoardElements, {type: asterics.envControl.CB_TYPE_FS20}).length > 0) {
-                var codesString = _.map(_cellBoardElements, 'code');
+            var cellBoardElements = getAllCellBoardElements();
+            if (_.filter(cellBoardElements, {type: asterics.envControl.CB_TYPE_FS20}).length > 0) {
+                var codesString = _.map(cellBoardElements, 'code');
                 var codes = _.map(codesString, function (elem) {
                     return parseInt(elem.substr(-4))
                 });
@@ -64,4 +63,18 @@ angular.module(asterics.appServices)
             }
             return houseCode + '_1111';
         };
+
+        function initCellBoard(cellBoardName) {
+            if (!_cellBoards[cellBoardName]) {
+                _cellBoards[cellBoardName] = [];
+            }
+        }
+
+        function getAllCellBoardElements() {
+            var list = [];
+            _.forOwn(_cellBoards, function (values) {
+                list = list.concat(values);
+            });
+            return list;
+        }
     }]);
