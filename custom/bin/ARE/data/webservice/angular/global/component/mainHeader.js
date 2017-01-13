@@ -9,7 +9,11 @@ angular.module(asterics.appComponents)
             thiz.stateTitles = {
                 home: 'Home',
                 'home.envControl': 'Umgebungssteuerung',
-                'home.envControl.add': 'Neues Element'
+                'home.envControl.add': 'Neues Element',
+                'home.envControl.add.tv': 'Fernseher',
+                'home.envControl.add.dvd': 'DVD-Player',
+                'home.envControl.add.hifi': 'Musik-Player',
+                'home.envControl.add.numbers': 'Nummern'
             };
             $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
                 thiz.breadCrumbStates = stateUtilService.getBreadCrumbStates();
