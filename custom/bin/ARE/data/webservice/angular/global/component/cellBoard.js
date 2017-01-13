@@ -9,11 +9,15 @@ angular.module(asterics.appComponents)
         controller: ['envControlService', function (envControlService) {
             var thiz = this;
 
-            thiz.itemClicked = function(item) {
-                if(thiz.actionMode === asterics.const.CELLB_MODE_DELETE) {
-                    thiz.removeHandler({item: item});
-                } else {
-                    item.clickAction();
+            thiz.itemClicked = function (item) {
+                switch (thiz.actionMode) {
+                    case asterics.const.CELLB_MODE_DELETE: {
+                        thiz.removeHandler({item: item});
+                        break;
+                    }
+                    default: {
+                        item.clickAction();
+                    }
                 }
             };
         }],

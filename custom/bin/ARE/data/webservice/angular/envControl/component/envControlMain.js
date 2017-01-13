@@ -10,7 +10,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
             thiz.title = 'Geräte steuern';
-            if(thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
+            if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                 thiz.title = thiz.title + ' - Hauptseite';
             } else {
                 var states = stateUtilService.getBreadCrumbStates();
@@ -18,7 +18,7 @@ angular.module(asterics.appComponents)
             }
 
             thiz.removeHandler = function (item) {
-                thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(item);
+                thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(thiz.cellBoardId, item);
             };
 
             init();
@@ -50,7 +50,7 @@ angular.module(asterics.appComponents)
 
             function generateDynamicItems() {
                 var items = [];
-                if(thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
+                if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                     items.push(utilService.createCellBoardItemBack('home'));
                     items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADD));
                 } else {
