@@ -8,6 +8,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
+            thiz.moveItem = null;
             thiz.title = 'Geräte steuern';
             if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                 thiz.title = thiz.title + ' - Hauptseite';
@@ -18,6 +19,12 @@ angular.module(asterics.appComponents)
 
             thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(thiz.cellBoardId, item);
+            };
+
+            thiz.moveHandler = function (item) {
+                envControlDataService.prepareCellBoardElementMove(thiz.cellBoardId, item);
+                item.disabled = true;
+                thiz.moveItem.clickAction();
             };
 
             init();
@@ -40,16 +47,30 @@ angular.module(asterics.appComponents)
                     items.push(utilService.createCellBoardItemBack(stateUtilService.cutLastPart($state.current.name)));
                     items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
                 }
-                items.push(generateSwitchModeItem('Löschen aktivieren','Löschen deaktivieren', asterics.const.CELLB_MODE_DELETE));
+                items.push(generateSwitchModeItem('Löschen aktivieren', 'Löschen deaktivieren', 'trash', asterics.const.CELLB_MODE_DELETE));
+                thiz.moveItem = generateMoveItem();
+                items.push(thiz.moveItem);
+                if (envControlDataService.hasClipboardData()) {
+                    items.push(utilService.createCellBoardItem('Element einfügen', 'clipboard', asterics.envControl.CB_TYPE_FN, function () {
+                        envControlDataService.pasteCellBoardItem(thiz.cellBoardId);
+                        removeElementFromCellboard(thiz.cellBoardConfig, this);
+                    }));
+                }
                 return items;
             }
 
-            function generateSwitchModeItem(title1, title2, switchMode) {
-                return utilService.createCellBoardItem(title1, 'trash', asterics.envControl.CB_TYPE_FN, function () {
-                    if(this.title === title1) {
-                        this.title = title2;
+            function generateMoveItem() {
+                return generateSwitchModeItem('Verschieben aktivieren', 'Verschieben deaktivieren', 'arrows', asterics.const.CELLB_MODE_MOVE);
+            }
+
+            function generateSwitchModeItem(titleDeactivated, titleActivated, icon, switchMode) {
+                return utilService.createCellBoardItem(titleDeactivated, icon, asterics.envControl.CB_TYPE_FN, function () {
+                    if (this.title === titleDeactivated) {
+                        this.active = true;
+                        this.title = titleActivated;
                     } else {
-                        this.title = title1;
+                        this.active = false;
+                        this.title = titleDeactivated;
                     }
                     if (thiz.cellBoardMode === asterics.const.CELLB_MODE_NORMAL) {
                         thiz.cellBoardMode = switchMode;
@@ -57,6 +78,14 @@ angular.module(asterics.appComponents)
                         thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
                     }
                 });
+            }
+
+            function removeElementFromCellboard(cellboard, element) {
+                var index = cellboard.indexOf(element);
+                if (index > -1) {
+                    cellboard.splice(index, 1);
+                }
+                return index;
             }
         }],
         templateUrl: "angular/envControl/component/envControlMain.html"

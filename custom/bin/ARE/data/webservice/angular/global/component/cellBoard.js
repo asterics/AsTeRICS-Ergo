@@ -4,7 +4,8 @@ angular.module(asterics.appComponents)
         bindings: {
             chooseItems: '<',
             actionMode: "<",
-            removeHandler: "&"
+            removeHandler: "&",
+            moveHandler: "&"
         },
         controller: ['envControlService', function (envControlService) {
             var thiz = this;
@@ -15,10 +16,18 @@ angular.module(asterics.appComponents)
                         thiz.removeHandler({item: item});
                         break;
                     }
+                    case asterics.const.CELLB_MODE_MOVE: {
+                        thiz.moveHandler({item: item});
+                        break;
+                    }
                     default: {
                         item.clickAction();
                     }
                 }
+            };
+
+            thiz.getClass = function(item) {
+                return item.active ? 'active' : '';
             };
         }],
         templateUrl: "angular/global/component/cellBoard.html"

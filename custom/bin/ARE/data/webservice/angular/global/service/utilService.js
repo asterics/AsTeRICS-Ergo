@@ -7,7 +7,9 @@ angular.module(asterics.appServices)
                 title: title,
                 faIcon: faIcon,
                 type: type,
-                clickAction: clickAction
+                clickAction: clickAction,
+                disabled: false,
+                active: false
             };
         };
 

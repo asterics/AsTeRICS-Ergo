@@ -3,6 +3,7 @@ angular.module(asterics.appServices)
         var thiz = this;
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
+        var _clipBoard = {};
         var houseCode = '11111111';
 
         thiz.getCellBoard = function (cellBoardName) {
@@ -36,6 +37,24 @@ angular.module(asterics.appServices)
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
             }
             return _cellBoards[cellBoardName];
+        };
+
+        thiz.prepareCellBoardElementMove = function (cellBoardName, element) {
+            _clipBoard.element = element;
+            _clipBoard.cellBoardName = cellBoardName;
+        };
+
+        thiz.pasteCellBoardItem = function(cellBoardName) {
+            if(thiz.hasClipboardData()) {
+                _clipBoard.element.disabled = false;
+                thiz.removeCellBoardElement(_clipBoard.cellBoardName, _clipBoard.element);
+                thiz.addCellBoardElement(cellBoardName, _clipBoard.element);
+                _clipBoard = {};
+            }
+        };
+
+        thiz.hasClipboardData = function() {
+            return _clipBoard.element && _clipBoard.cellBoardName;
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {

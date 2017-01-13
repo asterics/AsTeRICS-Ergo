@@ -5,3 +5,8 @@
 .fa-check {
     color: green;
 }
+
+div .active {
+    border-color: red;
+    border-style: solid;
+}

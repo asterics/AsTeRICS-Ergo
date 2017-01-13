@@ -9,7 +9,7 @@
         <div ng-if="$ctrl.cellBoardEnvControl.length == 0"><b>Derzeit keine Steuerungsmöglichkeiten.</b><br/>Klicken Sie auf "Neue Steuerungsmöglichkeit hinzufügen".</div>
         <div ng-if="$ctrl.cellBoardEnvControl.length > 0">
             <cell-board choose-items="$ctrl.cellBoardEnvControl"
-                        remove-handler="$ctrl.removeHandler(item)" action-mode="$ctrl.cellBoardMode"/>
+                        remove-handler="$ctrl.removeHandler(item)" move-handler="$ctrl.moveHandler(item)" action-mode="$ctrl.cellBoardMode"/>
         </div>
     </div>
 </div>
