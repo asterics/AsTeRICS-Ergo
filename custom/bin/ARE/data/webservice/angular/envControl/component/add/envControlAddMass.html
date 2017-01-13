@@ -2,10 +2,10 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2>Neuen Fernseher steuern</h2>
+<h2>{{$ctrl.headerTitle}}</h2>
 <ul>
     <li ng-model-options="{debounce: 500}">
-        <label for="inputLabel">Bitte Namen für den Fernseher auswählen</label>
+        <label for="inputLabel">{{$ctrl.nameLabel}}</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
     </li>
     <li ng-if="$ctrl.selectedLabel">

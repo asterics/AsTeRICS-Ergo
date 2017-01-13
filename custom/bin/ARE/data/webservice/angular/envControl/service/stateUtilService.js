@@ -22,5 +22,20 @@ angular.module(asterics.appServices)
 
         thiz.isSubState = function(stateName) {
             return _.includes(stateName, '.');
-        }
+        };
+
+        thiz.getLastPart = function(stateName) {
+            if(_.includes(stateName, '/')) {
+                return stateName.substring(stateName.lastIndexOf('/')+1);
+            } else if(_.includes(stateName, '.')) {
+                return stateName.substring(stateName.lastIndexOf('.')+1);
+            } else {
+                return stateName;
+            }
+        };
+
+        thiz.getLastPartUpper = function(stateName) {
+            var lastPart = thiz.getLastPart(stateName);
+            return lastPart[0].toUpperCase() + lastPart.substring(1);
+        };
     });

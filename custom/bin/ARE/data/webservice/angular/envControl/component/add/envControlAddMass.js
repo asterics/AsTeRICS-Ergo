@@ -5,12 +5,32 @@ angular.module(asterics.appComponents)
             learnItems: '<',
             selectedLabel: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack('envControl.add')];
             thiz.inLearn = false;
             thiz.learningAborted = false;
+
+            //TODO: replace with i18n
+            thiz.headerTitles = {
+                tv: 'Neue Fernsehsteuerung einrichten',
+                dvd: 'Neue Steuerung eines DVD-Players einrichten',
+                hifi: 'Neue Steuerung eines Musik-Players einrichten',
+                numbers: 'Zifferntasten eines Geräts lernen'
+            };
+            thiz.nameLables = {
+                tv: 'Bitte Namen für den Fernseher auswählen',
+                dvd: 'Bitte Namen für den DVD-Player auswählen',
+                hifi: 'Bitte Namen für den Musik-Player auswählen',
+                numbers: 'Bitte Namen für die Zifferntasten auswählen'
+            };
+            var lastPart = stateUtilService.getLastPart($state.current.name);
+            thiz.headerTitle = thiz.headerTitles[lastPart];
+            thiz.nameLabel = thiz.nameLables[lastPart];
+            if (lastPart === 'numbers' && thiz.cbToAdd) {
+                thiz.headerTitle = 'Zifferntasten von ' + stateUtilService.getLastPartUpper(thiz.cbToAdd) + ' lernen';
+            }
 
             thiz.trainCode = function (irElement, index) {
                 if (!irElement || !index) {
