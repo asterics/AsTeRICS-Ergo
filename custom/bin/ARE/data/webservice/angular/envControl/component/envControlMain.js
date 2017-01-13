@@ -9,6 +9,13 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [thiz.configDeleteItem];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
+            thiz.title = 'Geräte steuern';
+            if(thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
+                thiz.title = thiz.title + ' - Hauptseite';
+            } else {
+                var states = stateUtilService.getBreadCrumbStates();
+                thiz.title = thiz.title + ' - ' + stateUtilService.getLastPartUpper(states[2]);
+            }
 
             thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(item);
