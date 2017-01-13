@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', function (envControlService, envControlDataService, $state, utilService) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', function (envControlService, envControlDataService, $state, utilService, stateUtilService) {
             var thiz = this;
             thiz.cellBoardId = $state.current.name;
             thiz.configDeleteItem = generateDeleteModeItem(true);
@@ -46,10 +46,8 @@ angular.module(asterics.appComponents)
                 if(thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                     items.push(utilService.createCellBoardItemBack('home'));
                     items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.add'));
-                } else if(_.includes(thiz.cellBoardId, '-')) {
-                    items.push(utilService.createCellBoardItemBack(thiz.cellBoardId.substring(0, thiz.cellBoardId.lastIndexOf('-'))));
                 } else {
-                    items.push(utilService.createCellBoardItemBack('^'));
+                    items.push(utilService.createCellBoardItemBack(stateUtilService.cutLastPart($state.current.name)));
                     items.push(utilService.createCellBoardItemNav('neues Element', 'plus', 'envControl.addsub', {cellBoardId: thiz.cellBoardId}));
                 }
                 return items;

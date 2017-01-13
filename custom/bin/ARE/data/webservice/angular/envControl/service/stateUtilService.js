@@ -20,21 +20,30 @@ angular.module(asterics.appServices)
             asterics.$stateProvider.state(name, config);
         };
 
-        thiz.isSubState = function(stateName) {
+        thiz.isSubState = function (stateName) {
             return _.includes(stateName, '.');
         };
 
-        thiz.getLastPart = function(stateName) {
-            if(_.includes(stateName, '/')) {
-                return stateName.substring(stateName.lastIndexOf('/')+1);
-            } else if(_.includes(stateName, '.')) {
-                return stateName.substring(stateName.lastIndexOf('.')+1);
+        thiz.cutLastPart = function (stateName) {
+            var lastPart = thiz.getLastPart(stateName);
+            if (stateName === lastPart) {
+                return stateName;
+            } else {
+                return stateName.substring(0, stateName.indexOf(lastPart) - 1);
+            }
+        };
+
+        thiz.getLastPart = function (stateName) {
+            if (_.includes(stateName, '/')) {
+                return stateName.substring(stateName.lastIndexOf('/') + 1);
+            } else if (_.includes(stateName, '.')) {
+                return stateName.substring(stateName.lastIndexOf('.') + 1);
             } else {
                 return stateName;
             }
         };
 
-        thiz.getLastPartUpper = function(stateName) {
+        thiz.getLastPartUpper = function (stateName) {
             var lastPart = thiz.getLastPart(stateName);
             return lastPart[0].toUpperCase() + lastPart.substring(1);
         };
