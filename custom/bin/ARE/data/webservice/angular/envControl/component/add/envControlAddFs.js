@@ -4,13 +4,19 @@ angular.module(asterics.appComponents)
         bindings: {
             selectedLabel: '@'
         },
-        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', function (envControlDataService, $state, envControlFsService, utilService, $stateParams) {
+        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [generateBackItem()];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedIcon = 'lightbulb-o';
             thiz.trained = false;
+
+            //TODO: replace with i18n
+            thiz.headerTitle = 'Neues Gerät über Steckdose steuern (EIN/AUS)';
+            if(thiz.cbToAdd) {
+                thiz.headerTitle = 'Neue Steckdosen-Gerätesteuerung zu ' + stateUtilService.getLastPartUpper(thiz.cbToAdd) + ' hinzufügen';
+            }
 
             thiz.trainCode = function () {
                 envControlFsService.trainCode(thiz.code);
@@ -19,7 +25,11 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                $state.go(asterics.envControl.STATE_MAIN);
+                if(!thiz.cbToAdd) {
+                    $state.go(asterics.envControl.STATE_MAIN);
+                } else {
+                    $state.go(thiz.cbToAdd);
+                }
             };
 
             thiz.stepCompleted = function (nr) {
@@ -32,6 +42,14 @@ angular.module(asterics.appComponents)
                 }
                 return ret;
             };
+
+            function generateBackItem() {
+                if (!thiz.cbToAdd) {
+                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
+                } else {
+                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
+                }
+            }
         }],
         templateUrl: "angular/envControl/component/add/envControlAddFs.html"
     });

@@ -4,7 +4,7 @@ angular.module(asterics.appServices)
 
         thiz.addSubState = function (parentState, newName) {
             var newState;
-            if (thiz.isSubState(parentState)) {
+            if (thiz.getSubStateDepth(parentState) > 1) {
                 newState = parentState + '/' + newName.toLowerCase();
             } else {
                 newState = asterics.envControl.STATE_MAIN + '.' + newName.toLowerCase();
@@ -20,8 +20,8 @@ angular.module(asterics.appServices)
             asterics.$stateProvider.state(name, config);
         };
 
-        thiz.isSubState = function (stateName) {
-            return _.includes(stateName, '.');
+        thiz.getSubStateDepth = function (stateName) {
+            return stateName.split('.').length - 1;
         };
 
         thiz.cutLastPart = function (stateName) {

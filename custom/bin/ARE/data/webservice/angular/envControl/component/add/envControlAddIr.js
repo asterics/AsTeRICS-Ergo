@@ -2,20 +2,26 @@ angular.module(asterics.appComponents)
     .component('envControlAddIr', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', function (envControlDataService, $state, envControlIRService, utilService, $stateParams) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [generateBackItem()];
             thiz.selectedLabel = null;
             thiz.code = null;
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
 
+            //TODO: replace with i18n
+            thiz.headerTitle = 'Neuen Fernbedienungs-Befehl hinzufügen';
+            if(thiz.cbToAdd) {
+                thiz.headerTitle = 'Neuen Fernbedienungs-Befehl zu ' + stateUtilService.getLastPartUpper(thiz.cbToAdd) + ' hinzufügen';
+            }
+
             thiz.trainCode = function () {
                 envControlIRService.irLearn().then(function (response) {
                     thiz.code = response;
                 }, function error() {
-                    if(thiz.inTrain) {
+                    if (thiz.inTrain) {
                         thiz.trainCode();
                     }
                 });
@@ -29,7 +35,11 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlDataService.addCellBoardElementIrTrans(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                $state.go(asterics.envControl.STATE_MAIN);
+                if(!thiz.cbToAdd) {
+                    $state.go(asterics.envControl.STATE_MAIN);
+                } else {
+                    $state.go(thiz.cbToAdd);
+                }
             };
 
             thiz.stepCompleted = function (nr) {
@@ -45,6 +55,14 @@ angular.module(asterics.appComponents)
                 }
                 return ret;
             };
+
+            function generateBackItem() {
+                if (!thiz.cbToAdd) {
+                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
+                } else {
+                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
+                }
+            }
         }],
         templateUrl: "angular/envControl/component/add/envControlAddIr.html"
     });

@@ -9,7 +9,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [generateBackItem()];
             thiz.inLearn = false;
             thiz.learningAborted = false;
 
@@ -75,7 +75,11 @@ angular.module(asterics.appComponents)
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
                     }
                 });
-                $state.go(asterics.envControl.STATE_MAIN);
+                if(!thiz.cbToAdd) {
+                    $state.go(asterics.envControl.STATE_MAIN);
+                } else {
+                    $state.go(thiz.cbToAdd);
+                }
             };
 
             thiz.numberOfLearnedCodes = function () {
@@ -120,6 +124,14 @@ angular.module(asterics.appComponents)
             $scope.$on("$destroy", function () {
                 thiz.abortLearning();
             });
+
+            function generateBackItem() {
+                if (!thiz.cbToAdd) {
+                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
+                } else {
+                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
+                }
+            }
 
         }],
         templateUrl: "angular/envControl/component/add/envControlAddMass.html"

@@ -2,8 +2,8 @@
 <span ng-if="$ctrl.breadCrumbStates.length > 1">
     Du befindest dich hier:
     <span ng-repeat="state in $ctrl.breadCrumbStates track by $index">
-        <span ng-if="$index < $ctrl.breadCrumbStates.length - 1"><a ui-sref="{{state}}"> {{$ctrl.stateTitles[state]}} </a> > </span>
-        <span ng-if="$index === $ctrl.breadCrumbStates.length - 1">{{$ctrl.stateTitles[state]}}</span>
+        <span ng-if="$index < $ctrl.breadCrumbStates.length - 1"><a ui-sref="{{state}}"> {{$ctrl.getStateTitle(state)}} </a> > </span>
+        <span ng-if="$index === $ctrl.breadCrumbStates.length - 1">{{$ctrl.getStateTitle(state)}}</span>
     </span>
 </span>
 <div ui-view=""/>
