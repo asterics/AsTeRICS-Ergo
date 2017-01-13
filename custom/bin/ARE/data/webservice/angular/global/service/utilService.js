@@ -9,7 +9,8 @@ angular.module(asterics.appServices)
                 type: type,
                 clickAction: clickAction,
                 disabled: false,
-                active: false
+                active: false,
+                visible: true
             };
         };
 

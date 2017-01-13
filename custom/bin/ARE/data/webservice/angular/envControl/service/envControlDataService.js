@@ -40,6 +40,9 @@ angular.module(asterics.appServices)
         };
 
         thiz.prepareCellBoardElementMove = function (cellBoardName, element) {
+            if(thiz.hasClipboardData()) {
+                _clipBoard.element.disabled = false;
+            }
             _clipBoard.element = element;
             _clipBoard.cellBoardName = cellBoardName;
         };
@@ -55,6 +58,14 @@ angular.module(asterics.appServices)
 
         thiz.hasClipboardData = function() {
             return _clipBoard.element && _clipBoard.cellBoardName;
+        };
+
+        thiz.getClipboardData = function() {
+            return _clipBoard;
+        };
+
+        thiz.clearClipboard = function() {
+            _clipBoard = {};
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {

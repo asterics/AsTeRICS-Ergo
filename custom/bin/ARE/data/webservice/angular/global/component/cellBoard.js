@@ -26,8 +26,24 @@ angular.module(asterics.appComponents)
                 }
             };
 
-            thiz.getClass = function(item) {
-                return item.active ? 'active' : '';
+            thiz.getClass = function (item) {
+                return item && item.active ? 'active' : '';
+            };
+
+            thiz.isDisabled = function (item) {
+                if (_.isFunction(item.disabled)) {
+                    return item.disabled();
+                } else {
+                    return item.disabled;
+                }
+            };
+
+            thiz.isVisible = function (item) {
+                if (_.isFunction(item.visible)) {
+                    return item.visible();
+                } else {
+                    return item.visible;
+                }
             };
         }],
         templateUrl: "angular/global/component/cellBoard.html"

@@ -1,9 +1,11 @@
 <div>
-    <div ng-repeat="item in $ctrl.chooseItems track by $index" class="span2">
-        <button ng-click="$ctrl.itemClicked(item)" ng-disabled="item.disabled" ng-class="$ctrl.getClass(item)">
-            <div>
-                <cell-board-chooser item="item"/>
-            </div>
-        </button>
+    <div ng-repeat="item in $ctrl.chooseItems track by $index">
+        <div ng-if="$ctrl.isVisible(item)" class="span2">
+            <button ng-click="$ctrl.itemClicked(item)" ng-disabled="$ctrl.isDisabled(item)" ng-class="$ctrl.getClass(item)">
+                <div>
+                    <cell-board-chooser item="item"/>
+                </div>
+            </button>
+        </div>
     </div>
 </div>
