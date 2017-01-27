@@ -17,6 +17,7 @@ angular.module(asterics.appComponents)
                 'home.envControl.add.numbers': 'Nummern',
                 'home.envControl.add.fs20': 'Steckdose',
                 'home.envControl.add.ir': 'Fernbedienung',
+                'home.envControl.add/more': 'Mehr'
             };
 
             thiz.getStateTitle = function (stateName) {
