@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-md-4 col-sm-5 col-lg-3">
             <a ui-sref="home"><h1>AsTeRICS Ergo</h1></a>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3 v-middle">
             <span>{{ 'i18n_choose_lang' | translate }}</span>
             <select ng-model="$ctrl.selectedLanguage" ng-change="$ctrl.languageChanged()">
                 <option value="de">{{ 'i18n_lang_de' | translate }}</option>
