@@ -3,6 +3,7 @@ angular.module(asterics.appServices)
         var thiz = this;
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
+        var _dynamicCellBoardIds = [];
         var _clipBoard = {};
         var houseCode = '11111111';
 
@@ -33,22 +34,23 @@ angular.module(asterics.appServices)
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
-            if(element.type === asterics.const.CB_TYPE_NAV && element.toState) {
+            if (element.type === asterics.const.CB_TYPE_NAV && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
+                _.pull(_dynamicCellBoardIds, element.toState);
             }
             return _cellBoards[cellBoardName];
         };
 
         thiz.prepareCellBoardElementMove = function (cellBoardName, element) {
-            if(thiz.hasClipboardData()) {
+            if (thiz.hasClipboardData()) {
                 _clipBoard.element.disabled = false;
             }
             _clipBoard.element = element;
             _clipBoard.cellBoardName = cellBoardName;
         };
 
-        thiz.pasteCellBoardItem = function(cellBoardName) {
-            if(thiz.hasClipboardData()) {
+        thiz.pasteCellBoardItem = function (cellBoardName) {
+            if (thiz.hasClipboardData()) {
                 _clipBoard.element.disabled = false;
                 thiz.removeCellBoardElement(_clipBoard.cellBoardName, _clipBoard.element);
                 thiz.addCellBoardElement(cellBoardName, _clipBoard.element);
@@ -56,24 +58,21 @@ angular.module(asterics.appServices)
             }
         };
 
-        thiz.hasClipboardData = function() {
+        thiz.hasClipboardData = function () {
             return _clipBoard.element && _clipBoard.cellBoardName;
         };
 
-        thiz.getClipboardData = function() {
+        thiz.getClipboardData = function () {
             return _clipBoard;
         };
 
-        thiz.clearClipboard = function() {
+        thiz.clearClipboard = function () {
             _clipBoard = {};
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {
-            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots in order to not interfere with states and paths
-            if (!parentCellBoardState) {
-                parentCellBoardState = asterics.envControl.STATE_MAIN;
-            }
-            var newStateName = stateUtilService.addSubState(parentCellBoardState, title);
+            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
+            var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
             var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, newStateName);
             navToCbElement.toState = newStateName;
             thiz.addCellBoardElement(parentCellBoardState, navToCbElement);
@@ -82,6 +81,7 @@ angular.module(asterics.appServices)
                 url: '/cb/' + stateUtilService.getSubState(newStateName),
                 template: '<env-control/>'
             });
+            _dynamicCellBoardIds.push(newStateName);
             return newStateName;
         };
 
@@ -99,10 +99,39 @@ angular.module(asterics.appServices)
             return houseCode + '_1111';
         };
 
+        thiz.getNonConflictingLabel = function (label, parentState) {
+            var newLabel = label;
+            var count = 1;
+            while (thiz.existsLabel(newLabel, parentState)) {
+                newLabel = label + ' (' + count.toString() + ')';
+                count++;
+            }
+            return newLabel;
+        };
+
+        thiz.existsLabel = function (label, parentState) {
+            return _.includes(getAllSubCellBoardNames(parentState, true), label.toString().trim().toLowerCase());
+        };
+
         function initCellBoard(cellBoardName) {
             if (!_cellBoards[cellBoardName]) {
                 _cellBoards[cellBoardName] = [];
             }
+        }
+
+        function getAllSubCellBoardNames(parentState, lowercase) {
+            if (_dynamicCellBoardIds.length > 0) {
+                var names = _.map(_dynamicCellBoardIds, function (state) {
+                    var name = state.substring(parentState.length + 1);
+                    if (lowercase) {
+                        return name.toLowerCase();
+                    } else {
+                        return name;
+                    }
+                });
+                return names;
+            }
+            return [];
         }
 
         function getAllCellBoardElements() {

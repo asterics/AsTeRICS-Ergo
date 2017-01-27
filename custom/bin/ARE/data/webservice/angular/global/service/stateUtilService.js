@@ -2,7 +2,7 @@ angular.module(asterics.appServices)
     .service('stateUtilService', ['$state', function ($state) {
         var thiz = this;
 
-        thiz.addSubState = function (parentState, newName) {
+        thiz.getNewSubStateName = function (parentState, newName) {
             var newState;
             if (thiz.getSubStateDepth(parentState) > 1) {
                 newState = parentState + '/' + newName.toLowerCase();
@@ -16,12 +16,19 @@ angular.module(asterics.appServices)
             return stateName.substring(stateName.indexOf('.') + 1);
         };
 
+        //adds a new state if it is not existing
         thiz.addState = function (name, config) {
-            asterics.$stateProvider.state(name, config);
+            if (!$state.get(name)) {
+                asterics.$stateProvider.state(name, config);
+            }
         };
 
         thiz.getSubStateDepth = function (stateName) {
             return stateName.split('.').length - 1;
+        };
+
+        thiz.getSubStateDepthWithSlashes = function (stateName) {
+            return thiz.getSubStateDepth(stateName) + stateName.split('/').length - 1;
         };
 
         thiz.cutLastPart = function (stateName) {
@@ -51,7 +58,7 @@ angular.module(asterics.appServices)
         thiz.getBreadCrumbStates = function () {
             var states = [$state.current.name];
             var nextState = $state.current.name;
-            while(nextState && nextState !== asterics.const.STATE_HOME) {
+            while (nextState && nextState !== asterics.const.STATE_HOME) {
                 nextState = thiz.cutLastPart(nextState);
                 states.unshift(nextState);
             }

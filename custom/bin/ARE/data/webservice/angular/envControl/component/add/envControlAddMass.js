@@ -8,7 +8,7 @@ angular.module(asterics.appComponents)
         },
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService) {
             var thiz = this;
-            thiz.cbToAdd = $stateParams.cellBoardId;
+            thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.inLearn = false;
             thiz.learningAborted = false;
@@ -75,7 +75,7 @@ angular.module(asterics.appComponents)
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
                     }
                 });
-                if(!thiz.cbToAdd) {
+                if (!thiz.cbToAdd) {
                     $state.go(asterics.envControl.STATE_MAIN);
                 } else {
                     $state.go(thiz.cbToAdd);
@@ -120,13 +120,21 @@ angular.module(asterics.appComponents)
                 }
             };
 
+            $scope.$watch(function () {
+                return thiz.selectedLabel
+            }, function () {
+                if (envControlDataService.existsLabel(thiz.selectedLabel, thiz.cbToAdd)) {
+                    thiz.selectedLabel = envControlDataService.getNonConflictingLabel(thiz.selectedLabel, thiz.cbToAdd);
+                }
+            });
+
             //aborting all current learning when leaving the page
             $scope.$on("$destroy", function () {
                 thiz.abortLearning();
             });
 
             function generateBackItem() {
-                if (!thiz.cbToAdd) {
+                if (thiz.cbToAdd === asterics.envControl.STATE_MAIN) {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
                 } else {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
