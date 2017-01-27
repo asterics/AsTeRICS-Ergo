@@ -9,7 +9,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
             thiz.moveItem = null;
-            thiz.PasteItem = null;
+            thiz.pasteItem = null;
             thiz.title = 'Geräte steuern';
             if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                 thiz.title = thiz.title + ' - Hauptseite';
@@ -46,14 +46,17 @@ angular.module(asterics.appComponents)
                 });
             }
 
+            //TODO beautify
             function generateDynamicItems() {
                 var items = [];
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
-                    items.push(utilService.createCellBoardItemBack('home'));
+                    items.push(utilService.createCellBoardItemBack(asterics.const.STATE_HOME));
                     items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADD));
                 } else {
-                    items.push(utilService.createCellBoardItemBack(stateUtilService.cutLastPart($state.current.name)));
-                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
+                    items.push(utilService.createCellBoardItemBack());
+                    if (stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId) < 3) {
+                        items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
+                    }
                 }
                 var deleteItem = generateSwitchModeItem('Löschen aktivieren', 'Löschen deaktivieren', 'trash', asterics.const.CELLB_MODE_DELETE);
                 deleteItem.visible = function () {
@@ -71,7 +74,7 @@ angular.module(asterics.appComponents)
                     envControlDataService.pasteCellBoardItem(thiz.cellBoardId);
                     removeElementFromCellboard(thiz.cellBoardConfig, this);
                 });
-                thiz.pasteItem.visible = function() {
+                thiz.pasteItem.visible = function () {
                     return envControlDataService.hasClipboardData() && envControlDataService.getClipboardData().cellBoardName !== thiz.cellBoardId;
                 };
                 items.push(thiz.pasteItem);
