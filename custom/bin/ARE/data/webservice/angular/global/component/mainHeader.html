@@ -1,9 +1,26 @@
-<a ui-sref="home"><h1>AsTeRICS Ergo</h1></a>
-<span ng-if="$ctrl.breadCrumbStates.length > 1">
-    Du befindest dich hier:
-    <span ng-repeat="state in $ctrl.breadCrumbStates track by $index">
-        <span ng-if="$index < $ctrl.breadCrumbStates.length - 1"><a ui-sref="{{state}}"> {{$ctrl.getStateTitle(state)}} </a> > </span>
-        <span ng-if="$index === $ctrl.breadCrumbStates.length - 1">{{$ctrl.getStateTitle(state)}}</span>
-    </span>
-</span>
-<div ui-view=""/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-5">
+            <a ui-sref="home"><h1>AsTeRICS Ergo</h1></a>
+        </div>
+        <div class="col-sm-3">
+            <span>{{ 'i18n_choose_lang' | translate }}</span>
+            <select ng-model="$ctrl.selectedLanguage" ng-change="$ctrl.languageChanged()">
+                <option value="de">{{ 'i18n_lang_de' | translate }}</option>
+                <option value="en">{{ 'i18n_lang_en' | translate }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <span class="col-xs-12" ng-if="$ctrl.breadCrumbStates.length > 1">
+            Du befindest dich hier:
+            <span ng-repeat="state in $ctrl.breadCrumbStates track by $index">
+                <span ng-if="$index < $ctrl.breadCrumbStates.length - 1"><a ui-sref="{{state}}"> {{$ctrl.getStateTitle(state)}} </a> > </span>
+                <span ng-if="$index === $ctrl.breadCrumbStates.length - 1">{{$ctrl.getStateTitle(state)}}</span>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" ui-view=""/>
+    </div>
+</div>

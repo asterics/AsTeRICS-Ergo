@@ -1,4 +1,13 @@
-angular.module(asterics.appComponents).config(['$stateProvider', function ($stateProvider) {
+angular.module(asterics.appComponents).config(['$stateProvider', '$translateProvider', function ($stateProvider, $translateProvider) {
+
+    $translateProvider.translations(asterics.const.I18N_DE, {
+        BLAEC: 'BLA DEUTSCH EC'
+    });
+
+    $translateProvider.translations(asterics.const.I18N_EN, {
+        BLAEC: 'BLA ENGLISH EC'
+    });
+
     $stateProvider
         .state(asterics.envControl.STATE_MAIN, {
             url: '/envcontrol',

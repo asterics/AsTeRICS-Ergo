@@ -14,3 +14,6 @@ asterics.const.ServerEventTypes = {
 };
 
 asterics.const.STATE_HOME = 'home';
+
+asterics.const.I18N_DE = 'de';
+asterics.const.I18N_EN = 'en';

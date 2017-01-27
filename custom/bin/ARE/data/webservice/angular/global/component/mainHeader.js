@@ -2,9 +2,11 @@ angular.module(asterics.appComponents)
     .component('mainHeader', {
 
         bindings: {},
-        controller: ['stateUtilService', '$rootScope', function (stateUtilService, $rootScope) {
+        controller: ['stateUtilService', '$rootScope', '$translate', function (stateUtilService, $rootScope, $translate) {
             var thiz = this;
             thiz.breadCrumbStates = [];
+            thiz.selectedLanguage = asterics.const.I18N_DE;
+            $translate.use(thiz.selectedLanguage);
             //TODO: replace with i18n
             thiz.stateTitles = {
                 home: 'Home',
@@ -29,6 +31,10 @@ angular.module(asterics.appComponents)
                     title = stateUtilService.getLastPartUpper(stateName);
                 }
                 return title;
+            };
+
+            thiz.languageChanged = function () {
+                $translate.use(thiz.selectedLanguage);
             };
 
             init();

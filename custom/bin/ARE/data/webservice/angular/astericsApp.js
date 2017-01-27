@@ -5,11 +5,25 @@ asterics.appComponents = asterics.app + ".components";
 asterics.appControllers = asterics.app + ".controllers";
 
 angular.module(asterics.app, [
-    'ui.bootstrap',
     'ui.router',
+    'pascalprecht.translate',
     asterics.appServices,
     asterics.appComponents
-]).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+]).config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $translateProvider) {
+
+    $translateProvider.translations(asterics.const.I18N_DE, {
+        BLA: 'BLA DEUTSCH',
+        i18n_choose_lang: 'Sprache wählen:',
+        i18n_lang_de: 'Deutsch',
+        i18n_lang_en: 'Englisch'
+    });
+
+    $translateProvider.translations(asterics.const.I18N_EN, {
+        BLA: 'BLA ENGLISH',
+        i18n_choose_lang: 'Choose language:',
+        i18n_lang_de: 'German',
+        i18n_lang_en: 'English'
+    });
 
     $stateProvider
         .state("home", {
