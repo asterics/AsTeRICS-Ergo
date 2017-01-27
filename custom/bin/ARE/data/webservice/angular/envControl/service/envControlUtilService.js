@@ -19,7 +19,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getIrElements = function (substateName) {
-            switch(substateName) {
+            switch (substateName) {
                 case asterics.envControl.SUBSTATE_ADD_TV:
                     return [
                         createIrElement('EIN/AUS', 'power-off'),
@@ -31,7 +31,8 @@ angular.module(asterics.appServices)
                 case asterics.envControl.SUBSTATE_ADD_HIFI:
                     return [
                         createIrElement('EIN/AUS', 'power-off'),
-                        createIrElement('Play/Pause', 'play'),
+                        createIrElement('Play', 'play'),
+                        createIrElement('Pause', 'pause'),
                         createIrElement('Stop', 'stop'),
                         createIrElement('Next', 'step-forward'),
                         createIrElement('Back', 'step-backward'),
@@ -41,7 +42,8 @@ angular.module(asterics.appServices)
                 case asterics.envControl.SUBSTATE_ADD_DVD:
                     return [
                         createIrElement('EIN/AUS', 'power-off'),
-                        createIrElement('Play/Pause', 'play'),
+                        createIrElement('Play', 'play'),
+                        createIrElement('Pause', 'pause'),
                         createIrElement('Stop', 'stop'),
                         createIrElement('Volume +', 'volume-up'),
                         createIrElement('Volume -', 'volume-down'),
