@@ -1,0 +1,13 @@
+<div ui-view="">
+    <div>
+        <cell-board choose-items="$ctrl.cellBoardConfig"/>
+    </div>
+    <div class="clearfix"/>
+    <h2>Neue Komponente zu Umgebungssteuerung hinzufügen</h2>
+    <div>
+        <label for="cellBoardType">Bitte Typ der gewünschten Steuerung auswählen</label>
+        <div id="cellBoardType">
+            <cell-board choose-items="$ctrl.cellBoardChoose"/>
+        </div>
+    </div>
+</div>

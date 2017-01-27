@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('utilService', ['$state', function ($state) {
+    .service('utilService', ['$state', 'stateUtilService', function ($state, stateUtilService) {
         var thiz = this;
 
         thiz.createCellBoardItem = function (title, faIcon, type, clickAction) {
@@ -30,6 +30,10 @@ angular.module(asterics.appServices)
         };
 
         thiz.createCellBoardItemBack = function (navState, stateParams) {
-            return thiz.createCellBoardItemNav('Zurück', 'arrow-left', navState, stateParams);
+            if (navState) {
+                return thiz.createCellBoardItemNav('Zurück', 'arrow-left', navState, stateParams);
+            } else {
+                return thiz.createCellBoardItemNav('Zurück', 'arrow-left', stateUtilService.getLastState(), stateParams);
+            }
         };
     }]);

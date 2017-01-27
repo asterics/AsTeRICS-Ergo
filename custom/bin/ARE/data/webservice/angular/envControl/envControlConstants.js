@@ -12,6 +12,7 @@ asterics.envControl.ID_IR = 'ID_IR';
 
 asterics.envControl.STATE_MAIN = 'home.envControl';
 asterics.envControl.STATE_ADD = 'home.envControl.add';
+asterics.envControl.STATE_ADDMORE = 'home.envControl.add/more';
 asterics.envControl.STATE_ADDSUB = 'home.envControl.addsub';
 asterics.envControl.STATE_ADD_FS20 = 'home.envControl.add.fs20';
 asterics.envControl.STATE_ADD_IR = 'home.envControl.add.ir';

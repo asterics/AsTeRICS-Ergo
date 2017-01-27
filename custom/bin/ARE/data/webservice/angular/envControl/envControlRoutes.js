@@ -8,6 +8,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', function ($stat
             url: '/add',
             template: '<env-control-add/>'
         })
+        .state(asterics.envControl.STATE_ADDMORE, {
+            url: '/add/more',
+            template: '<env-control-add-more/>'
+        })
         .state(asterics.envControl.STATE_ADDSUB, {
             url: '/addsub/:cellBoardId',
             template: '<env-control-add-sub/>'

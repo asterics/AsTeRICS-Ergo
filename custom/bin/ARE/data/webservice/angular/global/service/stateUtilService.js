@@ -63,5 +63,10 @@ angular.module(asterics.appServices)
                 states.unshift(nextState);
             }
             return states;
-        }
+        };
+
+        thiz.getLastState = function () {
+            var states = thiz.getBreadCrumbStates();
+            return states[states.length - 2];
+        };
     }]);
