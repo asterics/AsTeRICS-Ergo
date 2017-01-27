@@ -6,7 +6,7 @@
 <ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">Bitte Namen für das neue Gerät auswählen</label>
-        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
+        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
     </li>
     <li ng-if="$ctrl.stepCompleted(1)">
         <label for="inputTrain">Bitte Drücken Sie auf den grauen Knopf am Gerät, bis er rot zu blinken beginnt.</label>

@@ -6,7 +6,7 @@
 <ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">{{$ctrl.nameLabel}}</label>
-        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel"/><br/>
+        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
     </li>
     <li ng-if="$ctrl.selectedLabel">
         <label for="inputTrain">Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die
