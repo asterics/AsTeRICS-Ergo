@@ -11,19 +11,9 @@ angular.module(asterics.app, [
     asterics.appComponents
 ]).config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $translateProvider) {
 
-    $translateProvider.translations(asterics.const.I18N_DE, {
-        BLA: 'BLA DEUTSCH',
-        i18n_choose_lang: 'Sprache wählen:',
-        i18n_lang_de: 'Deutsch',
-        i18n_lang_en: 'Englisch'
-    });
-
-    $translateProvider.translations(asterics.const.I18N_EN, {
-        BLA: 'BLA ENGLISH',
-        i18n_choose_lang: 'Choose language:',
-        i18n_lang_de: 'German',
-        i18n_lang_en: 'English'
-    });
+    $translateProvider.translations(asterics.const.I18N_DE, asterics.i18n_global_de);
+    $translateProvider.translations(asterics.const.I18N_EN, asterics.i18n_global_en);
+    $translateProvider.useSanitizeValueStrategy(null);
 
     $stateProvider
         .state("home", {

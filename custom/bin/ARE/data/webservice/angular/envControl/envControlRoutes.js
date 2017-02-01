@@ -1,12 +1,7 @@
 angular.module(asterics.appComponents).config(['$stateProvider', '$translateProvider', function ($stateProvider, $translateProvider) {
 
-    $translateProvider.translations(asterics.const.I18N_DE, {
-        BLAEC: 'BLA DEUTSCH EC'
-    });
-
-    $translateProvider.translations(asterics.const.I18N_EN, {
-        BLAEC: 'BLA ENGLISH EC'
-    });
+    $translateProvider.translations(asterics.const.I18N_DE, asterics.i18n_envControl_de);
+    $translateProvider.translations(asterics.const.I18N_EN, asterics.i18n_envControl_en);
 
     $stateProvider
         .state(asterics.envControl.STATE_MAIN, {
