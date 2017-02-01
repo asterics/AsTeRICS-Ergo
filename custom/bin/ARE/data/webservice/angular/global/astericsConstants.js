@@ -17,3 +17,7 @@ asterics.const.STATE_HOME = 'home';
 
 asterics.const.I18N_DE = 'de';
 asterics.const.I18N_EN = 'en';
+asterics.const.languages = [
+    asterics.const.I18N_DE,
+    asterics.const.I18N_EN
+];

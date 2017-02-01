@@ -5,7 +5,9 @@ angular.module(asterics.appComponents)
         controller: ['stateUtilService', '$rootScope', '$translate', function (stateUtilService, $rootScope, $translate) {
             var thiz = this;
             thiz.breadCrumbStates = [];
-            thiz.selectedLanguage = asterics.const.I18N_DE;
+            thiz.selectedLanguage = _.find(asterics.const.languages, function (lang) {
+                    return _.includes(navigator.language, lang);
+                }) || asterics.const.I18N_DE;
             $translate.use(thiz.selectedLanguage);
 
             thiz.getStateTitle = function (stateName) {
