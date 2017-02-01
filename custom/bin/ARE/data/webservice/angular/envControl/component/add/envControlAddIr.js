@@ -12,9 +12,10 @@ angular.module(asterics.appComponents)
             thiz.inTrain = false;
 
             //TODO: replace with i18n
-            thiz.headerTitle = 'Neuen Fernbedienungs-Befehl hinzufügen';
+            thiz.headerTitle = 'i18n_ec_ir_header';
             if(thiz.cbToAdd) {
-                thiz.headerTitle = 'Neuen Fernbedienungs-Befehl zu ' + stateUtilService.getLastPartUpper(thiz.cbToAdd) + ' hinzufügen';
+                thiz.headerTitle = 'i18n_ec_ir_headerto';
+                thiz.headerTitleParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
             }
 
             thiz.trainCode = function () {

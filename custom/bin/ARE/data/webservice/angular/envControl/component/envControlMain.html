@@ -4,9 +4,9 @@
     </div>
     <div class="clearfix"/>
     <br/>
-    <h2>{{$ctrl.title}}</h2>
+    <h2 translate="i18n_ec_head_control" translate-values="$ctrl.getSubpageName()"/>
     <div>
-        <div ng-if="$ctrl.cellBoardEnvControl.length == 0"><b>Derzeit keine Steuerungsmöglichkeiten.</b><br/>Klicken Sie auf "Neue Steuerungsmöglichkeit hinzufügen".</div>
+        <div ng-if="$ctrl.cellBoardEnvControl.length == 0"><b>{{'i18n_ec_no_elements' | translate}}</b><br/>{{'i18n_ec_no_elements_text' | translate}}</div>
         <div ng-if="$ctrl.cellBoardEnvControl.length > 0">
             <cell-board choose-items="$ctrl.cellBoardEnvControl"
                         remove-handler="$ctrl.removeHandler(item)" move-handler="$ctrl.moveHandler(item)" action-mode="$ctrl.cellBoardMode"/>

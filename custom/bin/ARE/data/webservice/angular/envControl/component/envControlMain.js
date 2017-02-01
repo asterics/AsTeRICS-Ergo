@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', function (envControlService, envControlDataService, $state, utilService, stateUtilService) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate) {
             var thiz = this;
             thiz.cellBoardId = $state.current.name;
             thiz.cellBoardConfig = [];
@@ -10,13 +10,15 @@ angular.module(asterics.appComponents)
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
             thiz.moveItem = null;
             thiz.pasteItem = null;
-            thiz.title = 'Geräte steuern';
-            if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
-                thiz.title = thiz.title + ' - Hauptseite';
-            } else {
-                var states = stateUtilService.getBreadCrumbStates();
-                thiz.title = thiz.title + ' - ' + stateUtilService.getLastPartUpper(states[2]);
-            }
+
+            thiz.getSubpageName = function() {
+                if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
+                    return {subpage: $translate.instant('i18n_ec_mainpage')};
+                } else {
+                    var states = stateUtilService.getBreadCrumbStates();
+                    return {subpage: stateUtilService.getLastPartUpper(states[2])};
+                }
+            };
 
             thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(thiz.cellBoardId, item);
@@ -51,14 +53,14 @@ angular.module(asterics.appComponents)
                 var items = [];
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
                     items.push(utilService.createCellBoardItemBack(asterics.const.STATE_HOME));
-                    items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADD));
+                    items.push(utilService.createCellBoardItemNav('i18n_ec_newelement', 'plus', asterics.envControl.STATE_ADD));
                 } else {
                     items.push(utilService.createCellBoardItemBack());
                     if (stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId) < 3) {
-                        items.push(utilService.createCellBoardItemNav('neues Element', 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
+                        items.push(utilService.createCellBoardItemNav('i18n_ec_newelement', 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
                     }
                 }
-                var deleteItem = generateSwitchModeItem('Löschen aktivieren', 'Löschen deaktivieren', 'trash', asterics.const.CELLB_MODE_DELETE);
+                var deleteItem = generateSwitchModeItem('i18n_ec_activate_del', 'i18n_ec_deactivate_del', 'trash', asterics.const.CELLB_MODE_DELETE);
                 deleteItem.visible = function () {
                     var ret = thiz.cellBoardEnvControl && !thiz.pasteItem.visible();
                     return ret && thiz.cellBoardEnvControl.length > 0;
@@ -70,7 +72,7 @@ angular.module(asterics.appComponents)
                     return ret && (thiz.cellBoardEnvControl.length > 1 || (thiz.cellBoardEnvControl.length > 0 && thiz.cellBoardId !== asterics.envControl.STATE_MAIN));
                 };
                 items.push(thiz.moveItem);
-                thiz.pasteItem = utilService.createCellBoardItem('Element einfügen', 'clipboard', asterics.envControl.CB_TYPE_FN, function () {
+                thiz.pasteItem = utilService.createCellBoardItem('i18n_ec_insert_element', 'clipboard', asterics.envControl.CB_TYPE_FN, function () {
                     envControlDataService.pasteCellBoardItem(thiz.cellBoardId);
                     removeElementFromCellboard(thiz.cellBoardConfig, this);
                 });
@@ -82,7 +84,7 @@ angular.module(asterics.appComponents)
             }
 
             function generateMoveItem() {
-                return generateSwitchModeItem('Verschieben aktivieren', 'Verschieben deaktivieren', 'arrows', asterics.const.CELLB_MODE_MOVE);
+                return generateSwitchModeItem('i18n_ec_activate_mov', 'i18n_ec_deactivate_mov', 'arrows', asterics.const.CELLB_MODE_MOVE);
             }
 
             function generateSwitchModeItem(titleDeactivated, titleActivated, icon, switchMode) {

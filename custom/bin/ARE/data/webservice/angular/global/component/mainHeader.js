@@ -7,26 +7,12 @@ angular.module(asterics.appComponents)
             thiz.breadCrumbStates = [];
             thiz.selectedLanguage = asterics.const.I18N_DE;
             $translate.use(thiz.selectedLanguage);
-            //TODO: replace with i18n
-            thiz.stateTitles = {
-                home: 'Home',
-                'home.envControl': 'Umgebungssteuerung',
-                'home.envControl.add': 'Neues Element',
-                'home.envControl.addsub': 'Neues Element',
-                'home.envControl.add.tv': 'Fernseher',
-                'home.envControl.add.dvd': 'DVD-Player',
-                'home.envControl.add.hifi': 'Musik-Player',
-                'home.envControl.add.numbers': 'Nummern',
-                'home.envControl.add.fs20': 'Steckdose',
-                'home.envControl.add.ir': 'Fernbedienung',
-                'home.envControl.add/more': 'Mehr'
-            };
 
             thiz.getStateTitle = function (stateName) {
-                var title = thiz.stateTitles[stateName];
-                if (!title) {
+                var title = $translate.instant(stateName);
+                if (!title || title === stateName) {
                     if (stateName === asterics.envControl.STATE_ADD) {
-
+                        //TODO fix?!
                     }
                     title = stateUtilService.getLastPartUpper(stateName);
                 }

@@ -6,8 +6,8 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.cellBoardChoose = [
-                utilService.createCellBoardItemNav('Steckdose', 'plug', asterics.envControl.STATE_ADD_FS20),
-                utilService.createCellBoardItemNav('Fernbedienungs-Befehl', 'wifi', asterics.envControl.STATE_ADD_IR)
+                utilService.createCellBoardItemNav('i18n_ec_plug', 'plug', asterics.envControl.STATE_ADD_FS20),
+                utilService.createCellBoardItemNav('i18n_ec_ircommand', 'wifi', asterics.envControl.STATE_ADD_IR)
             ];
         }],
         templateUrl: "angular/envControl/component/addmenu/envControlAddMore.html"

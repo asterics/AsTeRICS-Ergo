@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControlAddFs', {
 
         bindings: {
-            selectedLabel: '@'
+            selectedLabel: '<'
         },
         controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService) {
             var thiz = this;
@@ -11,12 +11,6 @@ angular.module(asterics.appComponents)
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedIcon = 'lightbulb-o';
             thiz.trained = false;
-
-            //TODO: replace with i18n
-            thiz.headerTitle = 'Neues Gerät über Steckdose steuern (EIN/AUS)';
-            if(thiz.cbToAdd) {
-                thiz.headerTitle = 'Neue Steckdosen-Gerätesteuerung zu ' + stateUtilService.getLastPartUpper(thiz.cbToAdd) + ' hinzufügen';
-            }
 
             thiz.trainCode = function () {
                 envControlFsService.trainCode(thiz.code);

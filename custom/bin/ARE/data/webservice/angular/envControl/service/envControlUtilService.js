@@ -22,36 +22,36 @@ angular.module(asterics.appServices)
             switch (substateName) {
                 case asterics.envControl.SUBSTATE_ADD_TV:
                     return [
-                        createIrElement('EIN/AUS', 'power-off'),
-                        createIrElement('Kanal +', 'arrow-up'),
-                        createIrElement('Kanal -', 'arrow-down'),
-                        createIrElement('Volume +', 'volume-up'),
-                        createIrElement('Volume -', 'volume-down')
+                        createIrElement('i18n_ec_onoff', 'power-off'),
+                        createIrElement('i18n_ec_canalplus', 'arrow-up'),
+                        createIrElement('i18n_ec_canalminus', 'arrow-down'),
+                        createIrElement('i18n_ec_volplus', 'volume-up'),
+                        createIrElement('i18n_ec_volminus', 'volume-down')
                     ];
                 case asterics.envControl.SUBSTATE_ADD_HIFI:
                     return [
-                        createIrElement('EIN/AUS', 'power-off'),
-                        createIrElement('Play', 'play'),
-                        createIrElement('Pause', 'pause'),
-                        createIrElement('Stop', 'stop'),
-                        createIrElement('Next', 'step-forward'),
-                        createIrElement('Back', 'step-backward'),
-                        createIrElement('Volume +', 'volume-up'),
-                        createIrElement('Volume -', 'volume-down')
+                        createIrElement('i18n_ec_onoff', 'power-off'),
+                        createIrElement('i18n_ec_play', 'i18n_ec_play'),
+                        createIrElement('i18n_ec_pause', 'i18n_ec_pause'),
+                        createIrElement('i18n_ec_stop', 'i18n_ec_stop'),
+                        createIrElement('i18n_ec_next', 'step-forward'),
+                        createIrElement('i18n_ec_back', 'step-backward'),
+                        createIrElement('i18n_ec_volplus', 'volume-up'),
+                        createIrElement('i18n_ec_volminus', 'volume-down')
                     ];
                 case asterics.envControl.SUBSTATE_ADD_DVD:
                     return [
-                        createIrElement('EIN/AUS', 'power-off'),
-                        createIrElement('Play', 'play'),
-                        createIrElement('Pause', 'pause'),
-                        createIrElement('Stop', 'stop'),
-                        createIrElement('Volume +', 'volume-up'),
-                        createIrElement('Volume -', 'volume-down'),
-                        createIrElement('Up', 'arrow-up'),
-                        createIrElement('Down', 'arrow-down'),
-                        createIrElement('Right', 'arrow-right'),
-                        createIrElement('Left', 'arrow-left'),
-                        createIrElement('OK', 'check-circle-o')
+                        createIrElement('i18n_ec_onoff', 'power-off'),
+                        createIrElement('i18n_ec_play', 'i18n_ec_play'),
+                        createIrElement('i18n_ec_pause', 'i18n_ec_pause'),
+                        createIrElement('i18n_ec_stop', 'i18n_ec_stop'),
+                        createIrElement('i18n_ec_volplus', 'volume-up'),
+                        createIrElement('i18n_ec_volminus', 'volume-down'),
+                        createIrElement('i18n_ec_up', 'arrow-up'),
+                        createIrElement('i18n_ec_down', 'arrow-down'),
+                        createIrElement('i18n_ec_right', 'arrow-right'),
+                        createIrElement('i18n_ec_left', 'arrow-left'),
+                        createIrElement('i18n_ec_ok', 'check-circle-o')
                     ];
                 case asterics.envControl.SUBSTATE_ADD_NUMBERS:
                     return [

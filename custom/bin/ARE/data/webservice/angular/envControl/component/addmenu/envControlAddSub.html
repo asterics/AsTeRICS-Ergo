@@ -3,9 +3,9 @@
         <cell-board choose-items="$ctrl.cellBoardConfig"/>
     </div>
     <div class="clearfix"/>
-    <h2>Neue Komponente zu {{$ctrl.deviceName}} hinzufügen</h2>
+    <h2 translate="i18n_ec_text_add_to_existing" translate-values="{{$ctrl.translateParam}}"/>
     <div>
-        <label for="cellBoardType">Bitte Typ der gewünschten Steuerung auswählen</label>
+        <label for="cellBoardType">{{'i18n_ec_text_addtype' | translate}}</label>
         <div id="cellBoardType">
             <cell-board choose-items="$ctrl.cellBoardChoose"/>
         </div>

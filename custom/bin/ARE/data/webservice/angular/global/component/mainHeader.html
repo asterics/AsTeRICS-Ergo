@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <span class="col-xs-12" ng-if="$ctrl.breadCrumbStates.length > 1">
-            Du befindest dich hier:
+            {{ 'i18n_you_are_here' | translate }}
             <span ng-repeat="state in $ctrl.breadCrumbStates track by $index">
                 <span ng-if="$index < $ctrl.breadCrumbStates.length - 1"><a ui-sref="{{state}}"> {{$ctrl.getStateTitle(state)}} </a> > </span>
                 <span ng-if="$index === $ctrl.breadCrumbStates.length - 1">{{$ctrl.getStateTitle(state)}}</span>

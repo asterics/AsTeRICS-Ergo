@@ -2,19 +2,19 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2>{{$ctrl.headerTitle}}</h2>
+<h2>{{'i18n_ec_fs_header' | translate}}</h2>
 <ul>
     <li ng-model-options="{debounce: 500}">
-        <label for="inputLabel">Bitte Namen für das neue Gerät auswählen</label>
+        <label for="inputLabel">{{'i18n_ec_fs_choosename' | translate}}</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
     </li>
     <li ng-if="$ctrl.stepCompleted(1)">
-        <label for="inputTrain">Bitte Drücken Sie auf den grauen Knopf am Gerät, bis er rot zu blinken beginnt.</label>
-        <button id="inputTrain" ng-click="$ctrl.trainCode()">Ok, Button blinkt!</button>
+        <label for="inputTrain">{{'i18n_ec_fs_press_button' | translate}}</label>
+        <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_fs_button_blinking' | translate}}</button>
         <br/>
     </li>
     <li ng-if="$ctrl.stepCompleted(2)">
-        <span>Klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.</span><br/>
-        <button ng-click="$ctrl.addCellBoardItemAndReturn()">Fertigstellen</button>
+        <span>{{'i18n_ec_fs_text_finish' | translate}}</span><br/>
+        <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
     </li>
 </ul>

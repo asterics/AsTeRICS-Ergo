@@ -2,34 +2,33 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2>{{$ctrl.headerTitle}}</h2>
+<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.headerI18nParams}}"></h2>
 <ul>
     <li ng-model-options="{debounce: 500}">
-        <label for="inputLabel">{{$ctrl.nameLabel}}</label>
+        <label for="inputLabel">{{$ctrl.nameLabelI18n | translate}}</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
     </li>
     <li ng-if="$ctrl.selectedLabel">
-        <label for="inputTrain">Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die
-            originale Fernbedienung des Fernsehers bereit.</label>
-        <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn || $ctrl.learningAborted">Lernen starten</button>
+        <label for="inputTrain">{{'i18n_ec_irmass_text_startlearn' | translate}}</label>
+        <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn || $ctrl.learningAborted">{{'i18n_ec_irmass_startlearn' | translate}}</button>
         <br/>
     </li>
     <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
-        <span>Drücken Sie jetzt den Knopf '{{element.label}}' <i ng-class="'fa fa-2x fa-' + element.icon"/></span>
+        <span>{{'i18n_ec_irmass_pressbutton' | translate}} '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/></span>
         <span ng-if="!element.code">
-            <button ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> Lernen abbrechen</button>
+            <button ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> {{'i18n_ec_irmass_abortlearn' | translate}}</button>
         </span>
-        <span ng-if="element.code"><i class="fa fa-check"/> Gelernt!</span>
+        <span ng-if="element.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
     </li>
     <li ng-if="$ctrl.learningAborted">
-        <span>Lernen abgebrochen. Bisher wurden {{$ctrl.numberOfLearnedCodes()}} Befehle gelernt.</span>
+        <span translate="i18n_ec_irmass_learnaborted" translate-values="{num: $ctrl.numberOfLearnedCodes()}"></span>
         <div class="clearfix"/>
-        <button ng-click="$ctrl.trainCode()">Lernen fortsetzen</button>
-        <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.clearItemsAndRestartLearning()">Lernen neu starten</button>
-        <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.addCellBoardItemsAndReturn()">Bisher gelernte Befehle übernehmen</button>
+        <button ng-click="$ctrl.trainCode()">{{'i18n_ec_irmass_continuelearn' | translate}}</button>
+        <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+        <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_uselearned' | translate}}</button>
     </li>
     <li ng-if="$ctrl.allCodesLearned()">
-        <span>Alle Befehle erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".</span><br/>
-        <button ng-click="$ctrl.addCellBoardItemsAndReturn()">Fertigstellen</button>
+        <span>{{'i18n_ec_irmass_alllearned' | translate}}</span><br/>
+        <button ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
     </li>
 </ul>

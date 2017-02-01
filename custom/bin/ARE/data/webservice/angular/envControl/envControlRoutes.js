@@ -30,13 +30,18 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
-            template: '<env-control-add-fs selected-label="Lampe"/>'
+            template: '<env-control-add-fs selected-label="$resolve.selectedLabel"/>',
+            resolve: {
+                selectedLabel: function ($translate) {
+                    return $translate.instant('i18n_ec_lamp');
+                }
+            }
         });
 
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'Fernseher', 'tv');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_DVD, 'DVD-Player', 'circle');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_HIFI, 'Musik-Player', 'music');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'Nummern', 'th');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'i18n_ec_tv', 'tv');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_DVD, 'i18n_ec_dvd', 'circle');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_HIFI, 'i18n_ec_hifi', 'music');
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'i18n_ec_numbers', 'th');
 
     function configRouteAddIrMass(substateName, selectedLabel, selectedIcon) {
         var configObject = {
@@ -46,8 +51,8 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
                 learnItems: function (envControlUtilService) {
                     return envControlUtilService.getIrElements(substateName);
                 },
-                selectedLabel: function () { //TODO: inject $translate and translate
-                    return selectedLabel;
+                selectedLabel: function ($translate) {
+                    return $translate.instant(selectedLabel);
                 },
                 selectedIcon: function () {
                     return selectedIcon;

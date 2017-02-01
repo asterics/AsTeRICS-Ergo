@@ -12,26 +12,9 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.inLearn = false;
             thiz.learningAborted = false;
-
-            //TODO: replace with i18n
-            thiz.headerTitles = {
-                tv: 'Neue Fernsehsteuerung einrichten',
-                dvd: 'Neue Steuerung eines DVD-Players einrichten',
-                hifi: 'Neue Steuerung eines Musik-Players einrichten',
-                numbers: 'Zifferntasten eines Geräts lernen'
-            };
-            thiz.nameLables = {
-                tv: 'Bitte Namen für den Fernseher auswählen',
-                dvd: 'Bitte Namen für den DVD-Player auswählen',
-                hifi: 'Bitte Namen für den Musik-Player auswählen',
-                numbers: 'Bitte Namen für die Zifferntasten auswählen'
-            };
-            var lastPart = stateUtilService.getLastPart($state.current.name);
-            thiz.headerTitle = thiz.headerTitles[lastPart];
-            thiz.nameLabel = thiz.nameLables[lastPart];
-            if (lastPart === 'numbers' && thiz.cbToAdd) {
-                thiz.headerTitle = 'Zifferntasten von ' + stateUtilService.getLastPartUpper(thiz.cbToAdd) + ' lernen';
-            }
+            thiz.headerI18n = 'i18n_ec_irmass_header_' + stateUtilService.getLastPart($state.current.name);
+            thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
+            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + stateUtilService.getLastPart($state.current.name);
 
             thiz.trainCode = function (irElement, index) {
                 if (!irElement || !index) {

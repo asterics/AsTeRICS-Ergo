@@ -31,9 +31,9 @@ angular.module(asterics.appServices)
 
         thiz.createCellBoardItemBack = function (navState, stateParams) {
             if (navState) {
-                return thiz.createCellBoardItemNav('Zurück', 'arrow-left', navState, stateParams);
+                return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', navState, stateParams);
             } else {
-                return thiz.createCellBoardItemNav('Zurück', 'arrow-left', stateUtilService.getLastState(), stateParams);
+                return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', stateUtilService.getLastState(), stateParams);
             }
         };
     }]);
