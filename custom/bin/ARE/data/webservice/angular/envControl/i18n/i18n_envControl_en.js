@@ -2,6 +2,9 @@ asterics.i18n_envControl_en = {
     i18n_ec_envControl: 'Environmental Control',
     i18n_ec_head_control: 'Control devices - {{subpage}}',
     i18n_ec_mainpage: 'Main page',
+    i18n_ec_help: 'Help',
+    i18n_ec_help_irtrans: 'Help - IrTrans',
+    i18n_ec_help_fs: 'Help - FS20',
     i18n_ec_newelement: 'New Control',
     i18n_ec_activate_del: 'Activate Delete-Mode',
     i18n_ec_deactivate_del: 'Dectivate Delete-Mode',
@@ -9,7 +12,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_deactivate_mov: 'Deactivate Move-Mode',
     i18n_ec_insert_element: 'Paste element',
     i18n_ec_no_elements: 'Currently no controls.',
-    i18n_ec_no_elements_text: 'Click "New Control" to add an element.',
+    i18n_ec_no_elements_text: 'Click <a href="#!/home/envcontrol/add">New Control</a> to add a new control or <a href="#!/home/envcontrol/help">Help</a> for help and information about AsTeRICS Ergo.',
 
     //ir commands
     i18n_ec_onoff: 'ON/OFF',
@@ -83,8 +86,11 @@ asterics.i18n_envControl_en = {
     //states
     'home': 'Home',
     'home.envControl': 'Environmental Control',
-    'home.envControl.add': 'New Element',
-    'home.envControl.addsub': 'New Element',
+    'home.envControl.help': 'Help',
+    'home.envControl.help/ir': 'IrTrans',
+    'home.envControl.help/fs': 'FS20',
+    'home.envControl.add': 'New Control',
+    'home.envControl.addsub': 'New Control',
     'home.envControl.add.tv': 'Television',
     'home.envControl.add.dvd': 'DVD-Player',
     'home.envControl.add.hifi': 'Music-Player',

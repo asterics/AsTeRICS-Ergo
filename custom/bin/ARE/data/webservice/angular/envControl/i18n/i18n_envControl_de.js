@@ -2,6 +2,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_envControl: 'Umgebungssteuerung',
     i18n_ec_head_control: 'Geräte steuern - {{subpage}}',
     i18n_ec_mainpage: 'Hauptseite',
+    i18n_ec_help: 'Hilfe',
+    i18n_ec_help_irtrans: 'Hilfe - IrTrans',
+    i18n_ec_help_fs: 'Hilfe - FS20',
     i18n_ec_newelement: 'Neue Steuerung',
     i18n_ec_activate_del: 'Löschen aktivieren',
     i18n_ec_deactivate_del: 'Löschen deaktivieren',
@@ -9,7 +12,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_deactivate_mov: 'Verschieben deaktivieren',
     i18n_ec_insert_element: 'Element einfügen',
     i18n_ec_no_elements: 'Derzeit keine Steuerungsmöglichkeiten.',
-    i18n_ec_no_elements_text: 'Klicken Sie auf "Neue Steuerung" um ein Element hinzuzufügen.',
+    i18n_ec_no_elements_text: 'Klicken Sie auf <a href="#!/home/envcontrol/add">Neue Steuerung</a> um eine Steuerungsmöglichkeit oder auf <a href="#!/home/envcontrol/help">Hilfe</a> für Hilfe und Informationen zu AsTeRICS Ergo.',
 
     //ir commands
     i18n_ec_onoff: 'EIN/AUS',
@@ -83,8 +86,11 @@ asterics.i18n_envControl_de = {
     //states
     'home': 'Home',
     'home.envControl': 'Umgebungssteuerung',
-    'home.envControl.add': 'Neues Element',
-    'home.envControl.addsub': 'Neues Element',
+    'home.envControl.help': 'Hilfe',
+    'home.envControl.help/ir': 'IrTrans',
+    'home.envControl.help/fs': 'FS20',
+    'home.envControl.add': 'Neue Steuerung',
+    'home.envControl.addsub': 'Neue Steuerung',
     'home.envControl.add.tv': 'Fernseher',
     'home.envControl.add.dvd': 'DVD-Player',
     'home.envControl.add.hifi': 'Musik-Player',

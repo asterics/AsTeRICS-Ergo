@@ -8,6 +8,18 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/envcontrol',
             templateUrl: 'angular/envControl/component/envControlContainer.html'
         })
+        .state(asterics.envControl.STATE_HELP, {
+            url: '/help',
+            template: '<env-control-help/>'
+        })
+        .state(asterics.envControl.STATE_HELP_FS20, {
+            url: '/help/fs20',
+            template: '<env-control-help-fs/>'
+        })
+        .state(asterics.envControl.STATE_HELP_IRTRANS, {
+            url: '/help/irtrans',
+            template: '<env-control-help-irtrans/>'
+        })
         .state(asterics.envControl.STATE_ADD, {
             url: '/add',
             template: '<env-control-add/>'

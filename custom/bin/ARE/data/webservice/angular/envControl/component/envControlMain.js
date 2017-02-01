@@ -81,6 +81,7 @@ angular.module(asterics.appComponents)
                     return envControlDataService.hasClipboardData() && envControlDataService.getClipboardData().cellBoardName !== thiz.cellBoardId;
                 };
                 items.push(thiz.pasteItem);
+                items.push(utilService.createCellBoardItemNav('i18n_ec_help', 'question-circle', asterics.envControl.STATE_HELP))
                 return items;
             }
 
