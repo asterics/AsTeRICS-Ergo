@@ -30,6 +30,12 @@ angular.module(asterics.appComponents)
                 return item && item.active ? 'active' : '';
             };
 
+            thiz.getFaClass = function(item) {
+                if(item && item.faIcon) {
+                    return 'fa fa-3x fa-' +  item.faIcon;
+                }
+            };
+
             thiz.isDisabled = function (item) {
                 if (_.isFunction(item.disabled)) {
                     return item.disabled();
