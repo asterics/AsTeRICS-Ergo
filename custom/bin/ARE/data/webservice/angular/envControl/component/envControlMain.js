@@ -68,8 +68,9 @@ angular.module(asterics.appComponents)
                 items.push(deleteItem);
                 thiz.moveItem = generateMoveItem();
                 thiz.moveItem.visible = function () {
-                    var ret = thiz.cellBoardEnvControl && !thiz.pasteItem.visible();
-                    return ret && (thiz.cellBoardEnvControl.length > 1 || (thiz.cellBoardEnvControl.length > 0 && thiz.cellBoardId !== asterics.envControl.STATE_MAIN));
+                    return false; //TODO make moving good
+                    /*var ret = thiz.cellBoardEnvControl && !thiz.pasteItem.visible();
+                    return ret && (thiz.cellBoardEnvControl.length > 1 || (thiz.cellBoardEnvControl.length > 0 && thiz.cellBoardId !== asterics.envControl.STATE_MAIN));*/
                 };
                 items.push(thiz.moveItem);
                 thiz.pasteItem = utilService.createCellBoardItem('i18n_ec_insert_element', 'clipboard', asterics.envControl.CB_TYPE_FN, function () {
