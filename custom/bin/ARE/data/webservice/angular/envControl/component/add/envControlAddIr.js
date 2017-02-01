@@ -11,7 +11,6 @@ angular.module(asterics.appComponents)
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
 
-            //TODO: replace with i18n
             thiz.headerTitle = 'i18n_ec_ir_header';
             if(thiz.cbToAdd) {
                 thiz.headerTitle = 'i18n_ec_ir_headerto';
