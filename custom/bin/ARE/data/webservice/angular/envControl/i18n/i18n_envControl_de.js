@@ -66,9 +66,12 @@ asterics.i18n_envControl_de = {
     i18n_ec_text_add_to_existing: 'Neue Komponente zu {{device}} hinzufügen',
 
     //add mass
-    i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit.',
+    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem <a href="#!/home/envcontrol/help/irtrans/">IrTrans</a> gelernt.',
+    i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für einen {{device}} gelernt.',
+    i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
+    i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
     i18n_ec_irmass_startlearn: 'Lernen starten',
-    i18n_ec_irmass_pressbutton: 'Drücken Sie jetzt den Knopf',
+    i18n_ec_irmass_pressbutton: 'Drücken Sie jetzt einmal den Knopf',
     i18n_ec_irmass_abortlearn: 'Lernen abbrechen',
     i18n_ec_irmass_continuelearn: 'Lernen fortsetzen',
     i18n_ec_irmass_restartlearn: 'Lernen neu starten',
@@ -87,6 +90,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
 
     //add ir
+    i18n_ec_ir_infotext: 'Es wird nachfolgend ein einzelner Befehl gelernt.',
+    i18n_ec_ir_infotext_device: 'Es werden nachfolgend ein neuer Befehl für "{{device}}" gelernt.',
     i18n_ec_ir_header: 'Neuen Fernbedienungs-Befehl hinzufügen',
     i18n_ec_ir_headerto: 'Neuen Fernbedienungs-Befehl zu {{device}} hinzufügen',
     i18n_ec_ir_choosename: 'Bitte Namen für den Befehl auswählen',
@@ -95,9 +100,13 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_learnsuccess: 'IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".',
 
     //add fs20
-    i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern (EIN/AUS)',
+    i18n_ec_fs_infotext: 'Steckdosen können mit <a href="#!/home/envcontrol/help/fs20/">FS20</a> gesteuert werden. Es wird nachfolgend eine neue Steuerung eines Geräts über Steckdose (EIN/AUS) eingerichtet.',
+    i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
     i18n_ec_fs_choosename: 'Bitte Namen für das neue Gerät auswählen',
-    i18n_ec_fs_press_button: 'Bitte Drücken Sie auf den grauen Knopf am FS20, bis er rot zu blinken beginnt.',
+    i18n_ec_fs_device_on: 'Schalten Sie das zu steuernde Gerät EIN.',
+    i18n_ec_fs_adapt_plug: 'Stecken Sie den FS20-Zwischenstecker in eine Steckdose.',
+    i18n_ec_fs_plug_in: 'Stecken Sie das zu steuernde Gerät an den Zwischenstecker an.',
+    i18n_ec_fs_press_button: 'Drücken Sie auf den grauen Knopf am FS20, bis er rot zu blinken beginnt (ca. 5 Sekunden).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: 'Klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
 

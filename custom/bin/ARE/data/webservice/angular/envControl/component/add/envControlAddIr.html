@@ -2,7 +2,14 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2 translate="{{$ctrl.headerTitle}}" translate-values="{{$ctrl.headerTitleParam}}"/>
+<h2 translate="{{$ctrl.headerTitle}}" translate-values="{{$ctrl.deviceNameParam}}"/>
+<div class="info col-xs-8">
+    <i class="fa fa-info-circle"/>
+    <span translate="i18n_ec_irmass_infotext_1"/>
+    <span ng-if="!$ctrl.deviceNameParam" translate="i18n_ec_ir_infotext"/>
+    <span ng-if="$ctrl.deviceNameParam" translate="i18n_ec_ir_infotext_device" translate-values="{{$ctrl.deviceNameParam}}"/>
+</div>
+<div class="clearfix"/>
 <ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">{{'i18n_ec_ir_choosename' | translate}}</label>

@@ -3,13 +3,21 @@
 </div>
 <div class="clearfix"/>
 <h2>{{'i18n_ec_fs_header' | translate}}</h2>
+<div class="info col-xs-8">
+    <i class="fa fa-info-circle"/>
+    <span translate="i18n_ec_fs_infotext"/>
+</div>
+<div class="clearfix"/>
 <ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">{{'i18n_ec_fs_choosename' | translate}}</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
     </li>
     <li ng-if="$ctrl.stepCompleted(1)">
-        <label for="inputTrain">{{'i18n_ec_fs_press_button' | translate}}</label>
+        <span>{{'i18n_ec_fs_device_on' | translate}}</span><br/>
+        <span>{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
+        <span>{{'i18n_ec_fs_plug_in' | translate}}</span><br/>
+        <span>{{'i18n_ec_fs_press_button' | translate}}</span><br/>
         <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_fs_button_blinking' | translate}}</button>
         <br/>
     </li>

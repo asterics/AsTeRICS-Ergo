@@ -12,9 +12,9 @@ angular.module(asterics.appComponents)
             thiz.inTrain = false;
 
             thiz.headerTitle = 'i18n_ec_ir_header';
-            if(thiz.cbToAdd) {
+            if (thiz.cbToAdd) {
                 thiz.headerTitle = 'i18n_ec_ir_headerto';
-                thiz.headerTitleParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
+                thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
             }
 
             thiz.trainCode = function () {
@@ -35,7 +35,7 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlDataService.addCellBoardElementIrTrans(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                if(!thiz.cbToAdd) {
+                if (!thiz.cbToAdd) {
                     $state.go(asterics.envControl.STATE_MAIN);
                 } else {
                     $state.go(thiz.cbToAdd);

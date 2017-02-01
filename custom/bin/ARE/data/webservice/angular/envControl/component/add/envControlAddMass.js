@@ -6,15 +6,18 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.inLearn = false;
             thiz.learningAborted = false;
-            thiz.headerI18n = 'i18n_ec_irmass_header_' + stateUtilService.getLastPart($state.current.name);
-            thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
-            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + stateUtilService.getLastPart($state.current.name);
+            thiz.addType = stateUtilService.getLastPart($state.current.name);
+            thiz.headerI18n = 'i18n_ec_irmass_header_' + thiz.addType;
+            thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
+            thiz.typeI18nParams = {device: $translate.instant('i18n_ec_' + thiz.addType)};
+            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addType;
+            thiz.isNumberLearn = thiz.addType == 'numbers';
 
             thiz.trainCode = function (irElement, index) {
                 if (!irElement || !index) {

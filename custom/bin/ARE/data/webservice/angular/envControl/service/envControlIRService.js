@@ -38,7 +38,7 @@ angular.module(asterics.appServices)
 
         thiz.irLearn = function () {
             var def = $q.defer();
-            thiz.irAction('learn ,,,,,W2').then(function (response) { //W2 means timeout of 2 seconds
+            thiz.irAction('learn ,,,,,W5').then(function (response) { //W2 means timeout of 2 seconds
                 var index = response.indexOf(learnCmdResponse);
                 if (index == -1 || response.indexOf(resultError) !== -1) {
                     def.reject();

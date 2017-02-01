@@ -66,9 +66,12 @@ asterics.i18n_envControl_en = {
     i18n_ec_text_add_to_existing: 'Add new component to {{device}}',
 
     //add mass
-    i18n_ec_irmass_text_startlearn: 'Click "Start learning" to learn the commands. Please keep ready the original remote control of your device',
+    i18n_ec_irmass_infotext_1: 'Remote commands are learned with <a href="#!/home/envcontrol/help/irtrans/">IrTrans</a>.',
+    i18n_ec_irmass_infotext_device: 'Subsequently the most important commands for a {{device}} will be learned.',
+    i18n_ec_irmass_infotext_numbers: 'Subsequently the number keys of the remote for "{{device}}" will be learned.',
+    i18n_ec_irmass_text_startlearn: 'Click "Start learning" to learn the commands. Please keep ready the original remote control of your device and point it to IrTrans during learning.',
     i18n_ec_irmass_startlearn: 'Start learning',
-    i18n_ec_irmass_pressbutton: 'Now press the button',
+    i18n_ec_irmass_pressbutton: 'Now once press the button',
     i18n_ec_irmass_abortlearn: 'Abort learning',
     i18n_ec_irmass_continuelearn: 'Continue learning',
     i18n_ec_irmass_restartlearn: 'Restart learning',
@@ -87,6 +90,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_name_numbers: 'Please choose a name for the number keys',
 
     //add ir
+    i18n_ec_ir_infotext: 'Subsequently one new command is learned.',
+    i18n_ec_ir_infotext_device: 'Subsequently one new command for "{{device}}" is learned.',
     i18n_ec_ir_header: 'Add new remote control command',
     i18n_ec_ir_headerto: 'Add new remote control command to {{device}}',
     i18n_ec_ir_choosename: 'Please choose a name for the command',
@@ -95,9 +100,13 @@ asterics.i18n_envControl_en = {
     i18n_ec_ir_learnsuccess: 'Successfully learned command! Click "Finish" to complete.',
 
     //add fs20
-    i18n_ec_fs_header: 'Control new device via plug (ON/OFF)',
+    i18n_ec_fs_infotext: 'Electric sockets can be controlled with <a href="#!/home/envcontrol/help/fs20/">FS20</a>. Subsequently a new control of a device (ON/OFF) via socket will be configured',
+    i18n_ec_fs_header: 'Control new device via plug',
     i18n_ec_fs_choosename: 'Please choose a name for the device',
-    i18n_ec_fs_press_button: 'Please press the grey button on the FS20 until it is blinking red.',
+    i18n_ec_fs_device_on: 'Turn the device to control ON.',
+    i18n_ec_fs_adapt_plug: 'Plug the FS20-adapter plug in a socket.',
+    i18n_ec_fs_plug_in: 'Plug the device to control in the FS20-adapter plug.',
+    i18n_ec_fs_press_button: 'Press the grey button on the FS20 until it is blinking red.',
     i18n_ec_fs_button_blinking: 'Ok, Button is blinking!',
     i18n_ec_fs_text_finish: 'Click on "Finish" to complete.',
 

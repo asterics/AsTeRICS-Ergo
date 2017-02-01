@@ -2,14 +2,21 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.headerI18nParams}}"></h2>
+<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
+<div class="info col-xs-8">
+    <i class="fa fa-info-circle"/>
+    <span translate="i18n_ec_irmass_infotext_1"/>
+    <span ng-if="!$ctrl.isNumberLearn" translate="i18n_ec_irmass_infotext_device" translate-values="{{$ctrl.typeI18nParams}}"/>
+    <span ng-if="$ctrl.isNumberLearn" translate="i18n_ec_irmass_infotext_numbers" translate-values="{{$ctrl.deviceI18nParams}}"/>
+</div>
+<div class="clearfix"/>
 <ul>
     <li ng-model-options="{debounce: 500}">
         <label for="inputLabel">{{$ctrl.nameLabelI18n | translate}}</label>
         <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
     </li>
     <li ng-if="$ctrl.selectedLabel">
-        <label for="inputTrain">{{'i18n_ec_irmass_text_startlearn' | translate}}</label>
+        <span>{{'i18n_ec_irmass_text_startlearn' | translate}}</span><br/>
         <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn || $ctrl.learningAborted">{{'i18n_ec_irmass_startlearn' | translate}}</button>
         <br/>
     </li>
