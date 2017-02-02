@@ -71,7 +71,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
     i18n_ec_irmass_startlearn: 'Lernen starten',
-    i18n_ec_irmass_pressbutton: 'Drücken Sie jetzt einmal den Knopf',
+    i18n_ec_irmass_pressbutton: 'Drücken Sie jetzt einmal kurz den Knopf',
     i18n_ec_irmass_abortlearn: 'Lernen abbrechen',
     i18n_ec_irmass_continuelearn: 'Lernen fortsetzen',
     i18n_ec_irmass_restartlearn: 'Lernen neu starten',
