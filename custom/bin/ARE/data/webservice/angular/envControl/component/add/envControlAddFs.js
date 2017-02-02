@@ -6,6 +6,7 @@ angular.module(asterics.appComponents)
         },
         controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService) {
             var thiz = this;
+            thiz.backStateParam = {backState: $state.current.name};
             thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.code = envControlDataService.getNewFs20Code();
@@ -19,7 +20,7 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                if(!thiz.cbToAdd) {
+                if (!thiz.cbToAdd) {
                     $state.go(asterics.envControl.STATE_MAIN);
                 } else {
                     $state.go(thiz.cbToAdd);

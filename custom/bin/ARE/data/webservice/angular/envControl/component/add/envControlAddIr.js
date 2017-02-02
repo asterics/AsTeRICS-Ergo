@@ -10,6 +10,10 @@ angular.module(asterics.appComponents)
             thiz.code = null;
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
+            thiz.stateI18nParams = {
+                backState: $state.current.name,
+                backStateParams: encodeURI(angular.toJson($stateParams))
+            };
 
             thiz.headerTitle = 'i18n_ec_ir_header';
             if (thiz.cbToAdd) {

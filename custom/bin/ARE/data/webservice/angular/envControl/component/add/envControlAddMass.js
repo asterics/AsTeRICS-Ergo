@@ -16,6 +16,10 @@ angular.module(asterics.appComponents)
             thiz.headerI18n = 'i18n_ec_irmass_header_' + thiz.addType;
             thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
             thiz.typeI18nParams = {device: $translate.instant('i18n_ec_' + thiz.addType)};
+            thiz.stateI18nParams = {
+                backState: $state.current.name,
+                backStateParams: encodeURI(angular.toJson($stateParams))
+            };
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addType;
             thiz.isNumberLearn = thiz.addType == 'numbers';
 
