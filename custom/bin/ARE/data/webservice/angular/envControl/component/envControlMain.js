@@ -88,7 +88,11 @@ angular.module(asterics.appComponents)
                 };
                 items.push(thiz.pasteItem);
                 if (thiz.substateDepth == 1) {
-                    items.push(utilService.createCellBoardItemNav('i18n_ec_help', 'question-circle', asterics.envControl.STATE_HELP));
+                    var helpItem = utilService.createCellBoardItemNav('i18n_ec_help', 'question-circle', asterics.envControl.STATE_HELP);
+                    helpItem.visible = function () {
+                        return envControlDataService.getNumberOfElements(thiz.cellBoardId) > 0;
+                    };
+                    items.push(helpItem);
                 }
                 return items;
             }

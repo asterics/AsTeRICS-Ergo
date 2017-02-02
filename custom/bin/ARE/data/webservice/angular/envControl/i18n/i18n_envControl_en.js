@@ -14,7 +14,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_deactivate_mov: 'Deactivate Moving',
     i18n_ec_insert_element: 'Paste element',
     i18n_ec_no_elements: 'Currently no controls.',
-    i18n_ec_no_elements_text: 'Click <a href="#!/home/envcontrol/add">New Control</a> to add a new control or <a href="#!/home/envcontrol/help">Help</a> for help and information about AsTeRICS Ergo.',
+    i18n_ec_no_elements_text: 'Click <a href="#!/home/envcontrol/add">New Control</a> to add a new control.',
 
     //help global
     i18n_ec_help_at: 'at',

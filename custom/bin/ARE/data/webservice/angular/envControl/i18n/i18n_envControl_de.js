@@ -14,7 +14,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_deactivate_mov: 'Verschieben deaktivieren',
     i18n_ec_insert_element: 'Element einfügen',
     i18n_ec_no_elements: 'Derzeit keine Steuerungsmöglichkeiten.',
-    i18n_ec_no_elements_text: 'Klicken Sie auf <a href="#!/home/envcontrol/add">Neue Steuerung</a> um eine Steuerungsmöglichkeit oder auf <a href="#!/home/envcontrol/help">Hilfe</a> für Hilfe und Informationen zu AsTeRICS Ergo.',
+    i18n_ec_no_elements_text: 'Klicken Sie auf <a href="#!/home/envcontrol/add">Neue Steuerung</a> um eine Steuerungsmöglichkeit hinzuzufügen.',
 
     //help global
     i18n_ec_help_at: 'bei',

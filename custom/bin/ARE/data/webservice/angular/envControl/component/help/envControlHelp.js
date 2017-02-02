@@ -1,6 +1,8 @@
 angular.module(asterics.appComponents)
     .component('envControlHelp', {
-        bindings: {},
+        bindings: {
+            hideBack: '<',
+        },
         controller: ['utilService', function (utilService) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
