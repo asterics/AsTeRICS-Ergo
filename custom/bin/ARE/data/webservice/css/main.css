@@ -25,11 +25,22 @@ div .active {
     height: 100%;
 }
 
+.lang-choose {
+    padding-top: 0.5em;
+}
+
+.vcenter {
+    float: left;
+    vertical-align: middle;
+    padding-right: 0.5em;
+}
+
 /* boxes */
 .info, .success, .warning, .error, .validation {
+    float: left;
     border: 1px solid;
-    margin: 10px 0px;
-    padding:15px 10px 15px 50px;
+    margin: 10px 0px 10px 20px;
+    padding: 15px 10px 15px 20px;
 }
 .info {
     color: #00529B;
