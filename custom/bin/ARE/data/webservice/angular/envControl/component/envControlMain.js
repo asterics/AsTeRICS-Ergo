@@ -61,7 +61,8 @@ angular.module(asterics.appComponents)
                 } else {
                     items.push(utilService.createCellBoardItemBack());
                     if (stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId) < 3) {
-                        items.push(utilService.createCellBoardItemNav('i18n_ec_newelement', 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
+                        var text = stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId) == 1 ? 'i18n_ec_newelement' : 'i18n_ec_newelement_sub';
+                        items.push(utilService.createCellBoardItemNav(text, 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
                     }
                 }
                 var deleteItem = generateSwitchModeItem('i18n_ec_activate_del', 'i18n_ec_deactivate_del', 'trash', asterics.const.CELLB_MODE_DELETE, 'i18n_ec_infotext_del');
