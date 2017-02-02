@@ -113,6 +113,10 @@ angular.module(asterics.appServices)
             return _.includes(getAllSubCellBoardNames(parentState, true), label.toString().trim().toLowerCase());
         };
 
+        thiz.getNumberOfElements = function (cellBoard) {
+            return _cellBoards[cellBoard].length;
+        };
+
         function initCellBoard(cellBoardName) {
             if (!_cellBoards[cellBoardName]) {
                 _cellBoards[cellBoardName] = [];

@@ -3,7 +3,11 @@
         <cell-board choose-items="$ctrl.cellBoardConfig"/>
     </div>
     <div class="clearfix"/>
-    <br/>
+    <div class="info col-xs-12 col-md-8" ng-if="$ctrl.infoTextI18n">
+        <i class="fa fa-info-circle fa-2x vcenter"/>
+        <span translate="{{$ctrl.infoTextI18n}}"/>
+    </div>
+    <div class="clearfix"/>
     <h2 translate="i18n_ec_head_control" translate-values="$ctrl.getSubpageName()"/>
     <div>
         <div ng-if="$ctrl.cellBoardEnvControl.length > 0">
