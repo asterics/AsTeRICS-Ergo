@@ -5,6 +5,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate) {
             var thiz = this;
             thiz.cellBoardId = $state.current.name;
+            thiz.substateDepth = stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId);
             thiz.cellBoardConfig = [];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
@@ -60,8 +61,8 @@ angular.module(asterics.appComponents)
                     items.push(utilService.createCellBoardItemNav('i18n_ec_newelement', 'plus', asterics.envControl.STATE_ADD));
                 } else {
                     items.push(utilService.createCellBoardItemBack());
-                    if (stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId) < 3) {
-                        var text = stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId) == 1 ? 'i18n_ec_newelement' : 'i18n_ec_newelement_sub';
+                    if (thiz.substateDepth < 3) {
+                        var text = thiz.substateDepth == 1 ? 'i18n_ec_newelement' : 'i18n_ec_newelement_sub';
                         items.push(utilService.createCellBoardItemNav(text, 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
                     }
                 }
@@ -86,7 +87,9 @@ angular.module(asterics.appComponents)
                     return envControlDataService.hasClipboardData() && envControlDataService.getClipboardData().cellBoardName !== thiz.cellBoardId;
                 };
                 items.push(thiz.pasteItem);
-                items.push(utilService.createCellBoardItemNav('i18n_ec_help', 'question-circle', asterics.envControl.STATE_HELP))
+                if (thiz.substateDepth == 1) {
+                    items.push(utilService.createCellBoardItemNav('i18n_ec_help', 'question-circle', asterics.envControl.STATE_HELP));
+                }
                 return items;
             }
 
