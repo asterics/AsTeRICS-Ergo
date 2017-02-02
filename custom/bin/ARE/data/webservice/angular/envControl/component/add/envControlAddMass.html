@@ -36,6 +36,7 @@
     </li>
     <li ng-if="$ctrl.allCodesLearned()">
         <span>{{'i18n_ec_irmass_alllearned' | translate}}</span><br/>
+        <button ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
         <button ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
     </li>
 </ul>
