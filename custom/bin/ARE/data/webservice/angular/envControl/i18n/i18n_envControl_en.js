@@ -79,7 +79,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_uselearned: 'Apply yet learned commands',
     i18n_ec_irmass_learned: 'Learned!',
     i18n_ec_irmass_learnaborted: 'Learning canceled. Unitl now {{num}} commands learned.',
-    i18n_ec_irmass_alllearned: 'All commands learned! Click "Finish" to complete.',
+    i18n_ec_irmass_alllearned: 'All commands learned! Click "Finish" to complete or on "Restart lerning" to rerun learning.',
     i18n_ec_irmass_finish: 'Finish',
     i18n_ec_irmass_header_tv: 'Control a new television',
     i18n_ec_irmass_header_dvd: 'Control a new DVD-Player',

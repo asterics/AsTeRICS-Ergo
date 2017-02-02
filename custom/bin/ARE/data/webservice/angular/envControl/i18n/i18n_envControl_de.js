@@ -79,7 +79,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_uselearned: 'Bisher gelernte Befehle übernehmen',
     i18n_ec_irmass_learned: 'Gelernt!',
     i18n_ec_irmass_learnaborted: 'Lernen abgebrochen. Bisher wurden {{num}} Befehle gelernt.',
-    i18n_ec_irmass_alllearned: 'Alle Befehle erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen.',
+    i18n_ec_irmass_alllearned: 'Alle Befehle erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder auf "Lernen neu starten" um das Lernen zu wiederholen.',
     i18n_ec_irmass_finish: 'Fertigstellen',
     i18n_ec_irmass_header_tv: 'Neue Fernsehsteuerung einrichten',
     i18n_ec_irmass_header_dvd: 'Neue Steuerung eines DVD-Players einrichten',
