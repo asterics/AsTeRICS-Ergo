@@ -8,21 +8,27 @@
     <span translate="i18n_ec_fs_infotext" translate-values="{{$ctrl.backStateParam}}"/>
 </div>
 <div class="clearfix"/>
-<ul>
-    <li ng-model-options="{debounce: 500}">
-        <label for="inputLabel">{{'i18n_ec_fs_choosename' | translate}}</label>
-        <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
-    </li>
-    <li ng-if="$ctrl.stepCompleted(1)">
-        <span>{{'i18n_ec_fs_device_on' | translate}}</span><br/>
-        <span>{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
-        <span>{{'i18n_ec_fs_plug_in' | translate}}</span><br/>
-        <span>{{'i18n_ec_fs_press_button' | translate}}</span><br/>
-        <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_fs_button_blinking' | translate}}</button>
-        <br/>
-    </li>
-    <li ng-if="$ctrl.stepCompleted(2)">
-        <span>{{'i18n_ec_fs_text_finish' | translate}}</span><br/>
-        <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
-    </li>
-</ul>
+<div class="col-lg-8">
+    <ul>
+        <li ng-model-options="{debounce: 500}">
+            <label for="inputLabel">{{'i18n_ec_fs_choosename' | translate}}</label>
+            <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
+        </li>
+        <li ng-if="$ctrl.stepCompleted(1)">
+            <span>{{'i18n_ec_fs_device_on' | translate}}</span><br/>
+            <span>{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
+            <span>{{'i18n_ec_fs_plug_in' | translate}}</span><br/>
+            <span>{{'i18n_ec_fs_press_button' | translate}}</span><br/>
+            <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_fs_button_blinking' | translate}}</button>
+            <br/>
+        </li>
+        <li ng-if="$ctrl.stepCompleted(2)">
+            <span>{{'i18n_ec_fs_text_finish' | translate}}</span><br/>
+            <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+        </li>
+    </ul>
+</div>
+<div class="col-xs-4 col-md-3 col-lg-2">
+    <img src="angular/envControl/img/fs20-stecker.jpg" alt="{{'i18n_ec_help_fs20_plug' | translate}}"/>
+    <div class=" text-center">{{'i18n_ec_help_fs20_plug' | translate}}</div>
+</div>
