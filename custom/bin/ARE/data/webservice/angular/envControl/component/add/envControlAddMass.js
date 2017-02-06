@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [generateBackItem()];
@@ -38,6 +38,7 @@ angular.module(asterics.appComponents)
                     if (index < thiz.learnItems.length - 1) {
                         thiz.trainCode(thiz.learnItems[index + 1], index + 1);
                     }
+                    scrollToEnd();
                 }
 
                 function error() {
@@ -49,6 +50,7 @@ angular.module(asterics.appComponents)
                 envControlIRService.irLearn().then(success, error);
                 thiz.inLearn = true;
                 thiz.learningAborted = false;
+                scrollToEnd();
             };
 
             thiz.clearItemsAndRestartLearning = function () {
@@ -131,6 +133,11 @@ angular.module(asterics.appComponents)
                 }
             }
 
+            function scrollToEnd() {
+                $timeout(function () {
+                    $anchorScroll('end');
+                });
+            }
         }],
         templateUrl: "angular/envControl/component/add/envControlAddMass.html"
     });
