@@ -1,11 +1,11 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', 'stateUtilService', function (areService, utilService, envControlUtilService, stateUtilService) {
+    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', function (areService, utilService, envControlUtilService, stateUtilService, envControlFsService) {
         var thiz = this;
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
         var _dynamicCellBoardIds = [];
+        var _fs20Codes = [];
         var _clipBoard = {};
-        var houseCode = '11111111';
 
         thiz.getCellBoard = function (cellBoardName) {
             return _cellBoards[cellBoardName];
@@ -22,6 +22,7 @@ angular.module(asterics.appServices)
             }
             var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
             _cellBoards[cellBoard].push(element);
+            _fs20Codes.push(code);
         };
 
         thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
@@ -37,6 +38,8 @@ angular.module(asterics.appServices)
             if (element.type === asterics.const.CB_TYPE_NAV && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
                 _.pull(_dynamicCellBoardIds, element.toState);
+            } else if(element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
+                _.pull(_fs20Codes, element.code);
             }
             return _cellBoards[cellBoardName];
         };
@@ -86,17 +89,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getNewFs20Code = function () {
-            var cellBoardElements = getAllCellBoardElements();
-            if (_.filter(cellBoardElements, {type: asterics.envControl.CB_TYPE_FS20}).length > 0) {
-                var codesString = _.map(cellBoardElements, 'code');
-                var codes = _.map(codesString, function (elem) {
-                    return parseInt(elem.substr(-4))
-                });
-                housecode = codesString[0].split('_')[0];
-                var max = _.max(codes);
-                return housecode + '_' + (max + 1);
-            }
-            return houseCode + '_1111';
+            return envControlFsService.getNewFs20Code(_fs20Codes);
         };
 
         thiz.getNonConflictingLabel = function (label, parentState) {
