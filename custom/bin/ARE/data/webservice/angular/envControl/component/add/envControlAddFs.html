@@ -5,7 +5,8 @@
 <h2>{{'i18n_ec_fs_header' | translate}}</h2>
 <div class="info col-xs-12 col-md-8">
     <i class="fa fa-info-circle fa-2x vcenter"/>
-    <span translate="i18n_ec_fs_infotext" translate-values="{{$ctrl.backStateParam}}"/>
+    <span translate="i18n_ec_fs_infotext1" translate-values="{{$ctrl.backStateParam}}"/>
+    <span translate="{{'i18n_ec_fs_infotext2_' + $ctrl.stateLastPart}}"/>
 </div>
 <div class="clearfix"/>
 <div class="col-lg-8">
@@ -15,9 +16,9 @@
             <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
         </li>
         <li ng-if="$ctrl.stepCompleted(1)">
-            <span>{{'i18n_ec_fs_device_on' | translate}}</span><br/>
+            <span>{{'i18n_ec_fs_device_on_' + $ctrl.stateLastPart | translate}}</span><br/>
             <span>{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
-            <span>{{'i18n_ec_fs_plug_in' | translate}}</span><br/>
+            <span>{{'i18n_ec_fs_plug_in_' + $ctrl.stateLastPart | translate}}</span><br/>
             <span>{{'i18n_ec_fs_press_button' | translate}}</span><br/>
             <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_fs_button_blinking' | translate}}</button>
             <br/>

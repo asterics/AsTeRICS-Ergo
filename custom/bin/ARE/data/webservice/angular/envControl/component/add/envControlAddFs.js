@@ -8,6 +8,7 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.backStateParam = {backState: $state.current.name};
             thiz.cbToAdd = $stateParams.cellBoardId;
+            thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedIcon = 'lightbulb-o';
