@@ -7,7 +7,7 @@ angular.module(asterics.appComponents)
             removeHandler: "&",
             moveHandler: "&"
         },
-        controller: ['envControlService', function (envControlService) {
+        controller: ['$translate', function ($translate) {
             var thiz = this;
 
             thiz.itemClicked = function (item) {
@@ -30,9 +30,15 @@ angular.module(asterics.appComponents)
                 return item && item.active ? 'active' : '';
             };
 
-            thiz.getFaClass = function(item) {
-                if(item && item.faIcon) {
-                    return 'fa fa-3x fa-' +  item.faIcon;
+            thiz.getFaClass = function (item) {
+                if (item && item.faIcon) {
+                    return 'fa fa-3x fa-' + item.faIcon;
+                }
+            };
+
+            thiz.getTooltip = function (item) {
+                if (item && item.tooltip) {
+                    return $translate.instant(item.tooltip, item.tooltipParams);
                 }
             };
 

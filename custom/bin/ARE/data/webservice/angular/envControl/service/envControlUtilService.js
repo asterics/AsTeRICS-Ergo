@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', '$rootScope', function (envControlFsService, envControlIRService, utilService, $rootScope) {
+    .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', function (envControlFsService, envControlIRService, utilService) {
         var thiz = this;
 
         thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
@@ -7,6 +7,8 @@ angular.module(asterics.appServices)
                 envControlFsService.fs20Toggle(code);
             });
             element.code = code;
+            element.tooltip = 'i18n_ec_tooltip_click_fs20';
+            element.tooltipParams = {device: title};
             return element;
         };
 
@@ -15,6 +17,14 @@ angular.module(asterics.appServices)
                 envControlIRService.irSend(code);
             });
             element.code = code;
+            return element;
+        };
+
+        thiz.createCellBoardItemNavSubcellboard = function (title, faIcon, navState, stateParams) {
+            var element = utilService.createCellBoardItemNav(title, faIcon, navState, stateParams);
+            element.toState = navState;
+            element.tooltip = 'i18n_ec_tooltip_click_subcb';
+            element.tooltipParams = {device: title};
             return element;
         };
 

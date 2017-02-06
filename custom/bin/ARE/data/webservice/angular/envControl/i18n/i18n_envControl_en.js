@@ -15,6 +15,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_insert_element: 'Paste element',
     i18n_ec_no_elements: 'Currently no controls.',
     i18n_ec_no_elements_text: 'Click <a href="#!/home/envcontrol/add">New Control</a> to add a new control.',
+    i18n_ec_tooltip_click_fs20: 'Click to turn "{{device}}" ON/OFF',
+    i18n_ec_tooltip_click_subcb: 'To the controls of "{{device}}"',
 
     //help global
     i18n_ec_help_at: 'at',
@@ -74,7 +76,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_text_startlearn: 'Click "Start learning" to learn the commands. Please keep ready the original remote control of your device and point it to IrTrans during learning.',
     i18n_ec_irmass_startlearn: 'Start learning',
     i18n_ec_irmass_pressbutton: 'Now once shortly press the button',
-    i18n_ec_irmass_abortlearn: 'Cancel learning',
+    i18n_ec_irmass_abortlearn: 'Pause learning',
+    i18n_ec_irmass_abortlearn_tooltip: 'pause, cancel or restart learning',
     i18n_ec_irmass_continuelearn: 'Continue learning',
     i18n_ec_irmass_restartlearn: 'Restart learning',
     i18n_ec_irmass_uselearned: 'Apply yet learned commands',

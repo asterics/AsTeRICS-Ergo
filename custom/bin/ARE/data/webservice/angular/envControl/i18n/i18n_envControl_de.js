@@ -15,6 +15,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_insert_element: 'Element einfügen',
     i18n_ec_no_elements: 'Derzeit keine Steuerungsmöglichkeiten.',
     i18n_ec_no_elements_text: 'Klicken Sie auf <a href="#!/home/envcontrol/add">Neue Steuerung</a> um eine Steuerungsmöglichkeit hinzuzufügen.',
+    i18n_ec_tooltip_click_fs20: 'Klicken Sie um "{{device}}" ein- bzw. auszuschalten',
+    i18n_ec_tooltip_click_subcb: 'Zu den Funktionen von "{{device}}"',
+
 
     //help global
     i18n_ec_help_at: 'bei',
@@ -74,7 +77,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
     i18n_ec_irmass_startlearn: 'Lernen starten',
     i18n_ec_irmass_pressbutton: 'Drücken Sie jetzt einmal kurz den Knopf',
-    i18n_ec_irmass_abortlearn: 'Lernen abbrechen',
+    i18n_ec_irmass_abortlearn: 'Lernen pausieren',
+    i18n_ec_irmass_abortlearn_tooltip: 'Pausieren, Abbrechen oder Neustarten des Lernvorgangs',
     i18n_ec_irmass_continuelearn: 'Lernen fortsetzen',
     i18n_ec_irmass_restartlearn: 'Lernen neu starten',
     i18n_ec_irmass_uselearned: 'Bisher gelernte Befehle übernehmen',

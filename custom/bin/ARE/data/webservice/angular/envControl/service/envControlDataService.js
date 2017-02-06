@@ -38,7 +38,7 @@ angular.module(asterics.appServices)
             if (element.type === asterics.const.CB_TYPE_NAV && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
                 _.pull(_dynamicCellBoardIds, element.toState);
-            } else if(element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
+            } else if (element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
                 _.pull(_fs20Codes, element.code);
             }
             return _cellBoards[cellBoardName];
@@ -76,8 +76,7 @@ angular.module(asterics.appServices)
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState) {
             title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
             var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
-            var navToCbElement = utilService.createCellBoardItemNav(title, faIcon, newStateName);
-            navToCbElement.toState = newStateName;
+            var navToCbElement = envControlUtilService.createCellBoardItemNavSubcellboard(title, faIcon, newStateName);
             thiz.addCellBoardElement(parentCellBoardState, navToCbElement);
             initCellBoard(newStateName);
             stateUtilService.addState(newStateName, {

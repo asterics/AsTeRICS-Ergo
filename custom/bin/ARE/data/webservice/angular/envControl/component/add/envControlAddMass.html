@@ -23,7 +23,9 @@
     <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
         <span>{{'i18n_ec_irmass_pressbutton' | translate}} '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/></span>
         <span ng-if="!element.code">
-            <button ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> {{'i18n_ec_irmass_abortlearn' | translate}}</button>
+            <button title="{{'i18n_ec_irmass_abortlearn_tooltip' | translate}}" ng-click="$ctrl.abortLearning()">
+                <i class="fa fa-spinner fa-spin"/> {{'i18n_ec_irmass_abortlearn' | translate}}
+            </button>
         </span>
         <span ng-if="element.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
     </li>
