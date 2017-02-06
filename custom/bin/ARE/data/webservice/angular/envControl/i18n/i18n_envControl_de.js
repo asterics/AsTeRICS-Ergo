@@ -71,7 +71,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_text_add_to_existing: 'Neue Komponente zu {{device}} hinzufügen',
 
     //add mass
-    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem <b><a href="#!/home/envcontrol/help/irtrans/{{backState}}/{{backStateParams}}">IrTrans</a></b> gelernt.',
+    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<a href="#!/home/envcontrol/help/irtrans/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a>) gelernt.',
     i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für einen {{device}} gelernt.',
     i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
@@ -106,13 +106,13 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_learnsuccess: 'IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".',
 
     //add fs20
-    i18n_ec_fs_infotext: 'Steckdosen können mit <b><a href="#!/home/envcontrol/help/fs20/{{backState}}/">FS20</a></b> gesteuert werden. Es wird nachfolgend eine neue Steuerung eines Geräts über Steckdose (EIN/AUS) eingerichtet.',
+    i18n_ec_fs_infotext: 'Steckdosen können mit "FS20" (<a href="#!/home/envcontrol/help/fs20/{{backState}}/">mehr Infos zu FS20</a>) gesteuert werden. Es wird nachfolgend eine neue Steuerung eines Geräts über Steckdose (EIN/AUS) eingerichtet.',
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
     i18n_ec_fs_choosename: 'Bitte Namen für das neue Gerät auswählen',
     i18n_ec_fs_device_on: 'Schalten Sie das zu steuernde Gerät EIN.',
     i18n_ec_fs_adapt_plug: 'Stecken Sie den FS20-Zwischenstecker in eine Steckdose.',
-    i18n_ec_fs_plug_in: 'Stecken Sie das zu steuernde Gerät an den Zwischenstecker an.',
-    i18n_ec_fs_press_button: 'Drücken Sie auf den grauen Knopf am FS20, bis er rot zu blinken beginnt (ca. 5 Sekunden).',
+    i18n_ec_fs_plug_in: 'Stecken Sie das zu steuernde Gerät an den FS20-Zwischenstecker an.',
+    i18n_ec_fs_press_button: 'Drücken Sie auf den grauen Knopf am FS20-Zwischenstecker, bis er rot zu blinken beginnt (ca. 5 Sekunden).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: 'Klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
 
