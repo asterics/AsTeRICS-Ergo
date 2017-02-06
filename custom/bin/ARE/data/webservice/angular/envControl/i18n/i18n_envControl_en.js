@@ -129,5 +129,6 @@ asterics.i18n_envControl_en = {
     'home.envControl.add.numbers': 'Numbers',
     'home.envControl.add.fs20': 'Plug',
     'home.envControl.add.ir': 'Remote control',
+    'home.envControl.add.lamp': 'Lamp',
     'home.envControl.add/more': 'More'
 };

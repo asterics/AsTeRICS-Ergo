@@ -130,5 +130,6 @@ asterics.i18n_envControl_de = {
     'home.envControl.add.numbers': 'Nummern',
     'home.envControl.add.fs20': 'Steckdose',
     'home.envControl.add.ir': 'Fernbedienung',
+    'home.envControl.add.lamp': 'Lampe',
     'home.envControl.add/more': 'Mehr'
 };
