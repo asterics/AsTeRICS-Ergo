@@ -95,6 +95,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_name_numbers: 'Please choose a name for the number keys',
 
     //add ir
+    i18n_ec_irtrans_error: 'Error sending signal to IrTrans - check that IrTrans is installed and connected to the computer.',
     i18n_ec_ir_infotext: 'Subsequently one new command is learned.',
     i18n_ec_ir_infotext_device: 'Subsequently one new command for "{{device}}" is learned.',
     i18n_ec_ir_header: 'Add new remote control command',

@@ -42,4 +42,8 @@
         <button ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
     </li>
 </ul>
+<div ng-if="$ctrl.showError" class="error col-xs-12 col-md-8">
+    <i class="fa fa-exclamation-triangle fa-2x vcenter"/>
+    <span translate="i18n_ec_irtrans_error"/>
+</div>
 <a id="end"/>

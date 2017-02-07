@@ -96,6 +96,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
 
     //add ir
+    i18n_ec_irtrans_error: 'Fehler bei Verbinden zu IrTrans - Bitte stellen Sie sicher, dass IrTrans installiert und am PC angeschlossen ist.',
     i18n_ec_ir_infotext: 'Es wird nachfolgend ein einzelner Befehl gelernt.',
     i18n_ec_ir_infotext_device: 'Es werden nachfolgend ein neuer Befehl für "{{device}}" gelernt.',
     i18n_ec_ir_header: 'Neuen Fernbedienungs-Befehl hinzufügen',

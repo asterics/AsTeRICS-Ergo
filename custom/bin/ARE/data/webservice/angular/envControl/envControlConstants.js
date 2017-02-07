@@ -10,6 +10,9 @@ asterics.envControl.CB_TYPE_FN = 'CB_TYPE_FN';
 asterics.envControl.ID_FS20 = 'ID_FS20';
 asterics.envControl.ID_IR = 'ID_IR';
 
+asterics.envControl.IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
+asterics.envControl.IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
+
 asterics.envControl.STATE_MAIN = 'home.envControl';
 asterics.envControl.STATE_HELP = 'home.envControl.help';
 asterics.envControl.STATE_HELP_FS20 = 'home.envControl.help/fs';

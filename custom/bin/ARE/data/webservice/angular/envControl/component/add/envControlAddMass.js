@@ -24,6 +24,7 @@ angular.module(asterics.appComponents)
             thiz.isNumberLearn = thiz.addType == 'numbers';
 
             thiz.trainCode = function (irElement, index) {
+                thiz.showError = false;
                 if (!irElement || !index) {
                     index = thiz.numberOfLearnedCodes();
                     if (index >= 0 && index < thiz.learnItems.length) {
@@ -41,8 +42,12 @@ angular.module(asterics.appComponents)
                     scrollToEnd();
                 }
 
-                function error() {
-                    if (thiz.inLearn) {
+                function error(response) {
+                    if (response === asterics.envControl.IRTRANS_SOCKET_ERROR) {
+                        thiz.inLearn = false;
+                        thiz.showError = true;
+                        thiz.clearItems();
+                    } else if (thiz.inLearn) {
                         thiz.trainCode(thiz.learnItems[index], index);
                     }
                 }
@@ -53,10 +58,14 @@ angular.module(asterics.appComponents)
                 scrollToEnd();
             };
 
-            thiz.clearItemsAndRestartLearning = function () {
+            thiz.clearItems = function () {
                 angular.forEach(thiz.learnItems, function (e) {
                     e.code = null;
                 });
+            };
+
+            thiz.clearItemsAndRestartLearning = function () {
+                thiz.clearItems();
                 thiz.trainCode();
             };
 

@@ -4,7 +4,6 @@ angular.module(asterics.appServices)
         var IrTransName = 'IrTrans.1';
         var IrTransActionInput = 'action';
         var learnCmdResponse = 'LEARN ';
-        var resultError = 'ERROR';
         thiz.canceler = $q.defer();
 
         thiz.irAction = function (cmd) {
@@ -15,7 +14,11 @@ angular.module(asterics.appServices)
             var successCallback = function (response) {
                 areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
                 console.log('ir response: ' + response.data);
-                def.resolve(response.data);
+                if (response.data.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
+                    def.reject(response.data);
+                } else {
+                    def.resolve(response.data);
+                }
             };
             var errorCallback = function error() {
                 areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
@@ -38,15 +41,15 @@ angular.module(asterics.appServices)
 
         thiz.irLearn = function () {
             var def = $q.defer();
-            thiz.irAction('learn ,,,,,W5').then(function (response) { //W2 means timeout of 2 seconds
+            thiz.irAction('learn ,,,,,W5').then(function (response) { //W5 means timeout of 5 seconds
                 var index = response.indexOf(learnCmdResponse);
-                if (index == -1 || response.indexOf(resultError) !== -1) {
-                    def.reject();
+                if (index == -1 || response.indexOf(asterics.envControl.IRTRANS_TIMEOUT_ERROR) !== -1) {
+                    def.reject(response);
                 } else {
                     def.resolve(response.substring(index + learnCmdResponse.length));
                 }
-            }, function error() {
-                def.reject();
+            }, function error(response) {
+                def.reject(response);
             });
             return def.promise;
         };
