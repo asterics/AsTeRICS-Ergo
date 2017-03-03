@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControlAddIr', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [generateBackItem()];
@@ -24,6 +24,7 @@ angular.module(asterics.appComponents)
             thiz.trainCode = function () {
                 envControlIRService.irLearn().then(function (response) {
                     thiz.code = response;
+                    scrollToEnd();
                 }, function error() {
                     if (thiz.inTrain) {
                         thiz.trainCode();
@@ -66,6 +67,12 @@ angular.module(asterics.appComponents)
                 } else {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
                 }
+            }
+
+            function scrollToEnd() {
+                $timeout(function () {
+                    $anchorScroll('end');
+                });
             }
         }],
         templateUrl: "angular/envControl/component/add/envControlAddIr.html"
