@@ -9,6 +9,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [];
             thiz.cellBoardEnvControl = [];
             thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
+            thiz.deleteItem = null;
             thiz.moveItem = null;
             thiz.pasteItem = null;
             thiz.infoTextI18n = null;
@@ -27,6 +28,7 @@ angular.module(asterics.appComponents)
                 if (envControlDataService.getNumberOfElements(thiz.cellBoardId) == 0) {
                     thiz.infoTextI18n = null;
                 }
+                thiz.deleteItem.clickAction(); //back to normal mode after one deletion
             };
 
             thiz.moveHandler = function (item) {
@@ -66,12 +68,12 @@ angular.module(asterics.appComponents)
                         items.push(utilService.createCellBoardItemNav(text, 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
                     }
                 }
-                var deleteItem = generateSwitchModeItem('i18n_ec_activate_del', 'i18n_ec_deactivate_del', 'trash', asterics.const.CELLB_MODE_DELETE, 'i18n_ec_infotext_del');
-                deleteItem.visible = function () {
+                thiz.deleteItem = generateSwitchModeItem('i18n_ec_activate_del', 'i18n_ec_deactivate_del', 'trash', asterics.const.CELLB_MODE_DELETE, 'i18n_ec_infotext_del');
+                thiz.deleteItem.visible = function () {
                     var ret = thiz.cellBoardEnvControl && !thiz.pasteItem.visible();
                     return ret && thiz.cellBoardEnvControl.length > 0;
                 };
-                items.push(deleteItem);
+                items.push(thiz.deleteItem);
                 thiz.moveItem = generateMoveItem();
                 thiz.moveItem.visible = function () {
                     return false; //TODO make moving good
