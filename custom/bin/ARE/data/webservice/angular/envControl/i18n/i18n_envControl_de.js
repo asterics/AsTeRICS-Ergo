@@ -29,7 +29,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_help_controlplug_text: 'Mit dem "FS20"-System ist es möglich Steckdosen mit AsTeRICS zu steuern. Es können Geräte über die Steckdose ein- oder ausgeschalten werden (z.B. eine Tischlampe).',
     i18n_ec_help_replaceremote: 'Ersetzen von Fernbedienungen',
     i18n_ec_help_replaceremote_text: 'Mit dem "IrTrans"-System ist es möglich beinahe alle gängigen Fernbedienungen (Infrarot) zu ersetzen. Dadurch können z.B. Fernseher über AsTeRICS gesteuert werden.',
-    i18n_ec_help_moreinfo_about: 'Weitere Informationen zu',
+    i18n_ec_help_moreinfo_about: 'Informationen zu benötigter Hardware für',
 
     //help irtrans
     i18n_ec_text_help_irtrans: 'Der <b>IrTrans</b> ist ein Gerät, welches Befehle von <b>Fernbedienungen</b> (Infrarot) <b>lernen</b> und wieder aussenden kann. Dadurch ist es möglich <b>Fernbedienungen</b> von Geräten wie z.B. einem Fernseher mit AsTeRICS zu <b>ersetzen</b>.',

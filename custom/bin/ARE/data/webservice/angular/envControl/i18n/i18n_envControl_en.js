@@ -28,7 +28,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_controlplug_text: 'With the "FS20"-system it is possible to control electric sockets with AsTeRICS. It is possible to turn on/off devices via socket (e.g. a table lamp).',
     i18n_ec_help_replaceremote: 'Replace remote controls',
     i18n_ec_help_replaceremote_text: 'With the "IrTrans"-system it is possible to replace almost all usual remote controls (infrared). Thus e.g. TVs can be controlled via AsTeRICS.',
-    i18n_ec_help_moreinfo_about: 'More information about',
+    i18n_ec_help_moreinfo_about: 'More information about needed hardware for',
 
     //help irtrans
     i18n_ec_text_help_irtrans: '<b>IrTrans</b> is a device, which can <b>learn and send</b> commands from <b>remote-controls</b> (infrared). Thus it is possible to <b>replace remote controls</b> of devices like e.g. a TV with AsTeRICS.',
