@@ -15,16 +15,16 @@
             <label for="inputLabel">{{'i18n_ec_fs_choosename' | translate}}</label>
             <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
         </li>
-        <li ng-if="$ctrl.stepCompleted(1)">
-            <span>{{'i18n_ec_fs_device_on_' + $ctrl.stateLastPart | translate}}</span><br/>
-            <span>{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
-            <span>{{'i18n_ec_fs_plug_in_' + $ctrl.stateLastPart | translate}}</span><br/>
-            <span>{{'i18n_ec_fs_press_button' | translate}}</span><br/>
-            <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_fs_button_blinking' | translate}}</button>
-            <br/>
+        <li ng-if="$ctrl.selectedLabel">
+            <span translate="{{'i18n_ec_fs_device_on_' + $ctrl.stateLastPart}}"/><br/>
+            <span translate="i18n_ec_fs_adapt_plug">{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
+            <span translate="{{'i18n_ec_fs_plug_in_' + $ctrl.stateLastPart}}"/><br/>
         </li>
-        <li ng-if="$ctrl.stepCompleted(2)">
-            <span>{{'i18n_ec_fs_text_finish' | translate}}</span><br/>
+        <li ng-if="$ctrl.selectedLabel">
+            <span translate="i18n_ec_fs_press_button"/><br/>
+        </li>
+        <li ng-if="$ctrl.selectedLabel">
+            <span translate="i18n_ec_fs_text_finish"/><br/>
             <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
         </li>
     </ul>

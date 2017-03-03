@@ -113,14 +113,14 @@ asterics.i18n_envControl_en = {
     i18n_ec_fs_infotext2_lamp: 'Subsequently a new control of a lamp with plug (e.g. table lamp) will be configured.',
     i18n_ec_fs_header: 'Control new device via plug',
     i18n_ec_fs_choosename: 'Please choose a name for the device',
-    i18n_ec_fs_device_on_fs20: 'Turn the device to control ON.',
-    i18n_ec_fs_device_on_lamp: 'Turn the lamp to control ON.',
+    i18n_ec_fs_device_on_fs20: '<b>Preparation:</b></br>Turn the device to control ON.',
+    i18n_ec_fs_device_on_lamp: '<b>Preparation:</b></br>Turn the lamp to control ON.',
     i18n_ec_fs_adapt_plug: 'Plug the FS20-adapter plug in a socket.',
     i18n_ec_fs_plug_in_fs20: 'Plug the device to control in the FS20-adapter plug.',
     i18n_ec_fs_plug_in_lamp: 'Plug the lamp to control in the FS20-adapter plug.',
-    i18n_ec_fs_press_button: 'Press the grey button on the FS20-adapter plug until it is blinking red.',
+    i18n_ec_fs_press_button: '<b>Keep pressing the grey button on the FS20-adapter</b> plug until it is blinking red (about <b>5 seconds</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button is blinking!',
-    i18n_ec_fs_text_finish: 'Click on "Finish" to complete.',
+    i18n_ec_fs_text_finish: '<b>Check if the grey button blinks red</b> and click on "Finish" to complete.',
 
     //states
     'home': 'Home',
