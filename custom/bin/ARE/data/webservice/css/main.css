@@ -44,6 +44,10 @@ img {
     text-align: center;
 }
 
+.padding-top {
+    padding-top: 2em;
+}
+
 /* boxes */
 .info, .success, .warning, .error, .validation {
     float: left;
