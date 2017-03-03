@@ -10,6 +10,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_infotext_del: 'Löschen aktiviert! Klicken Sie auf ein Element um es zu löschen.',
     i18n_ec_activate_del: 'Löschen aktivieren',
     i18n_ec_deactivate_del: 'Löschen deaktivieren',
+    i18n_delete_success: 'Element gelöscht!',
+    i18n_delete_undo: 'Rückgängig machen',
     i18n_ec_activate_mov: 'Verschieben aktivieren',
     i18n_ec_deactivate_mov: 'Verschieben deaktivieren',
     i18n_ec_insert_element: 'Element einfügen',

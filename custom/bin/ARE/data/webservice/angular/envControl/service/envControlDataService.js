@@ -6,6 +6,7 @@ angular.module(asterics.appServices)
         var _dynamicCellBoardIds = [];
         var _fs20Codes = [];
         var _clipBoard = {};
+        var _undoCellBoards = {};
 
         thiz.getCellBoard = function (cellBoardName) {
             return _cellBoards[cellBoardName];
@@ -34,6 +35,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
+            _undoCellBoards = angular.copy(_cellBoards);
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
             if (element.type === asterics.const.CB_TYPE_NAV && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
@@ -42,6 +44,10 @@ angular.module(asterics.appServices)
                 _.pull(_fs20Codes, element.code);
             }
             return _cellBoards[cellBoardName];
+        };
+
+        thiz.undoRemove = function() {
+            _cellBoards = _undoCellBoards;
         };
 
         thiz.prepareCellBoardElementMove = function (cellBoardName, element) {

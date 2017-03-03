@@ -13,6 +13,7 @@ angular.module(asterics.appComponents)
             thiz.moveItem = null;
             thiz.pasteItem = null;
             thiz.infoTextI18n = null;
+            thiz.afterDelete = false;
 
             thiz.getSubpageName = function () {
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
@@ -29,6 +30,13 @@ angular.module(asterics.appComponents)
                     thiz.infoTextI18n = null;
                 }
                 thiz.deleteItem.clickAction(); //back to normal mode after one deletion
+                thiz.afterDelete = true;
+            };
+
+            thiz.undoRemove = function(){
+                envControlDataService.undoRemove();
+                thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
+                thiz.afterDelete = false;
             };
 
             thiz.moveHandler = function (item) {
@@ -105,6 +113,7 @@ angular.module(asterics.appComponents)
 
             function generateSwitchModeItem(titleDeactivated, titleActivated, icon, switchMode, infoTextActivated) {
                 var item = utilService.createCellBoardItem(titleDeactivated, icon, asterics.envControl.CB_TYPE_FN, function () {
+                    thiz.afterDelete = false;
                     if (this.title === titleDeactivated) {
                         this.active = true;
                         thiz.infoTextI18n = infoTextActivated;

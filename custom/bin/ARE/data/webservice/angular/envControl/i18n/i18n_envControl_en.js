@@ -10,6 +10,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_infotext_del: 'Deleting activated! Click on an element to delete it.',
     i18n_ec_activate_del: 'Activate Deleting',
     i18n_ec_deactivate_del: 'Dectivate Deleting',
+    i18n_delete_success: 'Element deleted!',
+    i18n_delete_undo: 'Undo',
     i18n_ec_activate_mov: 'Activate Moving',
     i18n_ec_deactivate_mov: 'Deactivate Moving',
     i18n_ec_insert_element: 'Paste element',
