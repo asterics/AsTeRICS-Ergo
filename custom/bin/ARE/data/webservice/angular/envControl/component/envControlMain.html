@@ -20,9 +20,9 @@
                         action-mode="$ctrl.cellBoardMode"/>
         </div>
         <div ng-if="$ctrl.cellBoardEnvControl.length == 0 && $ctrl.substateDepth == 1">
+            <env-control-help hide-back="true"/>
             <b>{{'i18n_ec_no_elements' | translate}}</b><br/>
             <span translate="i18n_ec_no_elements_text"/><br/><br/>
-            <env-control-help hide-back="true"/>
         </div>
         <div ng-if="$ctrl.cellBoardEnvControl.length == 0 && $ctrl.substateDepth > 1">
             <b>{{'i18n_ec_no_elements' | translate}}</b><br/>
