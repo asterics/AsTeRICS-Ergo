@@ -59,7 +59,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_ok: 'OK',
 
     //devices
-    i18n_ec_lamp: 'Lampe',
+    i18n_ec_lamp: 'Tisch-/Stehlampe',
     i18n_ec_tv: 'Fernseher',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
