@@ -29,7 +29,7 @@ git clone https://github.com/asterics/AsTeRICS-Ergo.git
 
 ### Building project
 
-* Open a terminal window in the root folder of the repository and call  
+* Open a terminal window in the root folder of the AsTeRICS-Ergo repository and call  
 ```ant APE-copy```
 * To test the result, go to the ```build\merged\bin\ARE``` subfolder, start the ARE and open the starting webpage.
 ```
