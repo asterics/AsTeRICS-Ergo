@@ -10,7 +10,7 @@ AsTeRICS-Ergo is based on this development branch of [AsTeRICS](https://github.c
 
 * Clone the AsTeRICS repository
 ```
-git clone -b development-branch https://github.com/klues/AsTeRICS.git
+git clone -b bklaus/development-branch https://github.com/klues/AsTeRICS.git
 ```
 * Install the [**Java Development Kit 8 (32-bit)**] (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
   * Verify the java installation by opening a command shell and entering ```javac -version```. In case of trouble, ensure to set “JAVA_HOME” to the folder where you installed the Java JDK and add the JDK bin path to the Environment Variable “Path”
