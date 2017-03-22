@@ -41,15 +41,7 @@ angular.module(asterics.appServices)
             _messageGroups = {};
         };
 
-        function prepareGroup(group, level) {
-            if (!_messageGroups[group]) {
-                _messageGroups[group] = {};
-                _messageGroups[group].messages = [];
-            }
-            _messageGroups[group].level = level;
-        }
-
-        function generateMessage(codeI18n, msgArgs, options) {
+        thiz.generateMessage = function (codeI18n, msgArgs, options) {
             if (!options) {
                 options = {};
             }
@@ -58,5 +50,13 @@ angular.module(asterics.appServices)
                 msgArgs: msgArgs,
                 options: options
             };
+        }
+
+        function prepareGroup(group, level) {
+            if (!_messageGroups[group]) {
+                _messageGroups[group] = {};
+                _messageGroups[group].messages = [];
+            }
+            _messageGroups[group].level = level;
         }
     }]);
