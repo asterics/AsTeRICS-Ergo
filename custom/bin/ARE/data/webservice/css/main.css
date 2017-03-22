@@ -53,7 +53,7 @@ img {
 }
 
 /* boxes */
-.info, .success, .warning, .error, .validation {
+.info, .success, .warn, .error, .validation {
     float: left;
     border: 1px solid;
     margin: 10px 50px 10px 15px;
@@ -70,7 +70,7 @@ img {
     background-color: #DFF2BF;
 }
 
-.warning {
+.warn {
     color: #9F6000;
     background-color: #FEEFB3;
 }
