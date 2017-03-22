@@ -21,3 +21,8 @@ asterics.const.languages = [
     asterics.const.I18N_DE,
     asterics.const.I18N_EN
 ];
+
+asterics.const.MSG_INFO = 'info';
+asterics.const.MSG_SUCCESS = 'success';
+asterics.const.MSG_WARN = 'warning';
+asterics.const.MSG_ERROR = 'error';

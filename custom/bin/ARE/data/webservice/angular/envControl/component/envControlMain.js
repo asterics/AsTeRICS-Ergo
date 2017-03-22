@@ -2,8 +2,11 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService) {
             var thiz = this;
+            var _msgGroup = 'envControlMain';
+            var _msgGroupDelete = 'envControlMainDelete';
+
             thiz.cellBoardId = $state.current.name;
             thiz.substateDepth = stateUtilService.getSubStateDepthWithSlashes(thiz.cellBoardId);
             thiz.cellBoardConfig = [];
@@ -12,8 +15,6 @@ angular.module(asterics.appComponents)
             thiz.deleteItem = null;
             thiz.moveItem = null;
             thiz.pasteItem = null;
-            thiz.infoTextI18n = null;
-            thiz.afterDelete = false;
 
             thiz.getSubpageName = function () {
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
@@ -27,16 +28,16 @@ angular.module(asterics.appComponents)
             thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(thiz.cellBoardId, item);
                 if (envControlDataService.getNumberOfElements(thiz.cellBoardId) == 0) {
-                    thiz.infoTextI18n = null;
+                    messageService.clear(_msgGroup);
                 }
                 thiz.deleteItem.clickAction(); //back to normal mode after one deletion
-                thiz.afterDelete = true;
+                messageService.success(_msgGroupDelete, 'i18n_delete_success');
             };
 
             thiz.undoRemove = function(){
                 envControlDataService.undoRemove();
                 thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
-                thiz.afterDelete = false;
+                messageService.clear(_msgGroupDelete);
             };
 
             thiz.moveHandler = function (item) {
@@ -47,6 +48,8 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
+                messageService.clear(_msgGroup);
+                messageService.clear(_msgGroupDelete);
                 thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
                 if (envControlDataService.hasClipboardData()) {
                     var clipBoard = envControlDataService.getClipboardData();
@@ -110,14 +113,14 @@ angular.module(asterics.appComponents)
 
             function generateSwitchModeItem(titleDeactivated, titleActivated, icon, switchMode, infoTextActivated) {
                 var item = utilService.createCellBoardItem(titleDeactivated, icon, asterics.envControl.CB_TYPE_FN, function () {
-                    thiz.afterDelete = false;
+                    messageService.clear(_msgGroupDelete);
                     if (this.title === titleDeactivated) {
                         this.active = true;
-                        thiz.infoTextI18n = infoTextActivated;
+                        messageService.info(_msgGroup, infoTextActivated);
                         this.title = titleActivated;
                     } else {
                         this.active = false;
-                        thiz.infoTextI18n = null;
+                        messageService.clear(_msgGroup);
                         this.title = titleDeactivated;
                     }
                     if (thiz.cellBoardMode === asterics.const.CELLB_MODE_NORMAL) {

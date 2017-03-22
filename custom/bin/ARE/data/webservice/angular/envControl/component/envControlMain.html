@@ -3,14 +3,10 @@
         <cell-board choose-items="$ctrl.cellBoardConfig"/>
     </div>
     <div class="clearfix"/>
-    <div class="info col-xs-12 col-md-8" ng-if="$ctrl.infoTextI18n">
-        <i class="fa fa-info-circle fa-2x vcenter"/>
-        <span translate="{{$ctrl.infoTextI18n}}"/>
-    </div>
-    <div class="success col-xs-12 col-md-8" ng-if="$ctrl.afterDelete">
-        <i class="fa fa-check-circle fa-2x vcenter"/>
-        <span translate="i18n_delete_success"/> <a href="javascript:void(0)" ng-click="$ctrl.undoRemove()"><span translate="i18n_delete_undo"/></a>
-    </div>
+    <asterics-message group="envControlMain"/>
+    <asterics-message group="envControlMainDelete">
+        <a href="javascript:void(0)" ng-click="$ctrl.undoRemove()"><span translate="i18n_delete_undo"/></a>
+    </asterics-message>
     <div class="clearfix"/>
     <h2 translate="i18n_ec_head_control" translate-values="$ctrl.getSubpageName()"/>
     <div>

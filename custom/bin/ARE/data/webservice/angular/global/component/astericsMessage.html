@@ -1,0 +1,9 @@
+<div ng-if="$ctrl.hasMessages()">
+    <div class="{{$ctrl.getMessageLevel()}} col-xs-12 col-md-8">
+        <i class="fa {{$ctrl.getFaClass()}} fa-2x vcenter"/>
+        <div ng-repeat="message in $ctrl.getMessages() track by $index">
+            <span translate="{{message.codeI18n}}" translate-values="{{message.msgArgs}}"/>
+        </div>
+        <div ng-transclude/>
+    </div>
+</div>

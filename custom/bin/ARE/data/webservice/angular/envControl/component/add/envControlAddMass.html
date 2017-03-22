@@ -17,30 +17,36 @@
             <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
         </li>
         <li ng-if="$ctrl.selectedLabel">
-            <span>{{'i18n_ec_irmass_text_startlearn' | translate}}</span><br/>
-            <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn || $ctrl.learningAborted">{{'i18n_ec_irmass_startlearn' | translate}}</button>
+            <span translate="i18n_ec_irmass_text_startlearn"/><br/>
+            <span translate="i18n_ec_irmass_text_starthint"/><br/>
+            <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn">{{'i18n_ec_irmass_startlearn' | translate}}</button>
             <br/>
         </li>
         <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
-            <span>{{'i18n_ec_irmass_pressbutton' | translate}} '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/></span>
-            <span ng-if="!element.code">
-            <button title="{{'i18n_ec_irmass_abortlearn_tooltip' | translate}}" ng-click="$ctrl.abortLearning()">
-                <i class="fa fa-spinner fa-spin"/> {{'i18n_ec_irmass_abortlearn' | translate}}
-            </button>
-        </span>
+            <span>{{'i18n_ec_irmass_pressbutton' | translate}} '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/>  </span>
+            <span ng-if="!element.code && !element.skipped" class="saving"><span>.</span><span>.</span><span>.</span></span>
             <span ng-if="element.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
-        </li>
-        <li ng-if="$ctrl.learningAborted">
-            <span translate="i18n_ec_irmass_learnaborted" translate-values="{num: $ctrl.numberOfLearnedCodes()}"></span>
+            <span ng-if="element.skipped"><i class="fa fa-ban"/> {{'i18n_ec_irmass_skipped' | translate}}</span>
             <div class="clearfix"/>
-            <button ng-click="$ctrl.trainCode()">{{'i18n_ec_irmass_continuelearn' | translate}}</button>
-            <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
-            <button ng-if="$ctrl.numberOfLearnedCodes() !== 0" ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_uselearned' | translate}}</button>
+            <div ng-if="!element.code && !element.skipped">
+                <button ng-click="$ctrl.skipItem(element)">{{'i18n_ec_irmass_skip' | translate}}</button>
+                <button ng-if="$index > 0" ng-click="$ctrl.goToPreviousItem(element)">{{'i18n_ec_irmass_gotoprev' | translate}}</button>
+                <button ng-if="$index > 0" ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+                <button ng-if="$ctrl.getNumberOfLearnedItems() > 0" ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_uselearned' | translate}}</button>
+            </div>
         </li>
-        <li ng-if="$ctrl.allCodesLearned()">
-            <span>{{'i18n_ec_irmass_alllearned' | translate}}</span><br/>
-            <button ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
-            <button ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+        <li class="last-list-item" ng-if="$ctrl.allCodesLearned()">
+            <div ng-if="$ctrl.getNumberOfLearnedItems() > 0">
+                <span translate="i18n_ec_irmass_alllearned"/><br/>
+                <button ng-click="$ctrl.goToPreviousItem()">{{'i18n_ec_irmass_gotoprev' | translate}}</button>
+                <button ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+                <button ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+            </div>
+            <div ng-if="$ctrl.getNumberOfLearnedItems() == 0">
+                <span translate="i18n_ec_irmass_nolearned"/><br/>
+                <button ng-click="$ctrl.goToPreviousItem()">{{'i18n_ec_irmass_gotoprev' | translate}}</button>
+                <button ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+            </div>
         </li>
     </ul>
 </div>
