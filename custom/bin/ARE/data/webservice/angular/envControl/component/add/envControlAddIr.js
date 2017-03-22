@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControlAddIr', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [generateBackItem()];
@@ -31,11 +31,6 @@ angular.module(asterics.appComponents)
                     }
                 });
                 thiz.inTrain = true;
-            };
-
-            thiz.abortLearning = function () {
-                thiz.inTrain = false;
-                envControlIRService.abortAction();
             };
 
             thiz.addCellBoardItemAndReturn = function () {
@@ -74,6 +69,12 @@ angular.module(asterics.appComponents)
                     $anchorScroll('end');
                 });
             }
+
+            //aborting all current learning when leaving the page
+            $scope.$on("$destroy", function () {
+                thiz.inTrain = false;
+                envControlIRService.abortAction();
+            });
         }],
         templateUrl: "angular/envControl/component/add/envControlAddIr.html"
     });

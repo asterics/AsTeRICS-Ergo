@@ -23,7 +23,8 @@
         </li>
         <li ng-if="$ctrl.stepCompleted(2)">
             <span>{{'i18n_ec_ir_pressbutton' | translate}}</span>
-            <button ng-if="!$ctrl.code" ng-click="$ctrl.abortLearning()"><i class="fa fa-spinner fa-spin"/> {{'i18n_ec_irmass_abortlearn' | translate}}</button>
+            <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
+            <span ng-if="$ctrl.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
         </li>
         <li ng-if="$ctrl.stepCompleted(3)">
             <span>{{'i18n_ec_ir_learnsuccess' | translate}}</span><br/>
