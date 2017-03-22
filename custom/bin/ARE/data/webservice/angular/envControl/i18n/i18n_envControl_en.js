@@ -6,7 +6,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_irtrans: 'Help - IrTrans',
     i18n_ec_help_fs: 'Help - FS20',
     i18n_ec_newelement: 'New Device',
-    i18n_ec_newelement_sub: 'New Function',
+    i18n_ec_newelement_sub: 'New Command',
     i18n_ec_infotext_del: 'Deleting activated! Click on an element to delete it.',
     i18n_ec_activate_del: 'Activate Deleting',
     i18n_ec_deactivate_del: 'Dectivate Deleting',

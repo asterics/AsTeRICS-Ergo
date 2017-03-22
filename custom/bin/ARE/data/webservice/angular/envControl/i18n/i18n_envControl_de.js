@@ -6,7 +6,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_help_irtrans: 'Hilfe - IrTrans',
     i18n_ec_help_fs: 'Hilfe - FS20',
     i18n_ec_newelement: 'Gerät hinzufügen',
-    i18n_ec_newelement_sub: 'Neue Funktion',
+    i18n_ec_newelement_sub: 'Neuer Befehl',
     i18n_ec_infotext_del: 'Löschen aktiviert! Klicken Sie auf ein Element um es zu löschen.',
     i18n_ec_activate_del: 'Löschen aktivieren',
     i18n_ec_deactivate_del: 'Löschen deaktivieren',
