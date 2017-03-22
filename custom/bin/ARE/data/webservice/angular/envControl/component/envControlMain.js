@@ -28,16 +28,16 @@ angular.module(asterics.appComponents)
             thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(thiz.cellBoardId, item);
                 if (envControlDataService.getNumberOfElements(thiz.cellBoardId) == 0) {
-                    messageService.clear(_msgGroup);
+                    messageService.clear();
                 }
                 thiz.deleteItem.clickAction(); //back to normal mode after one deletion
                 messageService.success(_msgGroupDelete, 'i18n_delete_success');
             };
 
-            thiz.undoRemove = function(){
+            thiz.undoRemove = function () {
                 envControlDataService.undoRemove();
                 thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
-                messageService.clear(_msgGroupDelete);
+                messageService.clear();
             };
 
             thiz.moveHandler = function (item) {
@@ -48,8 +48,7 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                messageService.clear(_msgGroup);
-                messageService.clear(_msgGroupDelete);
+                messageService.clear();
                 thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
                 if (envControlDataService.hasClipboardData()) {
                     var clipBoard = envControlDataService.getClipboardData();
@@ -113,14 +112,14 @@ angular.module(asterics.appComponents)
 
             function generateSwitchModeItem(titleDeactivated, titleActivated, icon, switchMode, infoTextActivated) {
                 var item = utilService.createCellBoardItem(titleDeactivated, icon, asterics.envControl.CB_TYPE_FN, function () {
-                    messageService.clear(_msgGroupDelete);
+                    messageService.clear();
                     if (this.title === titleDeactivated) {
                         this.active = true;
                         messageService.info(_msgGroup, infoTextActivated);
                         this.title = titleActivated;
                     } else {
                         this.active = false;
-                        messageService.clear(_msgGroup);
+                        messageService.clear();
                         this.title = titleDeactivated;
                     }
                     if (thiz.cellBoardMode === asterics.const.CELLB_MODE_NORMAL) {

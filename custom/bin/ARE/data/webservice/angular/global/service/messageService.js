@@ -32,7 +32,11 @@ angular.module(asterics.appServices)
         };
 
         thiz.clear = function (group) {
-            if (_messageGroups[group] && _messageGroups[group].messages) {
+            if(!group) {
+                angular.forEach(_messageGroups, function(msgGroup){
+                    msgGroup.messages = [];
+                });
+            } else if (_messageGroups[group] && _messageGroups[group].messages) {
                 _messageGroups[group].messages = [];
             }
         };
