@@ -1,6 +1,10 @@
 <div ui-view="">
+    <div class="row">
+        <asterics-message message-code="i18n_disclaimer" message-level="warn"/>
+    </div>
     <h2 translate="i18n_available_apps"/>
-    <div>
+    <span translate="i18n_click_on_app"/>
+    <div class="row">
         <cell-board choose-items="$ctrl.cellBoardConfig"/>
     </div>
 </div>
