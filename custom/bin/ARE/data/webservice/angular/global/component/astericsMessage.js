@@ -42,7 +42,7 @@ angular.module(asterics.appComponents)
                 if(thiz.messageLevel) {
                     return thiz.messageLevel;
                 } else if(thiz.group) {
-                    return messageService.getMessageGroup(thiz.group).messages;
+                    return messageService.getMessageGroup(thiz.group).level;
                 }
                 return asterics.const.MSG_INFO;
             };

@@ -5,25 +5,25 @@ angular.module(asterics.appServices)
 
         thiz.info = function (group, codeI18n, msgArgs, options) {
             prepareGroup(group, asterics.const.MSG_INFO);
-            var message = generateMessage(codeI18n, msgArgs, options);
+            var message = thiz.generateMessage(codeI18n, msgArgs, options);
             _messageGroups[group].messages.push(message);
         };
 
         thiz.success = function (group, codeI18n, msgArgs, options) {
             prepareGroup(group, asterics.const.MSG_SUCCESS);
-            var message = generateMessage(codeI18n, msgArgs, options);
+            var message = thiz.generateMessage(codeI18n, msgArgs, options);
             _messageGroups[group].messages.push(message);
         };
 
         thiz.warn = function (group, codeI18n, msgArgs, options) {
             prepareGroup(group, asterics.const.MSG_WARN);
-            var message = generateMessage(codeI18n, msgArgs, options);
+            var message = thiz.generateMessage(codeI18n, msgArgs, options);
             _messageGroups[group].messages.push(message);
         };
 
         thiz.error = function (group, codeI18n, msgArgs, options) {
             prepareGroup(group, asterics.const.MSG_ERROR);
-            var message = generateMessage(codeI18n, msgArgs, options);
+            var message = thiz.generateMessage(codeI18n, msgArgs, options);
             _messageGroups[group].messages.push(message);
         };
 
