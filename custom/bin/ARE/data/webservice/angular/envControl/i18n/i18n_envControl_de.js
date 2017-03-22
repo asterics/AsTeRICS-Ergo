@@ -16,7 +16,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_deactivate_mov: 'Verschieben deaktivieren',
     i18n_ec_insert_element: 'Element einfügen',
     i18n_ec_no_elements: 'Derzeit keine Steuerungsmöglichkeiten.',
-    i18n_ec_no_elements_text: 'Klicken Sie auf <a href="#!/home/envcontrol/add">Neue Steuerung</a> um eine Steuerungsmöglichkeit hinzuzufügen.',
+    i18n_ec_no_elements_text: 'Klicken Sie auf <a href="#!/home/envcontrol/add">Gerät hinzufügen</a> um eine Steuerungsmöglichkeit hinzuzufügen.',
     i18n_ec_tooltip_click_fs20: 'Klicken Sie um "{{device}}" ein- bzw. auszuschalten',
     i18n_ec_tooltip_click_subcb: 'Zu den Funktionen von "{{device}}"',
 

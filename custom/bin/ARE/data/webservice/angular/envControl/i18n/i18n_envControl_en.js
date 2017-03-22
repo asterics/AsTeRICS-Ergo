@@ -16,7 +16,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_deactivate_mov: 'Deactivate Moving',
     i18n_ec_insert_element: 'Paste element',
     i18n_ec_no_elements: 'Currently no controls.',
-    i18n_ec_no_elements_text: 'Click <a href="#!/home/envcontrol/add">New Control</a> to add a new control.',
+    i18n_ec_no_elements_text: 'Click <a href="#!/home/envcontrol/add">New Device</a> to add a new control.',
     i18n_ec_tooltip_click_fs20: 'Click to turn "{{device}}" ON/OFF',
     i18n_ec_tooltip_click_subcb: 'To the controls of "{{device}}"',
 
