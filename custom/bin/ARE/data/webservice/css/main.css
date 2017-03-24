@@ -10,6 +10,10 @@
     color: green;
 }
 
+.fa-times {
+    color: red;
+}
+
 div .active {
     border-color: red;
     border-style: solid;
@@ -42,6 +46,12 @@ div .active {
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.img-row {
+    padding-bottom: 15px;
+    max-height: 100px;
+    width: auto !important;
 }
 
 .text-center {

@@ -1,0 +1,53 @@
+<div>
+    <div ng-if="!$ctrl.hideBack">
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+        <h2 translate="i18n_ec_help"/>
+    </div>
+    <h3>Installations von IrTrans-USB</h3>
+    <p ng-if="!$ctrl.show">Es wird geprüft ob IrTrans bereits installiert ist ...</p>
+    <div ng-if="$ctrl.show && $ctrl.showAssistant">
+        <p>Wenn Sie bereits einen IrTrans-USB besitzen, können Sie diesen wie folgt installieren:</p>
+        <ol>
+            <li>
+                IrTrans benötigt zusätzliche Software. Bitte klicken Sie auf folgenden Link um diese herunterzuladen:
+                <a href="http://www.irtrans.de/download/setup.exe">Software IrTrans USB</a>
+            </li>
+            <li>
+                Installieren Sie die heruntergeladene Software - Folgen Sie den Anweisungen und klicken Sie immer auf
+                "Weiter".
+            </li>
+            <li>
+                Stecken Sie den IrTrans mit einem USB-Kabel an dem Computer an.
+                <div class="row">
+                    <img class="img-row col-xs-3" src="angular/envControl/img/irtrans.jpg" alt="IrTrans-USB"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/usbb.png" alt="USB Stecker Typ B"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/usba.png" alt="USB Stecker Typ A"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+                </div>
+            </li>
+            <li>
+                Starten Sie die installierte Software "IRTransServer USB". Klicken Sie dafür auf "Start" und suchen Sie
+                nach "IrTrans":
+                <div class="row">
+                    <img class="img-row" src="angular/envControl/img/irtrans-server.png" alt="IrTrans-Server"/>
+                </div>
+            </li>
+            <li>
+                Klicken Sie auf "Testen" um die korrekte Installation zu prüfen.
+                <button ng-click="$ctrl.test()">Testen</button>
+                <div ng-if="$ctrl.triedCheck">
+                    <span ng-if="!$ctrl.checkResult"> wird getestet...</span>
+                    <span ng-if="$ctrl.checkResult && !$ctrl.isConnected"><i class="fa fa-2x fa-times"/> Test fehlgeschlagen</span>
+                    <span ng-if="$ctrl.checkResult && $ctrl.isConnected"><i class="fa fa-2x fa-check"/> Test erfolgreich</span>
+                </div>
+            </li>
+        </ol>
+    </div>
+    <div ng-if="$ctrl.show && !$ctrl.showAssistant">
+        <i class="fa fa-2x fa-check"/> IrTrans ist bereits erfolgreich installiert und kann verwendet werden. Klicken
+        sie auf <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit IrTrans einzurichten.
+    </div>
+</div>
