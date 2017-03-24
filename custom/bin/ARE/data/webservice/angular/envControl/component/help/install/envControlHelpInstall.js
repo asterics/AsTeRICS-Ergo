@@ -1,7 +1,6 @@
 angular.module(asterics.appComponents)
     .component('envControlHelpInstall', {
         bindings: {
-            hideBack: '<',
         },
         controller: ['utilService', function (utilService) {
             var thiz = this;

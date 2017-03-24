@@ -1,7 +1,6 @@
 angular.module(asterics.appComponents)
     .component('ecHelpInstallIrtrans', {
         bindings: {
-            hideBack: '<',
         },
         controller: ['utilService', 'envControlIRService', function (utilService, envControlIRService) {
             var thiz = this;
