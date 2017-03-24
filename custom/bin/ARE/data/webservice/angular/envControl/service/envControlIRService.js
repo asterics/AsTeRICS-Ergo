@@ -1,8 +1,8 @@
 angular.module(asterics.appServices)
     .service('envControlIRService', ['areService', '$q', function (areService, $q) {
         var thiz = this;
-        var IrTransName = 'IrTrans.1';
-        var IrTransActionInput = 'action';
+        var irTransName = 'IrTrans.1';
+        var irTransActionInput = 'action';
         var learnCmdResponse = 'LEARN ';
         thiz.canceler = $q.defer();
 
@@ -24,10 +24,10 @@ angular.module(asterics.appServices)
                 areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
                 def.reject();
             };
-            areService.getComponentDataChannelsIds(IrTransName, 'output', thiz.canceler).then(function (response) {
+            areService.getComponentDataChannelsIds(irTransName, 'output', thiz.canceler).then(function (response) {
                 var channelIds = Object.keys(response.data);
                 areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
-                areService.sendDataToInputPort(IrTransName, IrTransActionInput, actionString, thiz.canceler).then(function success() {
+                areService.sendDataToInputPort(irTransName, irTransActionInput, actionString, thiz.canceler).then(function success() {
                 }, function error() {
                     def.reject();
                 });
@@ -50,6 +50,20 @@ angular.module(asterics.appServices)
                 }
             }, function error(response) {
                 def.reject(response);
+            });
+            return def.promise;
+        };
+
+        thiz.isConnected = function () {
+            var def = $q.defer();
+            thiz.irAction('snd irtrans,ok').then(function (response) {
+                if (response.indexOf(asterics.envControl.IRTRANS_TIMEOUT_ERROR) !== -1 || response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
+                    def.resolve(false);
+                } else {
+                    def.resolve(true);
+                }
+            }, function error(response) {
+                def.resolve(false);
             });
             return def.promise;
         };

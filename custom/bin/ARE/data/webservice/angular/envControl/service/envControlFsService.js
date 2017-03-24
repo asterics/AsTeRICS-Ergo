@@ -1,14 +1,14 @@
 angular.module(asterics.appServices)
-    .service('envControlFsService', ['areService', function (areService) {
+    .service('envControlFsService', ['areService', '$q', function (areService, $q) {
         var thiz = this;
         var fs20SenderName = 'FS20Sender.1';
         var fs20ActionInput = 'Action';
         var houseCodeLength = 8;
+        thiz.canceler = $q.defer();
 
         thiz.fs20Action = function (deviceCode, actionCode) {
             var actionString = '@FS20:' + deviceCode + '_' + actionCode;
-            console.log("sending: " + actionString);
-            return areService.sendDataToInputPort(fs20SenderName, fs20ActionInput, actionString);
+            return fs20Send(actionString);
         };
 
         thiz.fs20Toggle = function (code) {
@@ -17,6 +17,20 @@ angular.module(asterics.appServices)
 
         thiz.trainCode = function (code) {
             return thiz.fs20Action(code, asterics.envControl.FS20_LEARN_CODE)
+        };
+
+        thiz.isConnected = function () {
+            var def = $q.defer();
+            thiz.fs20Action('1111_1111', '28').then(function () { //not defined command
+                def.resolve(true);
+            }, function error() {
+                def.resolve(false);
+            });
+            return def.promise;
+        };
+
+        thiz.fs20Patch = function () {
+            return fs20Send('@FS20:patch');
         };
 
         thiz.generateFs20HouseCode = function () {
@@ -39,6 +53,35 @@ angular.module(asterics.appServices)
                 return housecode + '_' + (addOneInFs20NumberSystemTo(max));
             }
         };
+
+        function fs20Send(cmd) {
+            var def = $q.defer();
+            areService.getComponentDataChannelsIds(fs20SenderName, 'output', thiz.canceler).then(function (response) {
+                var channelIds = Object.keys(response.data);
+
+                var successCallback = function (response) {
+                    areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
+                    console.log('fs response: ' + response.data);
+                    if (parseInt(response.data) < 0) {
+                        def.reject(response.data);
+                    } else {
+                        def.resolve(response.data);
+                    }
+                };
+                var errorCallback = function error() {
+                    areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
+                    def.reject();
+                };
+
+                areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
+                console.log("sending: " + cmd);
+                return areService.sendDataToInputPort(fs20SenderName, fs20ActionInput, cmd, thiz.canceler).then(function success() {
+                }, function error() {
+                    def.reject();
+                });
+            });
+            return def.promise;
+        }
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
