@@ -1,0 +1,19 @@
+<div>
+    <div ng-if="!$ctrl.hideBack">
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+        <h2 translate="i18n_ec_help"/>
+    </div>
+    <h3>Installationshilfen TODO</h3>
+    <p>Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:</p>
+    <ol>
+        <li>
+            <a href="{{'#!/home/envcontrol/help/controls/fs20/' + $ctrl.currentState + '/'}}">IrTrans installieren</a>
+        </li>
+        <li>
+            <a href="{{'#!/home/envcontrol/help/controls/fs20/' + $ctrl.currentState + '/'}}">FS20 installieren</a>
+        </li>
+    </ol>
+</div>

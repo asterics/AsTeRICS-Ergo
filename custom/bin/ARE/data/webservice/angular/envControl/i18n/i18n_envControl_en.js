@@ -74,7 +74,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_text_add_to_existing: 'Add new component to {{device}}',
 
     //add mass
-    i18n_ec_irmass_infotext_1: 'Remote commands are learned with "IrTrans" (<b><a href="#!/home/envcontrol/help/irtrans/{{backState}}/{{backStateParams}}">more info about IrTrans</a></b>).',
+    i18n_ec_irmass_infotext_1: 'Remote commands are learned with "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/irtrans/{{backState}}/{{backStateParams}}">more info about IrTrans</a></b>).',
     i18n_ec_irmass_infotext_device: 'Subsequently the most important commands for a {{device}} will be learned.',
     i18n_ec_irmass_infotext_numbers: 'Subsequently the number keys of the remote for "{{device}}" will be learned.',
     i18n_ec_irmass_text_startlearn: 'Click "Start learning" to learn the commands. Please keep ready the original remote control of your device and point it to IrTrans during learning.',
@@ -111,7 +111,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_ir_learnsuccess: 'Successfully learned command! Click "Finish" to complete.',
 
     //add fs20
-    i18n_ec_fs_infotext1: 'Electric sockets can be controlled with "FS20" (<b><a href="#!/home/envcontrol/help/fs20/{{backState}}/">more info about FS20</a></b>).',
+    i18n_ec_fs_infotext1: 'Electric sockets can be controlled with "FS20" (<b><a href="#!/home/envcontrol/help/controls/fs20/{{backState}}/">more info about FS20</a></b>).',
     i18n_ec_fs_infotext2_fs20: 'Subsequently a new control of a device (ON/OFF) via socket will be configured.',
     i18n_ec_fs_infotext2_lamp: 'Subsequently a new control of a lamp with plug (e.g. table lamp) will be configured.',
     i18n_ec_fs_header: 'Control new device via plug',

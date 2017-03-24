@@ -74,7 +74,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_text_add_to_existing: 'Neue Komponente zu {{device}} hinzufügen',
 
     //add mass
-    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<b><a href="#!/home/envcontrol/help/irtrans/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a></b>) gelernt.',
+    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/irtrans/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a></b>) gelernt.',
     i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für einen {{device}} gelernt.',
     i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
@@ -111,7 +111,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_learnsuccess: 'IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".',
 
     //add fs20
-    i18n_ec_fs_infotext1: 'Steckdosen können mit "FS20" (<b><a href="#!/home/envcontrol/help/fs20/{{backState}}/">mehr Infos zu FS20</a></b>) gesteuert werden.',
+    i18n_ec_fs_infotext1: 'Steckdosen können mit "FS20" (<b><a href="#!/home/envcontrol/help/controls/fs20/{{backState}}/">mehr Infos zu FS20</a></b>) gesteuert werden.',
     i18n_ec_fs_infotext2_fs20: 'Es wird nachfolgend eine neue Steuerung eines Geräts über Steckdose (EIN/AUS) eingerichtet.',
     i18n_ec_fs_infotext2_lamp: 'Es wird nachfolgend eine neue Steuerung einer über Steckdose steuerbaren Lampe (z.B. Tischlampe) eingerichtet.',
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',

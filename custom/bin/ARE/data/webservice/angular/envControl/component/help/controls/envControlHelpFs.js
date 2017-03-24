@@ -1,5 +1,5 @@
 angular.module(asterics.appComponents)
-    .component('envControlHelpIrtrans', {
+    .component('envControlHelpFs', {
         bindings: {},
         controller: ['utilService', '$stateParams', function (utilService, $stateParams) {
             var thiz = this;
@@ -10,5 +10,5 @@ angular.module(asterics.appComponents)
             }
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack($stateParams.backState, backStateParams)];
         }],
-        templateUrl: "angular/envControl/component/help/envControlHelpIrtrans.html"
+        templateUrl: "angular/envControl/component/help/controls/envControlHelpFs.html"
     });
