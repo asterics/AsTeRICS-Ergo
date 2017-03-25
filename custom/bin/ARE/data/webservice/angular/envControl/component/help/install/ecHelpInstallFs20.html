@@ -1,0 +1,60 @@
+<div>
+    <div>
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+        <h2 translate="i18n_ec_help"/>
+    </div>
+    <h3>Installations von FS20</h3>
+    <div ng-if="$ctrl.show && $ctrl.showAssistant">
+        <p>Wenn Sie bereits einen Fs20 besitzen, können Sie diesen wie folgt installieren:</p>
+        <ol>
+            <li>
+                Stecken Sie den FS20-Sender mit dem USB-Kabel an dem Computer an.
+                <div class="row">
+                    <img class="img-row col-xs-3" src="angular/envControl/img/fs20-sender.jpg" alt="FS20-Sender"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/usba.png" alt="USB Stecker Typ A"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+                </div>
+            </li>
+            <li>
+                Warten Sie 10 Sekunden und überprüfen Sie ob das rote Lämpchen am FS20-Sender leuchtet.
+                <div class="row">
+                    <img class="img-row col-xs-3" src="angular/envControl/img/fs20-sender-laempchen.jpg"
+                         alt="IrTrans-USB"/>
+                </div>
+                Leuchtet das Lämpchen nach 10 Sekunden noch?<br/>
+                <button ng-click="$ctrl.setNeedsPatch(false)">Lämpchen leutet</button>
+                <button ng-click="$ctrl.setNeedsPatch(true)">Lämpchen leutet nicht</button>
+            </li>
+            <li ng-if="$ctrl.needpatch">
+                Es gibt ein Problem mit dem FS20-Sender, das behoben werden muss. Klicken Sie auf "Problem beheben" um
+                das
+                zu tun. Bestätigen Sie die dadurch erscheinende Abfrage mit "Ja".<br/>
+                <button ng-click="$ctrl.patch()">Problem beheben</button>
+            </li>
+            <li ng-if="$ctrl.needpatch && $ctrl.patched">
+                Stecken Sie den FS20-Sender nochmal vom PC ab und danach wieder an. Das Lämpchen sollte nun durchgehend
+                leuchten.
+            </li>
+            <li ng-if="$ctrl.needpatch && $ctrl.patched || $ctrl.needpatch == false">
+                Klicken Sie auf "Testen" um die korrekte Installation zu prüfen.
+                <button ng-click="$ctrl.test()">Testen</button>
+                <div ng-if="$ctrl.triedCheck">
+                    <span ng-if="$ctrl.isConnected == null"> wird getestet...</span>
+                    <span ng-if="$ctrl.isConnected == false"><i class="fa fa-2x fa-times"/> Test fehlgeschlagen</span>
+                    <span ng-if="$ctrl.isConnected">
+                        <i class="fa fa-2x fa-check"/> Test erfolgreich. Klicken Sie auf
+                        <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit FS20 einzurichten.
+                    </span>
+                </div>
+            </li>
+        </ol>
+    </div>
+    <div ng-if="$ctrl.show && !$ctrl.showAssistant">
+        <i class="fa fa-2x fa-check"/> FS20 ist bereits erfolgreich installiert und kann verwendet werden. Klicken
+        Sie auf <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit FS20 einzurichten.
+    </div>
+</div>
+<a id="end"/>

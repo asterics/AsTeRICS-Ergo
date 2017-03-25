@@ -41,13 +41,17 @@
                 <div ng-if="$ctrl.triedCheck">
                     <span ng-if="!$ctrl.checkResult"> wird getestet...</span>
                     <span ng-if="$ctrl.checkResult && !$ctrl.isConnected"><i class="fa fa-2x fa-times"/> Test fehlgeschlagen</span>
-                    <span ng-if="$ctrl.checkResult && $ctrl.isConnected"><i class="fa fa-2x fa-check"/> Test erfolgreich</span>
+                    <span ng-if="$ctrl.checkResult && $ctrl.isConnected">
+                        <i class="fa fa-2x fa-check"/> Test erfolgreich. Klicken Sie auf
+                        <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit IrTrans einzurichten.
+                    </span>
                 </div>
             </li>
         </ol>
     </div>
     <div ng-if="$ctrl.show && !$ctrl.showAssistant">
         <i class="fa fa-2x fa-check"/> IrTrans ist bereits erfolgreich installiert und kann verwendet werden. Klicken
-        sie auf <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit IrTrans einzurichten.
+        Sie auf <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit IrTrans einzurichten.
     </div>
 </div>
+<a id="end"/>
