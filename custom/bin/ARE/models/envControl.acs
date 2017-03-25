@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="D:\z_Code\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2017_1_9_18_12" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="D:\z_Code\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2017_3_24_16_17" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -18,6 +18,9 @@
         <inputPort portTypeID="Action">
           <properties />
         </inputPort>
+		<outputPort portTypeID="output">
+          <properties />
+        </outputPort>
       </ports>
       <properties>
         <property name="Housecode" value="11111111" />
@@ -108,9 +111,28 @@
         <posY>584</posY>
       </layout>
     </component>
+    <component id="TextSender.1.2" type_id="asterics.TextSender">
+      <description>Send text when gets event</description>
+      <ports>
+        <inputPort portTypeID="setText">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="output">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="text" value="This is a sample text." />
+      </properties>
+      <layout>
+        <posX>1263</posX>
+        <posY>385</posY>
+      </layout>
+    </component>
   </components>
   <channels>
     <channel id="binding.0">
+      <description />
       <source>
         <component id="TextSender.1" />
         <port id="output" />
@@ -121,6 +143,7 @@
       </target>
     </channel>
     <channel id="binding.1">
+      <description />
       <source>
         <component id="TextSender.1" />
         <port id="output" />
@@ -131,13 +154,22 @@
       </target>
     </channel>
     <channel id="binding.2">
-      <description />
       <source>
         <component id="IrTrans.1" />
         <port id="output" />
       </source>
       <target>
         <component id="TextSender.1.1" />
+        <port id="setText" />
+      </target>
+    </channel>
+    <channel id="binding.3">
+      <source>
+        <component id="FS20Sender.1" />
+        <port id="output" />
+      </source>
+      <target>
+        <component id="TextSender.1.2" />
         <port id="setText" />
       </target>
     </channel>
