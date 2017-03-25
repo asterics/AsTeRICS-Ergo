@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlService', ['areService', function (areService) {
+    .service('envControlService', ['areService', 'envControlIRService', 'envControlFsService', '$q', function (areService, envControlIRService, envControlFsService, $q) {
         var thiz = this;
         var envModelName = 'envControl.acs';
 
@@ -7,7 +7,24 @@ angular.module(asterics.appServices)
             return areService.deployAndStartModel(envModelName);
         };
 
-        thiz.isEnvModelStarted = function() {
+        thiz.isEnvModelStarted = function () {
             return areService.isModelStarted(envModelName);
+        };
+
+        thiz.getActiveHardware = function () {
+            var def = $q.defer();
+            var devices = [];
+            var promiseIrTrans = envControlIRService.isConnected();
+            var promiseFs20 = envControlFsService.isConnected();
+            $q.all([promiseIrTrans, promiseFs20]).then(function() {
+                if(promiseIrTrans.$$state.value) {
+                    devices.push(asterics.envControl.ID_IR);
+                }
+                if(promiseFs20.$$state.value) {
+                    devices.push(asterics.envControl.ID_FS20);
+                }
+                def.resolve(devices);
+            });
+            return def.promise;
         };
     }]);
