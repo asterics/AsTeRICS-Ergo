@@ -12,6 +12,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedIcon = 'lightbulb-o';
+            thiz.isConnected = null;
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlFsService.trainCode(thiz.code);
@@ -22,6 +23,13 @@ angular.module(asterics.appComponents)
                     $state.go(thiz.cbToAdd);
                 }
             };
+
+            init();
+            function init() {
+                envControlFsService.isConnected().then(function (isConnected) {
+                    thiz.isConnected = isConnected;
+                });
+            }
 
             function generateBackItem() {
                 if (!thiz.cbToAdd) {
