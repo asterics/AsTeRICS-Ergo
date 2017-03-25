@@ -23,6 +23,7 @@ angular.module(asterics.appComponents)
             };
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addType;
             thiz.isNumberLearn = _addType == 'numbers';
+            thiz.isConnected = null;
             
 
             //learns the next item to learn, after success automatically learns next item.
@@ -120,6 +121,13 @@ angular.module(asterics.appComponents)
                 }
                 return false;
             };
+
+            init();
+            function init() {
+                envControlIRService.isConnected().then(function (isConnected) {
+                    thiz.isConnected = isConnected;
+                });
+            }
 
             function abortLearning() {
                 thiz.inLearn = false;
