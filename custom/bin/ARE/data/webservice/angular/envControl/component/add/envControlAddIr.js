@@ -14,6 +14,7 @@ angular.module(asterics.appComponents)
                 backState: $state.current.name,
                 backStateParams: encodeURI(angular.toJson($stateParams))
             };
+            thiz.isConnected = null;
 
             thiz.headerTitle = 'i18n_ec_ir_header';
             if (thiz.cbToAdd) {
@@ -55,6 +56,13 @@ angular.module(asterics.appComponents)
                 }
                 return ret;
             };
+
+            init();
+            function init() {
+                envControlIRService.isConnected().then(function (isConnected) {
+                    thiz.isConnected = isConnected;
+                });
+            }
 
             function generateBackItem() {
                 if (!thiz.cbToAdd) {
