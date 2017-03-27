@@ -21,7 +21,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.createCellBoardItemNavSubcellboard = function (title, faIcon, navState, stateParams) {
-            var element = utilService.createCellBoardItemNav(title, faIcon, navState, stateParams);
+            var element = utilService.createCellBoardItemSubCb(title, faIcon, navState, stateParams);
             element.toState = navState;
             element.tooltip = 'i18n_ec_tooltip_click_subcb';
             element.tooltipParams = {device: title};

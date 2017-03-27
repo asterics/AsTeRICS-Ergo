@@ -4,6 +4,8 @@ asterics.const.CELLB_MODE_DELETE = 'CB_MODE_DELETE';
 asterics.const.CELLB_MODE_MOVE = 'CB_MODE_MOVE';
 
 asterics.const.CB_TYPE_NAV = 'CB_TYPE_NAV';
+asterics.const.CB_TYPE_SUBCB = 'CB_TYPE_SUBCB';
+asterics.const.CB_TYPE_FN = 'CB_TYPE_FN';
 
 asterics.const.ServerEventTypes = {
     MODEL_CHANGED: "model_changed",

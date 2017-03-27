@@ -7,6 +7,7 @@ asterics.appControllers = asterics.app + ".controllers";
 angular.module(asterics.app, [
     'ui.router',
     'pascalprecht.translate',
+    'ui.bootstrap.contextMenu',
     asterics.appServices,
     asterics.appComponents
 ]).config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $translateProvider) {

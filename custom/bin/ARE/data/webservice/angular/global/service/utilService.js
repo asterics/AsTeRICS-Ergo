@@ -29,6 +29,13 @@ angular.module(asterics.appServices)
             return element;
         };
 
+        thiz.createCellBoardItemSubCb = function (title, faIcon, navState, stateParams) {
+            var element = thiz.createCellBoardItem(title, faIcon, asterics.const.CB_TYPE_SUBCB, function () {
+                $state.go(navState, stateParams);
+            });
+            return element;
+        };
+
         thiz.createCellBoardItemBack = function (navState, stateParams) {
             if (navState) {
                 return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', navState, stateParams);

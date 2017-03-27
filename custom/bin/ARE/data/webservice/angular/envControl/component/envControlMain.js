@@ -30,7 +30,7 @@ angular.module(asterics.appComponents)
                 if (envControlDataService.getNumberOfElements(thiz.cellBoardId) == 0) {
                     messageService.clear();
                 }
-                thiz.deleteItem.clickAction(); //back to normal mode after one deletion
+                thiz.deleteItem.normalMode(); //back to normal mode after one deletion
                 messageService.success(_msgGroupDelete, 'i18n_delete_success');
             };
 
@@ -91,7 +91,7 @@ angular.module(asterics.appComponents)
                      return ret && (thiz.cellBoardEnvControl.length > 1 || (thiz.cellBoardEnvControl.length > 0 && thiz.cellBoardId !== asterics.envControl.STATE_MAIN));*/
                 };
                 items.push(thiz.moveItem);
-                thiz.pasteItem = utilService.createCellBoardItem('i18n_ec_insert_element', 'clipboard', asterics.envControl.CB_TYPE_FN, function () {
+                thiz.pasteItem = utilService.createCellBoardItem('i18n_ec_insert_element', 'clipboard', asterics.const.CB_TYPE_FN, function () {
                     envControlDataService.pasteCellBoardItem(thiz.cellBoardId);
                     removeElementFromCellboard(thiz.cellBoardConfig, this);
                 });
@@ -111,7 +111,7 @@ angular.module(asterics.appComponents)
             }
 
             function generateSwitchModeItem(titleDeactivated, titleActivated, icon, switchMode, infoTextActivated) {
-                var item = utilService.createCellBoardItem(titleDeactivated, icon, asterics.envControl.CB_TYPE_FN, function () {
+                var item = utilService.createCellBoardItem(titleDeactivated, icon, asterics.const.CB_TYPE_FN, function () {
                     messageService.clear();
                     if (this.title === titleDeactivated) {
                         this.active = true;
@@ -128,6 +128,12 @@ angular.module(asterics.appComponents)
                         thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
                     }
                 });
+                item.normalMode = function () {
+                    this.active = false;
+                    messageService.clear();
+                    this.title = titleDeactivated;
+                    thiz.cellBoardMode = asterics.const.CELLB_MODE_NORMAL;
+                };
                 item.disabled = function () {
                     return thiz.cellBoardMode !== asterics.const.CELLB_MODE_NORMAL && thiz.cellBoardMode !== switchMode;
                 };

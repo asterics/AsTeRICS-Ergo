@@ -9,6 +9,18 @@ angular.module(asterics.appComponents)
         },
         controller: ['$translate', function ($translate) {
             var thiz = this;
+            var _contextMenuOptions = [
+                ['Löschen', function ($itemScope, $event, modelValue, text, $li) {
+                    thiz.removeHandler({item: $itemScope.item});
+                }]
+            ];
+
+            thiz.getContextMenuOptions = function (item) {
+                if (item && (item.type === asterics.const.CB_TYPE_NAV || item.type === asterics.const.CB_TYPE_FN)) {
+                    return [];
+                }
+                return _contextMenuOptions;
+            };
 
             thiz.itemClicked = function (item) {
                 switch (thiz.actionMode) {
