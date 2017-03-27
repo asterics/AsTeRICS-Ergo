@@ -66,6 +66,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             }
         });
 
+    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_AMB_LIGHT, 'i18n_ec_amblight', 'sun-o');
     configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_TV, 'i18n_ec_tv', 'tv');
     configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_DVD, 'i18n_ec_dvd', 'circle');
     configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_HIFI, 'i18n_ec_hifi', 'music');

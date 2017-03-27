@@ -30,6 +30,13 @@ angular.module(asterics.appServices)
 
         thiz.getIrElements = function (substateName) {
             switch (substateName) {
+                case asterics.envControl.SUBSTATE_ADD_AMB_LIGHT:
+                    return [
+                        createIrElement('i18n_ec_on', 'sun-o'),
+                        createIrElement('i18n_ec_off', 'moon-o'),
+                        createIrElement('i18n_ec_dim_down', 'angle-double-down'),
+                        createIrElement('i18n_ec_dim_up', 'angle-double-up')
+                    ];
                 case asterics.envControl.SUBSTATE_ADD_TV:
                     return [
                         createIrElement('i18n_ec_onoff', 'power-off'),

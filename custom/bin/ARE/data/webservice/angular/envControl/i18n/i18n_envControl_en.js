@@ -42,6 +42,10 @@ asterics.i18n_envControl_en = {
 
     //ir commands
     i18n_ec_onoff: 'ON/OFF',
+    i18n_ec_on: 'ON',
+    i18n_ec_off: 'OFF',
+    i18n_ec_dim_down: 'Dim down',
+    i18n_ec_dim_up: 'Dim up',
     i18n_ec_canalplus: 'Channel +',
     i18n_ec_canalminus: 'Channel -',
     i18n_ec_volplus: 'Volume +',
@@ -59,6 +63,7 @@ asterics.i18n_envControl_en = {
 
     //devices
     i18n_ec_lamp: 'Table/Floor-Lamp',
+    i18n_ec_amblight: 'Ambient Light',
     i18n_ec_tv: 'Television',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
@@ -90,10 +95,12 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_alllearned: '<b>All commands learned!</b> Click "Finish" to complete or on "Relearn previous"/"Restart lerning" to rerun learning.',
     i18n_ec_irmass_nolearned: '<b>No commands learned</b> (all skipped). Click on "Restart" or "Relearn previous" to learn at least one command.',
     i18n_ec_irmass_finish: 'Finish',
+    i18n_ec_irmass_header_amblight: 'Control a new ambient light',
     i18n_ec_irmass_header_tv: 'Control a new television',
     i18n_ec_irmass_header_dvd: 'Control a new DVD-Player',
     i18n_ec_irmass_header_hifi: 'Control a new Radio/CD-Player',
     i18n_ec_irmass_header_numbers: 'Learn number keys of {{device}}',
+    i18n_ec_irmass_name_amblight: 'Please choose a name for the ambient light',
     i18n_ec_irmass_name_tv: 'Please choose a name for the TV',
     i18n_ec_irmass_name_dvd: 'Please choose a name for the DVD-Player',
     i18n_ec_irmass_name_hifi: 'Please choose a name for the Radio/CD-Player',
@@ -129,8 +136,12 @@ asterics.i18n_envControl_en = {
     'home': 'Home',
     'home.envControl': 'Environmental Control',
     'home.envControl.help': 'Help',
-    'home.envControl.help/ir': 'IrTrans',
-    'home.envControl.help/fs': 'FS20',
+    'home.envControl.help/controls': 'Controls',
+    'home.envControl.help/install': 'Install',
+    'home.envControl.help/controls/ir': 'IrTrans',
+    'home.envControl.help/controls/fs': 'FS20',
+    'home.envControl.help/install/ir': 'IrTrans',
+    'home.envControl.help/install/fs': 'FS20',
     'home.envControl.add': 'New Control',
     'home.envControl.addsub': 'New Control',
     'home.envControl.add.tv': 'Television',
@@ -140,5 +151,6 @@ asterics.i18n_envControl_en = {
     'home.envControl.add.fs20': 'Plug',
     'home.envControl.add.ir': 'Remote control',
     'home.envControl.add.lamp': 'Lamp',
+    'home.envControl.add.amblight': 'Ambient Light',
     'home.envControl.add/more': 'More'
 };

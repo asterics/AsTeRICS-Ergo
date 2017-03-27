@@ -6,6 +6,7 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack(asterics.envControl.STATE_MAIN)];
             thiz.cellBoardChoose = [
+                utilService.createCellBoardItemNav('i18n_ec_amblight', 'sun-o', asterics.envControl.STATE_ADD + '.' + asterics.envControl.SUBSTATE_ADD_AMB_LIGHT),
                 utilService.createCellBoardItemNav('i18n_ec_lamp', 'lightbulb-o', asterics.envControl.STATE_ADD_LAMP),
                 utilService.createCellBoardItemNav('i18n_ec_tv', 'television', asterics.envControl.STATE_ADD + '.' + asterics.envControl.SUBSTATE_ADD_TV),
                 utilService.createCellBoardItemNav('i18n_ec_dvd', 'circle', asterics.envControl.STATE_ADD + '.' + asterics.envControl.SUBSTATE_ADD_DVD),

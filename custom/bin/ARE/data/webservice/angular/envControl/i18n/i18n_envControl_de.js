@@ -42,6 +42,10 @@ asterics.i18n_envControl_de = {
 
     //ir commands
     i18n_ec_onoff: 'EIN/AUS',
+    i18n_ec_on: 'EIN',
+    i18n_ec_off: 'AUS',
+    i18n_ec_dim_down: 'Dimmen dunkler',
+    i18n_ec_dim_up: 'Dimmen heller',
     i18n_ec_canalplus: 'Kanal +',
     i18n_ec_canalminus: 'Kanal -',
     i18n_ec_volplus: 'Volume +',
@@ -59,6 +63,7 @@ asterics.i18n_envControl_de = {
 
     //devices
     i18n_ec_lamp: 'Tisch-/Stehlampe',
+    i18n_ec_amblight: 'Raumlicht',
     i18n_ec_tv: 'Fernseher',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
@@ -75,7 +80,7 @@ asterics.i18n_envControl_de = {
 
     //add mass
     i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/irtrans/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a></b>) gelernt.',
-    i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für einen {{device}} gelernt.',
+    i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für ein/einen {{device}} gelernt.',
     i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
     i18n_ec_irmass_text_starthint: '<b>Wichtige Info:</b> Achten Sie darauf, dass pro Knopfdruck auf der Fernbedienung nur jeweils <b>ein</b> Befehl gelernt wird!',
@@ -90,10 +95,12 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_alllearned: '<b>Alle Befehle erfolgreich gelernt!</b> Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder auf "Korrektur"/"Neu starten" um das Lernen zu wiederholen.',
     i18n_ec_irmass_nolearned: '<b>Es wurden keine Befehle gelernt</b> (alle übersprungen). Klicken Sie auf "Neu starten" oder "Korrektur" um zumindest einen Befehl zu lernen.',
     i18n_ec_irmass_finish: 'Fertigstellen',
+    i18n_ec_irmass_header_amblight: 'Neue Raumlicht-Steuerung einrichten',
     i18n_ec_irmass_header_tv: 'Neue Fernsehsteuerung einrichten',
     i18n_ec_irmass_header_dvd: 'Neue Steuerung eines DVD-Players einrichten',
     i18n_ec_irmass_header_hifi: 'Neue Steuerung eines Radio/CD-Players einrichten',
     i18n_ec_irmass_header_numbers: 'Zifferntasten von {{device}} lernen',
+    i18n_ec_irmass_name_amblight: 'Bitte Namen für das Raumlicht auswählen',
     i18n_ec_irmass_name_tv: 'Bitte Namen für den Fernseher auswählen',
     i18n_ec_irmass_name_dvd: 'Bitte Namen für den DVD-Player auswählen',
     i18n_ec_irmass_name_hifi: 'Bitte Namen für den Radio/CD-Player auswählen',
@@ -129,8 +136,12 @@ asterics.i18n_envControl_de = {
     'home': 'Home',
     'home.envControl': 'Umgebungssteuerung',
     'home.envControl.help': 'Hilfe',
-    'home.envControl.help/ir': 'IrTrans',
-    'home.envControl.help/fs': 'FS20',
+    'home.envControl.help/controls': 'Steuerungsmöglichkeiten',
+    'home.envControl.help/install': 'Installation',
+    'home.envControl.help/controls/ir': 'IrTrans',
+    'home.envControl.help/controls/fs': 'FS20',
+    'home.envControl.help/install/ir': 'IrTrans',
+    'home.envControl.help/install/fs': 'FS20',
     'home.envControl.add': 'Neue Steuerung',
     'home.envControl.addsub': 'Neue Steuerung',
     'home.envControl.add.tv': 'Fernseher',
@@ -140,5 +151,6 @@ asterics.i18n_envControl_de = {
     'home.envControl.add.fs20': 'Steckdose',
     'home.envControl.add.ir': 'Fernbedienung',
     'home.envControl.add.lamp': 'Lampe',
+    'home.envControl.add.amblight': 'Raumlicht',
     'home.envControl.add/more': 'Mehr'
 };
