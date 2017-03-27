@@ -24,7 +24,7 @@ angular.module(asterics.appComponents)
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addType;
             thiz.isNumberLearn = _addType == 'numbers';
             thiz.isConnected = null;
-            
+
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
@@ -59,7 +59,7 @@ angular.module(asterics.appComponents)
 
             thiz.clearItemsAndRestartLearning = function () {
                 clearItems();
-                if(thiz.inLearn) {
+                if (thiz.inLearn) {
                     _currentLearnItem = getNextItemToLearn();
                 } else {
                     thiz.trainCode();
@@ -76,7 +76,7 @@ angular.module(asterics.appComponents)
                 var prevItem = getPrevItem(item);
                 prevItem.code = null;
                 prevItem.skipped = false;
-                if(thiz.inLearn) {
+                if (thiz.inLearn) {
                     _currentLearnItem = getNextItemToLearn();
                 } else {
                     thiz.trainCode();
@@ -91,11 +91,7 @@ angular.module(asterics.appComponents)
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
                     }
                 });
-                if (!_cbToAdd) {
-                    $state.go(asterics.envControl.STATE_MAIN);
-                } else {
-                    $state.go(_cbToAdd);
-                }
+                $state.go(_cbToAdd);
             };
 
             thiz.getNumberOfLearnedItems = function () {
@@ -142,8 +138,8 @@ angular.module(asterics.appComponents)
             }
 
             function getPrevItem(item) {
-                if(!item) {
-                    return thiz.learnItems[thiz.learnItems.length-1];
+                if (!item) {
+                    return thiz.learnItems[thiz.learnItems.length - 1];
                 }
                 var index = thiz.learnItems.indexOf(item);
                 if (index == 0) {
