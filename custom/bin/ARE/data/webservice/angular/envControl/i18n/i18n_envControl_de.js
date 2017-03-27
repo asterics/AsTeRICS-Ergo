@@ -71,6 +71,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_plug: 'Steckdose',
     i18n_ec_ircommand: 'Fernbedienungs-Befehle',
     i18n_ec_ircommand_tooltip: 'Lernen von einzelnen Fernbedienungs-Befehlen',
+    i18n_ec_ircommand_device: 'Fernbedienungs-Gerät',
+    i18n_ec_ircommand_device_tooltip: 'Lernen eines über Fernbedienung gesteuerten Gerätes',
     i18n_ec_numbersfor: 'Nummern für {{device}}',
     i18n_ec_more: 'Weitere...',
 
@@ -112,7 +114,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_infotext: 'Es wird nachfolgend ein einzelner oder mehrere Befehle gelernt.',
     i18n_ec_ir_infotext_device: 'Es werden nachfolgend ein oder mehrere neue Befehle für "{{device}}" gelernt.',
     i18n_ec_ir_header: 'Neue Fernbedienungs-Befehle hinzufügen',
-    i18n_ec_ir_headerto: 'Neue Fernbedienungs-Befehl zu {{device}} hinzufügen',
+    i18n_ec_ir_header_device: 'Neues Fernbedienungs-Gerät hinzufügen',
+    i18n_ec_ir_headerto: 'Neue Fernbedienungs-Befehle zu {{device}} hinzufügen',
     i18n_ec_ir_choosename: 'Bitte Namen für nächsten den Befehl auswählen',
     i18n_ec_ir_pressbutton: 'Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!',
     i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',

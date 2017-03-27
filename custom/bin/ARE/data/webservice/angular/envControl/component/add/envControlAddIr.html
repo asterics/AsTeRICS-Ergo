@@ -18,7 +18,13 @@
 </asterics-message>
 <div ng-if="$ctrl.isConnected">
     <div class="col-lg-8">
-        <ul>
+        <ul ng-if="$ctrl.isDeviceLearn">
+            <li ng-model-options="{debounce: 500}">
+                <label for="inputLabelDevice">{{'i18n_ec_fs_choosename' | translate}}</label>
+                <input type="text" id="inputLabelDevice" ng-model="$ctrl.selectedDeviceName" maxlength="20"/><br/>
+            </li>
+        </ul>
+        <ul ng-if="!$ctrl.isDeviceLearn || $ctrl.selectedDeviceName">
             <li>Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in Richtung IrTrans gerichtet).
                 Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.
             </li>

@@ -71,6 +71,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_plug: 'Plug',
     i18n_ec_ircommand: 'Remote-commands',
     i18n_ec_ircommand_tooltip: 'Learn single remote-commands',
+    i18n_ec_ircommand_device: 'Remote-device',
+    i18n_ec_ircommand_device_tooltip: 'Learn commands of a remote device',
     i18n_ec_numbersfor: 'Number keys for {{device}}',
     i18n_ec_more: 'More...',
 
@@ -112,6 +114,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_ir_infotext: 'Subsequently one ore more new commands are learned.',
     i18n_ec_ir_infotext_device: 'Subsequently one ore more new commands for "{{device}}" are learned.',
     i18n_ec_ir_header: 'Add new remote control commands',
+    i18n_ec_ir_header_device: 'Add new remote control device',
     i18n_ec_ir_headerto: 'Add new remote control commands to {{device}}',
     i18n_ec_ir_choosename: 'Please choose a name for next the command',
     i18n_ec_ir_pressbutton: 'Now press the button on the remote you want to learn!',

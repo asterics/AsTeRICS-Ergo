@@ -1,37 +1,31 @@
 angular.module(asterics.appComponents)
     .component('envControlAddIr', {
 
-        bindings: {},
+        bindings: {
+            isDeviceLearn: '@'
+        },
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
             var thiz = this;
-            thiz.cbToAdd = $stateParams.cellBoardId;
+            thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.selectedLabel = null;
+            thiz.selectedDeviceName = null;
             thiz.learnItems = [];
             thiz.code = null;
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
-            thiz.stateI18nParams = {
-                backState: $state.current.name,
-                backStateParams: encodeURI(angular.toJson($stateParams))
-            };
             thiz.isConnected = null;
 
-            thiz.headerTitle = 'i18n_ec_ir_header';
-            if (thiz.cbToAdd) {
-                thiz.headerTitle = 'i18n_ec_ir_headerto';
-                thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
-            }
 
             thiz.addCellBoardItemAndReturn = function () {
-                angular.forEach(thiz.learnItems, function (item) {
-                    envControlDataService.addCellBoardElementIrTrans(item.name, thiz.selectedIcon, item.code, thiz.cbToAdd);
-                });
-                if (!thiz.cbToAdd) {
-                    $state.go(asterics.envControl.STATE_MAIN);
-                } else {
-                    $state.go(thiz.cbToAdd);
+                var cbToAddButtons = thiz.cbToAdd;
+                if (thiz.isDeviceLearn) {
+                    cbToAddButtons = envControlDataService.addSubCellboard(thiz.selectedDeviceName, 'building-o', thiz.cbToAdd);
                 }
+                angular.forEach(thiz.learnItems, function (item) {
+                    envControlDataService.addCellBoardElementIrTrans(item.name, thiz.selectedIcon, item.code, cbToAddButtons);
+                });
+                $state.go(thiz.cbToAdd);
             };
 
             thiz.getNumLearnedValuesI18n = function () {
@@ -40,15 +34,23 @@ angular.module(asterics.appComponents)
                 };
             };
 
-            init();
-            function init() {
+            thiz.$onInit = function () {
+                thiz.headerTitle = thiz.isDeviceLearn ? 'i18n_ec_ir_header_device' : 'i18n_ec_ir_header';
+                if (thiz.cbToAdd !== asterics.envControl.STATE_MAIN) {
+                    thiz.headerTitle = 'i18n_ec_ir_headerto';
+                    thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
+                }
+                thiz.stateI18nParams = {
+                    backState: $state.current.name,
+                    backStateParams: encodeURI(angular.toJson($stateParams))
+                };
                 envControlIRService.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                     if (isConnected) {
                         startTrainCodes();
                     }
                 });
-            }
+            };
 
             function startTrainCodes() {
                 envControlIRService.irLearn().then(function (response) {
@@ -70,7 +72,7 @@ angular.module(asterics.appComponents)
             }
 
             function generateBackItem() {
-                if (!thiz.cbToAdd) {
+                if (thiz.cbToAdd === asterics.envControl.STATE_MAIN) {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
                 } else {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);

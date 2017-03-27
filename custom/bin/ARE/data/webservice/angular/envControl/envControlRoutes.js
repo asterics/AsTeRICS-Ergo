@@ -56,6 +56,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/ir/:cellBoardId',
             template: '<env-control-add-ir/>'
         })
+        .state(asterics.envControl.STATE_ADD_IR_DEVICE, {
+            url: '/irdevice/:cellBoardId',
+            template: '<env-control-add-ir is-device-learn="true"/>'
+        })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
             template: '<env-control-add-fs selected-label="$resolve.selectedLabel"/>',
