@@ -69,7 +69,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_hifi: 'Radio/CD-Player',
     i18n_ec_numbers: 'Nummern',
     i18n_ec_plug: 'Steckdose',
-    i18n_ec_ircommand: 'Fernbedienungs-Befehl',
+    i18n_ec_ircommand: 'Fernbedienungs-Befehle',
+    i18n_ec_ircommand_tooltip: 'Lernen von einzelnen Fernbedienungs-Befehlen',
     i18n_ec_numbersfor: 'Nummern für {{device}}',
     i18n_ec_more: 'Weitere...',
 
@@ -108,14 +109,13 @@ asterics.i18n_envControl_de = {
 
     //add ir
     i18n_ec_irtrans_error: 'Fehler bei Verbinden zu IrTrans - Bitte stellen Sie sicher, dass IrTrans installiert und am PC angeschlossen ist.',
-    i18n_ec_ir_infotext: 'Es wird nachfolgend ein einzelner Befehl gelernt.',
-    i18n_ec_ir_infotext_device: 'Es werden nachfolgend ein neuer Befehl für "{{device}}" gelernt.',
-    i18n_ec_ir_header: 'Neuen Fernbedienungs-Befehl hinzufügen',
-    i18n_ec_ir_headerto: 'Neuen Fernbedienungs-Befehl zu {{device}} hinzufügen',
-    i18n_ec_ir_choosename: 'Bitte Namen für den Befehl auswählen',
-    i18n_ec_ir_text_startlearn: 'Klicken Sie auf "Lernen starten" um den Befehl anzulernen. Danach müssen Sie den zu lernenden Knopf auf der Fernbedienung drücken und sie Richtung IRTrans richten.',
+    i18n_ec_ir_infotext: 'Es wird nachfolgend ein einzelner oder mehrere Befehle gelernt.',
+    i18n_ec_ir_infotext_device: 'Es werden nachfolgend ein oder mehrere neue Befehle für "{{device}}" gelernt.',
+    i18n_ec_ir_header: 'Neue Fernbedienungs-Befehle hinzufügen',
+    i18n_ec_ir_headerto: 'Neue Fernbedienungs-Befehl zu {{device}} hinzufügen',
+    i18n_ec_ir_choosename: 'Bitte Namen für nächsten den Befehl auswählen',
     i18n_ec_ir_pressbutton: 'Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!',
-    i18n_ec_ir_learnsuccess: 'IR-Code erfolgreich gelernt! Klicken Sie auf "Fertigstellen um die Einrichtung abzuschließen".',
+    i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',
 
     //add fs20
     i18n_ec_fs_infotext1: 'Steckdosen können mit "FS20" (<b><a href="#!/home/envcontrol/help/controls/fs20/{{backState}}/">mehr Infos zu FS20</a></b>) gesteuert werden.',

@@ -19,25 +19,25 @@
 <div ng-if="$ctrl.isConnected">
     <div class="col-lg-8">
         <ul>
+            <li>Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in Richtung IrTrans gerichtet).
+                Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.
+            </li>
+            <li ng-repeat="item in $ctrl.learnItems track by $index">
+                Befehl "{{item.name}}" <i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}
+            </li>
             <li ng-model-options="{debounce: 500}">
                 <label for="inputLabel">{{'i18n_ec_ir_choosename' | translate}}</label>
                 <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
-            </li>
-            <li ng-if="$ctrl.stepCompleted(1)">
-                <label for="inputTrain">{{'i18n_ec_ir_text_startlearn' | translate}}</label>
-                <button id="inputTrain" ng-click="$ctrl.trainCode()">{{'i18n_ec_irmass_startlearn' | translate}}</button>
-                <br/>
-            </li>
-            <li ng-if="$ctrl.stepCompleted(2)">
-                <span>{{'i18n_ec_ir_pressbutton' | translate}}</span>
-                <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
-                <span ng-if="$ctrl.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
-            </li>
-            <li ng-if="$ctrl.stepCompleted(3)">
-                <span>{{'i18n_ec_ir_learnsuccess' | translate}}</span><br/>
-                <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+                <div ng-if="$ctrl.selectedLabel">
+                    Drücken Sie jetzt "{{$ctrl.selectedLabel}}" einmal kurz auf der Fernbedienung! <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
+                    <br/>
+                </div>
             </li>
         </ul>
+        <div ng-if="$ctrl.learnItems.length > 0">
+            <span translate="i18n_ec_ir_learnsuccess" translate-values="{{$ctrl.getNumLearnedValuesI18n()}}"/><br/>
+            <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+        </div>
     </div>
     <a href="#!/home/envcontrol/help/controls/irtrans/{{$ctrl.stateI18nParams.backState}}/{{$ctrl.stateI18nParams.backStateParams}}">
         <div class="col-xs-4 col-md-3 col-lg-2">

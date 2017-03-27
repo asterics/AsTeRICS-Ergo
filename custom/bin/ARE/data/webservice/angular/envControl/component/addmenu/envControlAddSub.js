@@ -10,9 +10,11 @@ angular.module(asterics.appComponents)
 
             var numberElement = utilService.createCellBoardItemNav('i18n_ec_numbersfor', 'th', asterics.envControl.STATE_ADD + '.' + asterics.envControl.SUBSTATE_ADD_NUMBERS, $stateParams);
             numberElement.translateParams = thiz.translateParam;
+            var irCommandElement = utilService.createCellBoardItemNav('i18n_ec_ircommand', 'wifi', asterics.envControl.STATE_ADD_IR, $stateParams);
+            irCommandElement.tooltip = 'i18n_ec_ircommand_tooltip';
             thiz.cellBoardChoose = [
                 numberElement,
-                utilService.createCellBoardItemNav('i18n_ec_ircommand', 'wifi', asterics.envControl.STATE_ADD_IR, $stateParams)
+                irCommandElement
             ];
         }],
         templateUrl: "angular/envControl/component/addmenu/envControlAddSub.html"

@@ -69,7 +69,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_hifi: 'Radio/CD-Player',
     i18n_ec_numbers: 'Numbers',
     i18n_ec_plug: 'Plug',
-    i18n_ec_ircommand: 'Remote-command',
+    i18n_ec_ircommand: 'Remote-commands',
+    i18n_ec_ircommand_tooltip: 'Learn single remote-commands',
     i18n_ec_numbersfor: 'Number keys for {{device}}',
     i18n_ec_more: 'More...',
 
@@ -108,14 +109,13 @@ asterics.i18n_envControl_en = {
 
     //add ir
     i18n_ec_irtrans_error: 'Error sending signal to IrTrans - check that IrTrans is installed and connected to the computer.',
-    i18n_ec_ir_infotext: 'Subsequently one new command is learned.',
-    i18n_ec_ir_infotext_device: 'Subsequently one new command for "{{device}}" is learned.',
-    i18n_ec_ir_header: 'Add new remote control command',
-    i18n_ec_ir_headerto: 'Add new remote control command to {{device}}',
-    i18n_ec_ir_choosename: 'Please choose a name for the command',
-    i18n_ec_ir_text_startlearn: 'Click "Start learning" to learn the command. Please keep ready the original remote control from which you want to learn a command.',
+    i18n_ec_ir_infotext: 'Subsequently one ore more new commands are learned.',
+    i18n_ec_ir_infotext_device: 'Subsequently one ore more new commands for "{{device}}" are learned.',
+    i18n_ec_ir_header: 'Add new remote control commands',
+    i18n_ec_ir_headerto: 'Add new remote control commands to {{device}}',
+    i18n_ec_ir_choosename: 'Please choose a name for next the command',
     i18n_ec_ir_pressbutton: 'Now press the button on the remote you want to learn!',
-    i18n_ec_ir_learnsuccess: 'Successfully learned command! Click "Finish" to complete.',
+    i18n_ec_ir_learnsuccess: 'Already {{numlearned}} IR-Code(s) successfully learned! Click on "Finish" to complete or add another command.',
 
     //add fs20
     i18n_ec_fs_infotext1: 'Electric sockets can be controlled with "FS20" (<b><a href="#!/home/envcontrol/help/controls/fs20/{{backState}}/">more info about FS20</a></b>).',

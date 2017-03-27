@@ -7,6 +7,7 @@ angular.module(asterics.appComponents)
             thiz.cbToAdd = $stateParams.cellBoardId;
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.selectedLabel = null;
+            thiz.learnItems = [];
             thiz.code = null;
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
@@ -22,20 +23,10 @@ angular.module(asterics.appComponents)
                 thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
             }
 
-            thiz.trainCode = function () {
-                envControlIRService.irLearn().then(function (response) {
-                    thiz.code = response;
-                    scrollToEnd();
-                }, function error() {
-                    if (thiz.inTrain) {
-                        thiz.trainCode();
-                    }
-                });
-                thiz.inTrain = true;
-            };
-
             thiz.addCellBoardItemAndReturn = function () {
-                envControlDataService.addCellBoardElementIrTrans(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
+                angular.forEach(thiz.learnItems, function (item) {
+                    envControlDataService.addCellBoardElementIrTrans(item.name, thiz.selectedIcon, item.code, thiz.cbToAdd);
+                });
                 if (!thiz.cbToAdd) {
                     $state.go(asterics.envControl.STATE_MAIN);
                 } else {
@@ -43,25 +34,39 @@ angular.module(asterics.appComponents)
                 }
             };
 
-            thiz.stepCompleted = function (nr) {
-                var ret = true;
-                if (nr >= 1) {
-                    ret = ret && thiz.selectedLabel;
-                }
-                if (nr >= 2) {
-                    ret = ret && thiz.inTrain;
-                }
-                if (nr >= 3) {
-                    ret = ret && thiz.code;
-                }
-                return ret;
+            thiz.getNumLearnedValuesI18n = function () {
+                return {
+                    numlearned: thiz.learnItems.length
+                };
             };
 
             init();
             function init() {
                 envControlIRService.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
+                    if (isConnected) {
+                        startTrainCodes();
+                    }
                 });
+            }
+
+            function startTrainCodes() {
+                envControlIRService.irLearn().then(function (response) {
+                    if (thiz.selectedLabel) {
+                        var item = generateIrTransItem(thiz.selectedLabel, response);
+                        thiz.learnItems.push(item);
+                        thiz.selectedLabel = null;
+                        scrollToEnd();
+                    }
+                    if (thiz.inTrain) {
+                        startTrainCodes();
+                    }
+                }, function error() {
+                    if (thiz.inTrain) {
+                        startTrainCodes();
+                    }
+                });
+                thiz.inTrain = true;
             }
 
             function generateBackItem() {
@@ -76,6 +81,13 @@ angular.module(asterics.appComponents)
                 $timeout(function () {
                     $anchorScroll('end');
                 });
+            }
+
+            function generateIrTransItem(name, code) {
+                return {
+                    name: name,
+                    code: code
+                };
             }
 
             //aborting all current learning when leaving the page
