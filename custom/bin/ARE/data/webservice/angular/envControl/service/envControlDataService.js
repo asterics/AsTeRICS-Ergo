@@ -46,7 +46,7 @@ angular.module(asterics.appServices)
             return _cellBoards[cellBoardName];
         };
 
-        thiz.undoRemove = function() {
+        thiz.undoRemove = function () {
             _cellBoards = _undoCellBoards;
         };
 
@@ -108,7 +108,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.existsLabel = function (label, parentState) {
-            return _.includes(getAllSubCellBoardNames(parentState, true), label.toString().trim().toLowerCase());
+            return _.includes(getCbButtonLabels(parentState, true), label.toString().trim().toLowerCase());
         };
 
         thiz.getNumberOfElements = function (cellBoard) {
@@ -121,19 +121,14 @@ angular.module(asterics.appServices)
             }
         }
 
-        function getAllSubCellBoardNames(parentState, lowercase) {
-            if (_dynamicCellBoardIds.length > 0) {
-                var names = _.map(_dynamicCellBoardIds, function (state) {
-                    var name = state.substring(parentState.length + 1);
-                    if (lowercase) {
-                        return name.toLowerCase();
-                    } else {
-                        return name;
-                    }
-                });
-                return names;
-            }
-            return [];
+        function getCbButtonLabels(parentState, lowercase) {
+            var labels = [];
+            var cb = _cellBoards[parentState];
+            angular.forEach(cb, function (item) {
+                var label = lowercase ? item.title.toLowerCase() : item.title;
+                labels.push(label);
+            });
+            return labels;
         }
 
         function getAllCellBoardElements() {

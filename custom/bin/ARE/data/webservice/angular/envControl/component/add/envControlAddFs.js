@@ -4,10 +4,10 @@ angular.module(asterics.appComponents)
         bindings: {
             selectedLabel: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService) {
+        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService, $scope) {
             var thiz = this;
             thiz.backStateParam = {backState: $state.current.name};
-            thiz.cbToAdd = $stateParams.cellBoardId;
+            thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.code = envControlDataService.getNewFs20Code();
@@ -17,11 +17,7 @@ angular.module(asterics.appComponents)
             thiz.addCellBoardItemAndReturn = function () {
                 envControlFsService.trainCode(thiz.code);
                 envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
-                if (!thiz.cbToAdd) {
-                    $state.go(asterics.envControl.STATE_MAIN);
-                } else {
-                    $state.go(thiz.cbToAdd);
-                }
+                $state.go(thiz.cbToAdd);
             };
 
             init();
@@ -31,8 +27,16 @@ angular.module(asterics.appComponents)
                 });
             }
 
+            $scope.$watch(function () {
+                return thiz.selectedLabel
+            }, function () {
+                if (envControlDataService.existsLabel(thiz.selectedLabel, thiz.cbToAdd)) {
+                    thiz.selectedLabel = envControlDataService.getNonConflictingLabel(thiz.selectedLabel, thiz.cbToAdd);
+                }
+            });
+
             function generateBackItem() {
-                if (!thiz.cbToAdd) {
+                if (thiz.cbToAdd === asterics.envControl.STATE_MAIN) {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
                 } else {
                     return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
