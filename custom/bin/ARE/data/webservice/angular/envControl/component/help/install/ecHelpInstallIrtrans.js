@@ -21,6 +21,14 @@ angular.module(asterics.appComponents)
                 });
             };
 
+            thiz.isWin7OrOther = function() {
+                return asterics.const.OS_IS_WIN7 || asterics.const.OS_IS_OTHER;
+            };
+
+            thiz.isWin10 = function() {
+                return asterics.const.OS_IS_WIN10;
+            };
+
             init();
             function init() {
                 envControlIRService.isConnected().then(function (isConnected) {

@@ -10,17 +10,26 @@
     <p ng-if="!$ctrl.show">Es wird geprüft ob IrTrans bereits installiert ist ...</p>
     <div ng-if="$ctrl.show && $ctrl.showAssistant">
         <p>Wenn Sie bereits einen IrTrans-USB besitzen, können Sie diesen wie folgt installieren:</p>
-        <ol>
+        <ol class="install-help">
             <li>
-                IrTrans benötigt zusätzliche Software. Bitte klicken Sie auf folgenden Link um diese herunterzuladen:
+                IrTrans benötigt zusätzliche Software. Bitte klicken Sie auf folgenden Link um diese
+                herunterzuladen:</br>
                 <a href="http://www.irtrans.de/download/setup.exe">Software IrTrans USB</a>
             </li>
             <li>
                 Installieren Sie die heruntergeladene Software - Folgen Sie den Anweisungen und klicken Sie immer auf
-                "Weiter".
+                "Weiter". Bei folgendem Fenster müssen Sie "IrTrans USB" auswählen:
+                <div class="row">
+                    <img src="angular/envControl/img/install-irtrans-win-assistant.png"
+                         alt="IrTrans Installationsfenster"/>
+                </div>
+                </br>
+                Wenn Sie möchten, dass IrTrans bei dem Computerstart automatisch startet, dann wählen Sie zusätzlich die
+                Option:</br>
+                "Add IRTrans Server to the Startup Folder"
             </li>
             <li>
-                Stecken Sie den IrTrans mit einem USB-Kabel an dem Computer an.
+                Stecken Sie nach Abschluss der Softwareinstallation den IrTrans mit einem USB-Kabel an dem Computer an.
                 <div class="row">
                     <img class="img-row col-xs-3" src="angular/envControl/img/irtrans.jpg" alt="IrTrans-USB"/>
                     <img class="img-row col-xs-3" src="angular/envControl/img/usbb.png" alt="USB Stecker Typ B"/>
@@ -29,10 +38,29 @@
                 </div>
             </li>
             <li>
+                Warten Sie bis die Hardwareinstallation abgeschlossen ist.
+                <div ng-if="$ctrl.isWin7OrOther()">
+                    Klicken Sie auf folgende Meldung bzw. Symbol um den Verlauf der Installation zu sehen:
+                    <div class="row">
+                        <img src="angular/envControl/img/install-irtrans-win7-1.png" alt="IrTrans-USB Installationsmeldung Windows 7"/>
+                        <img src="angular/envControl/img/install-irtrans-win7-1b.png" alt="IrTrans-USB Installationsmeldung Windows 7"/>
+                    </div>
+                    Falls die Meldung und das Symbol nicht mehr zu sehen sind, so ist die Hardwareinstallation bereits abgeschlossen.
+                </div>
+                <div ng-if="$ctrl.isWin10()">
+                    Öffnen Sie dieses Fenster um den Verlauf der Installation zu sehen:
+                    <div class="row">
+                        <img src="angular/envControl/img/install-irtrans-win10-1.png" alt="IrTrans-USB Installationsfenster Windows 10"/>
+                    </div>
+                    Falls dieses Fenster nicht mehr zu sehen ist, so ist die Hardwareinstallation bereits abgeschlossen.
+                </div>
+            </li>
+            <li>
                 Starten Sie die installierte Software "IRTransServer USB". Klicken Sie dafür auf "Start" und suchen Sie
                 nach "IrTrans":
                 <div class="row">
-                    <img class="img-row" src="angular/envControl/img/irtrans-server.png" alt="IrTrans-Server"/>
+                    <img ng-if="$ctrl.isWin7OrOther()" src="angular/envControl/img/install-irtrans-win7-2.png" alt="IrTrans-Server"/>
+                    <img ng-if="$ctrl.isWin10()" src="angular/envControl/img/install-irtrans-win10-2.png" alt="IrTrans-Server"/>
                 </div>
             </li>
             <li>
