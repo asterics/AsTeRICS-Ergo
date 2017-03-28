@@ -23,6 +23,10 @@ div .active {
     padding-top: 1em;
 }
 
+.install-help li {
+    padding-bottom: 1em;
+}
+
 .cb-element {
     padding-top: 5px;
     padding-bottom: 5px;
