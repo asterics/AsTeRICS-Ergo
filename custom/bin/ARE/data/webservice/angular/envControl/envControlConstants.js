@@ -6,11 +6,26 @@ asterics.envControl.FS20_LEARN_CODE = 23;
 asterics.envControl.CB_TYPE_FS20 = 'CB_TYPE_FS20';
 asterics.envControl.CB_TYPE_IR = 'CB_TYPE_IR';
 
-asterics.envControl.ID_FS20 = 'ID_FS20';
-asterics.envControl.ID_IR = 'ID_IR';
+asterics.envControl.HW_FS20_PCSENDER = 'HW_FS20_PCSENDER';
+asterics.envControl.HW_FS20_PLUG = 'HW_FS20_PLUG';
+asterics.envControl.HW_IRTRANS_USB = 'HW_IRTRANS_USB';
+asterics.envControl.HW_IR_BULB = 'HW_IR_BULB';
 
 asterics.envControl.IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
 asterics.envControl.IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
+
+asterics.envControl.DEVICE_TABLELAMP = 'lamp';
+asterics.envControl.DEVICE_AMB_LAMP = 'amblight';
+asterics.envControl.DEVICE_TV = 'tv';
+asterics.envControl.DEVICE_DVD = 'dvd';
+asterics.envControl.DEVICE_HIFI = 'hifi';
+asterics.envControl.DEVICES = [
+    asterics.envControl.DEVICE_TABLELAMP,
+    asterics.envControl.DEVICE_AMB_LAMP,
+    asterics.envControl.DEVICE_TV,
+    asterics.envControl.DEVICE_DVD,
+    asterics.envControl.DEVICE_HIFI
+];
 
 asterics.envControl.STATE_MAIN = 'home.envControl';
 asterics.envControl.STATE_HELP = 'home.envControl.help';

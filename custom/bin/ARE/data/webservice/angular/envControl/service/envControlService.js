@@ -18,10 +18,10 @@ angular.module(asterics.appServices)
             var promiseFs20 = envControlFsService.isConnected();
             $q.all([promiseIrTrans, promiseFs20]).then(function() {
                 if(promiseIrTrans.$$state.value) {
-                    devices.push(asterics.envControl.ID_IR);
+                    devices.push(asterics.envControl.HW_IRTRANS_USB);
                 }
                 if(promiseFs20.$$state.value) {
-                    devices.push(asterics.envControl.ID_FS20);
+                    devices.push(asterics.envControl.HW_FS20_PCSENDER);
                 }
                 def.resolve(devices);
             });
