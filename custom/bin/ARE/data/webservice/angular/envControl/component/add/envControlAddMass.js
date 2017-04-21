@@ -38,8 +38,8 @@ angular.module(asterics.appComponents)
 
                 function success(response) {
                     _currentLearnItem.code = response;
-                    thiz.trainCode();
                     scrollToEnd();
+                    thiz.trainCode();
                 }
 
                 function error(response) {
@@ -53,8 +53,10 @@ angular.module(asterics.appComponents)
                 }
 
                 envControlIRService.irLearn().then(success, error);
+                if(!thiz.inLearn) {
+                    scrollToEnd();
+                }
                 thiz.inLearn = true;
-                scrollToEnd();
             };
 
             thiz.clearItemsAndRestartLearning = function () {
