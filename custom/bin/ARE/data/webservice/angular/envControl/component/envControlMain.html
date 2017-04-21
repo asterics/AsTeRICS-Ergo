@@ -17,8 +17,6 @@
         </div>
         <div ng-if="$ctrl.cellBoardEnvControl.length == 0 && $ctrl.substateDepth == 1">
             <env-control-help-select hide-back="true"/>
-            <b>{{'i18n_ec_no_elements' | translate}}</b><br/>
-            <span translate="i18n_ec_no_elements_text"/><br/><br/>
         </div>
         <div ng-if="$ctrl.cellBoardEnvControl.length == 0 && $ctrl.substateDepth > 1">
             <b>{{'i18n_ec_no_elements' | translate}}</b><br/>

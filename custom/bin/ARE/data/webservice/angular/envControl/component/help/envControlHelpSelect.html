@@ -6,24 +6,43 @@
         <div class="clearfix"/>
         <h2 translate="i18n_ec_help"/>
     </div>
-    <h3>Auswahl Steuerungsmöglichkeiten</h3>
+    <h3 ng-if="!$ctrl.hideBack">Auswahl Steuerungsmöglichkeiten</h3>
     <p>Welche Geräte möchten Sie mit AsTeRICS steuern?</p>
     <ul class="nodots">
         <li ng-repeat="device in $ctrl.devices">
             <label>
-                <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device]" ng-click="$ctrl.refreshNeededHardware()"/> {{device}}
+                <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device]" ng-change="$ctrl.refreshNeededHardware()"/> {{'i18n_ec_' + device | translate}}
             </label>
         </li>
     </ul>
-    <p>Dafür benötigen Sie folgende Hardware:</p>
-    <div class="row">
-        <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">
-            <a ng-click="$ctrl.goToHelp(hardware)">
-                <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}" alt="{{hardware | translate}}"/>
-                <p>{{hardware | translate}}</p>
-            </a>
+    <div ng-if="$ctrl.neededHardware.length > 0">
+        <p>Dafür benötigen Sie folgende Hardware:</p>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">
+                <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                    <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}" alt="{{ 'i18n_ec_' + hardware | translate}}"/>
+                    <p>{{ 'i18n_ec_' + hardware | translate}}</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="padding-top-little" ng-if="$ctrl.alternativeHardwareDevices.length > 0">
+            <p ng-if="$ctrl.alternativeHardwareDevices.length == 1"><b>Hinweis</b></p>
+            <p ng-if="$ctrl.alternativeHardwareDevices.length > 1"><b>Hinweise</b></p>
+            <ul ng-repeat="device in $ctrl.alternativeHardwareDevices">
+                <li>
+                    <b>{{'i18n_ec_' + device | translate}}</b> kann alternativ auch mit
+                    <span ng-repeat="alternative in $ctrl.alternativeHardare[device][0]">
+                        <a href="" ng-click="$ctrl.goToHelp(alternative)">{{ 'i18n_ec_' + alternative | translate}}</a>
+                        <span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1">+</span>
+                    </span>
+                    gesteuert werden (statt
+                    <span ng-repeat="primarySuggestion in $ctrl.getNeededHardware(device)">
+                        {{ 'i18n_ec_' + primarySuggestion | translate}}
+                        <span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1">+</span>
+                    </span>).
+                </li>
+            </ul>
         </div>
     </div>
-
-    <p>alternatives: {{$ctrl.alternativeHardare}}</p>
 </div>

@@ -37,8 +37,6 @@ asterics.i18n_envControl_en = {
 
     //help fs20
     i18n_ec_text_help_fs20: 'With <b>FS20</b> it is possible <b>control electric sockets</b> via AsTeRICS. Thus it is possible to <b>turn on/off</b> devices like e.g. a table lamp <b>via socket</b>. For the use with AsTeRICS an <b>adapter plug</b> and a <b>PC-sender</b> are required.<br/>Click on one of the following <b>links</b> to navigate to <b>vendors of FS20</b>:',
-    i18n_ec_help_fs20_plug: 'FS20 adapter plug',
-    i18n_ec_help_fs20_sender: 'FS20 PC-Sender',
 
     //ir commands
     i18n_ec_onoff: 'ON/OFF',
@@ -75,6 +73,12 @@ asterics.i18n_envControl_en = {
     i18n_ec_ircommand_device_tooltip: 'Learn commands of a remote device',
     i18n_ec_numbersfor: 'Number keys for {{device}}',
     i18n_ec_more: 'More...',
+
+    //hardware
+    i18n_ec_HW_FS20_PCSENDER: 'FS20 PC-Sender',
+    i18n_ec_HW_FS20_PLUG: 'FS20 adapter plug',
+    i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_HW_IR_BULB: 'IR Bulb',
 
     //addmenu
     i18n_ec_text_addnew: 'Add new component to environmental control',

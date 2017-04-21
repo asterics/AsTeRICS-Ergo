@@ -37,8 +37,6 @@ asterics.i18n_envControl_de = {
 
     //help fs20
     i18n_ec_text_help_fs20: 'Mithilfe von <b>FS20</b> können <b>Steckdosen</b> über AsTeRICS <b>gesteuert werden</b>. Dadurch ist es möglich Geräte wie z.B. eine Tischlampe <b>über Steckdose ein- bzw. auszuschalten</b>. Für die Verwendung mit AsTeRICS sind ein <b>Zwischenstecker für die Steckdose</b> und ein <b>Sender für den PC</b> notwendig.<br/>Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:',
-    i18n_ec_help_fs20_plug: 'FS20 Zwischenstecker',
-    i18n_ec_help_fs20_sender: 'FS20 PC-Sender',
 
     //ir commands
     i18n_ec_onoff: 'EIN/AUS',
@@ -75,6 +73,12 @@ asterics.i18n_envControl_de = {
     i18n_ec_ircommand_device_tooltip: 'Lernen eines über Fernbedienung gesteuerten Gerätes',
     i18n_ec_numbersfor: 'Nummern für {{device}}',
     i18n_ec_more: 'Weitere...',
+
+    //hardware
+    i18n_ec_HW_FS20_PCSENDER: 'FS20 PC-Sender',
+    i18n_ec_HW_FS20_PLUG: 'FS20 Zwischenstecker',
+    i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_HW_IR_BULB: 'IR Glühbirne',
 
     //addmenu
     i18n_ec_text_addnew: 'Neue Komponente zu Umgebungssteuerung hinzufügen',

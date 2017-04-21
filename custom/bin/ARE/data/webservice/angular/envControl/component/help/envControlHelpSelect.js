@@ -10,6 +10,7 @@ angular.module(asterics.appComponents)
             thiz.deviceSelectionMap = {};
             thiz.neededHardware = [];
             thiz.alternativeHardare = {};
+            thiz.alternativeHardwareDevices = [];
 
             thiz.refreshNeededHardware = function () {
                 var _selectedDeviceList = _.map(thiz.deviceSelectionMap, function (value, key) {
@@ -17,6 +18,11 @@ angular.module(asterics.appComponents)
                 });
                 thiz.neededHardware = envControlHelpDataService.getNeededHardware(_.compact(_selectedDeviceList));
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(_.compact(_selectedDeviceList));
+                thiz.alternativeHardwareDevices = Object.keys(thiz.alternativeHardare);
+            };
+
+            thiz.getNeededHardware = function (device) {
+                return envControlHelpDataService.getNeededHardware([device]);
             };
 
             thiz.goToHelp = function (hardware) {

@@ -2,6 +2,10 @@
     font-size: 20px;
 }
 
+#astericsApp {
+    margin-bottom: 3em;
+}
+
 .hidden {
     display: none;
 }
@@ -68,6 +72,10 @@ img {
 
 .padding-top {
     padding-top: 2em;
+}
+
+.padding-top-little {
+    padding-top: 1em;
 }
 
 /* boxes */
