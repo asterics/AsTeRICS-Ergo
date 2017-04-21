@@ -1,6 +1,7 @@
 angular.module(asterics.appServices)
     .service('envControlHelpDataService', ['utilService', function (utilService) {
         var thiz = this;
+        var _deviceSelectionMap = {};
         var _deviceMappings = {};
         _deviceMappings[asterics.envControl.DEVICE_TABLELAMP] = {
             hardware: [
@@ -27,6 +28,14 @@ angular.module(asterics.appServices)
             hardware: [
                 [asterics.envControl.HW_IRTRANS_USB]
             ]
+        };
+
+        thiz.setDeviceSelectionMap = function (map) {
+            _deviceSelectionMap = map;
+        };
+
+        thiz.getDeviceSelectionMap = function () {
+            return _deviceSelectionMap;
         };
 
         thiz.getNeededHardware = function (devicesList) {

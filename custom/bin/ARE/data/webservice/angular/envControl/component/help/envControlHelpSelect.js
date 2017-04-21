@@ -19,6 +19,7 @@ angular.module(asterics.appComponents)
                 thiz.neededHardware = envControlHelpDataService.getNeededHardware(_.compact(_selectedDeviceList));
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(_.compact(_selectedDeviceList));
                 thiz.alternativeHardwareDevices = Object.keys(thiz.alternativeHardare);
+                envControlHelpDataService.setDeviceSelectionMap(thiz.deviceSelectionMap);
             };
 
             thiz.getNeededHardware = function (device) {
@@ -28,6 +29,12 @@ angular.module(asterics.appComponents)
             thiz.goToHelp = function (hardware) {
                 $state.go('home.envControl.help/controls/' + hardware, {backState: $state.current.name});
             };
+
+            init();
+            function init() {
+                thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
+                thiz.refreshNeededHardware();
+            }
         }],
         templateUrl: "angular/envControl/component/help/envControlHelpSelect.html"
     });
