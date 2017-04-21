@@ -7,12 +7,12 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.devices = asterics.envControl.DEVICES;
-            thiz.selectedDevices = {};
+            thiz.deviceSelectionMap = {};
             thiz.neededHardware = [];
             thiz.alternativeHardare = {};
 
             thiz.refreshNeededHardware = function () {
-                var _selectedDeviceList = _.map(thiz.selectedDevices, function (value, key) {
+                var _selectedDeviceList = _.map(thiz.deviceSelectionMap, function (value, key) {
                     return value ? key : undefined;
                 });
                 thiz.neededHardware = envControlHelpDataService.getNeededHardware(_.compact(_selectedDeviceList));

@@ -11,7 +11,7 @@
     <ul class="nodots">
         <li ng-repeat="device in $ctrl.devices">
             <label>
-                <input type="checkbox" ng-model="$ctrl.selectedDevices[device]" ng-click="$ctrl.refreshNeededHardware()"/> {{device}}
+                <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device]" ng-click="$ctrl.refreshNeededHardware()"/> {{device}}
             </label>
         </li>
     </ul>
