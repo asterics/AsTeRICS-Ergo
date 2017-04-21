@@ -29,11 +29,15 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<ec-help-install-fs20/>'
         })
         .state(asterics.envControl.STATE_HELP_FS20, {
-            url: '/help/controls/fs20/:backState/:backStateParams',
+            url: '/help/controls/HW_FS20_PCSENDER/:backState/:backStateParams',
+            template: '<env-control-help-fs/>'
+        })
+        .state(asterics.envControl.STATE_HELP_FS20_PLUG, {
+            url: '/help/controls/STATE_HELP_FS20_PLUG/:backState/:backStateParams',
             template: '<env-control-help-fs/>'
         })
         .state(asterics.envControl.STATE_HELP_IRTRANS, {
-            url: '/help/controls/irtrans/:backState/:backStateParams',
+            url: '/help/controls/HW_IRTRANS_USB/:backState/:backStateParams',
             template: '<env-control-help-irtrans/>'
         })
         .state(asterics.envControl.STATE_ADD, {

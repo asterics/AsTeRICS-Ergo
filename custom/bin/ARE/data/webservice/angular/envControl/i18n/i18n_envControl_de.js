@@ -82,7 +82,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_text_add_to_existing: 'Neue Komponente zu {{device}} hinzufügen',
 
     //add mass
-    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/irtrans/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a></b>) gelernt.',
+    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a></b>) gelernt.',
     i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für ein/einen {{device}} gelernt.',
     i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen. Halten Sie bitte die originale Fernbedienung des Geräts bereit und richten Sie sie beim Lernen in Richtung IrTrans.',
@@ -121,7 +121,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',
 
     //add fs20
-    i18n_ec_fs_infotext1: 'Steckdosen können mit "FS20" (<b><a href="#!/home/envcontrol/help/controls/fs20/{{backState}}/">mehr Infos zu FS20</a></b>) gesteuert werden.',
+    i18n_ec_fs_infotext1: 'Steckdosen können mit "FS20" (<b><a href="#!/home/envcontrol/help/controls/HW_FS20_PCSENDER/{{backState}}/">mehr Infos zu FS20</a></b>) gesteuert werden.',
     i18n_ec_fs_infotext2_fs20: 'Es wird nachfolgend eine neue Steuerung eines Geräts über Steckdose (EIN/AUS) eingerichtet.',
     i18n_ec_fs_infotext2_lamp: 'Es wird nachfolgend eine neue Steuerung einer über Steckdose steuerbaren Lampe (z.B. Tischlampe) eingerichtet.',
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
@@ -141,8 +141,8 @@ asterics.i18n_envControl_de = {
     'home.envControl.help': 'Hilfe',
     'home.envControl.help/controls': 'Steuerungsmöglichkeiten',
     'home.envControl.help/install': 'Installation',
-    'home.envControl.help/controls/ir': 'IrTrans',
-    'home.envControl.help/controls/fs': 'FS20',
+    'home.envControl.help/controls/HW_IRTRANS_USB': 'IrTrans',
+    'home.envControl.help/controls/HW_FS20_PCSENDER': 'FS20',
     'home.envControl.help/install/ir': 'IrTrans',
     'home.envControl.help/install/fs': 'FS20',
     'home.envControl.add': 'Neue Steuerung',
