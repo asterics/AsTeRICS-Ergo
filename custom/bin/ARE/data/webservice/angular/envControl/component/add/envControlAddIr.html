@@ -25,7 +25,7 @@
             </li>
         </ul>
         <ul ng-if="!$ctrl.isDeviceLearn || $ctrl.selectedDeviceName">
-            <li>Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in Richtung IrTrans gerichtet).
+            <li>Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in <b>Richtung IrTrans gerichtet</b>).
                 Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.
             </li>
             <li ng-repeat="item in $ctrl.learnItems track by $index">
@@ -35,7 +35,7 @@
                 <label for="inputLabel">{{'i18n_ec_ir_choosename' | translate}}</label>
                 <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
                 <div ng-if="$ctrl.selectedLabel">
-                    Drücken Sie jetzt "{{$ctrl.selectedLabel}}" einmal kurz auf der Fernbedienung! <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
+                    Drücken Sie jetzt "{{$ctrl.selectedLabel}}" <b>einmal kurz</b> auf der Fernbedienung! <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
                     <br/>
                 </div>
             </li>
