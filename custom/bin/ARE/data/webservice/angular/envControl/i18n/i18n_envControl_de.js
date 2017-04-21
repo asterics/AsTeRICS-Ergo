@@ -135,7 +135,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_fs_adapt_plug: 'Stecken Sie den FS20-Zwischenstecker in eine Steckdose.',
     i18n_ec_fs_plug_in_fs20: 'Stecken Sie das zu steuernde Gerät an den FS20-Zwischenstecker an.',
     i18n_ec_fs_plug_in_lamp: 'Stecken Sie die zu steuernde Lampe an den FS20-Zwischenstecker an.',
-    i18n_ec_fs_press_button: '<b>Halten Sie auf den grauen Knopf am FS20-Zwischenstecker gedrückt</b>, bis er rot zu blinken beginnt (ca. <b>5 Sekunden</b>).',
+    i18n_ec_fs_press_button: '<b>Halten Sie auf den grauen Knopf am FS20-Zwischenstecker gedrückt</b>, bis er rot zu blinken beginnt (ca. <b>10 Sekunden</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: '<b>Überprüfen Sie ob der graue Knopf rot blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
 

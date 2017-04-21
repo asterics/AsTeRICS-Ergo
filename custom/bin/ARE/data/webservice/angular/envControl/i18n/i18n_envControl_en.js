@@ -135,7 +135,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_fs_adapt_plug: 'Plug the FS20-adapter plug in a socket.',
     i18n_ec_fs_plug_in_fs20: 'Plug the device to control in the FS20-adapter plug.',
     i18n_ec_fs_plug_in_lamp: 'Plug the lamp to control in the FS20-adapter plug.',
-    i18n_ec_fs_press_button: '<b>Keep pressing the grey button on the FS20-adapter</b> plug until it is blinking red (about <b>5 seconds</b>).',
+    i18n_ec_fs_press_button: '<b>Keep pressing the grey button on the FS20-adapter</b> plug until it is blinking red (about <b>10 seconds</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button is blinking!',
     i18n_ec_fs_text_finish: '<b>Check if the grey button blinks red</b> and click on "Finish" to complete.',
 
