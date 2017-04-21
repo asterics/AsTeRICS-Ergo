@@ -1,0 +1,21 @@
+<div>
+    <div ng-if="!$ctrl.hideBack">
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+        <h2 translate="i18n_ec_help"/>
+    </div>
+    <h3>Auswahl Steuerungsmöglichkeiten</h3>
+    <p>Welche Geräte möchten Sie mit AsTeRICS steuern?</p>
+    <ul class="nodots">
+        <li ng-repeat="device in $ctrl.devices">
+            <label>
+                <input type="checkbox" ng-model="$ctrl.selectedDevices[device]" ng-click="$ctrl.refreshNeededHardware()"/> {{device}}
+            </label>
+        </li>
+    </ul>
+    <p>Dafür benötigen Sie folgende Hardware:</p>
+    <p>needed hardware: {{$ctrl.neededHardware}}</p>
+    <p>alternatives: {{$ctrl.alternativeHardare}}</p>
+</div>

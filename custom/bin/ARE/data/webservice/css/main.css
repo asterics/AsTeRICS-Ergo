@@ -6,6 +6,10 @@
     display: none;
 }
 
+ul.nodots {
+    list-style-type: none;
+}
+
 .fa-check {
     color: green;
 }
@@ -19,7 +23,7 @@ div .active {
     border-style: solid;
 }
 
-.last-list-item{
+.last-list-item {
     padding-top: 1em;
 }
 
