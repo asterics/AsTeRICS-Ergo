@@ -16,6 +16,14 @@
         </li>
     </ul>
     <p>Dafür benötigen Sie folgende Hardware:</p>
-    <p>needed hardware: {{$ctrl.neededHardware}}</p>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">
+            <a ui-sref="home.envControl.help/controls/fs20">
+                <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}" alt="FS20-Sender"/>
+                {{hardware}}
+            </a>
+        </div>
+    </div>
+
     <p>alternatives: {{$ctrl.alternativeHardare}}</p>
 </div>
