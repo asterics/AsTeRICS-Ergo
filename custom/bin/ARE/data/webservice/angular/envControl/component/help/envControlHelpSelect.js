@@ -5,7 +5,6 @@ angular.module(asterics.appComponents)
         },
         controller: ['utilService', '$state', 'envControlHelpDataService', function (utilService, $state, envControlHelpDataService) {
             var thiz = this;
-            thiz.currentState = $state.current.name;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.devices = asterics.envControl.DEVICES;
             thiz.selectedDevices = {};
@@ -18,6 +17,10 @@ angular.module(asterics.appComponents)
                 });
                 thiz.neededHardware = envControlHelpDataService.getNeededHardware(_.compact(_selectedDeviceList));
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(_.compact(_selectedDeviceList));
+            };
+
+            thiz.goToHelp = function (hardware) {
+                $state.go('home.envControl.help/controls/' + hardware, {backState: $state.current.name});
             };
         }],
         templateUrl: "angular/envControl/component/help/envControlHelpSelect.html"

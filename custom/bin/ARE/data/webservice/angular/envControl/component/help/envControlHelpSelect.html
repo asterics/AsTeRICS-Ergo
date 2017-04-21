@@ -18,9 +18,9 @@
     <p>Dafür benötigen Sie folgende Hardware:</p>
     <div class="row">
         <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">
-            <a ui-sref="{{'home.envControl.help/controls/' + hardware}}">
+            <a ng-click="$ctrl.goToHelp(hardware)">
                 <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}" alt="{{hardware | translate}}"/>
-                {{hardware | translate}}
+                <p>{{hardware | translate}}</p>
             </a>
         </div>
     </div>
