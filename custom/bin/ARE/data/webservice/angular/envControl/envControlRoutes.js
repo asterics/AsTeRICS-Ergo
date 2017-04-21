@@ -12,6 +12,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/help',
             template: '<env-control-help/>'
         })
+        .state(asterics.envControl.STATE_HELP_DEVICES, {
+            url: '/help/devices',
+            template: '<env-control-help-select/>'
+        })
         .state(asterics.envControl.STATE_HELP_CONTROLS, {
             url: '/help/controls',
             template: '<env-control-help-controls/>'

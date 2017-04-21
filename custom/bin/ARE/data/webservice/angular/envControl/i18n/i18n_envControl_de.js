@@ -23,7 +23,7 @@ asterics.i18n_envControl_de = {
     //help global
     i18n_ec_help_at: 'bei',
     i18n_ec_help_from_producer: 'vom Hersteller',
-    i18n_ec_help_introtext: 'Derzeit können mit der AsTeRICS Ergo Umgebungssteuerung folgende Steuerungen realisiert werden:',
+    i18n_ec_help_introtext: 'Derzeit können AsTeRICS Ergo Steuerungen über folgende Hardware realisiert werden:',
     i18n_ec_help_controlplug: 'Steuerung von Steckdosen',
     i18n_ec_help_controlplug_text: 'Mit dem "FS20"-System ist es möglich Steckdosen mit AsTeRICS zu steuern. Es können Geräte über die Steckdose ein- oder ausgeschalten werden (z.B. eine Tischlampe).',
     i18n_ec_help_replaceremote: 'Ersetzen von Fernbedienungen',

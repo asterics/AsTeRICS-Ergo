@@ -23,7 +23,7 @@ asterics.i18n_envControl_en = {
     //help global
     i18n_ec_help_at: 'at',
     i18n_ec_help_from_producer: 'from producer',
-    i18n_ec_help_introtext: 'Currently it is possible to realize the following environmental controls with AsTeRICS:',
+    i18n_ec_help_introtext: 'Currently it is possible to realize environmental controls with the following hardware:',
     i18n_ec_help_controlplug: 'Control of electric sockets',
     i18n_ec_help_controlplug_text: 'With the "FS20"-system it is possible to control electric sockets with AsTeRICS. It is possible to turn on/off devices via socket (e.g. a table lamp).',
     i18n_ec_help_replaceremote: 'Replace remote controls',
