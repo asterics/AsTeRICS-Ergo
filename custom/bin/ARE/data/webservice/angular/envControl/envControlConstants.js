@@ -32,6 +32,7 @@ asterics.envControl.STATE_HELP = 'home.envControl.help';
 asterics.envControl.STATE_HELP_DEVICES = 'home.envControl.help/devices';
 asterics.envControl.STATE_HELP_CONTROLS = 'home.envControl.help/controls';
 asterics.envControl.STATE_HELP_INSTALL = 'home.envControl.help/install';
+asterics.envControl.STATE_HELP_FAQ = 'home.envControl.help/faq';
 asterics.envControl.STATE_HELP_INSTALL_IR = 'home.envControl.help/install/ir';
 asterics.envControl.STATE_HELP_INSTALL_FS20 = 'home.envControl.help/install/fs20';
 asterics.envControl.STATE_HELP_FS20 = 'home.envControl.help/controls/HW_FS20_PCSENDER';

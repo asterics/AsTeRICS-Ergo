@@ -24,6 +24,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/help/install',
             template: '<env-control-help-install/>'
         })
+        .state(asterics.envControl.STATE_HELP_FAQ, {
+            url: '/help/faq',
+            template: '<env-control-help-faq/>'
+        })
         .state(asterics.envControl.STATE_HELP_INSTALL_IR, {
             url: '/help/install/irtrans',
             template: '<ec-help-install-irtrans/>'
