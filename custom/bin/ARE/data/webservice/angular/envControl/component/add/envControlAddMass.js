@@ -30,7 +30,9 @@ angular.module(asterics.appComponents)
             //if no item left or error on learning -> return
             thiz.trainCode = function () {
                 thiz.showError = false;
-                _currentLearnItem = getNextItemToLearn();
+                if (!_currentLearnItem || _currentLearnItem.code) {
+                    _currentLearnItem = getNextItemToLearn();
+                }
                 if (!_currentLearnItem) {
                     thiz.inLearn = false;
                     return;
@@ -53,7 +55,7 @@ angular.module(asterics.appComponents)
                 }
 
                 envControlIRService.irLearn().then(success, error);
-                if(!thiz.inLearn) {
+                if (!thiz.inLearn) {
                     scrollToEnd();
                 }
                 thiz.inLearn = true;
