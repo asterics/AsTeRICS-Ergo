@@ -36,6 +36,7 @@ asterics.envControl.STATE_HELP_INSTALL_FS20 = 'home.envControl.help/install/fs20
 asterics.envControl.STATE_HELP_FS20 = 'home.envControl.help/controls/HW_FS20_PCSENDER';
 asterics.envControl.STATE_HELP_FS20_PLUG = 'home.envControl.help/controls/HW_FS20_PLUG';
 asterics.envControl.STATE_HELP_IRTRANS = 'home.envControl.help/controls/HW_IRTRANS_USB';
+asterics.envControl.STATE_HELP_IRBULB = 'home.envControl.help/controls/HW_IR_BULB';
 asterics.envControl.STATE_ADD = 'home.envControl.add';
 asterics.envControl.STATE_ADDMORE = 'home.envControl.add/more';
 asterics.envControl.STATE_ADDSUB = 'home.envControl.addsub';

@@ -146,6 +146,7 @@ asterics.i18n_envControl_en = {
     'home.envControl.help/controls': 'Controls',
     'home.envControl.help/install': 'Install',
     'home.envControl.help/controls/HW_IRTRANS_USB': 'IrTrans',
+    'home.envControl.help/controls/HW_IR_BULB': 'IR-Bulb',
     'home.envControl.help/controls/HW_FS20_PCSENDER': 'FS20',
     'home.envControl.help/install/ir': 'IrTrans',
     'home.envControl.help/install/fs': 'FS20',

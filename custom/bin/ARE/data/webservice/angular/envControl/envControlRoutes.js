@@ -40,6 +40,10 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/help/controls/HW_IRTRANS_USB/:backState/:backStateParams',
             template: '<env-control-help-irtrans/>'
         })
+        .state(asterics.envControl.STATE_HELP_IRBULB, {
+            url: '/help/controls/HW_IR_BULB/:backState/:backStateParams',
+            template: '<env-control-help-irbulb/>'
+        })
         .state(asterics.envControl.STATE_ADD, {
             url: '/add',
             template: '<env-control-add/>'
