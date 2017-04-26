@@ -3,18 +3,37 @@
 </div>
 <div class="clearfix"/>
 <h2>{{'i18n_ec_fs_header' | translate}}</h2>
-<div class="info col-xs-12 col-md-8">
-    <i class="fa fa-info-circle fa-2x vcenter"/>
-    <span translate="i18n_ec_fs_infotext1" translate-values="{{$ctrl.backStateParam}}"/>
-    <span translate="{{'i18n_ec_fs_infotext2_' + $ctrl.stateLastPart}}"/>
-</div>
 <div class="clearfix"/>
 <p ng-if="$ctrl.isConnected == null">Es wird geprüft ob FS20 installiert ist...</p>
-<asterics-message ng-if="$ctrl.isConnected == false"
-                  message-code="FS20 scheint nicht installiert zu sein, eine Steuerung ist daher im Moment nicht möglich."
-                  message-level="warn">
-    <a ui-sref="home.envControl.help/install/HW_FS20_PCSENDER">Zur Installation von FS20</a>
-</asterics-message>
+<div ng-if="$ctrl.isConnected != null">
+    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
+        <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
+        <ul>
+            <li class="messageListItem" ng-repeat="hardware in $ctrl.neededHardware">
+                <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                    {{'i18n_ec_' + hardware | translate}}
+                </a>
+            </li>
+        </ul>
+    </asterics-message>
+</div>
+<div ng-if="$ctrl.isConnected == false">
+    <div class="col-lg-5">
+        <p>Haben Sie bereits einen <b>FS20 PC-Sender</b> und einen <b>FS20 Zwischenstecker</b> gekauft?</p>
+        <ul>
+            <li>
+                <a href="" ng-click="$ctrl.goToFs20Help()">
+                    <b>Nein</b>, zu Infos und Bestellmöglichkeiten
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="$ctrl.goToFs20Install()">
+                    <b>Ja</b>, zur Installation von IrTrans
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 <div ng-if="$ctrl.isConnected">
     <div class="col-lg-8">
         <ul>
@@ -36,10 +55,10 @@
             </li>
         </ul>
     </div>
-    <a href="#!/home/envcontrol/help/controls/HW_FS20_PCSENDER/{{$ctrl.backStateParam.backState}}/">
-        <div class="col-xs-4 col-md-3 col-lg-2">
-            <img src="angular/envControl/img/HW_FS20_PLUG.jpg" alt="{{'i18n_ec_HW_FS20_PLUG' | translate}}"/>
-            <div class=" text-center">{{'i18n_ec_HW_FS20_PLUG' | translate}}</div>
-        </div>
-    </a>
 </div>
+<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToFs20Help()">
+    <div class="col-xs-4 col-md-3 col-lg-2">
+        <img src="angular/envControl/img/HW_FS20_PLUG.jpg" alt="{{'i18n_ec_HW_FS20_PLUG' | translate}}"/>
+        <div class=" text-center">{{'i18n_ec_HW_FS20_PLUG' | translate}}</div>
+    </div>
+</a>

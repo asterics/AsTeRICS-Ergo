@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('envControlHelpFs', {
         bindings: {},
-        controller: ['utilService', '$stateParams', function (utilService, $stateParams) {
+        controller: ['utilService', '$stateParams', '$state', function (utilService, $stateParams, $state) {
             var thiz = this;
             var uriStateParams = decodeURI($stateParams.backStateParams);
             var backStateParams;
@@ -9,6 +9,13 @@ angular.module(asterics.appComponents)
                 backStateParams = angular.fromJson(uriStateParams);
             }
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack($stateParams.backState, backStateParams)];
+
+            thiz.goToInstall = function () {
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_FS20_PCSENDER, {
+                    backState: $state.current.name,
+                    backStateParams: uriStateParams
+                });
+            };
         }],
         templateUrl: "angular/envControl/component/help/controls/envControlHelpFs.html"
     });

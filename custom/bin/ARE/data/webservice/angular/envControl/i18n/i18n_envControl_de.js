@@ -123,9 +123,6 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',
 
     //add fs20
-    i18n_ec_fs_infotext1: 'Steckdosen können mit "FS20" (<b><a href="#!/home/envcontrol/help/controls/HW_FS20_PCSENDER/{{backState}}/">mehr Infos zu FS20</a></b>) gesteuert werden.',
-    i18n_ec_fs_infotext2_fs20: 'Es wird nachfolgend eine neue Steuerung eines Geräts über Steckdose (EIN/AUS) eingerichtet.',
-    i18n_ec_fs_infotext2_lamp: 'Es wird nachfolgend eine neue Steuerung einer über Steckdose steuerbaren Lampe (z.B. Tischlampe) eingerichtet.',
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
     i18n_ec_fs_choosename: 'Bitte Namen für das neue Gerät auswählen',
     i18n_ec_fs_device_on_fs20: '<b>Vorbereitung:</b></br>Schalten Sie das zu steuernde Gerät EIN.',

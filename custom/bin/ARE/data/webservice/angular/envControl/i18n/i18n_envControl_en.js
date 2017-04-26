@@ -123,9 +123,6 @@ asterics.i18n_envControl_en = {
     i18n_ec_ir_learnsuccess: 'Already {{numlearned}} IR-Code(s) successfully learned! Click on "Finish" to complete or add another command.',
 
     //add fs20
-    i18n_ec_fs_infotext1: 'Electric sockets can be controlled with "FS20" (<b><a href="#!/home/envcontrol/help/controls/HW_FS20_PCSENDER/{{backState}}/">more info about FS20</a></b>).',
-    i18n_ec_fs_infotext2_fs20: 'Subsequently a new control of a device (ON/OFF) via socket will be configured.',
-    i18n_ec_fs_infotext2_lamp: 'Subsequently a new control of a lamp with plug (e.g. table lamp) will be configured.',
     i18n_ec_fs_header: 'Control new device via plug',
     i18n_ec_fs_choosename: 'Please choose a name for the device',
     i18n_ec_fs_device_on_fs20: '<b>Preparation:</b></br>Turn the device to control ON.',
