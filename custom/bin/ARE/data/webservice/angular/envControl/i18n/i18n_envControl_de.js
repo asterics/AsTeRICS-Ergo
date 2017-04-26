@@ -86,9 +86,6 @@ asterics.i18n_envControl_de = {
     i18n_ec_text_add_to_existing: 'Neue Komponente zu {{device}} hinzufügen',
 
     //add mass
-    i18n_ec_irmass_infotext_1: 'Fernbedienungsbefehle werden mit dem "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{backState}}/{{backStateParams}}">mehr Infos zu IrTrans</a></b>) gelernt.',
-    i18n_ec_irmass_infotext_device: 'Es werden nachfolgend die wichtigsten Befehle für ein/einen {{device}} gelernt.',
-    i18n_ec_irmass_infotext_numbers: 'Es werden nachfolgend die Nummerntasten der Fernbedienung für "{{device}}" gelernt.',
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen.',
     i18n_ec_irmass_text_keeporiginal: 'Halten Sie bitte die <b>originale Fernbedienung</b> des Geräts bereit und richten Sie sie beim Lernen <b>in Richtung IrTrans</b>.',
     i18n_ec_irmass_text_starthint: '<b>Wichtige Info:</b> Achten Sie darauf, dass pro Knopfdruck auf der Fernbedienung nur jeweils <b>ein</b> Befehl gelernt wird!',

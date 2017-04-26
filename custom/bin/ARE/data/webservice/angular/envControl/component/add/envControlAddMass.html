@@ -3,17 +3,9 @@
 </div>
 <div class="clearfix"/>
 <h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
-<div class="info col-xs-12 col-md-8">
-    <i class="fa fa-info-circle fa-2x vcenter"/>
-    <span translate="i18n_ec_irmass_infotext_1" translate-values="{{$ctrl.stateI18nParams}}"/>
-    <span ng-if="!$ctrl.isNumberLearn" translate="i18n_ec_irmass_infotext_device" translate-values="{{$ctrl.typeI18nParams}}"/>
-    <span ng-if="$ctrl.isNumberLearn" translate="i18n_ec_irmass_infotext_numbers" translate-values="{{$ctrl.deviceI18nParams}}"/>
-</div>
 <div class="clearfix"/>
 <p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist...</p>
-<asterics-message ng-if="$ctrl.isConnected == false"
-                  message-code="IrTrans scheint nicht installiert zu sein, eine Steuerung ist daher im Moment nicht möglich."
-                  message-level="warn">
+<asterics-message ng-if="$ctrl.isConnected == false" message-level="warn" transclude="true">
     <a ui-sref="home.envControl.help/install/ir">Zur Installation von IrTrans</a>
 </asterics-message>
 <div ng-if="$ctrl.isConnected">

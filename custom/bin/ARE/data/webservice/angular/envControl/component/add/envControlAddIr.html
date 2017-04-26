@@ -3,12 +3,6 @@
 </div>
 <div class="clearfix"/>
 <h2 translate="{{$ctrl.headerTitle}}" translate-values="{{$ctrl.deviceNameParam}}"/>
-<div class="info col-xs-12 col-md-8">
-    <i class="fa fa-info-circle fa-2x vcenter"/>
-    <span translate="i18n_ec_irmass_infotext_1" translate-values="{{$ctrl.stateI18nParams}}"/>
-    <span ng-if="!$ctrl.deviceNameParam" translate="i18n_ec_ir_infotext"/>
-    <span ng-if="$ctrl.deviceNameParam" translate="i18n_ec_ir_infotext_device" translate-values="{{$ctrl.deviceNameParam}}"/>
-</div>
 <div class="clearfix"/>
 <p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist...</p>
 <asterics-message ng-if="$ctrl.isConnected == false"

@@ -16,7 +16,6 @@ angular.module(asterics.appComponents)
             thiz.inLearn = false;
             thiz.headerI18n = 'i18n_ec_irmass_header_' + _addType;
             thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
-            thiz.typeI18nParams = {device: $translate.instant('i18n_ec_' + _addType)};
             thiz.stateI18nParams = {
                 backState: $state.current.name,
                 backStateParams: encodeURI(angular.toJson($stateParams))

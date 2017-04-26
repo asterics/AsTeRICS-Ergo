@@ -86,9 +86,6 @@ asterics.i18n_envControl_en = {
     i18n_ec_text_add_to_existing: 'Add new component to {{device}}',
 
     //add mass
-    i18n_ec_irmass_infotext_1: 'Remote commands are learned with "IrTrans" (<b><a href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{backState}}/{{backStateParams}}">more info about IrTrans</a></b>).',
-    i18n_ec_irmass_infotext_device: 'Subsequently the most important commands for a {{device}} will be learned.',
-    i18n_ec_irmass_infotext_numbers: 'Subsequently the number keys of the remote for "{{device}}" will be learned.',
     i18n_ec_irmass_text_startlearn: 'Click "Start learning" to learn the commands.',
     i18n_ec_irmass_text_keeporiginal: 'Please keep ready the <b>original remote control</b> of your device and <b>point it to IrTrans</b> during learning.',
     i18n_ec_irmass_text_starthint: '<b>Important:</b> Always ensure that only <b>one</b> command is learned when pressing one button of the remote control!',
