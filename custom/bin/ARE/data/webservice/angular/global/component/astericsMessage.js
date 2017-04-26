@@ -1,12 +1,12 @@
 angular.module(asterics.appComponents)
     .component('astericsMessage', {
-
         bindings: {
             group: "@",
             messageCode: "@",
             messageArgs: "<",
             messageOptions: "<",
-            messageLevel: "@"
+            messageLevel: "@",
+            transclude: "@"
         },
         transclude: true,
         controller: ['messageService', function (messageService) {
@@ -28,20 +28,20 @@ angular.module(asterics.appComponents)
             };
 
             thiz.getMessages = function () {
-                if(thiz.messageCode) {
-                    if(!thiz.message) {
+                if (thiz.messageCode) {
+                    if (!thiz.message) {
                         thiz.message = messageService.generateMessage(thiz.messageCode, thiz.messageArgs, thiz.messageOptions);
                     }
                     return [thiz.message];
-                } else if(thiz.group) {
+                } else if (thiz.group) {
                     return messageService.getMessageGroup(thiz.group).messages;
                 }
             };
 
             thiz.getMessageLevel = function () {
-                if(thiz.messageLevel) {
+                if (thiz.messageLevel) {
                     return thiz.messageLevel;
-                } else if(thiz.group) {
+                } else if (thiz.group) {
                     return messageService.getMessageGroup(thiz.group).level;
                 }
                 return asterics.const.MSG_INFO;

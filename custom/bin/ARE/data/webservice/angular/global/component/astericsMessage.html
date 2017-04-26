@@ -1,4 +1,4 @@
-<div ng-if="$ctrl.hasMessages()">
+<div ng-if="$ctrl.hasMessages() || $ctrl.transclude">
     <div class="{{$ctrl.getMessageLevel()}} col-xs-12 col-md-8">
         <i class="fa {{$ctrl.getFaClass()}} fa-2x vcenter"/>
         <div ng-repeat="message in $ctrl.getMessages() track by $index">
