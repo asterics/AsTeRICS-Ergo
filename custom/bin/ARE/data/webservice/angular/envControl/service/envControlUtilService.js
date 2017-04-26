@@ -30,14 +30,14 @@ angular.module(asterics.appServices)
 
         thiz.getIrElements = function (substateName) {
             switch (substateName) {
-                case asterics.envControl.SUBSTATE_ADD_AMB_LIGHT:
+                case asterics.envControl.DEVICE_AMB_LAMP:
                     return [
                         createIrElement('i18n_ec_on', 'sun-o'),
                         createIrElement('i18n_ec_off', 'moon-o'),
                         createIrElement('i18n_ec_dim_down', 'angle-double-down'),
                         createIrElement('i18n_ec_dim_up', 'angle-double-up')
                     ];
-                case asterics.envControl.SUBSTATE_ADD_TV:
+                case asterics.envControl.DEVICE_TV:
                     return [
                         createIrElement('i18n_ec_onoff', 'power-off'),
                         createIrElement('i18n_ec_canalplus', 'arrow-up'),
@@ -45,7 +45,7 @@ angular.module(asterics.appServices)
                         createIrElement('i18n_ec_volplus', 'volume-up'),
                         createIrElement('i18n_ec_volminus', 'volume-down')
                     ];
-                case asterics.envControl.SUBSTATE_ADD_HIFI:
+                case asterics.envControl.DEVICE_HIFI:
                     return [
                         createIrElement('i18n_ec_onoff', 'power-off'),
                         createIrElement('i18n_ec_play', 'play'),
@@ -56,7 +56,7 @@ angular.module(asterics.appServices)
                         createIrElement('i18n_ec_volplus', 'volume-up'),
                         createIrElement('i18n_ec_volminus', 'volume-down')
                     ];
-                case asterics.envControl.SUBSTATE_ADD_DVD:
+                case asterics.envControl.DEVICE_DVD:
                     return [
                         createIrElement('i18n_ec_onoff', 'power-off'),
                         createIrElement('i18n_ec_play', 'play'),
