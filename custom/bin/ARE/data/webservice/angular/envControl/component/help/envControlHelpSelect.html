@@ -10,17 +10,32 @@
     <p>Welche Geräte möchten Sie mit AsTeRICS-Ergo steuern?</p>
     <ul class="nodots">
         <li ng-repeat="device in $ctrl.devices">
-            <label>
-                <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device]" ng-change="$ctrl.refreshNeededHardware()"/> {{'i18n_ec_' + device | translate}}
-            </label>
+            <div class="row">
+                <label class="col-xs-12 col-sm-4 col-md-3">
+                    <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device].chosen"
+                           ng-change="$ctrl.refreshNeededHardware(device)"/> {{'i18n_ec_' + device | translate}}
+                </label>
+                <div class="col-xs-3 col-sm-3 col-md-2">
+                    <div class="row">
+                        <label class="col-xs-7" for="inputNumber" class="">Anzahl:</label>
+                        <input class="col-xs-5" id="inputNumber" type="number" min="1" max="99"
+                               ng-model="$ctrl.deviceSelectionMap[device].amount"
+                               ng-disabled="!$ctrl.deviceSelectionMap[device].chosen"
+                               ng-blur="$ctrl.onAmountBlur(device)"
+                               ng-change="$ctrl.refreshNeededHardware()"/>
+                    </div>
+                </div>
+            </div>
         </li>
     </ul>
     <div ng-if="$ctrl.neededHardware.length > 0">
         <p>Dafür benötigen Sie folgende Hardware:</p>
         <div class="row">
             <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">
+                <span>{{$ctrl.neededHardwareAmounts[hardware]}}x</span>
                 <a href="" ng-click="$ctrl.goToHelp(hardware)">
-                    <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}" alt="{{ 'i18n_ec_' + hardware | translate}}"/>
+                    <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
+                         alt="{{ 'i18n_ec_' + hardware | translate}}"/>
                     <p>{{ 'i18n_ec_' + hardware | translate}}</p>
                 </a>
             </div>

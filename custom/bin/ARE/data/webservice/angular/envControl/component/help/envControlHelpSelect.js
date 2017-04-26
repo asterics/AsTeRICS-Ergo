@@ -9,17 +9,30 @@ angular.module(asterics.appComponents)
             thiz.devices = asterics.envControl.DEVICES;
             thiz.deviceSelectionMap = {};
             thiz.neededHardware = [];
+            thiz.neededHardwareAmounts = {};
             thiz.alternativeHardare = {};
             thiz.alternativeHardwareDevices = [];
 
-            thiz.refreshNeededHardware = function () {
-                var _selectedDeviceList = _.map(thiz.deviceSelectionMap, function (value, key) {
-                    return value ? key : undefined;
-                });
-                thiz.neededHardware = envControlHelpDataService.getNeededHardware(_.compact(_selectedDeviceList));
-                thiz.alternativeHardare = envControlHelpDataService.getAlternatives(_.compact(_selectedDeviceList));
+            thiz.refreshNeededHardware = function (deviceChanged) {
+                if (deviceChanged && thiz.deviceSelectionMap[deviceChanged]) {
+                    if (thiz.deviceSelectionMap[deviceChanged].chosen) {
+                        thiz.deviceSelectionMap[deviceChanged].amount = 1;
+                    } else {
+                        thiz.deviceSelectionMap[deviceChanged].amount = undefined;
+                    }
+                }
+                thiz.neededHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap);
+                thiz.neededHardware = Object.keys(thiz.neededHardwareAmounts);
+                thiz.alternativeHardare = envControlHelpDataService.getAlternatives(thiz.deviceSelectionMap);
                 thiz.alternativeHardwareDevices = Object.keys(thiz.alternativeHardare);
                 envControlHelpDataService.setDeviceSelectionMap(thiz.deviceSelectionMap);
+            };
+
+            thiz.onAmountBlur = function (deviceChanged) {
+                if (thiz.deviceSelectionMap[deviceChanged] && !thiz.deviceSelectionMap[deviceChanged].amount) {
+                    thiz.deviceSelectionMap[deviceChanged].amount = 1;
+                    thiz.refreshNeededHardware();
+                }
             };
 
             thiz.getNeededHardware = function (device) {

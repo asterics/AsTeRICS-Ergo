@@ -3,6 +3,7 @@ angular.module(asterics.appServices)
         var thiz = this;
         var _deviceSelectionMap = {};
         var _deviceMappings = {};
+        var _hardwareAmount = {};
         _deviceMappings[asterics.envControl.DEVICE_TABLELAMP] = {
             hardware: [
                 [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG],
@@ -29,6 +30,10 @@ angular.module(asterics.appServices)
                 [asterics.envControl.HW_IRTRANS_USB]
             ]
         };
+        _hardwareAmount[asterics.envControl.HW_FS20_PCSENDER] = 1;
+        _hardwareAmount[asterics.envControl.HW_FS20_PLUG] = undefined;
+        _hardwareAmount[asterics.envControl.HW_IRTRANS_USB] = 1;
+        _hardwareAmount[asterics.envControl.HW_IR_BULB] = undefined;
 
         thiz.setDeviceSelectionMap = function (map) {
             _deviceSelectionMap = map;
@@ -38,15 +43,25 @@ angular.module(asterics.appServices)
             return _deviceSelectionMap;
         };
 
-        thiz.getNeededHardware = function (devicesList) {
+        thiz.getNeededHardwareAmounts = function (deviceSelectionMap) {
+            var devicesList = getSelectedDevicesList(deviceSelectionMap);
             var neededHardware = [];
+            var amounts = {};
             angular.forEach(devicesList, function (device) {
-                neededHardware = neededHardware.concat(_deviceMappings[device].hardware[0]);
+                var neededForDevice = _deviceMappings[device].hardware[0];
+                angular.forEach(neededForDevice, function (hardware) {
+                    if (_hardwareAmount[hardware] == 1) {
+                        amounts[hardware] = 1;
+                    } else {
+                        amounts[hardware] = (amounts[hardware] || 0) + deviceSelectionMap[device].amount;
+                    }
+                });
             });
-            return _.uniq(neededHardware);
+            return amounts;
         };
 
-        thiz.getAlternatives = function (devicesList) {
+        thiz.getAlternatives = function (deviceSelectionMap) {
+            var devicesList = getSelectedDevicesList(deviceSelectionMap);
             var alternatives = {};
             angular.forEach(devicesList, function (device) {
                 if (_deviceMappings[device].hardware.length > 1) {
@@ -55,4 +70,11 @@ angular.module(asterics.appServices)
             });
             return alternatives;
         };
+
+        function getSelectedDevicesList(map) {
+            var _selectedDeviceList = _.map(map, function (value, key) {
+                return (value && value.chosen) ? key : undefined;
+            });
+            return _.compact(_selectedDeviceList);
+        }
     }]);
