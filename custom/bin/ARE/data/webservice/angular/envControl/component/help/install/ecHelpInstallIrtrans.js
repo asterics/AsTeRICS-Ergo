@@ -1,14 +1,19 @@
 angular.module(asterics.appComponents)
     .component('ecHelpInstallIrtrans', {
         bindings: {},
-        controller: ['utilService', 'envControlIRService', '$scope', '$timeout', '$anchorScroll', function (utilService, envControlIRService, $scope, $timeout, $anchorScroll) {
+        controller: ['utilService', 'envControlIRService', '$scope', '$timeout', '$anchorScroll', '$stateParams', function (utilService, envControlIRService, $scope, $timeout, $anchorScroll, $stateParams) {
             var thiz = this;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.show = false;
             thiz.showAssistant = false;
             thiz.triedCheck = false;
-            thiz.checkResult = false
+            thiz.checkResult = false;
             thiz.isConnected;
+            var uriStateParams = decodeURI($stateParams.backStateParams);
+            var backStateParams;
+            if (uriStateParams) {
+                backStateParams = angular.fromJson(uriStateParams);
+            }
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack($stateParams.backState, backStateParams)];
 
             thiz.test = function () {
                 thiz.triedCheck = true;
@@ -21,11 +26,11 @@ angular.module(asterics.appComponents)
                 });
             };
 
-            thiz.isWin7OrOther = function() {
+            thiz.isWin7OrOther = function () {
                 return asterics.const.OS_IS_WIN7 || asterics.const.OS_IS_OTHER;
             };
 
-            thiz.isWin10 = function() {
+            thiz.isWin10 = function () {
                 return asterics.const.OS_IS_WIN10;
             };
 

@@ -29,11 +29,11 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<env-control-help-faq/>'
         })
         .state(asterics.envControl.STATE_HELP_INSTALL_IR, {
-            url: '/help/install/irtrans',
+            url: '/help/install/irtrans/:backState/:backStateParams',
             template: '<ec-help-install-irtrans/>'
         })
         .state(asterics.envControl.STATE_HELP_INSTALL_FS20, {
-            url: '/help/install/fs20',
+            url: '/help/install/fs20/:backState/:backStateParams',
             template: '<ec-help-install-fs20/>'
         })
         .state(asterics.envControl.STATE_HELP_FS20, {
