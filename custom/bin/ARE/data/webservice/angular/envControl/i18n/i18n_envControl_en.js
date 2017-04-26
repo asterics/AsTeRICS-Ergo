@@ -32,7 +32,7 @@ asterics.i18n_envControl_en = {
 
     //help irtrans
     i18n_ec_text_help_irtrans: '<b>IrTrans</b> is a device, which can <b>learn and send</b> commands from <b>remote-controls</b> (infrared). Thus it is possible to <b>replace remote controls</b> of devices like e.g. a TV with AsTeRICS.',
-    i18n_ec_help_irtrans_supported_device: '<b>Please note:</b> Currently AsTeRICS-Ergo only supports the <b>"IrTrans USB"</b> version. Please keep in mind to order this version of the device.',
+    i18n_ec_help_irtranshint_supported_device: 'Currently AsTeRICS-Ergo only supports the <b>"IrTrans USB"</b> version. Please keep in mind to order this version of the device.',
     i18n_ec_help_irtrans_text_tolink: 'Click on one of the following <b>links</b> to navigate to <b>vendors of IrTrans</b>:',
 
     //help fs20
