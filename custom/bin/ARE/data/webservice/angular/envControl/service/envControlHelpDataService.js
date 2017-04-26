@@ -60,6 +60,10 @@ angular.module(asterics.appServices)
             return amounts;
         };
 
+        thiz.getNeededHardware = function (device) {
+            return _deviceMappings[device].hardware[0];
+        };
+
         thiz.getAlternatives = function (deviceSelectionMap) {
             var devicesList = getSelectedDevicesList(deviceSelectionMap);
             var alternatives = {};

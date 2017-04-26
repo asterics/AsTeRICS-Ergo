@@ -6,24 +6,24 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService) {
             var thiz = this;
             var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
-            var _addType = stateUtilService.getLastPart($state.current.name);
+            var _addDevice = stateUtilService.getLastPart($state.current.name);
 
             thiz.cellBoardConfig = [generateBackItem()];
             thiz.inLearn = false;
-            thiz.headerI18n = 'i18n_ec_irmass_header_' + _addType;
+            thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
             thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
             thiz.stateI18nParams = {
                 backState: $state.current.name,
                 backStateParams: encodeURI(angular.toJson($stateParams))
             };
-            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addType;
-            thiz.isNumberLearn = _addType == 'numbers';
+            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
+            thiz.isNumberLearn = _addDevice == 'numbers';
             thiz.isConnected = null;
-
+            thiz.neededHardware = envControlHelpDataService.getNeededHardware(_addDevice);
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
@@ -119,6 +119,18 @@ angular.module(asterics.appComponents)
                     return true;
                 }
                 return false;
+            };
+
+            thiz.goToHelp = function (hardware) {
+                $state.go('home.envControl.help/controls/' + hardware, {backState: $state.current.name});
+            };
+
+            thiz.goToIrTransHelp = function () {
+                thiz.goToHelp(asterics.envControl.HW_IRTRANS_USB);
+            };
+
+            thiz.goToIrTransInstall = function () {
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB, {backState: $state.current.name});
             };
 
             init();

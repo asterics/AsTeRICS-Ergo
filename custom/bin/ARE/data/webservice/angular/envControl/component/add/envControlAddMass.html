@@ -5,9 +5,33 @@
 <h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
 <div class="clearfix"/>
 <p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist...</p>
-<asterics-message ng-if="$ctrl.isConnected == false" message-level="warn" transclude="true">
-    <a ui-sref="home.envControl.help/install/ir">Zur Installation von IrTrans</a>
-</asterics-message>
+<div ng-if="$ctrl.isConnected == false">
+    <asterics-message  message-level="warn" transclude="true">
+        <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
+        <ul>
+            <li class="messageListItem" ng-repeat="hardware in $ctrl.neededHardware">
+                <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                    {{'i18n_ec_' + hardware | translate}}
+                </a>
+            </li>
+        </ul>
+    </asterics-message>
+    <div class="col-lg-5">
+        <p>Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?</p>
+        <ul>
+            <li>
+                <a href="" ng-click="$ctrl.goToIrTransHelp()">
+                    <b>Nein</b>, zu Infos und Bestellmöglichkeiten
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="$ctrl.goToIrTransInstall()">
+                    <b>Ja</b>, zur Installation von IrTrans
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 <div ng-if="$ctrl.isConnected">
     <div class="col-lg-8">
         <ul>
@@ -58,10 +82,10 @@
         <i class="fa fa-exclamation-triangle fa-2x vcenter"/>
         <span translate="i18n_ec_irtrans_error"/>
     </div>
-    <a href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{$ctrl.stateI18nParams.backState}}/{{$ctrl.stateI18nParams.backStateParams}}">
-        <div class="col-xs-4 col-md-3 col-lg-2">
-            <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
-            <div class=" text-center">IrTrans-USB</div>
-        </div>
-    </a>
 </div>
+<a ng-if="$ctrl.isConnected != null" href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{$ctrl.stateI18nParams.backState}}/{{$ctrl.stateI18nParams.backStateParams}}">
+    <div class="col-xs-4 col-md-3 col-lg-2">
+        <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
+        <div class=" text-center">IrTrans-USB</div>
+    </div>
+</a>
