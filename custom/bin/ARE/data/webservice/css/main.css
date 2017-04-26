@@ -64,6 +64,10 @@ ul li {
     margin-bottom: 0.5em;
 }
 
+.messageListItem {
+    margin-bottom: 0;
+}
+
 .img-row {
     padding-bottom: 15px;
     max-height: 100px;
