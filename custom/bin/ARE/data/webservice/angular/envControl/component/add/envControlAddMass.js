@@ -122,7 +122,10 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware, {backState: $state.current.name});
+                $state.go('home.envControl.help/controls/' + hardware, {
+                    backState: $state.current.name,
+                    backStateParams: thiz.stateI18nParams.backStateParams
+                });
             };
 
             thiz.goToIrTransHelp = function () {
@@ -130,7 +133,10 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToIrTransInstall = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB, {backState: $state.current.name});
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB, {
+                    backState: $state.current.name,
+                    backStateParams: thiz.stateI18nParams.backStateParams
+                });
             };
 
             init();

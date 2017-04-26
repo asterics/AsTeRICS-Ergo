@@ -85,7 +85,7 @@
         <span translate="i18n_ec_irtrans_error"/>
     </div>
 </div>
-<a ng-if="$ctrl.isConnected != null" href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{$ctrl.stateI18nParams.backState}}/{{$ctrl.stateI18nParams.backStateParams}}">
+<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToIrTransHelp()">
     <div class="col-xs-4 col-md-3 col-lg-2">
         <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
         <div class=" text-center">IrTrans-USB</div>

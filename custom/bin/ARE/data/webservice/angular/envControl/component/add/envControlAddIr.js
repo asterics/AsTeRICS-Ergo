@@ -15,7 +15,8 @@ angular.module(asterics.appComponents)
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
             thiz.isConnected = null;
-
+            thiz.backStateParams = encodeURI(angular.toJson($stateParams));
+            thiz.backState = $state.current.name;
 
             thiz.addCellBoardItemAndReturn = function () {
                 var cbToAddButtons = thiz.cbToAdd;
@@ -49,6 +50,20 @@ angular.module(asterics.appComponents)
                     if (isConnected) {
                         startTrainCodes();
                     }
+                });
+            };
+
+            thiz.goToIrTransHelp = function () {
+                $state.go('home.envControl.help/controls/' + asterics.envControl.HW_IRTRANS_USB, {
+                    backState: $state.current.name,
+                    backStateParams: thiz.backStateParams
+                });
+            };
+
+            thiz.goToIrTransInstall = function () {
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB, {
+                    backState: $state.current.name,
+                    backStateParams: thiz.backStateParams
                 });
             };
 

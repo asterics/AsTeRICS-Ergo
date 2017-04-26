@@ -5,11 +5,35 @@
 <h2 translate="{{$ctrl.headerTitle}}" translate-values="{{$ctrl.deviceNameParam}}"/>
 <div class="clearfix"/>
 <p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist...</p>
-<asterics-message ng-if="$ctrl.isConnected == false"
-                  message-code="IrTrans scheint nicht installiert zu sein, eine Steuerung ist daher im Moment nicht möglich."
-                  message-level="warn">
-    <a ui-sref="home.envControl.help/install/HW_IRTRANS_USB">Zur Installation von IrTrans</a>
-</asterics-message>
+<div ng-if="$ctrl.isConnected != null">
+    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
+        <span>Zum Lernen von Fernbedienungs-Befehlen benötigen Sie folgende Hardware:</span>
+        <ul>
+            <li class="messageListItem">
+                <a href="" ng-click="$ctrl.goToIrTransHelp()">
+                    {{'i18n_ec_HW_IRTRANS_USB' | translate}}
+                </a>
+            </li>
+        </ul>
+    </asterics-message>
+</div>
+<div ng-if="$ctrl.isConnected == false">
+    <div class="col-lg-5">
+        <p>Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?</p>
+        <ul>
+            <li>
+                <a href="" ng-click="$ctrl.goToIrTransHelp()">
+                    <b>Nein</b>, zu Infos und Bestellmöglichkeiten
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="$ctrl.goToIrTransInstall()">
+                    <b>Ja</b>, zur Installation von IrTrans
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 <div ng-if="$ctrl.isConnected">
     <div class="col-lg-8">
         <ul ng-if="$ctrl.isDeviceLearn">
@@ -39,10 +63,10 @@
             <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
         </div>
     </div>
-    <a href="#!/home/envcontrol/help/controls/HW_IRTRANS_USB/{{$ctrl.stateI18nParams.backState}}/{{$ctrl.stateI18nParams.backStateParams}}">
-        <div class="col-xs-4 col-md-3 col-lg-2">
-            <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
-            <div class=" text-center">IrTrans-USB</div>
-        </div>
-    </a>
 </div>
+<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToIrTransHelp()">
+    <div class="col-xs-4 col-md-3 col-lg-2">
+        <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
+        <div class=" text-center">IrTrans-USB</div>
+    </div>
+</a>
