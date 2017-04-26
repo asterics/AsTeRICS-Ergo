@@ -61,7 +61,10 @@ angular.module(asterics.appServices)
         };
 
         thiz.getNeededHardware = function (device) {
-            return _deviceMappings[device].hardware[0];
+            if(device && _deviceMappings[device]) {
+                return _deviceMappings[device].hardware[0];
+            }
+            return null;
         };
 
         thiz.getAlternatives = function (deviceSelectionMap) {

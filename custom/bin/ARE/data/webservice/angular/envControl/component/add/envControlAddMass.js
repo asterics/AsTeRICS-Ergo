@@ -23,7 +23,7 @@ angular.module(asterics.appComponents)
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
             thiz.isNumberLearn = _addDevice == 'numbers';
             thiz.isConnected = null;
-            thiz.neededHardware = envControlHelpDataService.getNeededHardware(_addDevice);
+            thiz.neededHardware = envControlHelpDataService.getNeededHardware(_addDevice) || [asterics.envControl.HW_IRTRANS_USB];
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
