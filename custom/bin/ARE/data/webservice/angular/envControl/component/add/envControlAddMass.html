@@ -5,8 +5,8 @@
 <h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
 <div class="clearfix"/>
 <p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist...</p>
-<div ng-if="$ctrl.isConnected == false">
-    <asterics-message  message-level="warn" transclude="true">
+<div ng-if="$ctrl.isConnected != null">
+    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
         <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
         <ul>
             <li class="messageListItem" ng-repeat="hardware in $ctrl.neededHardware">
@@ -16,6 +16,8 @@
             </li>
         </ul>
     </asterics-message>
+</div>
+<div ng-if="$ctrl.isConnected == false">
     <div class="col-lg-5">
         <p>Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?</p>
         <ul>
