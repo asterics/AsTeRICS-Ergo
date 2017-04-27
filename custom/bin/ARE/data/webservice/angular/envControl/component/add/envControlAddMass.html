@@ -54,7 +54,7 @@
             </li>
             <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
                 <span translate="i18n_ec_irmass_pressbutton"/><span> '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/>  </span>
-                <span ng-if="!element.code && !element.skipped" class="saving"><span>.</span><span>.</span><span>.</span></span>
+                <span ng-if="!element.code && !element.skipped && !$ctrl.waiting" class="saving"><span>.</span><span>.</span><span>.</span></span>
                 <span ng-if="element.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
                 <span ng-if="element.skipped"><i class="fa fa-ban"/> {{'i18n_ec_irmass_skipped' | translate}}</span>
                 <div class="clearfix"/>

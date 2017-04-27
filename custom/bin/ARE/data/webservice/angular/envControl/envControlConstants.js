@@ -26,6 +26,11 @@ asterics.envControl.DEVICES = [
     asterics.envControl.DEVICE_DVD,
     asterics.envControl.DEVICE_HIFI
 ];
+asterics.envControl.DEVICES_WITH_NUMBERS = [
+    asterics.envControl.DEVICE_TV,
+    asterics.envControl.DEVICE_DVD,
+    asterics.envControl.DEVICE_HIFI
+];
 
 asterics.envControl.STATE_MAIN = 'home.envControl';
 asterics.envControl.STATE_HELP = 'home.envControl.help';

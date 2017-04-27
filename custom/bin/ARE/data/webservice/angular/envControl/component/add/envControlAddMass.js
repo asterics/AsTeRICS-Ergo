@@ -29,6 +29,7 @@ angular.module(asterics.appComponents)
             //if no item left or error on learning -> return
             thiz.trainCode = function () {
                 thiz.showError = false;
+                thiz.waiting = false;
                 if (!_currentLearnItem || _currentLearnItem.code) {
                     _currentLearnItem = getNextItemToLearn();
                 }
@@ -40,6 +41,7 @@ angular.module(asterics.appComponents)
                 function success(response) {
                     _currentLearnItem.code = response;
                     scrollToEnd();
+                    thiz.waiting = true;
                     $timeout(thiz.trainCode, 750);
                 }
 
@@ -88,7 +90,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.addCellBoardItemsAndReturn = function () {
-                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd);
+                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, _addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
