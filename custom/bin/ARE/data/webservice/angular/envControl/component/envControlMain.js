@@ -65,7 +65,7 @@ angular.module(asterics.appComponents)
                 });
             }
 
-            //TODO beautify
+            //TODO beautify --> split this file, one for main menu, one for sub-menu?!
             function generateDynamicItems() {
                 var items = [];
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
