@@ -4,7 +4,7 @@
 <div class="clearfix"/>
 <h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist...</p>
+<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
 <div ng-if="$ctrl.isConnected != null">
     <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
         <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>

@@ -4,7 +4,7 @@
 <div class="clearfix"/>
 <h2>{{'i18n_ec_fs_header' | translate}}</h2>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob FS20 installiert ist...</p>
+<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob FS20 installiert ist <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
 <div ng-if="$ctrl.isConnected != null">
     <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
         <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
