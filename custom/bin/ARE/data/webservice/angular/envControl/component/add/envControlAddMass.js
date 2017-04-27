@@ -40,7 +40,7 @@ angular.module(asterics.appComponents)
                 function success(response) {
                     _currentLearnItem.code = response;
                     scrollToEnd();
-                    thiz.trainCode();
+                    $timeout(thiz.trainCode, 750);
                 }
 
                 function error(response) {
