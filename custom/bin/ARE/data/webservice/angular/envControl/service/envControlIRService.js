@@ -10,9 +10,7 @@ angular.module(asterics.appServices)
         thiz.canceler = $q.defer();
 
         thiz.irSend = function (cmd) {
-            awaitLastLearnTimeout().then(function () {
-                return irAction('sndhex H' + cmd);
-            });
+            return irAction('sndhex H' + cmd);
         };
 
         thiz.irLearn = function () {
@@ -33,16 +31,14 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            awaitLastLearnTimeout().then(function () {
-                irAction('snd irtrans,ok').then(function (response) {
-                    if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
-                        def.resolve(false);
-                    } else {
-                        def.resolve(true);
-                    }
-                }, function error(response) {
+            irAction('snd irtrans,ok').then(function (response) {
+                if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
                     def.resolve(false);
-                });
+                } else {
+                    def.resolve(true);
+                }
+            }, function error(response) {
+                def.resolve(false);
             });
             return def.promise;
         };
@@ -80,26 +76,6 @@ angular.module(asterics.appServices)
                     def.reject();
                 });
             });
-            return def.promise;
-        };
-
-        function awaitLastLearnTimeout() {
-            var def = $q.defer();
-            var currentTime = new Date().getTime();
-            if (!_lastLearnStartTime) {
-                def.resolve();
-            } else {
-                var diff = currentTime - _lastLearnStartTime;
-                if (diff < _learnWaitMillis) {
-                    var waitTime = _learnWaitMillis - diff + 500;
-                    console.log("waiting " + waitTime + "ms for finishing last learn-command");
-                    $timeout(function () {
-                        def.resolve();
-                    }, waitTime);
-                } else {
-                    def.resolve();
-                }
-            }
             return def.promise;
         };
     }]);
