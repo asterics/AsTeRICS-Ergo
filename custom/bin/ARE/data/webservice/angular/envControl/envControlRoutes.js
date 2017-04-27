@@ -29,27 +29,27 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<env-control-help-faq/>'
         })
         .state(asterics.envControl.STATE_HELP_INSTALL_IR, {
-            url: '/help/install/irtrans/:backState/:backStateParams',
+            url: '/help/install/irtrans',
             template: '<ec-help-install-irtrans/>'
         })
         .state(asterics.envControl.STATE_HELP_INSTALL_FS20, {
-            url: '/help/install/fs20/:backState/:backStateParams',
+            url: '/help/install/fs20',
             template: '<ec-help-install-fs20/>'
         })
         .state(asterics.envControl.STATE_HELP_FS20, {
-            url: '/help/controls/HW_FS20_PCSENDER/:backState/:backStateParams',
+            url: '/help/controls/HW_FS20_PCSENDER',
             template: '<env-control-help-fs/>'
         })
         .state(asterics.envControl.STATE_HELP_FS20_PLUG, {
-            url: '/help/controls/STATE_HELP_FS20_PLUG/:backState/:backStateParams',
+            url: '/help/controls/STATE_HELP_FS20_PLUG',
             template: '<env-control-help-fs/>'
         })
         .state(asterics.envControl.STATE_HELP_IRTRANS, {
-            url: '/help/controls/HW_IRTRANS_USB/:backState/:backStateParams',
+            url: '/help/controls/HW_IRTRANS_USB',
             template: '<env-control-help-irtrans/>'
         })
         .state(asterics.envControl.STATE_HELP_IRBULB, {
-            url: '/help/controls/HW_IR_BULB/:backState/:backStateParams',
+            url: '/help/controls/HW_IR_BULB',
             template: '<env-control-help-irbulb/>'
         })
         .state(asterics.envControl.STATE_ADD, {
@@ -69,7 +69,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<env-control-add-fs/>'
         })
         .state(asterics.envControl.STATE_ADD_IR, {
-            url: '/ir/:cellBoardId/:backState',
+            url: '/ir/:cellBoardId',
             template: '<env-control-add-ir/>'
         })
         .state(asterics.envControl.STATE_ADD_IR_DEVICE, {

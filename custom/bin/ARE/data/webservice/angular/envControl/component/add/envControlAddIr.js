@@ -15,8 +15,6 @@ angular.module(asterics.appComponents)
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
             thiz.isConnected = null;
-            thiz.backStateParams = encodeURI(angular.toJson($stateParams));
-            thiz.backState = $state.current.name;
 
             thiz.addCellBoardItemAndReturn = function () {
                 var cbToAddButtons = thiz.cbToAdd;
@@ -41,10 +39,6 @@ angular.module(asterics.appComponents)
                     thiz.headerTitle = 'i18n_ec_ir_headerto';
                     thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
                 }
-                thiz.stateI18nParams = {
-                    backState: $state.current.name,
-                    backStateParams: encodeURI(angular.toJson($stateParams))
-                };
                 envControlIRService.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                     if (isConnected) {
@@ -54,17 +48,11 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToIrTransHelp = function () {
-                $state.go('home.envControl.help/controls/' + asterics.envControl.HW_IRTRANS_USB, {
-                    backState: $state.current.name,
-                    backStateParams: thiz.backStateParams
-                });
+                $state.go('home.envControl.help/controls/' + asterics.envControl.HW_IRTRANS_USB);
             };
 
             thiz.goToIrTransInstall = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB, {
-                    backState: $state.current.name,
-                    backStateParams: thiz.backStateParams
-                });
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
             };
 
             function startTrainCodes() {

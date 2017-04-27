@@ -13,8 +13,6 @@ angular.module(asterics.appComponents)
             thiz.selectedIcon = 'lightbulb-o';
             thiz.isConnected = null;
             thiz.neededHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG];
-            thiz.backStateParams = encodeURI(angular.toJson($stateParams));
-            thiz.backState = $state.current.name;
 
             thiz.addCellBoardItemAndReturn = function () {
                 envControlFsService.trainCode(thiz.code);
@@ -23,10 +21,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware, {
-                    backState: thiz.backState,
-                    backStateParams: thiz.backStateParams
-                });
+                $state.go('home.envControl.help/controls/' + hardware);
             };
 
             thiz.goToFs20Help = function () {
@@ -34,10 +29,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToFs20Install = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_FS20_PCSENDER, {
-                    backState: thiz.backState,
-                    backStateParams: thiz.backStateParams
-                });
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_FS20_PCSENDER);
             };
 
             init();

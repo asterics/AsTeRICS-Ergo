@@ -16,10 +16,6 @@ angular.module(asterics.appComponents)
             thiz.inLearn = false;
             thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
             thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
-            thiz.stateI18nParams = {
-                backState: $state.current.name,
-                backStateParams: encodeURI(angular.toJson($stateParams))
-            };
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
             thiz.isNumberLearn = _addDevice == 'numbers';
             thiz.isConnected = null;
@@ -124,10 +120,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware, {
-                    backState: $state.current.name,
-                    backStateParams: thiz.stateI18nParams.backStateParams
-                });
+                $state.go('home.envControl.help/controls/' + hardware);
             };
 
             thiz.goToIrTransHelp = function () {
@@ -135,10 +128,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToIrTransInstall = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB, {
-                    backState: $state.current.name,
-                    backStateParams: thiz.stateI18nParams.backStateParams
-                });
+                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
             };
 
             init();

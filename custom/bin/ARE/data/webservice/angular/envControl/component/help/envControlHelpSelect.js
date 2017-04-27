@@ -40,7 +40,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware, {backState: $state.current.name});
+                $state.go('home.envControl.help/controls/' + hardware);
             };
 
             init();
