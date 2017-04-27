@@ -89,6 +89,5 @@ angular.module(asterics.appServices)
                     params: fromParams
                 });
             }
-            console.log(_.map(_stateHistory, 'name'));
         });
     }]);
