@@ -13,14 +13,10 @@ angular.module(asterics.appComponents)
             numberElement.translateParams = thiz.translateParam;
             var irCommandElement = utilService.createCellBoardItemNav('i18n_ec_ircommand', 'wifi', asterics.envControl.STATE_ADD_IR, $stateParams);
             irCommandElement.tooltip = 'i18n_ec_ircommand_tooltip';
-            if (_.includes(asterics.envControl.DEVICES_WITH_NUMBERS, envControlDataService.getDeviceType(thiz.cellBoardIdToAdd))) {
-                thiz.cellBoardChoose = [
-                    numberElement,
-                    irCommandElement
-                ];
-            } else {
-                irCommandElement.clickAction();
-            }
+            thiz.cellBoardChoose = [
+                numberElement,
+                irCommandElement
+            ];
         }],
         templateUrl: "angular/envControl/component/addmenu/envControlAddSub.html"
     });

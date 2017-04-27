@@ -74,8 +74,11 @@ angular.module(asterics.appComponents)
                 } else {
                     items.push(utilService.createCellBoardItemBack());
                     if (thiz.substateDepth < 3) {
-                        var text = thiz.substateDepth == 1 ? 'i18n_ec_newelement' : 'i18n_ec_newelement_sub';
-                        items.push(utilService.createCellBoardItemNav(text, 'plus', asterics.envControl.STATE_ADDSUB, {cellBoardId: thiz.cellBoardId}));
+                        var navState = asterics.envControl.STATE_ADD_IR;
+                        if (_.includes(asterics.envControl.DEVICES_WITH_NUMBERS, envControlDataService.getDeviceType(thiz.cellBoardId))) {
+                            navState = asterics.envControl.STATE_ADDSUB;
+                        }
+                        items.push(utilService.createCellBoardItemNav('i18n_ec_newelement_sub', 'plus', navState, {cellBoardId: thiz.cellBoardId}));
                     }
                 }
                 thiz.deleteItem = generateSwitchModeItem('i18n_ec_activate_del', 'i18n_ec_deactivate_del', 'trash', asterics.const.CELLB_MODE_DELETE, 'i18n_ec_infotext_del');
