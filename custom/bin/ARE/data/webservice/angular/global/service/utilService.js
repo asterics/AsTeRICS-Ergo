@@ -36,11 +36,8 @@ angular.module(asterics.appServices)
             return element;
         };
 
-        thiz.createCellBoardItemBack = function (navState, stateParams) {
-            if (navState) {
-                return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', navState, stateParams);
-            } else {
-                return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', stateUtilService.getLastState(), stateParams);
-            }
+        thiz.createCellBoardItemBack = function () {
+            var lastState = stateUtilService.getLastState();
+            return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', lastState.name, lastState.params);
         };
     }]);

@@ -8,7 +8,7 @@ angular.module(asterics.appComponents)
             if (uriStateParams) {
                 backStateParams = angular.fromJson(uriStateParams);
             }
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack($stateParams.backState, backStateParams)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
         }],
         templateUrl: "angular/envControl/component/help/controls/envControlHelpBulb.html"
     });

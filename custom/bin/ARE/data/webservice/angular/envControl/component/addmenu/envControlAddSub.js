@@ -7,7 +7,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardIdToAdd = $stateParams.cellBoardId;
             thiz.deviceName = stateUtilService.getLastPartUpper(thiz.cellBoardIdToAdd);
             thiz.translateParam = {device: thiz.deviceName};
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack(thiz.cellBoardIdToAdd)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
 
             var numberElement = utilService.createCellBoardItemNav('i18n_ec_numbersfor', 'th', asterics.envControl.STATE_ADD + '.' + asterics.envControl.SUBSTATE_ADD_NUMBERS, $stateParams);
             numberElement.translateParams = thiz.translateParam;

@@ -8,7 +8,7 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
-            thiz.cellBoardConfig = [generateBackItem()];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.code = envControlDataService.getNewFs20Code();
             thiz.selectedIcon = 'lightbulb-o';
             thiz.isConnected = null;
@@ -54,14 +54,6 @@ angular.module(asterics.appComponents)
                     thiz.selectedLabel = envControlDataService.getNonConflictingLabel(thiz.selectedLabel, thiz.cbToAdd);
                 }
             });
-
-            function generateBackItem() {
-                if (thiz.cbToAdd === asterics.envControl.STATE_MAIN) {
-                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
-                } else {
-                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
-                }
-            }
         }],
         templateUrl: "angular/envControl/component/add/envControlAddFs.html"
     });

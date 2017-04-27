@@ -10,12 +10,6 @@ angular.module(asterics.appComponents)
             thiz.triedCheck = false;
             thiz.show = false;
             thiz.showAssistant = false;
-            var uriStateParams = decodeURI($stateParams.backStateParams);
-            var backStateParams;
-            if (uriStateParams) {
-                backStateParams = angular.fromJson(uriStateParams);
-            }
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack($stateParams.backState, backStateParams)];
 
             thiz.setNeedsPatch = function (bool) {
                 thiz.needpatch = bool;

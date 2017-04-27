@@ -8,12 +8,7 @@ angular.module(asterics.appComponents)
             thiz.triedCheck = false;
             thiz.checkResult = false;
             thiz.isConnected;
-            var uriStateParams = decodeURI($stateParams.backStateParams);
-            var backStateParams;
-            if (uriStateParams) {
-                backStateParams = angular.fromJson(uriStateParams);
-            }
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack($stateParams.backState, backStateParams)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
 
             thiz.test = function () {
                 thiz.triedCheck = true;

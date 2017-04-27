@@ -12,7 +12,7 @@ angular.module(asterics.appComponents)
             var _currentLearnItem = null;
             var _addDevice = stateUtilService.getLastPart($state.current.name);
 
-            thiz.cellBoardConfig = [generateBackItem()];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.inLearn = false;
             thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
             thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
@@ -190,14 +190,6 @@ angular.module(asterics.appComponents)
                     return null;
                 }
                 return thiz.learnItems[index];
-            }
-
-            function generateBackItem() {
-                if (_cbToAdd === asterics.envControl.STATE_MAIN) {
-                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
-                } else {
-                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
-                }
             }
 
             function scrollToEnd() {

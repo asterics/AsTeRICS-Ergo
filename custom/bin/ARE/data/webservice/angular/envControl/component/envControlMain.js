@@ -69,7 +69,7 @@ angular.module(asterics.appComponents)
             function generateDynamicItems() {
                 var items = [];
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
-                    items.push(utilService.createCellBoardItemBack(asterics.const.STATE_HOME));
+                    items.push(utilService.createCellBoardItemBack());
                     items.push(utilService.createCellBoardItemNav('i18n_ec_newelement', 'plus', asterics.envControl.STATE_ADD));
                 } else {
                     items.push(utilService.createCellBoardItemBack());

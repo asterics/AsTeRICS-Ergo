@@ -7,7 +7,7 @@ angular.module(asterics.appComponents)
         controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
-            thiz.cellBoardConfig = [generateBackItem()];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.selectedLabel = null;
             thiz.selectedDeviceName = null;
             thiz.learnItems = [];
@@ -84,14 +84,6 @@ angular.module(asterics.appComponents)
                     }
                 });
                 thiz.inTrain = true;
-            }
-
-            function generateBackItem() {
-                if (thiz.cbToAdd === asterics.envControl.STATE_MAIN) {
-                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADD);
-                } else {
-                    return utilService.createCellBoardItemBack(asterics.envControl.STATE_ADDSUB, $stateParams);
-                }
             }
 
             function scrollToEnd() {

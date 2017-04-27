@@ -69,7 +69,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<env-control-add-fs/>'
         })
         .state(asterics.envControl.STATE_ADD_IR, {
-            url: '/ir/:cellBoardId',
+            url: '/ir/:cellBoardId/:backState',
             template: '<env-control-add-ir/>'
         })
         .state(asterics.envControl.STATE_ADD_IR_DEVICE, {
