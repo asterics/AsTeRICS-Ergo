@@ -1,7 +1,7 @@
 angular.module(asterics.appServices)
     .service('stateUtilService', ['$state', '$rootScope', function ($state, $rootScope) {
         var thiz = this;
-        thiz.stateHistory = [];
+        var _stateHistory = [];
 
         thiz.getNewSubStateName = function (parentState, newName) {
             var newState;
@@ -67,7 +67,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getLastState = function () {
-            var lastState = thiz.stateHistory[thiz.stateHistory.length - 1];
+            var lastState = _stateHistory[_stateHistory.length - 1];
             if (!lastState) {
                 var states = thiz.getBreadCrumbStates();
                 return {
@@ -80,15 +80,15 @@ angular.module(asterics.appServices)
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
             var lastElement = thiz.getLastState();
             if (lastElement && lastElement.name === to.name) {
-                thiz.stateHistory.pop(); // moved back to last state -> remove it from history
-            } else if (_.some(thiz.stateHistory, {'name': to.name}) || to.name == asterics.const.STATE_HOME) {
-                thiz.stateHistory = [];
+                _stateHistory.pop(); // moved back to last state -> remove it from history
+            } else if (_.some(_stateHistory, {'name': to.name}) || _.includes(asterics.const.HOME_STATES, to.name)) {
+                _stateHistory = [];
             } else if (from.name) {
-                thiz.stateHistory.push({
+                _stateHistory.push({
                     name: from.name,
                     params: fromParams
                 });
             }
-            console.log(_.map(thiz.stateHistory, 'name'));
+            console.log(_.map(_stateHistory, 'name'));
         });
     }]);

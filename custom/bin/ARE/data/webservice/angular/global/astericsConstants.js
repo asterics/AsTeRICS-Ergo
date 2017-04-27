@@ -16,6 +16,7 @@ asterics.const.ServerEventTypes = {
 };
 
 asterics.const.STATE_HOME = 'home';
+asterics.const.HOME_STATES = [asterics.const.STATE_HOME];
 
 asterics.const.I18N_DE = 'de';
 asterics.const.I18N_EN = 'en';
@@ -29,6 +30,6 @@ asterics.const.MSG_SUCCESS = 'success';
 asterics.const.MSG_WARN = 'warn';
 asterics.const.MSG_ERROR = 'error';
 
-asterics.const.OS_IS_WIN10 = (window.navigator.userAgent.indexOf("Windows NT 10.0")!= -1);
+asterics.const.OS_IS_WIN10 = (window.navigator.userAgent.indexOf("Windows NT 10.0") != -1);
 asterics.const.OS_IS_WIN7 = (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1);
 asterics.const.OS_IS_OTHER = !(asterics.const.OS_IS_WIN7 || asterics.const.OS_IS_WIN10);

@@ -52,3 +52,5 @@ asterics.envControl.STATE_ADD_IR = 'home.envControl.add.ir';
 asterics.envControl.STATE_ADD_IR_DEVICE = 'home.envControl.add.irdevice';
 asterics.envControl.STATE_ADD_LAMP = 'home.envControl.add.lamp';
 asterics.envControl.SUBSTATE_ADD_NUMBERS = 'numbers';
+
+asterics.const.HOME_STATES.push(asterics.envControl.STATE_MAIN);
