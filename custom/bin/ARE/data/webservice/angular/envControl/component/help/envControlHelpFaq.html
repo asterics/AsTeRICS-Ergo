@@ -9,12 +9,15 @@
     <h3>Häufig gestellte Fragen</h3>
     <p>Klicken Sie auf eine der folgenden Fragen um die Antwort einzublenden.</p>
     <uib-accordion close-others="true">
-        <div uib-accordion-group class="panel-default"
+        <a id="1"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[1]"
              heading="Welche Geräte können mit AsTeRICS Ergo gesteuert werden?">
             <p>Mit AsTeRICS Ergo können 2 Arten von Geräten gesteuert werden:
             <ol>
-                <li>Mit AsTeRICS Ergo können die meisten Geräte, die mit einer Infrarot-Fernbedienung bedient werden,
-                    gesteuert werden. Beispiele:
+                <li>Mit dem <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRTRANS')">IrTrans</a>
+                    können die meisten Geräte, die mit einer Infrarot-Fernbedienung bedient werden,
+                    gesteuert werden.</br>
+                    Beispiele:
                     <ul>
                         <li>Fernseher</li>
                         <li>DVD-Player</li>
@@ -23,12 +26,15 @@
                         <li>Jalousien</li>
                     </ul>
                     Wenn <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRBULB')">Infrarot-Glühbirnen</a>
-                    verwendet werden, kann mit AsTeRICS Ergo auch die Raumbeleuchtung gesteuert
+                    verwendet werden, kann mit dem IrTrans auch die Raumbeleuchtung gesteuert
                     werden.
                 </li>
                 <li>
-                    Außerdem können Geräte gesteuert werden, die an der Steckdose hängen und per Schalter ein- und
-                    ausgeschaltet werden.
+                    Mit dem <a href=""
+                               ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_FS20')">FS20-System</a> können
+                    Geräte gesteuert werden, die an der Steckdose hängen und per Schalter
+                    ein- und
+                    ausgeschaltet werden.</br>
                     Beispiele:
                     <ul>
                         <li>Tisch-/Stehlampen</li>
@@ -39,7 +45,8 @@
             </ol>
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="2"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[2]"
              heading="Wie kann die Tisch-/Stehlampe mit IrTrans USB und IR Glühbirne (statt FS20 PC-Sender und FS20 Zwischenstecker) gesteuert werden?">
             <p>Um die Tisch-/Stehlampe mit dem <a href=""
                                                   ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRTRANS')">IrTrans</a>
@@ -52,7 +59,8 @@
             </p>
             <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD_AMBLIGHT')">Zum Raumlicht-Assistenten</a>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="3"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[3]"
              heading="Welche zusätzliche Hardware muss für die Einrichtung einer Umgebungssteuerung erworben werden?">
             <p>Es kann nicht verallgemeinert werden, welche zusätzliche Hardware erworben werden muss. Dies hängt davon
                 ab, welche Geräte mit AsTeRICS Ergo gesteuert werden sollen.
@@ -64,19 +72,23 @@
             </p>
             <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_DEVICES')">Zum Hardware-Assistenten</a>
         </div>
-        <div uib-accordion-group class="panel-default" heading="Mit welchen Kosten muss ich rechnen?">
+        <a id="4"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[4]"
+             heading="Mit welchen Kosten muss ich rechnen?">
             <p>Das Programm AsTeRICS Ergo kann kostenlos heruntergeladen und genutzt werden. Kosten entstehen lediglich
                 durch
                 die zusätzliche Hardware, die Sie für die Steuerung der Umgebung benötigen und sind abhängig von den
                 Geräten, die Sie steuern möchten. In den meisten Fällen liegen sie zwischen 100 und 300 €.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="5"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[5]"
              heading="Auf welchen Geräten kann AsTeRICS Ergo installiert werden?">
             <p>AsTeRICS Ergo kann auf jedem Windows-Tablet, Laptop und PC installiert werden.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="6"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[6]"
              heading="Gibt es Alternativen zur Bedienung der AsTeRICS Ergo Umgebungssteuerung, wenn keine herkömmliche Maus bedient werden kann?">
             <p>In der Regel wird zur Bedienung der AsTeRICS Ergo Umgebungssteuerung dasselbe System wie zur Steuerung
                 des Computers verwendet.
@@ -93,7 +105,8 @@
             </ul>
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="7"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[7]"
              heading="Ich habe die notwendige Hardware bereits erworben. Wie kann ich nun die Steuerung eines Geräts einrichten?">
             <p>Um die Steuerung eines Geräts einzurichten, klicken Sie auf
                 <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD')">Gerät hinzufügen</a>. Nun
@@ -103,7 +116,8 @@
                 <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADDMORE')">Weitere…</a>.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="8"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[8]"
              heading="AsTeRICS Ergo bietet mir nur die Steuerung von Raumlicht, Tisch-/Stehlampe, Fernseher, DVD-Player und Radio/CD-Player an. Können auch weitere Geräte mit AsTeRICS Ergo gesteuert werden, zu denen es keinen Assistenten gibt?">
             <p>Ja, Sie können mit AsTeRICS Ergo auch Geräte steuern, zu denen es noch keinen Assistenten gibt. Gehen Sie
                 hierfür auf <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADDMORE')">Gerät hinzufügen –>
@@ -122,7 +136,8 @@
                 Jalousien, Türen, Staubsaugerroboter, …
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="9"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[9]"
              heading="Wie kann ich die Raumbeleuchtung mit AsTeRICS Ergo steuern?">
             <p>Um die Raumbeleuchtung mit AsTeRICS Ergo zu steuern, benötigen Sie den <a href=""
                                                                                          ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRTRANS')">IrTrans</a>
@@ -134,7 +149,8 @@
                 Dieser begleitet Sie bei der Einrichtung der Raumbeleuchtung.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="10"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[10]"
              heading="Kann ich Türen, Fenster und Jalousien mit AsTeRICS Ergo öffnen und schließen?">
             <p>Das Öffnen und Schließen von Türen, Fenstern und Jalousien ist mit AsTeRICS Ergo unter bestimmten
                 Voraussetzungen möglich. Hierfür müssen Türen, Fenster und/oder Jalousien vorhanden sein, die mit einer
@@ -145,28 +161,32 @@
                 möglich.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="11"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[11]"
              heading="Kann mit Hilfe von AsTeRICS Ergo ein Notruf-System gesteuert werden?">
             <i class="red fa fa-exclamation-triangle fa-3x"/>
             <span><b>Nein</b>, AsTeRICS Ergo darf aus Sicherheitsgründen nicht zur Steuerung von Notruf-Systemen verwendet
                 werden!
             </span>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="12"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[12]"
              heading="Kann ich mit AsTeRICS Ergo einen E-Rollstuhl steuern?">
             <i class="red fa fa-exclamation-triangle fa-3x"/>
             <span><b>Nein</b>, AsTeRICS Ergo darf aus Sicherheitsgründen nicht zur Steuerung von E-Rollstühlen verwendet
                 werden!
             </span>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="13"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[13]"
              heading="Gibt es Geräte, die nicht mit AsTeRICS Ergo gesteuert werden dürfen?">
             <i class="red fa fa-exclamation-triangle fa-3x"/>
             <span><b>Ja</b>, AsTeRICS Ergo darf nicht im Zusammenhang mit lebenserhaltenden Maßnahmen oder als Notfallsystem verwendet werden!
                 Die Steuerung von Notrufen, E-Rollstühlen, Beatmungsgeräten, etc. ist zu unterlassen!
             </span>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="14"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[14]"
              heading="Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die Steuerung der Umgebung vom PC/Laptop/Tablet aus funktioniert jedoch nicht. Was soll ich tun?">
             <p>
             <ul>
@@ -180,7 +200,8 @@
             </ul>
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="15"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[15]"
              heading="Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die meisten Befehle funktionieren, bei anderen macht er jedoch nicht das, was ich möchte. Was soll ich tun?">
             <p>
                 Hierfür gibt es 2 Möglichkeiten:
@@ -194,7 +215,8 @@
             die rechte Maustaste möglich.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="16"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[16]"
              heading="Darf ich beim Anlernen eines Gerätes mehrere Fernbedienungen verwenden?">
             <p>
                 Ja, wenn Sie ein Gerät anlernen, können Sie mehrere Fernbedienungen mischen.
@@ -206,13 +228,15 @@
                 verwenden.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="17"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[17]"
              heading="In den Assistenten zur Einrichtung von Geräten, die mit dem IrTrans gesteuert werden, kommt öfters die Aufforderung „Drücken Sie jetzt einmal kurz den Knopf …“. Ist dabei der Knopf am Gerät oder auf der Fernbedienung gemeint?">
             <p>
                 Dabei muss der Knopf auf der Fernbedienung gedrückt werden.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="18"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[18]"
              heading="Ich habe beim Anlernen versehentlich auf der Fernbedienung die falsche Taste gedrückt. Was soll ich tun?">
             <p>
                 Wenn Sie während des Anlernens merken, dass Sie die falsche Taste gedrückt haben, können Sie dies mit
@@ -223,21 +247,24 @@
                 „neuer Befehl“ erneut anlernen.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="19"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[19]"
              heading="Müssen alle Befehle, die der Assistent vorschlägt, gelernt werden?">
             <p>
                 Nein. Wollen Sie einen Befehl nicht lernen, können Sie während dem Anlernen der Befehle auf den Button
                 „Überspringen“ klicken.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="20"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[20]"
              heading="Ich habe bereits ein Gerät eingerichtet. Ich hätte aber gerne mehr Steuerungsmöglichkeiten, die mir beim Einlernen nicht vorgeschlagen wurden. Kann ich weitere Befehle zu dem Gerät hinzufügen?">
             <p>
                 Ja, gehen Sie dafür in die Steuerung des betroffenen Geräts. Wählen Sie den Button „Neuer Befehl“ und
                 folgen Sie der Anleitung. Damit können Sie weitere Befehle zu dem Gerät hinzufügen.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="21"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[21]"
              heading="Wie kann ich bereits eingerichtete Befehle oder Geräte löschen?">
             <p>
                 Zum Löschen bereits eingerichteter Befehle oder Geräte haben Sie 2 Möglichkeiten:
@@ -250,20 +277,23 @@
             </ol>
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="22"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[22]"
              heading="Kann ich Buttons verschieben und somit die Reihenfolge ändern?">
             <p>
                 Nein, das Verschieben der Buttons und Ändern der Reihenfolge ist derzeit nicht möglich.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="23"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[23]"
              heading="Gibt es die Möglichkeit bei Unklarheiten einen technischen Support zu kontaktieren?">
             <p>
                 Nein, es gibt leider keine Möglichkeit bei auftretenden Problemen einen Support zu kontaktieren, da
                 AsTeRICS keine Firma ist, sondern ein EU-Projekt.
             </p>
         </div>
-        <div uib-accordion-group class="panel-default"
+        <a id="24"></a>
+        <div uib-accordion-group class="panel-default" is-open="$ctrl.open[24]"
              heading="Was ist der Unterschied zwischen „Fernbedienungs-Befehle“ und „Fernbedienungs-Gerät“?">
             <p>
                 Der Assistent <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD_IR')">Fernbedienungs-Befehle</a>
