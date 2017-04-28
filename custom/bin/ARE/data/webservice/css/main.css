@@ -31,10 +31,6 @@ div .active {
     padding-top: 1em;
 }
 
-.install-help li {
-    padding-bottom: 1em;
-}
-
 .cb-element {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -61,6 +57,14 @@ img {
 }
 
 ul li {
+    margin-bottom: 0.5em;
+}
+
+ol li {
+    margin-bottom: 0.5em;
+}
+
+.install-help li {
     margin-bottom: 0.5em;
 }
 
