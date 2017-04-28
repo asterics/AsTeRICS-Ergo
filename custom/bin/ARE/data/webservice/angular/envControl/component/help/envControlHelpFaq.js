@@ -7,6 +7,10 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.currentState = $state.current.name;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
+
+            thiz.toState = function (state) {
+                return $state.go(eval(state));
+            };
         }],
         templateUrl: "angular/envControl/component/help/envControlHelpFaq.html"
     });
