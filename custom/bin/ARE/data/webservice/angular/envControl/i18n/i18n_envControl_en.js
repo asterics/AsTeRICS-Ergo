@@ -24,9 +24,9 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_at: 'at',
     i18n_ec_help_from_producer: 'from producer',
     i18n_ec_help_introtext: 'Currently it is possible to realize environmental controls with the following hardware:',
-    i18n_ec_help_controlplug: 'Control of electric sockets',
+    i18n_ec_help_controlplug: 'FS20-System',
     i18n_ec_help_controlplug_text: 'With the "FS20"-system it is possible to control electric sockets with AsTeRICS. It is possible to turn on/off devices via socket (e.g. a table lamp).',
-    i18n_ec_help_replaceremote: 'Replace remote controls',
+    i18n_ec_help_replaceremote: 'IrTrans USB',
     i18n_ec_help_replaceremote_text: 'With the "IrTrans"-system it is possible to replace almost all usual remote controls (infrared). Thus e.g. TVs can be controlled via AsTeRICS.',
     i18n_ec_help_moreinfo_about: 'More information about needed hardware for',
 
@@ -36,7 +36,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_irtrans_text_tolink: 'Click on one of the following <b>links</b> to navigate to <b>vendors of IrTrans</b>:',
 
     //help fs20
-    i18n_ec_text_help_fs20: 'With <b>FS20</b> it is possible <b>control electric sockets</b> via AsTeRICS. Thus it is possible to <b>turn on/off</b> devices like e.g. a table lamp <b>via socket</b>. For the use with AsTeRICS an <b>adapter plug</b> and a <b>PC-sender</b> are required.<br/>Click on one of the following <b>links</b> to navigate to <b>vendors of FS20</b>:',
+    i18n_ec_text_help_fs20: 'With <b>FS20</b> it is possible <b>control electric sockets</b> via AsTeRICS. Thus it is possible to <b>turn on/off</b> devices like e.g. a table lamp <b>via socket</b>. For the use with AsTeRICS an <b>adapter plug</b> and a <b>PC-sender</b> are required.',
 
     //ir commands
     i18n_ec_onoff: 'ON/OFF',

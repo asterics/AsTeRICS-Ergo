@@ -24,9 +24,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_help_at: 'bei',
     i18n_ec_help_from_producer: 'vom Hersteller',
     i18n_ec_help_introtext: 'Derzeit können AsTeRICS Ergo Steuerungen über folgende Hardware realisiert werden:',
-    i18n_ec_help_controlplug: 'Steuerung von Steckdosen',
+    i18n_ec_help_controlplug: 'FS20-System',
     i18n_ec_help_controlplug_text: 'Mit dem "FS20"-System ist es möglich Steckdosen mit AsTeRICS zu steuern. Es können Geräte über die Steckdose ein- oder ausgeschalten werden (z.B. eine Tischlampe).',
-    i18n_ec_help_replaceremote: 'Ersetzen von Fernbedienungen',
+    i18n_ec_help_replaceremote: 'IrTrans USB',
     i18n_ec_help_replaceremote_text: 'Mit dem "IrTrans"-System ist es möglich beinahe alle gängigen Fernbedienungen (Infrarot) zu ersetzen. Dadurch können z.B. Fernseher über AsTeRICS gesteuert werden.',
     i18n_ec_help_moreinfo_about: 'Informationen zu benötigter Hardware für',
 
@@ -36,7 +36,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_help_irtrans_text_tolink: 'Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von IrTrans</b> zu gelangen:',
 
     //help fs20
-    i18n_ec_text_help_fs20: 'Mithilfe von <b>FS20</b> können <b>Steckdosen</b> über AsTeRICS <b>gesteuert werden</b>. Dadurch ist es möglich Geräte wie z.B. eine Tischlampe <b>über Steckdose ein- bzw. auszuschalten</b>. Für die Verwendung mit AsTeRICS sind ein <b>Zwischenstecker für die Steckdose</b> und ein <b>Sender für den PC</b> notwendig.<br/>Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:',
+    i18n_ec_text_help_fs20: 'Mithilfe von <b>FS20</b> können <b>Steckdosen</b> über AsTeRICS <b>gesteuert werden</b>. Dadurch ist es möglich Geräte wie z.B. eine Tischlampe <b>über Steckdose ein- bzw. auszuschalten</b>. Für die Verwendung mit AsTeRICS sind ein <b>Zwischenstecker für die Steckdose</b> und ein <b>Sender für den PC</b> notwendig.',
 
     //ir commands
     i18n_ec_onoff: 'EIN/AUS',
