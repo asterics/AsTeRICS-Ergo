@@ -163,7 +163,10 @@
 
 			<fx:application refId="fxApplication" />
 			<fx:resources refid="appRes" />
-			<fx:info title="${fx.info.title}" vendor="${fx.info.vendor}" description="${fx.info.description}" license="${fx.info.license}" category="${fx.info.category}" />
+			<fx:info title="${fx.info.title}" vendor="${fx.info.vendor}" description="${fx.info.description}" license="${fx.info.license}" category="${fx.info.category}">
+				<fx:icon href="${fx.info.icon.href}" kind="default"/>
+				<fx:icon href="${fx.info.icon.href}" kind="shortcut"/>
+			</fx:info>
 		</fx:deploy>
 		
 		<!-- Finally, rename the outfile in the case of APE.embedJava=true.
