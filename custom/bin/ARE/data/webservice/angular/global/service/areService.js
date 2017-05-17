@@ -2,7 +2,9 @@ angular.module(asterics.appServices)
     .service('areService', ['$http', '$q', function ($http, $q) {
         var thiz = this;
         //The base URI that ARE runs at
-        var _baseURI = "http://localhost:8081/rest/";
+        var hostname = window.location.hostname;
+        var port = window.location.port;
+        var _baseURI = "http://" + hostname + ":" + port + "/rest/";
         //delimiter used for encoding
         var delimiter = "-";
         var _eventSourceMap = {};
