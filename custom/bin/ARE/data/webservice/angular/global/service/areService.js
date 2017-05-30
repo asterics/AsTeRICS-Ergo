@@ -134,7 +134,7 @@ angular.module(asterics.appServices)
                 url: _baseUri + getPath + "/" + filename
             }).then(function (response) {
                 def.resolve(response.data);
-            }, function() {
+            }, function () {
                 def.resolve(null);
             });
             return def.promise;
@@ -147,8 +147,12 @@ angular.module(asterics.appServices)
                 method: 'GET',
                 url: _baseUri + getPath + "/" + filename + _timestampSuffix
             }).then(function (response) {
-                def.resolve(response.data.lastModified);
-            }, function() {
+                if (response.data && response.data.lastModified) {
+                    def.resolve(response.data.lastModified);
+                } else {
+                    def.resolve(-1);
+                }
+            }, function () {
                 def.resolve(-1);
             });
             return def.promise;
@@ -258,7 +262,7 @@ angular.module(asterics.appServices)
         }
 
         function getCurrentAppName() {
-            var searchString = "#!/" + asterics.const.STATE_HOME +"/";
+            var searchString = "#!/" + asterics.const.STATE_HOME + "/";
             var href = window.location.href;
             return href.substring(href.indexOf(searchString)).substring(searchString.length);
         }
