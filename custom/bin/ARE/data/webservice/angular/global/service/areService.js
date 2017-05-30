@@ -4,7 +4,11 @@ angular.module(asterics.appServices)
         //The base URI that ARE runs at
         var hostname = window.location.hostname;
         var port = window.location.port;
-        var _baseURI = "http://" + hostname + ":" + port + "/rest/";
+        var _baseUri = "http://" + hostname + ":" + port + "/";
+        var _baseUriREST = _baseUri + "rest/";
+        var _saveFolder = "saved";
+        var _pathToSaveFolder = "data/webservice/";
+        var _timestampSuffix = ".timestamp";
         //delimiter used for encoding
         var delimiter = "-";
         var _eventSourceMap = {};
@@ -12,35 +16,35 @@ angular.module(asterics.appServices)
         thiz.deployAndStartModel = function (filepath) {
             return $http({
                 method: 'PUT',
-                url: _baseURI + "runtime/model/autorun/" + encodeParam(filepath)
+                url: _baseUriREST + "runtime/model/autorun/" + encodeParam(filepath)
             });
         };
 
         thiz.startModel = function () {
             return $http({
                 method: 'PUT',
-                url: _baseURI + "runtime/model/state/start"
+                url: _baseUriREST + "runtime/model/state/start"
             });
         };
 
         thiz.stopModel = function () {
             return $http({
                 method: 'PUT',
-                url: _baseURI + "runtime/model/state/stop"
+                url: _baseUriREST + "runtime/model/state/stop"
             });
         };
 
         thiz.getModelState = function () {
             return $http({
                 method: 'GET',
-                url: _baseURI + "runtime/model/state"
+                url: _baseUriREST + "runtime/model/state"
             });
         };
 
         thiz.getModelName = function () {
             return $http({
                 method: 'GET',
-                url: _baseURI + "runtime/model/name"
+                url: _baseUriREST + "runtime/model/name"
             });
         };
 
@@ -66,14 +70,14 @@ angular.module(asterics.appServices)
             if (filepath == "") return;
             return $http({
                 method: 'PUT',
-                url: _baseURI + "runtime/model/" + encodeParam(filepath)
+                url: _baseUriREST + "runtime/model/" + encodeParam(filepath)
             });
         };
 
         thiz.sendDataToInputPort = function (componentId, inputId, value, canceler) {
             return $http({
                 method: 'PUT',
-                url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/ports/" + encodeParam(inputId) + "/data",
+                url: _baseUriREST + "runtime/model/components/" + encodeParam(componentId) + "/ports/" + encodeParam(inputId) + "/data",
                 dataType: 'text',
                 headers: {
                     "Content-Type": "text/plain"
@@ -87,7 +91,7 @@ angular.module(asterics.appServices)
             if ((componentId == "") || (componentKey == "")) return;
             return $http({
                 method: 'GET',
-                url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(componentKey)
+                url: _baseUriREST + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(componentKey)
             });
         };
 
@@ -95,9 +99,59 @@ angular.module(asterics.appServices)
             if (componentId == "") return;
             return $http({
                 method: 'GET',
-                url: _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(portId) + "/channels/data/ids",
+                url: _baseUriREST + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(portId) + "/channels/data/ids",
                 config: getConfigCanceler(canceler)
             });
+        };
+
+        thiz.saveData = function (filename, dataJSON) {
+            var modificationDate = new Date().getTime();
+            var savepath = _pathToSaveFolder + _saveFolder + "/" + getCurrentAppName();
+            $http({
+                method: 'POST',
+                url: _baseUriREST + "storage/data/" + encodeParam(savepath) + "/" + encodeParam(filename),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: angular.toJson(dataJSON)
+            });
+            $http({
+                method: 'POST',
+                url: _baseUriREST + "storage/data/" + encodeParam(savepath) + "/" + encodeParam(filename + _timestampSuffix),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: {lastModified: modificationDate}
+            });
+            return modificationDate;
+        };
+
+        thiz.getSavedData = function (filename) {
+            var getPath = _saveFolder + "/" + getCurrentAppName();
+            var def = $q.defer();
+            $http({
+                method: 'GET',
+                url: _baseUri + getPath + "/" + filename
+            }).then(function (response) {
+                def.resolve(response.data);
+            }, function() {
+                def.resolve(null);
+            });
+            return def.promise;
+        };
+
+        thiz.getLastModificationDate = function (filename) {
+            var getPath = _saveFolder + "/" + getCurrentAppName();
+            var def = $q.defer();
+            $http({
+                method: 'GET',
+                url: _baseUri + getPath + "/" + filename + _timestampSuffix
+            }).then(function (response) {
+                def.resolve(response.data.lastModified);
+            }, function() {
+                def.resolve(-1);
+            });
+            return def.promise;
         };
 
         /**********************************
@@ -137,7 +191,7 @@ angular.module(asterics.appServices)
                     return;
             }
 
-            eventSource = new EventSource(_baseURI + resource); // Connecting to SSE service
+            eventSource = new EventSource(_baseUriREST + resource); // Connecting to SSE service
             _eventSourceMap[eventType] = eventSource;
 
             //adding listener for specific events
@@ -196,10 +250,16 @@ angular.module(asterics.appServices)
         }
 
         function getConfigCanceler(canceler) {
-            var config = {}
+            var config = {};
             if (canceler) {
                 config.timeout = canceler.promise;
             }
             return config;
+        }
+
+        function getCurrentAppName() {
+            var searchString = "#!/" + asterics.const.STATE_HOME +"/";
+            var href = window.location.href;
+            return href.substring(href.indexOf(searchString)).substring(searchString.length);
         }
     }]);
