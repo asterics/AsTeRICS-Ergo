@@ -264,6 +264,12 @@ angular.module(asterics.appServices)
         function getCurrentAppName() {
             var searchString = "#!/" + asterics.const.STATE_HOME + "/";
             var href = window.location.href;
-            return href.substring(href.indexOf(searchString)).substring(searchString.length);
+            var appName = href.substring(href.indexOf(searchString)).substring(searchString.length);
+            var indexOfSlash = appName.indexOf('/');
+            if (indexOfSlash > 0) {
+                return appName.substring(0, indexOfSlash);
+            } else {
+                return appName;
+            }
         }
     }]);
