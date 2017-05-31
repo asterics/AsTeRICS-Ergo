@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', function (areService, utilService, envControlUtilService, stateUtilService, envControlFsService) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', function (areSaveService, utilService, envControlUtilService, stateUtilService, envControlFsService) {
         var thiz = this;
         var _dataFilename = "ecdata";
         var _saveTimestamp = -1;
@@ -160,6 +160,6 @@ angular.module(asterics.appServices)
             data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
             data._dynamicCellBoardIds = _dynamicCellBoardIds;
             data._fs20Codes = _fs20Codes;
-            _saveTimestamp = areService.saveData(_dataFilename, data);
+            _saveTimestamp = areSaveService.saveData(_dataFilename, data);
         }
     }]);

@@ -40,4 +40,24 @@ angular.module(asterics.appServices)
             var lastState = stateUtilService.getLastState();
             return thiz.createCellBoardItemNav('i18n_back', 'arrow-left', lastState.name, lastState.params);
         };
+
+        //encodes PathParametes
+        thiz.encodeParam = function (text) {
+            var encoded = "";
+            var delimiter = "-";
+            for (var i = 0; i < text.length; i++) {
+                encoded += text.charCodeAt(i) + delimiter;
+            }
+            return encoded;
+        };
+
+        thiz.getBaseUrl = function () {
+            var hostname = window.location.hostname;
+            var port = window.location.port;
+            return window.location.protocol + "//" + hostname + ":" + port + "/";
+        };
+
+        thiz.getRestUrl = function () {
+            return thiz.getBaseUrl() + "rest/";
+        };
     }]);

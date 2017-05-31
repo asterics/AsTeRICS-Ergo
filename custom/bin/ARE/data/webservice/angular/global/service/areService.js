@@ -1,50 +1,40 @@
 angular.module(asterics.appServices)
-    .service('areService', ['$http', '$q', function ($http, $q) {
+    .service('areService', ['$http', '$q', 'utilService', function ($http, $q, utilService) {
         var thiz = this;
-        //The base URI that ARE runs at
-        var hostname = window.location.hostname;
-        var port = window.location.port;
-        var _baseUri = "http://" + hostname + ":" + port + "/";
-        var _baseUriREST = _baseUri + "rest/";
-        var _saveFolder = "saved";
-        var _pathToSaveFolder = "data/webservice/";
-        var _timestampSuffix = ".timestamp";
-        //delimiter used for encoding
-        var delimiter = "-";
         var _eventSourceMap = {};
 
         thiz.deployAndStartModel = function (filepath) {
             return $http({
                 method: 'PUT',
-                url: _baseUriREST + "runtime/model/autorun/" + encodeParam(filepath)
+                url: utilService.getRestUrl() + "runtime/model/autorun/" + utilService.encodeParam(filepath)
             });
         };
 
         thiz.startModel = function () {
             return $http({
                 method: 'PUT',
-                url: _baseUriREST + "runtime/model/state/start"
+                url: utilService.getRestUrl() + "runtime/model/state/start"
             });
         };
 
         thiz.stopModel = function () {
             return $http({
                 method: 'PUT',
-                url: _baseUriREST + "runtime/model/state/stop"
+                url: utilService.getRestUrl() + "runtime/model/state/stop"
             });
         };
 
         thiz.getModelState = function () {
             return $http({
                 method: 'GET',
-                url: _baseUriREST + "runtime/model/state"
+                url: utilService.getRestUrl() + "runtime/model/state"
             });
         };
 
         thiz.getModelName = function () {
             return $http({
                 method: 'GET',
-                url: _baseUriREST + "runtime/model/name"
+                url: utilService.getRestUrl() + "runtime/model/name"
             });
         };
 
@@ -70,14 +60,14 @@ angular.module(asterics.appServices)
             if (filepath == "") return;
             return $http({
                 method: 'PUT',
-                url: _baseUriREST + "runtime/model/" + encodeParam(filepath)
+                url: utilService.getRestUrl() + "runtime/model/" + utilService.encodeParam(filepath)
             });
         };
 
         thiz.sendDataToInputPort = function (componentId, inputId, value, canceler) {
             return $http({
                 method: 'PUT',
-                url: _baseUriREST + "runtime/model/components/" + encodeParam(componentId) + "/ports/" + encodeParam(inputId) + "/data",
+                url: utilService.getRestUrl() + "runtime/model/components/" + utilService.encodeParam(componentId) + "/ports/" + utilService.encodeParam(inputId) + "/data",
                 dataType: 'text',
                 headers: {
                     "Content-Type": "text/plain"
@@ -91,7 +81,7 @@ angular.module(asterics.appServices)
             if ((componentId == "") || (componentKey == "")) return;
             return $http({
                 method: 'GET',
-                url: _baseUriREST + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(componentKey)
+                url: utilService.getRestUrl() + "runtime/model/components/" + utilService.encodeParam(componentId) + "/" + utilService.encodeParam(componentKey)
             });
         };
 
@@ -99,63 +89,9 @@ angular.module(asterics.appServices)
             if (componentId == "") return;
             return $http({
                 method: 'GET',
-                url: _baseUriREST + "runtime/model/components/" + encodeParam(componentId) + "/" + encodeParam(portId) + "/channels/data/ids",
+                url: utilService.getRestUrl() + "runtime/model/components/" + utilService.encodeParam(componentId) + "/" + utilService.encodeParam(portId) + "/channels/data/ids",
                 config: getConfigCanceler(canceler)
             });
-        };
-
-        thiz.saveData = function (filename, dataJSON) {
-            var modificationDate = new Date().getTime();
-            var savepath = _pathToSaveFolder + _saveFolder + "/" + getCurrentAppName();
-            $http({
-                method: 'POST',
-                url: _baseUriREST + "storage/data/" + encodeParam(savepath) + "/" + encodeParam(filename),
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: angular.toJson(dataJSON)
-            });
-            $http({
-                method: 'POST',
-                url: _baseUriREST + "storage/data/" + encodeParam(savepath) + "/" + encodeParam(filename + _timestampSuffix),
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: {lastModified: modificationDate}
-            });
-            return modificationDate;
-        };
-
-        thiz.getSavedData = function (filename) {
-            var getPath = _saveFolder + "/" + getCurrentAppName();
-            var def = $q.defer();
-            $http({
-                method: 'GET',
-                url: _baseUri + getPath + "/" + filename
-            }).then(function (response) {
-                def.resolve(response.data);
-            }, function () {
-                def.resolve(null);
-            });
-            return def.promise;
-        };
-
-        thiz.getLastModificationDate = function (filename) {
-            var getPath = _saveFolder + "/" + getCurrentAppName();
-            var def = $q.defer();
-            $http({
-                method: 'GET',
-                url: _baseUri + getPath + "/" + filename + _timestampSuffix
-            }).then(function (response) {
-                if (response.data && response.data.lastModified) {
-                    def.resolve(response.data.lastModified);
-                } else {
-                    def.resolve(-1);
-                }
-            }, function () {
-                def.resolve(-1);
-            });
-            return def.promise;
         };
 
         /**********************************
@@ -183,7 +119,7 @@ angular.module(asterics.appServices)
                     resource = "runtime/model/channels/event/listener";
                     break;
                 case asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION:
-                    resource = "runtime/model/channels/data/" + encodeParam(channelId) + "/listener";
+                    resource = "runtime/model/channels/data/" + utilService.encodeParam(channelId) + "/listener";
                     break;
                 case asterics.const.ServerEventTypes.PROPERTY_CHANGED:
                     resource = "runtime/model/components/properties/listener";
@@ -195,7 +131,7 @@ angular.module(asterics.appServices)
                     return;
             }
 
-            eventSource = new EventSource(_baseUriREST + resource); // Connecting to SSE service
+            eventSource = new EventSource(utilService.getRestUrl() + resource); // Connecting to SSE service
             _eventSourceMap[eventType] = eventSource;
 
             //adding listener for specific events
@@ -243,33 +179,11 @@ angular.module(asterics.appServices)
             }
         }
 
-        //encodes PathParametes
-        function encodeParam(text) {
-            encoded = "";
-            for (i = 0; i < text.length; i++) {
-                encoded += text.charCodeAt(i) + delimiter;
-            }
-
-            return encoded;
-        }
-
         function getConfigCanceler(canceler) {
             var config = {};
             if (canceler) {
                 config.timeout = canceler.promise;
             }
             return config;
-        }
-
-        function getCurrentAppName() {
-            var searchString = "#!/" + asterics.const.STATE_HOME + "/";
-            var href = window.location.href;
-            var appName = href.substring(href.indexOf(searchString)).substring(searchString.length);
-            var indexOfSlash = appName.indexOf('/');
-            if (indexOfSlash > 0) {
-                return appName.substring(0, indexOfSlash);
-            } else {
-                return appName;
-            }
         }
     }]);
