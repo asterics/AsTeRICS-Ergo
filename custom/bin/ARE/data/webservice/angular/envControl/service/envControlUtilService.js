@@ -20,12 +20,28 @@ angular.module(asterics.appServices)
             return element;
         };
 
-        thiz.createCellBoardItemNavSubcellboard = function (title, faIcon, navState, stateParams) {
-            var element = utilService.createCellBoardItemSubCb(title, faIcon, navState, stateParams);
-            element.toState = navState;
+        thiz.createCellBoardItemNavSubcellboard = function (title, faIcon, toState, stateParams) {
+            var element = utilService.createCellBoardItemSubCb(title, faIcon, toState, stateParams);
+            element.toState = toState;
             element.tooltip = 'i18n_ec_tooltip_click_subcb';
             element.tooltipParams = {device: title};
             return element;
+        };
+
+        thiz.reinitCellBoardItems = function (items) {
+            var reinitList = [];
+            angular.forEach(items, function (item) {
+                var newItem;
+                if (item.type === asterics.const.CB_TYPE_SUBCB) {
+                    newItem = thiz.createCellBoardItemNavSubcellboard(item.title, item.faIcon, item.toState);
+                } else if (item.type === asterics.envControl.CB_TYPE_FS20) {
+                    newItem = thiz.createCellBoardItemFs20(item.title, item.faIcon, item.code);
+                } else if (item.type === asterics.envControl.CB_TYPE_IR) {
+                    newItem = thiz.createCellBoardItemIrTrans(item.title, item.faIcon, item.code);
+                }
+                reinitList.push(newItem);
+            });
+            return reinitList;
         };
 
         thiz.getIrElements = function (substateName) {

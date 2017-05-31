@@ -65,10 +65,7 @@ angular.module(asterics.appServices)
             _cellBoardDeviceMapping[newStateName] = deviceType;
             addCellBoardElement(parentCellBoardState, navToCbElement);
             initCellBoard(newStateName);
-            stateUtilService.addState(newStateName, {
-                url: '/cb/' + stateUtilService.getSubState(newStateName),
-                template: '<env-control/>'
-            });
+            stateUtilService.addState(newStateName, getStateConfig(newStateName));
             _dynamicCellBoardIds.push(newStateName);
             saveData();
             return newStateName;
@@ -172,10 +169,7 @@ angular.module(asterics.appServices)
         function init() {
             var promise1 = areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
                 if (response) {
-                    _cellBoards = response._cellBoards || _cellBoards;
-                    _cellBoardDeviceMapping = response._cellBoardDeviceMapping || _cellBoardDeviceMapping;
-                    _dynamicCellBoardIds = response._dynamicCellBoardIds || _dynamicCellBoardIds;
-                    _fs20Codes = response._fs20Codes || _fs20Codes;
+                    setNewData(response);
                 }
             });
             var promise2 = areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
@@ -186,5 +180,31 @@ angular.module(asterics.appServices)
             }, function () {
                 _initDeferred.resolve();
             });
+        }
+
+        function setNewData(data) {
+            _cellBoards = data._cellBoards || _cellBoards;
+            _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
+            _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
+            _fs20Codes = data._fs20Codes || _fs20Codes;
+            reinitCellBoards();
+        }
+
+        //recreates function-mappings of cellBoards after loading data from server
+        function reinitCellBoards() {
+            angular.forEach(_cellBoards, function (values, key) {
+                if (!stateUtilService.existsState(key)) {
+                    stateUtilService.addState(key, getStateConfig(key));
+                }
+                _cellBoards[key] = envControlUtilService.reinitCellBoardItems(values);
+            });
+            console.log("ready");
+        }
+
+        function getStateConfig(stateName) {
+            return {
+                url: '/cb/' + stateUtilService.getSubState(stateName),
+                template: '<env-control/>'
+            }
         }
     }]);

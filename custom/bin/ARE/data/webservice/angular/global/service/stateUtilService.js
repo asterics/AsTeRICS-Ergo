@@ -77,6 +77,10 @@ angular.module(asterics.appServices)
             return lastState;
         };
 
+        thiz.existsState = function (stateName) {
+            return !!$state.href(stateName);
+        };
+
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
             var lastElement = thiz.getLastState();
             if (lastElement && lastElement.name === to.name) {
