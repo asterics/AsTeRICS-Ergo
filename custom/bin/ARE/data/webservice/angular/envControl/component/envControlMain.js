@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', '$scope', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService, $scope) {
             var thiz = this;
             var _msgGroup = 'envControlMain';
             var _msgGroupDelete = 'envControlMainDelete';
@@ -51,6 +51,17 @@ angular.module(asterics.appComponents)
             init();
             function init() {
                 messageService.clear();
+                initData();
+                thiz.cellBoardConfig = generateDynamicItems().concat(thiz.cellBoardConfig);
+                envControlService.isEnvModelStarted().then(function (isStarted) {
+                    if (!isStarted) {
+                        envControlService.startEnvModel();
+                    }
+                });
+                envControlDataService.registerForNewDataNotify(initData);
+            }
+
+            function initData() {
                 envControlDataService.getCellBoard(thiz.cellBoardId).then(function (response) {
                     thiz.cellBoardEnvControl = response;
                     if (envControlDataService.hasClipboardData()) {
@@ -60,12 +71,6 @@ angular.module(asterics.appComponents)
                             envControlDataService.clearClipboard();
                         }
                     }
-                    thiz.cellBoardConfig = generateDynamicItems().concat(thiz.cellBoardConfig);
-                    envControlService.isEnvModelStarted().then(function (isStarted) {
-                        if (!isStarted) {
-                            envControlService.startEnvModel();
-                        }
-                    });
                 });
             }
 
@@ -154,6 +159,11 @@ angular.module(asterics.appComponents)
                 }
                 return index;
             }
+
+            //aborting all current learning when leaving the page
+            $scope.$on("$destroy", function () {
+                envControlDataService.deregisterNewDataCallback();
+            });
         }],
         templateUrl: "angular/envControl/component/envControlMain.html"
     });

@@ -1,9 +1,10 @@
 angular.module(asterics.appServices)
-    .service('areSaveService', ['$http', '$q', 'utilService', function ($http, $q, utilService) {
+    .service('areSaveService', ['$http', '$q', 'utilService', '$interval', function ($http, $q, utilService, $interval) {
         var thiz = this;
         var _saveFolder = "saved";
         var _pathToSaveFolder = "data/webservice/";
         var _timestampSuffix = ".timestamp";
+        var _registeredUpdateListeners = [];
 
         thiz.saveData = function (appName, filename, dataJSON) {
             if (!filename || !appName || !dataJSON) {
@@ -70,4 +71,48 @@ angular.module(asterics.appServices)
             });
             return def.promise;
         };
+
+        /**
+         * register for updates on a specific stored data-file, specified by "appName" and "filename".
+         *
+         * @param appName
+         * @param filename
+         * @param callbackFunction a function that is invoked if new data available, with new data and new timestamp as param
+         * @param getCurrentTimestampFunction a function that must provide the timestamp of the current stored data, if not specified, data is updated everytime
+         */
+        thiz.registerForUpdates = function (appName, filename, callbackFunction, getCurrentTimestampFunction) {
+            if (!appName || !filename || !callbackFunction) {
+                return;
+            }
+            if (!getCurrentTimestampFunction) {
+                getCurrentTimestampFunction = function () {
+                    return -1;
+                }
+            }
+            var listenerItem = {
+                appName: appName,
+                filename: filename,
+                callbackFunction: callbackFunction,
+                getCurrentTimestampFunction: getCurrentTimestampFunction
+            };
+            _registeredUpdateListeners.push(listenerItem);
+        };
+
+        function checkForUpdatesAndNotify() {
+            angular.forEach(_registeredUpdateListeners, function (item) {
+                var existingTimestamp = item.getCurrentTimestampFunction();
+                thiz.getLastModificationDate(item.appName, item.filename).then(function (responseTimestamp) {
+                    if (responseTimestamp > existingTimestamp) {
+                        thiz.getSavedData(item.appName, item.filename).then(function (responseData) {
+                            item.callbackFunction(responseData, responseTimestamp);
+                        });
+                    }
+                });
+            });
+        }
+
+        init();
+        function init() {
+            $interval(checkForUpdatesAndNotify, asterics.const.PULL_RELOAD_INTERVAL_MS);
+        }
     }]);

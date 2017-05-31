@@ -12,6 +12,7 @@ angular.module(asterics.appServices)
         var _fs20Codes = [];
         var _clipBoard = {};
         var _undoCellBoards = {};
+        var _callbackToCallOnNewData = null;
 
         thiz.getCellBoard = function (cellBoardName) {
             var def = $q.defer();
@@ -127,6 +128,14 @@ angular.module(asterics.appServices)
             return _cellBoardDeviceMapping[cellBoardName];
         };
 
+        thiz.registerForNewDataNotify = function (callbackToCall) {
+            _callbackToCallOnNewData = callbackToCall;
+        };
+
+        thiz.deregisterNewDataCallback = function () {
+            _callbackToCallOnNewData = null;
+        };
+
         function addCellBoardElement(cellBoardName, element) {
             initCellBoard(cellBoardName);
             _cellBoards[cellBoardName].unshift(element);
@@ -168,9 +177,7 @@ angular.module(asterics.appServices)
         init();
         function init() {
             var promise1 = areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
-                if (response) {
-                    setNewData(response);
-                }
+                setNewData(response);
             });
             var promise2 = areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
                 _saveTimestamp = response;
@@ -180,14 +187,25 @@ angular.module(asterics.appServices)
             }, function () {
                 _initDeferred.resolve();
             });
+            areSaveService.registerForUpdates(asterics.envControl.SAVE_FOLDER, _dataFilename, setNewData, function () {
+                return _saveTimestamp
+            });
         }
 
-        function setNewData(data) {
-            _cellBoards = data._cellBoards || _cellBoards;
-            _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
-            _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
-            _fs20Codes = data._fs20Codes || _fs20Codes;
-            reinitCellBoards();
+        function setNewData(data, newTimestamp) {
+            if (data) {
+                _cellBoards = data._cellBoards || _cellBoards;
+                _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
+                _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
+                _fs20Codes = data._fs20Codes || _fs20Codes;
+                reinitCellBoards();
+            }
+            if (newTimestamp) {
+                _saveTimestamp = newTimestamp;
+            }
+            if (_.isFunction(_callbackToCallOnNewData)) {
+                _callbackToCallOnNewData();
+            }
         }
 
         //recreates function-mappings of cellBoards after loading data from server
