@@ -198,7 +198,6 @@ angular.module(asterics.appServices)
                 }
                 _cellBoards[key] = envControlUtilService.reinitCellBoardItems(values);
             });
-            console.log("ready");
         }
 
         function getStateConfig(stateName) {
