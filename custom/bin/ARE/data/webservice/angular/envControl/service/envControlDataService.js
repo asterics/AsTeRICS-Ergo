@@ -1,8 +1,9 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', function (areSaveService, utilService, envControlUtilService, stateUtilService, envControlFsService) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, envControlFsService, $q) {
         var thiz = this;
         var _dataFilename = "ecdata";
         var _saveTimestamp = -1;
+        var _initDeferred = $q.defer();
 
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
@@ -13,7 +14,11 @@ angular.module(asterics.appServices)
         var _undoCellBoards = {};
 
         thiz.getCellBoard = function (cellBoardName) {
-            return _cellBoards[cellBoardName];
+            var def = $q.defer();
+            _initDeferred.promise.then(function () {
+                def.resolve(_cellBoards[cellBoardName]);
+            });
+            return def.promise;
         };
 
         thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
@@ -160,6 +165,26 @@ angular.module(asterics.appServices)
             data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
             data._dynamicCellBoardIds = _dynamicCellBoardIds;
             data._fs20Codes = _fs20Codes;
-            _saveTimestamp = areSaveService.saveData(_dataFilename, data);
+            _saveTimestamp = areSaveService.saveData(asterics.envControl.SAVE_FOLDER, _dataFilename, data);
+        }
+
+        init();
+        function init() {
+            var promise1 = areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+                if (response) {
+                    _cellBoards = response._cellBoards || _cellBoards;
+                    _cellBoardDeviceMapping = response._cellBoardDeviceMapping || _cellBoardDeviceMapping;
+                    _dynamicCellBoardIds = response._dynamicCellBoardIds || _dynamicCellBoardIds;
+                    _fs20Codes = response._fs20Codes || _fs20Codes;
+                }
+            });
+            var promise2 = areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+                _saveTimestamp = response;
+            });
+            $q.all([promise1, promise2]).then(function () {
+                _initDeferred.resolve();
+            }, function () {
+                _initDeferred.resolve();
+            });
         }
     }]);

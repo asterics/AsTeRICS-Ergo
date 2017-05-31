@@ -36,7 +36,9 @@ angular.module(asterics.appComponents)
 
             thiz.undoRemove = function () {
                 envControlDataService.undoRemove();
-                thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
+                envControlDataService.getCellBoard(thiz.cellBoardId).then(function (response) {
+                    thiz.cellBoardEnvControl = response;
+                });
                 messageService.clear();
             };
 
@@ -49,19 +51,21 @@ angular.module(asterics.appComponents)
             init();
             function init() {
                 messageService.clear();
-                thiz.cellBoardEnvControl = envControlDataService.getCellBoard(thiz.cellBoardId);
-                if (envControlDataService.hasClipboardData()) {
-                    var clipBoard = envControlDataService.getClipboardData();
-                    if (clipBoard.cellBoardName === thiz.cellBoardId) {
-                        clipBoard.element.disabled = false;
-                        envControlDataService.clearClipboard();
+                envControlDataService.getCellBoard(thiz.cellBoardId).then(function (response) {
+                    thiz.cellBoardEnvControl = response;
+                    if (envControlDataService.hasClipboardData()) {
+                        var clipBoard = envControlDataService.getClipboardData();
+                        if (clipBoard.cellBoardName === thiz.cellBoardId) {
+                            clipBoard.element.disabled = false;
+                            envControlDataService.clearClipboard();
+                        }
                     }
-                }
-                thiz.cellBoardConfig = generateDynamicItems().concat(thiz.cellBoardConfig);
-                envControlService.isEnvModelStarted().then(function (isStarted) {
-                    if (!isStarted) {
-                        envControlService.startEnvModel();
-                    }
+                    thiz.cellBoardConfig = generateDynamicItems().concat(thiz.cellBoardConfig);
+                    envControlService.isEnvModelStarted().then(function (isStarted) {
+                        if (!isStarted) {
+                            envControlService.startEnvModel();
+                        }
+                    });
                 });
             }
 

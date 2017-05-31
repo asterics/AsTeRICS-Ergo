@@ -5,9 +5,13 @@ angular.module(asterics.appServices)
         var _pathToSaveFolder = "data/webservice/";
         var _timestampSuffix = ".timestamp";
 
-        thiz.saveData = function (filename, dataJSON) {
+        thiz.saveData = function (appName, filename, dataJSON) {
+            if (!filename || !appName || !dataJSON) {
+                console.log("nothing saved, because of empty parameter.");
+                return;
+            }
             var modificationDate = new Date().getTime();
-            var savepath = _pathToSaveFolder + _saveFolder + "/" + getCurrentAppName();
+            var savepath = _pathToSaveFolder + _saveFolder + "/" + appName;
             $http({
                 method: 'POST',
                 url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath) + "/" + utilService.encodeParam(filename),
@@ -27,9 +31,10 @@ angular.module(asterics.appServices)
             return modificationDate;
         };
 
-        thiz.getSavedData = function (filename, appName) {
-            if (!appName) {
-                appName = getCurrentAppName();
+        thiz.getSavedData = function (appName, filename) {
+            if (!filename || !appName) {
+                console.log("nothing returned, because of empty parameter");
+                return;
             }
             var getPath = _saveFolder + "/" + appName;
             var def = $q.defer();
@@ -39,14 +44,15 @@ angular.module(asterics.appServices)
             }).then(function (response) {
                 def.resolve(response.data);
             }, function () {
-                def.resolve(null);
+                def.reject();
             });
             return def.promise;
         };
 
-        thiz.getLastModificationDate = function (filename, appName) {
-            if (!appName) {
-                appName = getCurrentAppName();
+        thiz.getLastModificationDate = function (appName, filename) {
+            if (!filename || !appName) {
+                console.log("nothing returned, because of empty parameter");
+                return;
             }
             var getPath = _saveFolder + "/" + appName;
             var def = $q.defer();
@@ -64,16 +70,4 @@ angular.module(asterics.appServices)
             });
             return def.promise;
         };
-
-        function getCurrentAppName() {
-            var searchString = "#!/" + asterics.const.STATE_HOME + "/";
-            var href = window.location.href;
-            var appName = href.substring(href.indexOf(searchString)).substring(searchString.length);
-            var indexOfSlash = appName.indexOf('/');
-            if (indexOfSlash > 0) {
-                return appName.substring(0, indexOfSlash);
-            } else {
-                return appName;
-            }
-        }
     }]);
