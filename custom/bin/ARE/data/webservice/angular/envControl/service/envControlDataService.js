@@ -1,6 +1,10 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', function (areService, utilService, envControlUtilService, stateUtilService, envControlFsService) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, envControlFsService, $q) {
         var thiz = this;
+        var _dataFilename = "ecdata";
+        var _saveTimestamp = -1;
+        var _initDeferred = $q.defer();
+
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
         var _cellBoardDeviceMapping = {};
@@ -8,14 +12,14 @@ angular.module(asterics.appServices)
         var _fs20Codes = [];
         var _clipBoard = {};
         var _undoCellBoards = {};
+        var _callbackToCallOnNewData = null;
 
         thiz.getCellBoard = function (cellBoardName) {
-            return _cellBoards[cellBoardName];
-        };
-
-        thiz.addCellBoardElement = function (cellBoardName, element) {
-            initCellBoard(cellBoardName);
-            _cellBoards[cellBoardName].unshift(element);
+            var def = $q.defer();
+            _initDeferred.promise.then(function () {
+                def.resolve(_cellBoards[cellBoardName]);
+            });
+            return def.promise;
         };
 
         thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
@@ -25,6 +29,7 @@ angular.module(asterics.appServices)
             var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
             _cellBoards[cellBoard].push(element);
             _fs20Codes.push(code);
+            saveData();
         };
 
         thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
@@ -33,6 +38,7 @@ angular.module(asterics.appServices)
             }
             var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
             _cellBoards[cellBoard].push(element);
+            saveData();
         };
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
@@ -44,11 +50,36 @@ angular.module(asterics.appServices)
             } else if (element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
                 _.pull(_fs20Codes, element.code);
             }
+            saveData();
             return _cellBoards[cellBoardName];
         };
 
         thiz.undoRemove = function () {
             _cellBoards = _undoCellBoards;
+            saveData();
+        };
+
+        thiz.addSubCellboard = function (title, faIcon, parentCellBoardState, deviceType) {
+            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
+            var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
+            var navToCbElement = envControlUtilService.createCellBoardItemNavSubcellboard(title, faIcon, newStateName);
+            _cellBoardDeviceMapping[newStateName] = deviceType;
+            addCellBoardElement(parentCellBoardState, navToCbElement);
+            initCellBoard(newStateName);
+            stateUtilService.addState(newStateName, getStateConfig(newStateName));
+            _dynamicCellBoardIds.push(newStateName);
+            saveData();
+            return newStateName;
+        };
+
+        thiz.pasteCellBoardItem = function (cellBoardName) {
+            if (thiz.hasClipboardData()) {
+                _clipBoard.element.disabled = false;
+                thiz.removeCellBoardElement(_clipBoard.cellBoardName, _clipBoard.element);
+                addCellBoardElement(cellBoardName, _clipBoard.element);
+                _clipBoard = {};
+                saveData();
+            }
         };
 
         thiz.prepareCellBoardElementMove = function (cellBoardName, element) {
@@ -57,15 +88,6 @@ angular.module(asterics.appServices)
             }
             _clipBoard.element = element;
             _clipBoard.cellBoardName = cellBoardName;
-        };
-
-        thiz.pasteCellBoardItem = function (cellBoardName) {
-            if (thiz.hasClipboardData()) {
-                _clipBoard.element.disabled = false;
-                thiz.removeCellBoardElement(_clipBoard.cellBoardName, _clipBoard.element);
-                thiz.addCellBoardElement(cellBoardName, _clipBoard.element);
-                _clipBoard = {};
-            }
         };
 
         thiz.hasClipboardData = function () {
@@ -78,21 +100,6 @@ angular.module(asterics.appServices)
 
         thiz.clearClipboard = function () {
             _clipBoard = {};
-        };
-
-        thiz.addSubCellboard = function (title, faIcon, parentCellBoardState, deviceType) {
-            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
-            var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
-            var navToCbElement = envControlUtilService.createCellBoardItemNavSubcellboard(title, faIcon, newStateName);
-            _cellBoardDeviceMapping[newStateName] = deviceType;
-            thiz.addCellBoardElement(parentCellBoardState, navToCbElement);
-            initCellBoard(newStateName);
-            stateUtilService.addState(newStateName, {
-                url: '/cb/' + stateUtilService.getSubState(newStateName),
-                template: '<env-control/>'
-            });
-            _dynamicCellBoardIds.push(newStateName);
-            return newStateName;
         };
 
         thiz.getNewFs20Code = function () {
@@ -121,6 +128,19 @@ angular.module(asterics.appServices)
             return _cellBoardDeviceMapping[cellBoardName];
         };
 
+        thiz.registerForNewDataNotify = function (callbackToCall) {
+            _callbackToCallOnNewData = callbackToCall;
+        };
+
+        thiz.deregisterNewDataCallback = function () {
+            _callbackToCallOnNewData = null;
+        };
+
+        function addCellBoardElement(cellBoardName, element) {
+            initCellBoard(cellBoardName);
+            _cellBoards[cellBoardName].unshift(element);
+        }
+
         function initCellBoard(cellBoardName) {
             if (!_cellBoards[cellBoardName]) {
                 _cellBoards[cellBoardName] = [];
@@ -143,5 +163,65 @@ angular.module(asterics.appServices)
                 list = list.concat(values);
             });
             return list;
+        }
+
+        function saveData() {
+            var data = {};
+            data._cellBoards = _cellBoards;
+            data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
+            data._dynamicCellBoardIds = _dynamicCellBoardIds;
+            data._fs20Codes = _fs20Codes;
+            _saveTimestamp = areSaveService.saveData(asterics.envControl.SAVE_FOLDER, _dataFilename, data);
+        }
+
+        init();
+        function init() {
+            var promise1 = areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+                setNewData(response);
+            });
+            var promise2 = areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+                _saveTimestamp = response;
+            });
+            $q.all([promise1, promise2]).then(function () {
+                _initDeferred.resolve();
+            }, function () {
+                _initDeferred.resolve();
+            });
+            areSaveService.registerForUpdates(asterics.envControl.SAVE_FOLDER, _dataFilename, setNewData, function () {
+                return _saveTimestamp
+            });
+        }
+
+        function setNewData(data, newTimestamp) {
+            if (data) {
+                _cellBoards = data._cellBoards || _cellBoards;
+                _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
+                _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
+                _fs20Codes = data._fs20Codes || _fs20Codes;
+                reinitCellBoards();
+            }
+            if (newTimestamp) {
+                _saveTimestamp = newTimestamp;
+            }
+            if (_.isFunction(_callbackToCallOnNewData)) {
+                _callbackToCallOnNewData();
+            }
+        }
+
+        //recreates function-mappings of cellBoards after loading data from server
+        function reinitCellBoards() {
+            angular.forEach(_cellBoards, function (values, key) {
+                if (!stateUtilService.existsState(key)) {
+                    stateUtilService.addState(key, getStateConfig(key));
+                }
+                _cellBoards[key] = envControlUtilService.reinitCellBoardItems(values);
+            });
+        }
+
+        function getStateConfig(stateName) {
+            return {
+                url: '/cb/' + stateUtilService.getSubState(stateName),
+                template: '<env-control/>'
+            }
         }
     }]);
