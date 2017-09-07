@@ -94,6 +94,43 @@ angular.module(asterics.appServices)
             });
         };
 
+        /**
+         * opens and listens to a websocket, calls the "afteropen" method after opening the websocket and returns the
+         * next value that is received via websocket. After receiving a value the websocket is closed
+         *
+         * @param canceler a promise that can be resolved in order to abort the action and close the websocket
+         * @param afterOpen a function that is called, after the websocket is opened, e.g. a method, that sends data to
+         * an are-model input-port
+         * @returns {e|*|promise} a promise that is resolved with the data from websocket (e.g. data from are-model
+         * output-port that is triggered by the data that is sent to input port in "afterOpen")
+         */
+        thiz.getNextWebsocketValue = function (canceler, afterOpen) {
+            var def = $q.defer();
+            websocket = new WebSocket(utilService.getWebsocketUrl());
+            websocket.onopen = function (evt) {
+                console.info("websocket opened!");
+                afterOpen();
+            };
+            websocket.onclose = function (evt) {
+                console.info("websocket closed!");
+            };
+            websocket.onmessage = function (evt) {
+                var data = angular.copy(evt.data);
+                def.resolve(data);
+                websocket.close();
+            };
+            websocket.onerror = function (evt) {
+                console.info("websocket error!");
+                def.reject();
+            };
+            if (canceler && canceler.promise) {
+                canceler.promise.then(function () {
+                    websocket.close();
+                });
+            }
+            return def.promise;
+        };
+
         /**********************************
          *    Subscription to SSE events
          **********************************/
