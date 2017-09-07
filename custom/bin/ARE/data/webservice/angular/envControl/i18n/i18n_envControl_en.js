@@ -78,6 +78,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_HW_FS20_PCSENDER: 'FS20 PC-Sender',
     i18n_ec_HW_FS20_PLUG: 'FS20 adapter plug',
     i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_HW_USB_CABLE_AB: 'USB Cable (Typ A - Typ B)',
     i18n_ec_HW_IR_BULB: 'IR Bulb',
 
     //addmenu
