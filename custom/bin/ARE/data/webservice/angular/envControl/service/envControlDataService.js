@@ -175,20 +175,32 @@ angular.module(asterics.appServices)
         }
 
         init();
+
         function init() {
-            var promise1 = areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
-                setNewData(response);
+            var promise1 = $q.defer();
+            var promise2 = $q.defer();
+            areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+                if (response) {
+                    setNewData(response);
+                } else {
+                    saveData(); // save (empty) data, if nothing existing
+                }
+                promise1.resolve();
+            }, function error() {
+                saveData(); // save (empty) data, if nothing existing
+                promise1.resolve();
             });
-            var promise2 = areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+            areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
                 _saveTimestamp = response;
+                promise2.resolve();
+            });
+            areSaveService.registerForUpdates(asterics.envControl.SAVE_FOLDER, _dataFilename, setNewData, function () {
+                return _saveTimestamp
             });
             $q.all([promise1, promise2]).then(function () {
                 _initDeferred.resolve();
             }, function () {
                 _initDeferred.resolve();
-            });
-            areSaveService.registerForUpdates(asterics.envControl.SAVE_FOLDER, _dataFilename, setNewData, function () {
-                return _saveTimestamp
             });
         }
 
