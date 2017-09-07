@@ -56,30 +56,23 @@ angular.module(asterics.appServices)
 
         function fs20Send(cmd) {
             var def = $q.defer();
-            areService.getComponentDataChannelsIds(fs20SenderName, 'output', thiz.canceler).then(function (response) {
-                var channelIds = Object.keys(response.data);
 
-                var successCallback = function (response) {
-                    areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
-                    console.log('fs response: ' + response.data);
-                    if (parseInt(response.data) < 0) {
-                        def.reject(response.data);
-                    } else {
-                        def.resolve(response.data);
-                    }
-                };
-                var errorCallback = function error() {
-                    areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
-                    def.reject();
-                };
+            areService.getNextWebsocketValue(thiz.canceler, afterWebSocketOpen).then(function (response) {
+                console.log('fs response: ' + response);
+                if (parseInt(response) < 0) {
+                    def.reject(response);
+                } else {
+                    def.resolve(response);
+                }
+            });
 
-                areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
-                console.log("sending: " + cmd);
-                return areService.sendDataToInputPort(fs20SenderName, fs20ActionInput, cmd, thiz.canceler).then(function success() {
+            function afterWebSocketOpen() {
+                areService.sendDataToInputPort(fs20SenderName, fs20ActionInput, cmd, thiz.canceler).then(function success() {
                 }, function error() {
                     def.reject();
                 });
-            });
+            }
+
             return def.promise;
         }
 
