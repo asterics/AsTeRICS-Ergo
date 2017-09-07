@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('home.envControl', 'home', 'home.envControl')];
             thiz.isNonSupportedBrowser = function() {
-                return asterics.const.BROWSER_IS_IE || asterics.const.BROWSER_IS_EDGE;
+                return false;
             }
         }],
         templateUrl: "angular/global/component/mainMenu.html"
