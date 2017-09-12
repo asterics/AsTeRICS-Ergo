@@ -43,7 +43,7 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
-        //aborts a current action, unsubscribes from SSE
+        //aborts a current action, closes websocket
         thiz.abortAction = function () {
             thiz.canceler.resolve();
             thiz.canceler = $q.defer();
