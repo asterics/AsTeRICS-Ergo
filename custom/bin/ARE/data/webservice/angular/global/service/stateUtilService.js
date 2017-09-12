@@ -3,6 +3,7 @@ angular.module(asterics.appServices)
         var thiz = this;
         var _stateHistory = [];
         var _stateChangeFunctions = [];
+        var _stateHasChanged = true;
 
         thiz.getNewSubStateName = function (parentState, newName) {
             var newState;
@@ -91,7 +92,18 @@ angular.module(asterics.appServices)
             _stateChangeFunctions.push(fn);
         };
 
+        /**
+         * returns if the state has changed since the last call of this method
+         * @returns {boolean}
+         */
+        thiz.hasStateChangedSinceLastCall = function() {
+            var toReturn = _stateHasChanged;
+            _stateHasChanged = false;
+            return toReturn;
+        };
+
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+            _stateHasChanged = true;
             callAllStateChangeFunctions();
             var lastElement = thiz.getLastState();
             if (lastElement && lastElement.name === to.name) {

@@ -19,12 +19,16 @@ asterics.envControl.DEVICE_AMB_LAMP = 'amblight';
 asterics.envControl.DEVICE_TV = 'tv';
 asterics.envControl.DEVICE_DVD = 'dvd';
 asterics.envControl.DEVICE_HIFI = 'hifi';
+asterics.envControl.DEVICE_IR_GENERIC = 'irgeneric';
+asterics.envControl.DEVICE_PLUG_GENERIC = 'pluggeneric';
 asterics.envControl.DEVICES = [
     asterics.envControl.DEVICE_TABLELAMP,
     asterics.envControl.DEVICE_AMB_LAMP,
     asterics.envControl.DEVICE_TV,
     asterics.envControl.DEVICE_DVD,
-    asterics.envControl.DEVICE_HIFI
+    asterics.envControl.DEVICE_HIFI,
+    asterics.envControl.DEVICE_IR_GENERIC,
+    asterics.envControl.DEVICE_PLUG_GENERIC
 ];
 asterics.envControl.DEVICES_WITH_NUMBERS = [
     asterics.envControl.DEVICE_TV,

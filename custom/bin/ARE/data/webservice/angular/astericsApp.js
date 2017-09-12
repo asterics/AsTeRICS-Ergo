@@ -9,6 +9,7 @@ angular.module(asterics.app, [
     'pascalprecht.translate',
     'ui.bootstrap.contextMenu',
     'ui.bootstrap',
+    'ngAnimate',
     asterics.appServices,
     asterics.appComponents
 ]).config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $translateProvider) {
