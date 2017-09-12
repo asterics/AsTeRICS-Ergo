@@ -17,6 +17,7 @@ angular.module(asterics.appComponents)
             thiz.addCellBoardItemAndReturn = function () {
                 envControlFsService.trainCode(thiz.code);
                 envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
+                envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
             };
 

@@ -24,6 +24,7 @@ angular.module(asterics.appComponents)
                 angular.forEach(thiz.learnItems, function (item) {
                     envControlDataService.addCellBoardElementIrTrans(item.name, thiz.selectedIcon, item.code, cbToAddButtons);
                 });
+                envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
             };
 
@@ -88,7 +89,7 @@ angular.module(asterics.appComponents)
             }
 
             //aborting all current learning when leaving the page
-            $scope.$on("$destroy", function () {
+            stateUtilService.addOneTimeStateChangeFunction(function () {
                 thiz.inTrain = false;
                 envControlIRService.abortAction();
             });
