@@ -60,8 +60,8 @@
             <li>
                 <b>IrTransServer starten</b> - Klicken Sie auf "Start". Suchen und starten Sie "IRTransServer USB". Das Programm läuft dann im Hintergrund und ist nicht zu sehen.
                 <div class="row">
-                    <img ng-if="$ctrl.isWin7OrOther()" src="angular/envControl/img/install-irtrans-win7-2.png" alt="IrTrans-Server"/>
-                    <img ng-if="$ctrl.isWin10()" src="angular/envControl/img/install-irtrans-win10-2.png" alt="IrTrans-Server"/>
+                    <img class="img-responsive" ng-if="$ctrl.isWin7OrOther()" src="angular/envControl/img/install-irtrans-win7-2.png" alt="IrTrans-Server"/>
+                    <img class="img-responsive" ng-if="$ctrl.isWin10()" src="angular/envControl/img/install-irtrans-win10-2.png" alt="IrTrans-Server"/>
                 </div>
             </li>
             <li>
@@ -72,7 +72,7 @@
                     <span ng-if="$ctrl.checkResult && !$ctrl.isConnected"><i class="fa fa-2x fa-times"/> Test fehlgeschlagen</span>
                     <span ng-if="$ctrl.checkResult && $ctrl.isConnected">
                         <i class="fa fa-2x fa-check"/> Test erfolgreich. Klicken Sie auf
-                        <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit IrTrans einzurichten.
+                        <a ui-sref="home.envControl.add">Gerät hinzufügen</a> um eine Steuerung mit IrTrans einzurichten.
                     </span>
                 </div>
             </li>
@@ -80,6 +80,6 @@
     </div>
     <div ng-if="$ctrl.show && !$ctrl.showAssistant">
         <i class="fa fa-2x fa-check"/> IrTrans ist bereits erfolgreich installiert und kann verwendet werden. Klicken
-        Sie auf <a ui-sref="home.envControl.add">Gerät hinzuzufügen</a> um eine Steuerung mit IrTrans einzurichten.
+        Sie auf <a ui-sref="home.envControl.add">Gerät hinzufügen</a> um eine Steuerung mit IrTrans einzurichten.
     </div>
 </div>
