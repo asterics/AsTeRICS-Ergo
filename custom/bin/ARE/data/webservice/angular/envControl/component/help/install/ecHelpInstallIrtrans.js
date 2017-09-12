@@ -44,8 +44,7 @@ angular.module(asterics.appComponents)
                 });
             }
 
-            //aborting all current learning when leaving the page
-            $scope.$on("$destroy", function () {
+            stateUtilService.addOneTimeStateChangeFunction(function () {
                 envControlIRService.abortAction();
             });
         }],

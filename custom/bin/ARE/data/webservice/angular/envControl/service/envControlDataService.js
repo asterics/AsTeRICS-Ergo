@@ -29,7 +29,6 @@ angular.module(asterics.appServices)
             var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
             _cellBoards[cellBoard].push(element);
             _fs20Codes.push(code);
-            saveData();
         };
 
         thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
@@ -38,25 +37,24 @@ angular.module(asterics.appServices)
             }
             var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
             _cellBoards[cellBoard].push(element);
-            saveData();
         };
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
             _undoCellBoards = angular.copy(_cellBoards);
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
-            if (element.type === asterics.const.CB_TYPE_NAV && element.toState) {
+            if (element.type === asterics.const.CB_TYPE_SUBCB && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
                 _.pull(_dynamicCellBoardIds, element.toState);
             } else if (element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
                 _.pull(_fs20Codes, element.code);
             }
-            saveData();
+            thiz.saveData();
             return _cellBoards[cellBoardName];
         };
 
         thiz.undoRemove = function () {
             _cellBoards = _undoCellBoards;
-            saveData();
+            thiz.saveData();
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState, deviceType) {
@@ -68,7 +66,6 @@ angular.module(asterics.appServices)
             initCellBoard(newStateName);
             stateUtilService.addState(newStateName, getStateConfig(newStateName));
             _dynamicCellBoardIds.push(newStateName);
-            saveData();
             return newStateName;
         };
 
@@ -78,7 +75,7 @@ angular.module(asterics.appServices)
                 thiz.removeCellBoardElement(_clipBoard.cellBoardName, _clipBoard.element);
                 addCellBoardElement(cellBoardName, _clipBoard.element);
                 _clipBoard = {};
-                saveData();
+                thiz.saveData();
             }
         };
 
@@ -136,6 +133,15 @@ angular.module(asterics.appServices)
             _callbackToCallOnNewData = null;
         };
 
+        thiz.saveData = function saveData() {
+            var data = {};
+            data._cellBoards = _cellBoards;
+            data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
+            data._dynamicCellBoardIds = _dynamicCellBoardIds;
+            data._fs20Codes = _fs20Codes;
+            _saveTimestamp = areSaveService.saveData(asterics.envControl.SAVE_FOLDER, _dataFilename, data);
+        };
+
         function addCellBoardElement(cellBoardName, element) {
             initCellBoard(cellBoardName);
             _cellBoards[cellBoardName].unshift(element);
@@ -165,15 +171,6 @@ angular.module(asterics.appServices)
             return list;
         }
 
-        function saveData() {
-            var data = {};
-            data._cellBoards = _cellBoards;
-            data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
-            data._dynamicCellBoardIds = _dynamicCellBoardIds;
-            data._fs20Codes = _fs20Codes;
-            _saveTimestamp = areSaveService.saveData(asterics.envControl.SAVE_FOLDER, _dataFilename, data);
-        }
-
         init();
 
         function init() {
@@ -183,11 +180,11 @@ angular.module(asterics.appServices)
                 if (response) {
                     setNewData(response);
                 } else {
-                    saveData(); // save (empty) data, if nothing existing
+                    thiz.saveData(); // save (empty) data, if nothing existing
                 }
                 promise1.resolve();
             }, function error() {
-                saveData(); // save (empty) data, if nothing existing
+                thiz.saveData(); // save (empty) data, if nothing existing
                 promise1.resolve();
             });
             areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
