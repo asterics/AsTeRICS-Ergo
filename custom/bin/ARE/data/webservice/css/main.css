@@ -98,6 +98,10 @@ ol li {
     padding-top: 1em;
 }
 
+.img-responsive {
+    margin: 0 auto;
+}
+
 /* boxes */
 .info, .success, .warn, .error, .validation {
     float: left;
