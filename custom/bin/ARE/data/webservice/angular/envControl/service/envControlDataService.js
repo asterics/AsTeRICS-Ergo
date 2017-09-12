@@ -180,11 +180,11 @@ angular.module(asterics.appServices)
                 if (response) {
                     setNewData(response);
                 } else {
-                    saveData(); // save (empty) data, if nothing existing
+                    thiz.saveData(); // save (empty) data, if nothing existing
                 }
                 promise1.resolve();
             }, function error() {
-                saveData(); // save (empty) data, if nothing existing
+                thiz.saveData(); // save (empty) data, if nothing existing
                 promise1.resolve();
             });
             areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
