@@ -72,16 +72,20 @@ ol li {
     margin-bottom: 0.5em;
 }
 
+.message ol li {
+    margin-bottom: 0;
+}
+
+.message ul li {
+    margin-bottom: 0;
+}
+
 .install-help li {
     margin-bottom: 0.5em;
 }
 
 .panel-title {
     font-weight: bold;
-}
-
-.messageListItem {
-    margin-bottom: 0;
 }
 
 .img-row {
