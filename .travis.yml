@@ -1,0 +1,2 @@
+install: true
+script: git subtree push --prefix custom/bin/ARE/data/webservice/ origin gh-pages 
