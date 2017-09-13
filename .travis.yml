@@ -1,6 +1,6 @@
 language: generic
 install: true
-script: git subtree push --prefix custom/bin/ARE/data/webservice/ origin gh-pages
+script: bash ./travis_update_ghpages.sh
 env:
   global:
   - ENCRYPTION_LABEL: "e6e51d25be94"
