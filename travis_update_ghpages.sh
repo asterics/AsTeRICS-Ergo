@@ -8,7 +8,7 @@ chmod 600 ./asterics_ergo_deploy_key
 
 echo "adding ssh-key..."
 eval `ssh-agent -s`
-echo -e "\n" | ssh-add asterics_ergo_deploy_key
+ssh-add asterics_ergo_deploy_key
 
 echo "pushing to gh-pages branch..."
 git subtree push --prefix custom/bin/ARE/data/webservice/ origin gh-pages
