@@ -1,10 +1,9 @@
 #!/bin/bash
 
-ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
-ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
-ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
-ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ./asterics_ergo_deploy_key.enc -out ./asterics_ergo_deploy_key -d
+git config user.name "Travis CI"
+git config user.email "$COMMIT_AUTHOR_EMAIL"
+
+openssl aes-256-cbc -K $encrypted_e6e51d25be94_key -iv $encrypted_e6e51d25be94_iv -in asterics_ergo_deploy_key.enc -out asterics_ergo_deploy_key -d
 chmod 600 ./asterics_ergo_deploy_key
 eval `ssh-agent -s`
 ssh-add asterics_ergo_deploy_key
