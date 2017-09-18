@@ -5,8 +5,8 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
 
     $stateProvider
         .state(asterics.envControl.STATE_MAIN, {
-            url: '/envcontrol',
-            templateUrl: 'angular/envControl/component/envControlContainer.html'
+            url: '/envcontrol?showMockConfig?mockFs20Connected?mockIrConnected',
+            template: '<env-control-container/>'
         })
         .state(asterics.envControl.STATE_HELP, {
             url: '/help',
