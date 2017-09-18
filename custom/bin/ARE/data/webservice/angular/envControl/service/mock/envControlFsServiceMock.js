@@ -4,6 +4,7 @@ angular.module(asterics.appServices)
         var fs20SenderName = 'FS20Sender.1';
         var fs20ActionInput = 'Action';
         var houseCodeLength = 8;
+        var _plugged = true;
         thiz.canceler = $q.defer();
 
         thiz.fs20Action = function (deviceCode, actionCode) {
@@ -21,7 +22,7 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            def.resolve(true);
+            def.resolve(_plugged);
             return def.promise;
         };
 
@@ -48,6 +49,11 @@ angular.module(asterics.appServices)
                 var housecode = existingCodes[0].split('_')[0];
                 return housecode + '_' + (addOneInFs20NumberSystemTo(max));
             }
+        };
+
+        //only for mock mode:
+        thiz.setDevicePlugged = function (plugged) {
+            _plugged = plugged;
         };
 
         function fs20Send(cmd) {

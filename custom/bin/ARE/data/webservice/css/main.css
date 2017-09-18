@@ -110,6 +110,11 @@ ol li {
     margin: 0 auto;
 }
 
+.mockConfigurator {
+    margin-top: 2em;
+    border-top: 5px solid green;
+}
+
 /* boxes */
 .info, .success, .warn, .error, .validation {
     float: left;
