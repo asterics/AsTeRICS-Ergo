@@ -11,12 +11,12 @@ angular.module(asterics.appComponents)
             thiz.fsPlugStateChanged = function () {
                 console.log("setting fs20 to plugged: " + thiz.fsPlugged);
                 console.log($stateParams);
-                envControlFsService.setDevicePlugged(thiz.fsPlugged)
+                envControlFsService.setDevicePlugged(thiz.fsPlugged);
             };
 
             thiz.irPlugStateChanged = function () {
                 console.log("setting irTrans to plugged: " + thiz.irPlugged);
-                envControlIRService.setDevicePlugged(thiz.irPlugged)
+                envControlIRService.setDevicePlugged(thiz.irPlugged);
             };
 
             init();
@@ -28,9 +28,11 @@ angular.module(asterics.appComponents)
                     }
                     if ($stateParams.mockFs20Connected) {
                         thiz.fsPlugged = ($stateParams.mockFs20Connected == 'true');
+                        envControlFsService.setDevicePlugged(thiz.fsPlugged);
                     }
                     if ($stateParams.mockIrConnected) {
                         thiz.irPlugged = ($stateParams.mockIrConnected == 'true');
+                        envControlIRService.setDevicePlugged(thiz.irPlugged);
                     }
                 }
             }
