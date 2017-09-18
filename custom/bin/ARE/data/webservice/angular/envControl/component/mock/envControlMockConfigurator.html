@@ -1,0 +1,12 @@
+<div ng-if="$ctrl.show">
+    <div class="clearfix"/>
+    <div class="mockConfigurator">
+        <b>Mock Configuration</b><br/>
+        Use the following checkboxes to define if the Hardware is connected:<br/>
+        <p>FS20 plugged in: <input type="checkbox" ng-model="$ctrl.fsPlugged" ng-change="$ctrl.fsPlugStateChanged()"/></p>
+        <p>IrTrans plugged in: <input type="checkbox" ng-model="$ctrl.irPlugged" ng-change="$ctrl.irPlugStateChanged()"/></p>
+    </div>
+</div>
+
+
+
