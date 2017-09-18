@@ -116,6 +116,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_hifi: 'Bitte Namen für den Radio/CD-Player auswählen',
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
 
+    //additional instructions
+    i18n_additional_instr_amblight: 'Ersetzen Sie vor dem Lernvorgang die alte, normale Glühbirne mit der IR-Glühbirne.',
+
     //add ir
     i18n_ec_irtrans_error: 'Fehler bei Verbinden zu IrTrans - Bitte stellen Sie sicher, dass IrTrans installiert und am PC angeschlossen ist.',
     i18n_ec_ir_infotext: 'Es wird nachfolgend ein einzelner oder mehrere Befehle gelernt.',
