@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService) {
             var thiz = this;
             var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
@@ -137,7 +137,12 @@ angular.module(asterics.appComponents)
                 $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
             };
 
+            thiz.getAdditionalInstructions = function () {
+                return envControlTextService.getAdditionalInstructions($state.current.name);
+            };
+
             init();
+
             function init() {
                 envControlIRService.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;

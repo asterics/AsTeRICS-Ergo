@@ -116,6 +116,9 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_name_hifi: 'Please choose a name for the Radio/CD-Player',
     i18n_ec_irmass_name_numbers: 'Please choose a name for the number keys',
 
+    //additional instructions
+    i18n_additional_instr_amblight: 'Before learning replace the old, normal bulb with the IR-bulb.',
+
     //add ir
     i18n_ec_irtrans_error: 'Error sending signal to IrTrans - check that IrTrans is installed and connected to the computer.',
     i18n_ec_ir_infotext: 'Subsequently one ore more new commands are learned.',

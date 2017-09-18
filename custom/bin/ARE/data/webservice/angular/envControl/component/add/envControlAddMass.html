@@ -47,6 +47,9 @@
             <li ng-if="$ctrl.selectedLabel">
                 <span translate="i18n_ec_irmass_text_starthint"/><br/>
             </li>
+            <li ng-repeat="instrCode in $ctrl.getAdditionalInstructions()" ng-if="$ctrl.selectedLabel">
+                <span translate="{{instrCode}}"/><br/>
+            </li>
             <li ng-if="$ctrl.selectedLabel">
                 <span translate="i18n_ec_irmass_text_startlearn"/><br/>
                 <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn">{{'i18n_ec_irmass_startlearn' | translate}}</button>
