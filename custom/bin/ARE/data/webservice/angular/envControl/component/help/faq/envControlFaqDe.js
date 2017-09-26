@@ -1,0 +1,148 @@
+asterics.envControl = asterics.envControl || {};
+asterics.envControl.faq = asterics.envControl.faq || {};
+asterics.envControl.faq.de = [
+    {
+        id: 1,
+        title: 'Welche Geräte können mit AsTeRICS Ergo gesteuert werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 2,
+        title: 'Wie kann die Tisch-/Stehlampe mit IrTrans USB und IR Glühbirne (statt FS20 PC-Sender und FS20 Zwischenstecker) gesteuert werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 3,
+        title: 'Welche zusätzliche Hardware muss für die Einrichtung einer Umgebungssteuerung erworben werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 4,
+        title: 'Mit welchen Kosten muss ich rechnen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 5,
+        title: 'Auf welchen Geräten kann AsTeRICS Ergo installiert werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 6,
+        title: 'Gibt es Alternativen zur Bedienung der AsTeRICS Ergo Umgebungssteuerung, wenn keine herkömmliche Maus bedient werden kann?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 7,
+        title: 'Ich habe die notwendige Hardware bereits erworben. Wie kann ich nun die Steuerung eines Geräts einrichten?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 8,
+        title: 'AsTeRICS Ergo bietet mir nur die Steuerung von Raumlicht, Tisch-/Stehlampe, Fernseher, DVD-Player und Radio/CD-Player an. Können auch weitere Geräte mit AsTeRICS Ergo gesteuert werden, zu denen es keinen Assistenten gibt?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 9,
+        title: 'Wie kann ich die Raumbeleuchtung mit AsTeRICS Ergo steuern?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 10,
+        title: 'Kann ich Türen, Fenster und Jalousien mit AsTeRICS Ergo öffnen und schließen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 11,
+        title: 'Kann mit Hilfe von AsTeRICS Ergo ein Notruf-System gesteuert werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 12,
+        title: 'Kann ich mit AsTeRICS Ergo einen E-Rollstuhl steuern?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 13,
+        title: 'Gibt es Geräte, die nicht mit AsTeRICS Ergo gesteuert werden dürfen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 14,
+        title: 'Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die Steuerung der Umgebung vom PC/Laptop/Tablet aus funktioniert jedoch nicht. Was soll ich tun?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 15,
+        title: 'Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die meisten Befehle funktionieren, bei anderen macht er jedoch nicht das, was ich möchte. Was soll ich tun?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 16,
+        title: 'Darf ich beim Anlernen eines Gerätes mehrere Fernbedienungen verwenden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 17,
+        title: 'In den Assistenten zur Einrichtung von Geräten, die mit dem IrTrans gesteuert werden, kommt öfters die Aufforderung „Drücken Sie jetzt einmal kurz den Knopf …“. Ist dabei der Knopf am Gerät oder auf der Fernbedienung gemeint?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 18,
+        title: 'Ich habe beim Anlernen versehentlich auf der Fernbedienung die falsche Taste gedrückt. Was soll ich tun?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 19,
+        title: 'Müssen alle Befehle, die der Assistent vorschlägt, gelernt werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 20,
+        title: 'Ich habe bereits ein Gerät eingerichtet. Ich hätte aber gerne mehr Steuerungsmöglichkeiten, die mir beim Einlernen nicht vorgeschlagen wurden. Kann ich weitere Befehle zu dem Gerät hinzufügen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 21,
+        title: 'Wie kann ich bereits eingerichtete Befehle oder Geräte löschen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 22,
+        title: 'Kann ich Buttons verschieben und somit die Reihenfolge ändern?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 23,
+        title: 'Gibt es die Möglichkeit bei Unklarheiten einen technischen Support zu kontaktieren?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 24,
+        title: 'Was ist der Unterschied zwischen „Fernbedienungs-Befehle“ und „Fernbedienungs-Gerät“?',
+        language: 'de',
+        keywords: []
+    }
+];
