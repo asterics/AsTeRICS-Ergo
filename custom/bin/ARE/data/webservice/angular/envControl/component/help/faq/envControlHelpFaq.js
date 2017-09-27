@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', 'envControlTextService', '$scope', '$rootScope', '$sce', function (utilService, $state, $stateParams, $anchorScroll, $timeout, envControlTextService, $scope, $rootScope, $sce) {
+        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', function (utilService, $state, $stateParams, $anchorScroll, $timeout, envControlTextService, $scope, $rootScope, $sce, $translate) {
             var thiz = this;
             thiz.faqs = [];
             thiz.searchFaqs = [];
@@ -51,7 +51,7 @@ angular.module(asterics.appComponents)
             init();
 
             function init() {
-                initFaqs('de');
+                initFaqs($translate.use());
                 if ($stateParams.open) {
                     var number = parseInt($stateParams.open);
                     if (number != NaN) {
@@ -104,5 +104,5 @@ angular.module(asterics.appComponents)
                 initFaqs(lang);
             });
         }],
-        templateUrl: "angular/envControl/component/help/envControlHelpFaq.html"
+        templateUrl: "angular/envControl/component/help/faq/envControlHelpFaq.html"
     });
