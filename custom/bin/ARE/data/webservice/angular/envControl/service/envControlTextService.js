@@ -13,7 +13,7 @@ angular.module(asterics.appServices)
             return list || [];
         };
 
-        thiz.getFaqs = function (language) {
+        thiz.getFaqs = function (lang) {
             var faqs;
             if (lang == 'de') {
                 faqs = asterics.envControl.faq.de;
