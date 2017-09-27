@@ -3,9 +3,13 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', function (utilService, $state, $stateParams, $anchorScroll, $timeout) {
+        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', 'envControlTextService', '$scope', '$rootScope', '$sce', function (utilService, $state, $stateParams, $anchorScroll, $timeout, envControlTextService, $scope, $rootScope, $sce) {
             var thiz = this;
+            thiz.faqs = [];
+            thiz.searchFaqs = [];
+            thiz.searchText = '';
             thiz.open = [];
+            $scope.open = thiz.open;
             thiz.currentState = $state.current.name;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
 
@@ -13,8 +17,41 @@ angular.module(asterics.appComponents)
                 return $state.go(eval(state));
             };
 
+            thiz.getTitle = function (faq) {
+                var _title = faq.title;
+                if (thiz.searchText) {
+                    _title = _.replace(_title, new RegExp(thiz.searchText, 'ig'), '<b>$&</b>');
+                }
+                return getHtml(_title);
+            };
+
+            thiz.getHtmlPath = function (faq) {
+                return 'angular/envControl/component/help/faq/html/' + faq.getHtmlName();
+            };
+
+            thiz.search = function () {
+                if (!thiz.searchText || thiz.searchText.length == 0) {
+                    thiz.searchFaqs = thiz.faqs;
+                    return;
+                }
+                var _searchFaqs = [];
+                angular.forEach(thiz.faqs, function (faq) {
+                    if (faq.title && containsString(faq.title, thiz.searchText) || containsKeyword(faq, thiz.searchText)) {
+                        _searchFaqs.push(faq);
+                    }
+                });
+                if (thiz.searchFaqs.length == 1) {
+                    thiz.open[thiz.searchFaqs[0].id] = true;
+                } else {
+                    thiz.open = [];
+                }
+                thiz.searchFaqs = _searchFaqs;
+            };
+
             init();
+
             function init() {
+                initFaqs('de');
                 if ($stateParams.open) {
                     var number = parseInt($stateParams.open);
                     if (number != NaN) {
@@ -25,6 +62,47 @@ angular.module(asterics.appComponents)
                     }
                 }
             }
+
+            function initFaqs(lang) {
+                thiz.searchFaqs = thiz.faqs = envControlTextService.getFaqs(lang);
+            }
+
+            function containsKeyword(faq, searchText) {
+                if (!searchText || !faq.keywords) {
+                    return false;
+                }
+                var returnValue = false;
+                angular.forEach(faq.keywords, function (keyword) {
+                    if (containsString(keyword, searchText)) {
+                        returnValue = true;
+                    }
+                });
+                return returnValue;
+            }
+
+            function containsString(string, search) {
+                var _stringLower = string.toLowerCase();
+                var _searchLower = search.toLowerCase();
+                return _stringLower.indexOf(_searchLower) !== -1;
+            }
+
+            function getHtml(htmlString) {
+                return $sce.trustAsHtml(htmlString);
+            }
+
+            //not very nice but did not find another solution :(
+            //tried https://github.com/LukaszWatroba/v-accordion but events did not work
+            $scope.$watch('open', function (opens) {
+                angular.forEach(opens, function (open, idx) {
+                    if (open) {
+                        $state.params.open = idx;
+                    }
+                })
+            }, true);
+
+            $rootScope.$on(asterics.const.EVENT_LANG_CHANGED, function (event, lang) {
+                initFaqs(lang);
+            });
         }],
         templateUrl: "angular/envControl/component/help/envControlHelpFaq.html"
     });
