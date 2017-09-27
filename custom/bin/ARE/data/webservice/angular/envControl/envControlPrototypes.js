@@ -11,6 +11,7 @@ asterics.eC.prototypes.Faq = function(properties) {
     thiz.keywords = properties.keywords;
     thiz.language = properties.language;
     thiz.title = properties.title;
+    thiz.keywords = properties.keywords;
 
     thiz.getHtmlName = function() {
         return 'faq' + thiz.id + thiz.language + '.html';
