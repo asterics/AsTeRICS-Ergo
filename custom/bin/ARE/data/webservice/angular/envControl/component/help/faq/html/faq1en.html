@@ -1,31 +1,27 @@
-<p>ENGLISH Mit AsTeRICS Ergo können 2 Arten von Geräten gesteuert werden:
+<p>2 types of devices can be controlled using AsTeRICS Ergo::
 <ol>
-    <li>Mit dem <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRTRANS')">IrTrans</a>
-        können die meisten Geräte, die mit einer Infrarot-Fernbedienung bedient werden,
-        gesteuert werden.</br>
-        Beispiele:
+    <li>1. Most devices, which are operated with an infrared remote control, can be controlled. Therefore you need to acquire an <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRTRANS')">IrTrans</a>
+        .</br>
+        Examples:
         <ul>
-            <li>Fernseher</li>
-            <li>DVD-Player</li>
-            <li>Radio/CD-Player</li>
-            <li>Staubsaugerroboter</li>
-            <li><a ui-sref="home.envControl.help/faq({open: 10})">Jalousien</a></li>
+            <li>TV</li>
+            <li>DVD player</li>
+            <li>Radio/CD player</li>
+            <li>Robotic vacuum cleaner</li>
+            <li><a ui-sref="home.envControl.help/faq({open: 10})">blinds</a></li>
+            <li>...</li>
         </ul>
-        Wenn <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRBULB')">Infrarot-Glühbirnen</a>
-        verwendet werden, kann mit dem IrTrans auch die <a ui-sref="home.envControl.help/faq({open: 9})">Raumbeleuchtung</a> gesteuert
-        werden.
+        If <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRBULB')">infrared light bulbs</a>
+        are used, you can also control the <a ui-sref="home.envControl.help/faq({open: 9})">Ambient Light</a> .
     </li>
     <li>
-        Mit dem <a href=""
-                   ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_FS20')">FS20-System</a> können
-        Geräte gesteuert werden, die an der Steckdose hängen und per Schalter
-        ein- und
-        ausgeschaltet werden.</br>
-        Beispiele:
+        2. Additionally, you can control devices that are connected to a socket and normally turned on and off with a switch. Therefore you require the <a href=""
+                   ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_FS20')">FS20-System</a> .</br>
+        Examples:
         <ul>
-            <li>Tisch-/Stehlampen</li>
-            <li>Lavalampen</li>
-            <li>Ventilatoren</li>
+            <li>Table / Floor lamps</li>
+            <li>Fan</li>
+            <li>...</li>
         </ul>
     </li>
 </ol>
