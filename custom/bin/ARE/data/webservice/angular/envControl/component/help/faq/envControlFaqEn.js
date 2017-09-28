@@ -3,145 +3,145 @@ asterics.envControl.faq = asterics.envControl.faq || {};
 asterics.envControl.faq.en  = [
     {
         id: 1,
-        title: 'EN - Welche Geräte können mit AsTeRICS Ergo gesteuert werden?',
+        title: 'Which devices can be controlled using AsTeRICS Ergo?',
         language: 'en',
         keywords: []
     },
     {
         id: 2,
-        title: 'EN - Wie kann die Tisch-/Stehlampe mit IrTrans USB und IR Glühbirne (statt FS20 PC-Sender und FS20 Zwischenstecker) gesteuert werden?',
+        title: 'How can I control the table / floor lamp using the IrTrans system and an IR light bulb (instead of the FS20 system)?',
         language: 'en',
         keywords: []
     },
     {
         id: 3,
-        title: 'EN - Welche zusätzliche Hardware muss für die Einrichtung einer Umgebungssteuerung erworben werden?',
+        title: 'Which additional hardware is needed to set up an environmental control system?',
         language: 'en',
         keywords: []
     },
     {
         id: 4,
-        title: 'EN - Mit welchen Kosten muss ich rechnen?',
+        title: 'What costs can I expect??',
         language: 'en',
         keywords: []
     },
     {
         id: 5,
-        title: 'EN - Auf welchen Geräten kann AsTeRICS Ergo installiert werden?',
+        title: 'On which devices can AsTeRICS Ergo be installed?',
         language: 'en',
         keywords: []
     },
     {
         id: 6,
-        title: 'EN - Gibt es Alternativen zur Bedienung der AsTeRICS Ergo Umgebungssteuerung, wenn keine herkömmliche Maus bedient werden kann?',
+        title: 'How can I control AsTeRICS Ergo?',
         language: 'en',
         keywords: []
     },
     {
         id: 7,
-        title: 'EN - Ich habe die notwendige Hardware bereits erworben. Wie kann ich nun die Steuerung eines Geräts einrichten?',
+        title: 'How can I set up the control of a device, if I have already purchased the required hardware?',
         language: 'en',
         keywords: []
     },
     {
         id: 8,
-        title: 'EN - AsTeRICS Ergo bietet mir nur die Steuerung von Raumlicht, Tisch-/Stehlampe, Fernseher, DVD-Player und Radio/CD-Player an. Können auch weitere Geräte mit AsTeRICS Ergo gesteuert werden, zu denen es keinen Assistenten gibt?',
+        title: 'AsTeRICS Ergo offers wizards for setting up the control of the ambient light, table / floor lamp, TV, DVD player and radio / CD player. How can I set up the control of other devices?',
         language: 'en',
         keywords: []
     },
     {
         id: 9,
-        title: 'EN - Wie kann ich die Raumbeleuchtung mit AsTeRICS Ergo steuern?',
+        title: 'How is it possible to control the ambient light using AsTeRICS Ergo?',
         language: 'en',
         keywords: []
     },
     {
         id: 10,
-        title: 'EN - Kann ich Türen, Fenster und Jalousien mit AsTeRICS Ergo öffnen und schließen?',
+        title: 'Is it possible to open / close doors, windows and blinds using AsTeRICS Ergo?',
         language: 'en',
         keywords: []
     },
     {
         id: 11,
-        title: 'EN - Kann mit Hilfe von AsTeRICS Ergo ein Notruf-System gesteuert werden?',
+        title: 'Is it possible to control emergency call systems using AsTeRICS Ergo?',
         language: 'en',
         keywords: []
     },
     {
         id: 12,
-        title: 'EN - Kann ich mit AsTeRICS Ergo einen E-Rollstuhl steuern?',
+        title: 'Is it possible to use AsTeRICS Ergo for navigating an electric wheelchair?',
         language: 'en',
         keywords: []
     },
     {
         id: 13,
-        title: 'EN - Gibt es Geräte, die nicht mit AsTeRICS Ergo gesteuert werden dürfen?',
+        title: 'Are there any devices which must not be controlled using AsTeRICS Ergo?',
         language: 'en',
         keywords: []
     },
     {
         id: 14,
-        title: 'EN - Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die Steuerung der Umgebung vom PC/Laptop/Tablet aus funktioniert jedoch nicht. Was soll ich tun?',
+        title: 'I set up a device (e.g. TV, DVD player, ambient light, radio / CD player) using the IrTrans. However, it is not possible to control it using AsTeRICS Ergo. What shall I do?',
         language: 'en',
         keywords: []
     },
     {
         id: 15,
-        title: 'EN - Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die meisten Befehle funktionieren, bei anderen macht er jedoch nicht das, was ich möchte. Was soll ich tun?',
+        title: 'I set up a device (e.g. TV, DVD player, ambient light, radio / CD player) using the IrTrans. I can control the environment using AsTeRICS Ergo. However, some commands do not work properly. What shall I do?',
         language: 'en',
         keywords: []
     },
     {
         id: 16,
-        title: 'EN - Darf ich beim Anlernen eines Gerätes mehrere Fernbedienungen verwenden?',
+        title: 'Is it possible to use multiple remote controls when setting up the control of a device?',
         language: 'en',
         keywords: []
     },
     {
         id: 17,
-        title: 'EN - In den Assistenten zur Einrichtung von Geräten, die mit dem IrTrans gesteuert werden, kommt öfters die Aufforderung „Drücken Sie jetzt einmal kurz den Knopf …“. Ist dabei der Knopf am Gerät oder auf der Fernbedienung gemeint?',
+        title: 'The wizards for setting up devices, which are controlled via IrTrans, often ask „Now once shortly press the button…“. Do I have to press the button on the device or on the remote control of the device?',
         language: 'en',
         keywords: []
     },
     {
         id: 18,
-        title: 'EN - Ich habe beim Anlernen versehentlich auf der Fernbedienung die falsche Taste gedrückt. Was soll ich tun?',
+        title: 'I accidentally pressed the wrong button on the remote control whilst setting up the control of the device. What shall I do?',
         language: 'en',
         keywords: []
     },
     {
         id: 19,
-        title: 'EN - Müssen alle Befehle, die der Assistent vorschlägt, gelernt werden?',
+        title: 'Do I need to learn all suggested commands?',
         language: 'en',
         keywords: []
     },
     {
         id: 20,
-        title: 'EN - Ich habe bereits ein Gerät eingerichtet. Ich hätte aber gerne mehr Steuerungsmöglichkeiten, die mir beim Einlernen nicht vorgeschlagen wurden. Kann ich weitere Befehle zu dem Gerät hinzufügen?',
+        title: 'I have already set up a device using the IrTrans. However, I would like to add further commands, which were not suggested to during the learning process. Is it possible to add further commands?',
         language: 'en',
         keywords: []
     },
     {
         id: 21,
-        title: 'EN - Wie kann ich bereits eingerichtete Befehle oder Geräte löschen?',
+        title: 'How is it possible to delete commands or devices?',
         language: 'en',
         keywords: []
     },
     {
         id: 22,
-        title: 'EN - Kann ich Buttons verschieben und somit die Reihenfolge ändern?',
+        title: 'Is it possible to move buttons and determine the order of the buttons?',
         language: 'en',
         keywords: []
     },
     {
         id: 23,
-        title: 'EN - Gibt es die Möglichkeit bei Unklarheiten einen technischen Support zu kontaktieren?',
+        title: 'Do you provide technical support in case of any difficulties?',
         language: 'en',
         keywords: []
     },
     {
         id: 24,
-        title: 'EN - Was ist der Unterschied zwischen „Fernbedienungs-Befehle“ und „Fernbedienungs-Gerät“?',
+        title: 'What is the difference between the wizards „Remote-commands“ and „Remote-device“?',
         language: 'en',
         keywords: []
     }
