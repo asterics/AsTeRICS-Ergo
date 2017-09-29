@@ -22,7 +22,11 @@ angular.module(asterics.appServices)
         thiz.isConnected = function () {
             var def = $q.defer();
             thiz.fs20Action('1111_1111', '28').then(function () { //not defined command
-                def.resolve(true);
+                thiz.fs20Action('1111_1111', '28').then(function () { //do double check because sometimes first time is wrong
+                    def.resolve(true);
+                }, function error() {
+                    def.resolve(false);
+                });
             }, function error() {
                 def.resolve(false);
             });
