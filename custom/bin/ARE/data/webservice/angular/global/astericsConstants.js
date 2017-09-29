@@ -30,6 +30,8 @@ asterics.const.MSG_SUCCESS = 'success';
 asterics.const.MSG_WARN = 'warn';
 asterics.const.MSG_ERROR = 'error';
 
+asterics.const.EVENT_LANG_CHANGED = 'languageChanged';
+
 asterics.const.PULL_RELOAD_INTERVAL_MS = 500;
 
 asterics.const.OS_IS_WIN10 = (window.navigator.userAgent.indexOf("Windows NT 10.0") != -1);

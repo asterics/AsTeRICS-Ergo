@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="D:\z_Code\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2017_3_24_16_17" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2017_9_7_15_21" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -18,7 +18,7 @@
         <inputPort portTypeID="Action">
           <properties />
         </inputPort>
-		<outputPort portTypeID="output">
+        <outputPort portTypeID="output">
           <properties />
         </outputPort>
       </ports>
@@ -93,40 +93,38 @@
         <posY>577</posY>
       </layout>
     </component>
-    <component id="TextSender.1.1" type_id="asterics.TextSender">
-      <description>Send text when gets event</description>
+    <component id="WebSocket.1" type_id="asterics.WebSocket">
+      <description>This plugin uses a websocket connection to send and read data. The default websocket URI is ws://{hostname}:8082/ws/astericsData. You have to start the ARE with --webservice flag. You can test the connection with http://localhost:8082/
+        </description>
       <ports>
-        <inputPort portTypeID="setText">
+        <inputPort portTypeID="InA">
           <properties />
         </inputPort>
-        <outputPort portTypeID="output">
+        <outputPort portTypeID="OutA">
           <properties />
         </outputPort>
       </ports>
-      <properties>
-        <property name="text" value="This is a sample text." />
-      </properties>
+      <properties />
       <layout>
-        <posX>1017</posX>
-        <posY>584</posY>
+        <posX>1144</posX>
+        <posY>402</posY>
       </layout>
     </component>
-    <component id="TextSender.1.2" type_id="asterics.TextSender">
-      <description>Send text when gets event</description>
+    <component id="WebSocket.2" type_id="asterics.WebSocket">
+      <description>This plugin uses a websocket connection to send and read data. The default websocket URI is ws://{hostname}:8082/ws/astericsData. You have to start the ARE with --webservice flag. You can test the connection with http://localhost:8082/
+        </description>
       <ports>
-        <inputPort portTypeID="setText">
+        <inputPort portTypeID="InA">
           <properties />
         </inputPort>
-        <outputPort portTypeID="output">
+        <outputPort portTypeID="OutA">
           <properties />
         </outputPort>
       </ports>
-      <properties>
-        <property name="text" value="This is a sample text." />
-      </properties>
+      <properties />
       <layout>
-        <posX>1263</posX>
-        <posY>385</posY>
+        <posX>1144</posX>
+        <posY>579</posY>
       </layout>
     </component>
   </components>
@@ -153,24 +151,24 @@
         <port id="action" />
       </target>
     </channel>
-    <channel id="binding.2">
-      <source>
-        <component id="IrTrans.1" />
-        <port id="output" />
-      </source>
-      <target>
-        <component id="TextSender.1.1" />
-        <port id="setText" />
-      </target>
-    </channel>
-    <channel id="binding.3">
+    <channel id="binding.4">
       <source>
         <component id="FS20Sender.1" />
         <port id="output" />
       </source>
       <target>
-        <component id="TextSender.1.2" />
-        <port id="setText" />
+        <component id="WebSocket.1" />
+        <port id="InA" />
+      </target>
+    </channel>
+    <channel id="binding.5">
+      <source>
+        <component id="IrTrans.1" />
+        <port id="output" />
+      </source>
+      <target>
+        <component id="WebSocket.2" />
+        <port id="InA" />
       </target>
     </channel>
   </channels>

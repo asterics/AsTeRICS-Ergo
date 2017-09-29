@@ -7,6 +7,7 @@ angular.module(asterics.appServices)
         var _learnWaitSeconds = 5;
         var _learnWaitMillis = _learnWaitSeconds * 1000;
         var _lastLearnStartTime;
+        var _plugged = true;
         thiz.canceler = $q.defer();
 
         thiz.irSend = function (cmd) {
@@ -30,7 +31,7 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            def.resolve(true);
+            def.resolve(_plugged);
             return def.promise;
         };
 
@@ -38,5 +39,10 @@ angular.module(asterics.appServices)
             var def = $q.defer();
             def.resolve();
             return def.promise;
+        };
+
+        //only for mock mode:
+        thiz.setDevicePlugged = function (plugged) {
+            _plugged = plugged;
         };
     }]);

@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService) {
+        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService) {
             var thiz = this;
             var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
@@ -14,6 +14,7 @@ angular.module(asterics.appComponents)
 
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.inLearn = false;
+            thiz.learningAborted = false;
             thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
             thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
@@ -24,6 +25,9 @@ angular.module(asterics.appComponents)
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
             thiz.trainCode = function () {
+                if (thiz.learningAborted) {
+                    return;
+                }
                 thiz.showError = false;
                 thiz.waiting = false;
                 if (!_currentLearnItem || _currentLearnItem.code) {
@@ -86,12 +90,14 @@ angular.module(asterics.appComponents)
             };
 
             thiz.addCellBoardItemsAndReturn = function () {
+                abortLearning();
                 var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, _addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
                         envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
                     }
                 });
+                envControlDataService.saveData();
                 $state.go(_cbToAdd);
             };
 
@@ -131,7 +137,12 @@ angular.module(asterics.appComponents)
                 $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
             };
 
+            thiz.getAdditionalInstructions = function () {
+                return envControlTextService.getAdditionalInstructions($state.current.name);
+            };
+
             init();
+
             function init() {
                 envControlIRService.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
@@ -139,6 +150,7 @@ angular.module(asterics.appComponents)
             }
 
             function abortLearning() {
+                thiz.learningAborted = true;
                 thiz.inLearn = false;
                 envControlIRService.abortAction();
             }
@@ -197,7 +209,7 @@ angular.module(asterics.appComponents)
             });
 
             //aborting all current learning when leaving the page
-            $scope.$on("$destroy", function () {
+            stateUtilService.addOneTimeStateChangeFunction(function () {
                 abortLearning();
             });
         }],

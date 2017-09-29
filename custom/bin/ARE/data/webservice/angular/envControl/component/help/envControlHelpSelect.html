@@ -11,9 +11,11 @@
     <ul class="nodots">
         <li ng-repeat="device in $ctrl.devices">
             <div class="row">
-                <label class="col-xs-12 col-sm-4 col-md-3">
+                <label class="col-xs-12 col-sm-5 col-md-4">
                     <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device].chosen"
-                           ng-change="$ctrl.refreshNeededHardware(device)"/> {{'i18n_ec_' + device | translate}}
+                           ng-change="$ctrl.selectedDevicesChanged(device)"/>
+                    <span>{{'i18n_ec_' + device | translate}}</span>
+                    <i ng-if="$ctrl.isDeviceWithAdditionalInfo(device)" class="fa fa-info-circle" title="{{'i18n_ec_' + device + '_additional' | translate}}"></i>
                 </label>
                 <div class="col-xs-3 col-sm-3 col-md-2">
                     <div class="row">
@@ -22,14 +24,14 @@
                                ng-model="$ctrl.deviceSelectionMap[device].amount"
                                ng-disabled="!$ctrl.deviceSelectionMap[device].chosen"
                                ng-blur="$ctrl.onAmountBlur(device)"
-                               ng-change="$ctrl.refreshNeededHardware()"/>
+                               ng-change="$ctrl.selectedDevicesChanged()"/>
                     </div>
                 </div>
             </div>
         </li>
         <li>Das gewünschte Gerät ist nicht in der Liste? <a ui-sref="home.envControl.help/faq({open: 1})">Weitere Möglichkeiten</a></li>
     </ul>
-    <div ng-if="$ctrl.neededHardware.length > 0">
+    <div class="asterics-fade" ng-if="$ctrl.neededHardware.length > 0">
         <p>Dafür benötigen Sie folgende Hardware:</p>
         <div class="row">
             <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">

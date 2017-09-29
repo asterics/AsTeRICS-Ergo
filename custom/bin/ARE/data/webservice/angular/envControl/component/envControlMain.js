@@ -160,8 +160,7 @@ angular.module(asterics.appComponents)
                 return index;
             }
 
-            //aborting all current learning when leaving the page
-            $scope.$on("$destroy", function () {
+            stateUtilService.addOneTimeStateChangeFunction(function () {
                 envControlDataService.deregisterNewDataCallback();
             });
         }],

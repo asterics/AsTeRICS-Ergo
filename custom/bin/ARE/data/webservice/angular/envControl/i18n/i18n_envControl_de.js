@@ -65,6 +65,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_tv: 'Fernseher',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
+    i18n_ec_irgeneric: 'Anderes Fernbedienungs-Gerät',
+    i18n_ec_pluggeneric: 'Anderes Steckdosen-Gerät',
+    i18n_ec_irgeneric_additional: 'Gemeint sind alle Geräte, die mit einer Infrarot-Fernbedienung gesteuert werden können.',
+    i18n_ec_pluggeneric_additional: 'Gemeint sind alle Geräte, die über eine Steckdose angesteckt werden und nur eingeschaltet oder ausgeschaltet werden sollen.',
     i18n_ec_numbers: 'Nummern',
     i18n_ec_plug: 'Steckdose',
     i18n_ec_ircommand: 'Fernbedienungs-Befehle',
@@ -78,6 +82,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_HW_FS20_PCSENDER: 'FS20 PC-Sender',
     i18n_ec_HW_FS20_PLUG: 'FS20 Zwischenstecker',
     i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_HW_USB_CABLE_AB: 'USB Kabel (Typ A - Typ B)',
     i18n_ec_HW_IR_BULB: 'IR Glühbirne',
 
     //addmenu
@@ -110,6 +115,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_dvd: 'Bitte Namen für den DVD-Player auswählen',
     i18n_ec_irmass_name_hifi: 'Bitte Namen für den Radio/CD-Player auswählen',
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
+
+    //additional instructions
+    i18n_additional_instr_amblight: 'Ersetzen Sie vor dem Lernvorgang die alte, normale Glühbirne mit der IR-Glühbirne.',
 
     //add ir
     i18n_ec_irtrans_error: 'Fehler bei Verbinden zu IrTrans - Bitte stellen Sie sicher, dass IrTrans installiert und am PC angeschlossen ist.',

@@ -60,4 +60,25 @@ angular.module(asterics.appServices)
         thiz.getRestUrl = function () {
             return thiz.getBaseUrl() + "rest/";
         };
+
+        thiz.getWebsocketUrl = function () {
+            return "ws://" + window.location.hostname + ":8082/ws/astericsData";
+        };
+
+        /**
+         * returns a list of objects defined by the prototype list with a given
+         * list of element data
+         * @param prototypeFunction the prototype function to generate one
+         * instance of an object
+         * @param elementList a list of data-elements where each element is passed
+         * to the prototype function
+         * @returns {Array}
+         */
+        thiz.getObjectsFromList = function(prototypeFunction, elementList) {
+            var returnList = [];
+            angular.forEach(elementList, function (element) {
+                returnList.push(new prototypeFunction(element));
+            });
+            return returnList;
+        };
     }]);

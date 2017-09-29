@@ -65,6 +65,10 @@ asterics.i18n_envControl_en = {
     i18n_ec_tv: 'Television',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
+    i18n_ec_irgeneric: 'Other remote-controlled device',
+    i18n_ec_pluggeneric: 'Other socket device',
+    i18n_ec_irgeneric_additional: 'All devices that can be controlled by a infrared remote control',
+    i18n_ec_pluggeneric_additional: 'All devices that are connected to an electric socket and should only be turned on and off.',
     i18n_ec_numbers: 'Numbers',
     i18n_ec_plug: 'Plug',
     i18n_ec_ircommand: 'Remote-commands',
@@ -78,6 +82,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_HW_FS20_PCSENDER: 'FS20 PC-Sender',
     i18n_ec_HW_FS20_PLUG: 'FS20 adapter plug',
     i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_HW_USB_CABLE_AB: 'USB Cable (Typ A - Typ B)',
     i18n_ec_HW_IR_BULB: 'IR Bulb',
 
     //addmenu
@@ -110,6 +115,9 @@ asterics.i18n_envControl_en = {
     i18n_ec_irmass_name_dvd: 'Please choose a name for the DVD-Player',
     i18n_ec_irmass_name_hifi: 'Please choose a name for the Radio/CD-Player',
     i18n_ec_irmass_name_numbers: 'Please choose a name for the number keys',
+
+    //additional instructions
+    i18n_additional_instr_amblight: 'Before learning replace the old, normal bulb with the IR-bulb.',
 
     //add ir
     i18n_ec_irtrans_error: 'Error sending signal to IrTrans - check that IrTrans is installed and connected to the computer.',

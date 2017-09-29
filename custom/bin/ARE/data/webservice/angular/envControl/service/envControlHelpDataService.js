@@ -30,6 +30,16 @@ angular.module(asterics.appServices)
                 [asterics.envControl.HW_IRTRANS_USB]
             ]
         };
+        _deviceMappings[asterics.envControl.DEVICE_IR_GENERIC] = {
+            hardware: [
+                [asterics.envControl.HW_IRTRANS_USB]
+            ]
+        };
+        _deviceMappings[asterics.envControl.DEVICE_PLUG_GENERIC] = {
+            hardware: [
+                [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]
+            ]
+        };
         _hardwareAmount[asterics.envControl.HW_FS20_PCSENDER] = 1;
         _hardwareAmount[asterics.envControl.HW_FS20_PLUG] = undefined;
         _hardwareAmount[asterics.envControl.HW_IRTRANS_USB] = 1;

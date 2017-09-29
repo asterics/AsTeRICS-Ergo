@@ -22,6 +22,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.languageChanged = function () {
+                $rootScope.$broadcast(asterics.const.EVENT_LANG_CHANGED, thiz.selectedLanguage);
                 $translate.use(thiz.selectedLanguage);
             };
 

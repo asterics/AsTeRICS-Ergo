@@ -2,6 +2,8 @@ angular.module(asterics.appServices)
     .service('stateUtilService', ['$state', '$rootScope', function ($state, $rootScope) {
         var thiz = this;
         var _stateHistory = [];
+        var _stateChangeFunctions = [];
+        var _stateHasChanged = true;
 
         thiz.getNewSubStateName = function (parentState, newName) {
             var newState;
@@ -81,7 +83,28 @@ angular.module(asterics.appServices)
             return !!$state.href(stateName);
         };
 
+        /**
+         * adds a function that is called after the next state-change
+         * can be used e.g. for aborting an action after leaving a page
+         * @param fn the function to be called at state-change
+         */
+        thiz.addOneTimeStateChangeFunction = function (fn) {
+            _stateChangeFunctions.push(fn);
+        };
+
+        /**
+         * returns if the state has changed since the last call of this method
+         * @returns {boolean}
+         */
+        thiz.hasStateChangedSinceLastCall = function() {
+            var toReturn = _stateHasChanged;
+            _stateHasChanged = false;
+            return toReturn;
+        };
+
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+            _stateHasChanged = true;
+            callAllStateChangeFunctions();
             var lastElement = thiz.getLastState();
             if (lastElement && lastElement.name === to.name) {
                 _stateHistory.pop(); // moved back to last state -> remove it from history
@@ -94,4 +117,13 @@ angular.module(asterics.appServices)
                 });
             }
         });
+
+        function callAllStateChangeFunctions() {
+            angular.forEach(_stateChangeFunctions, function (stateChangeFunction) {
+                if (_.isFunction(stateChangeFunction)) {
+                    stateChangeFunction();
+                }
+            });
+            _stateChangeFunctions = [];
+        }
     }]);

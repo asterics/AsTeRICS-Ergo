@@ -1,17 +1,17 @@
 ;This file will be executed next to the application bundle image
 ;I.e. current directory will contain folder AsTeRICS Ergo with application files
 [Setup]
-AppId={{fxApplication}}
+AppId={{AsTeRICS Ergo}}
 AppName=AsTeRICS Ergo
-AppVersion=3.1.0
-AppVerName=AsTeRICS Ergo 3.2.0
+AppVersion=3.2.2
+;AppVerName=AsTeRICS Ergo 3.2.1
 AppPublisher=Asterics consortium
 AppComments=Assistive Technology for Occupational Therapy
 AppCopyright=Copyright (C) 2017
 ;AppPublisherURL=http://java.com/
 ;AppSupportURL=http://java.com/
 ;AppUpdatesURL=http://java.com/
-DefaultDirName={pf}\AsTeRICS Ergo
+DefaultDirName={localappdata}\AsTeRICS Ergo
 DisableStartupPrompt=Yes
 DisableDirPage=Yes
 DisableProgramGroupPage=Yes
@@ -23,10 +23,10 @@ DefaultGroupName=Asterics consortium
 LicenseFile=
 ;WinXP or above
 MinVersion=0,5.1 
-OutputBaseFilename=AsTeRICS Ergo-3.2.0
+OutputBaseFilename=AsTeRICS Ergo-3.2.2
 Compression=lzma
 SolidCompression=yes
-PrivilegesRequired=admin
+PrivilegesRequired=lowest
 SetupIconFile=AsTeRICS Ergo\AsTeRICS Ergo.ico
 UninstallDisplayIcon={app}\AsTeRICS Ergo.ico
 UninstallDisplayName=AsTeRICS Ergo
@@ -36,7 +36,7 @@ ArchitecturesInstallIn64BitMode=
 
 
 [Languages]
-Name: "en"; MessagesFile: "compiler:Default.isl"
+Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "de"; MessagesFile: "compiler:Languages\German.isl"
 Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"

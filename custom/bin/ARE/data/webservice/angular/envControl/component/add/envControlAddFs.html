@@ -9,7 +9,7 @@
     <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
         <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
         <ul>
-            <li class="messageListItem" ng-repeat="hardware in $ctrl.neededHardware">
+            <li ng-repeat="hardware in $ctrl.neededHardware">
                 <a href="" ng-click="$ctrl.goToHelp(hardware)">
                     {{'i18n_ec_' + hardware | translate}}
                 </a>

@@ -43,11 +43,10 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
-        //aborts a current action, unsubscribes from SSE
+        //aborts a current action, closes websocket
         thiz.abortAction = function () {
             thiz.canceler.resolve();
             thiz.canceler = $q.defer();
-            return areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
         };
 
         function irAction(cmd) {
@@ -55,27 +54,22 @@ angular.module(asterics.appServices)
             var actionString = '@IRTRANS:' + cmd;
             console.log("sending: " + actionString);
 
-            var successCallback = function (response) {
-                areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
-                console.log('ir response: ' + response.data);
-                if (response.data.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
-                    def.reject(response.data);
+            areService.getNextWebsocketValue(thiz.canceler, afterWebSocketOpened).then(function (response) {
+                console.log('ir response: ' + response);
+                if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
+                    def.reject(response);
                 } else {
-                    def.resolve(response.data);
+                    def.resolve(response);
                 }
-            };
-            var errorCallback = function error() {
-                areService.unsubscribeSSE(asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION);
-                def.reject();
-            };
-            areService.getComponentDataChannelsIds(irTransName, 'output', thiz.canceler).then(function (response) {
-                var channelIds = Object.keys(response.data);
-                areService.subscribeSSE(successCallback, errorCallback, asterics.const.ServerEventTypes.DATA_CHANNEL_TRANSMISSION, channelIds[0]);
+            });
+
+            function afterWebSocketOpened() {
                 areService.sendDataToInputPort(irTransName, irTransActionInput, actionString, thiz.canceler).then(function success() {
                 }, function error() {
                     def.reject();
                 });
-            });
+            }
+
             return def.promise;
         };
     }]);

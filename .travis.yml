@@ -1,0 +1,7 @@
+language: generic
+install: true
+script: bash ./travis_update_ghpages.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "e6e51d25be94"
+  - COMMIT_AUTHOR_EMAIL: "klaus@technikum-wien.at"

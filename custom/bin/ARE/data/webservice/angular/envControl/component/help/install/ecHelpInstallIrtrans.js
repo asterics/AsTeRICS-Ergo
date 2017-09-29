@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('ecHelpInstallIrtrans', {
         bindings: {},
-        controller: ['utilService', 'envControlIRService', '$scope', '$timeout', '$anchorScroll', '$stateParams', function (utilService, envControlIRService, $scope, $timeout, $anchorScroll, $stateParams) {
+        controller: ['utilService', 'envControlIRService', '$scope', '$timeout', '$anchorScroll', '$stateParams', 'stateUtilService', function (utilService, envControlIRService, $scope, $timeout, $anchorScroll, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.show = false;
             thiz.showAssistant = false;
@@ -44,8 +44,7 @@ angular.module(asterics.appComponents)
                 });
             }
 
-            //aborting all current learning when leaving the page
-            $scope.$on("$destroy", function () {
+            stateUtilService.addOneTimeStateChangeFunction(function () {
                 envControlIRService.abortAction();
             });
         }],

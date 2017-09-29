@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', function (envControlFsService, envControlIRService, utilService) {
+    .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', '$timeout', '$anchorScroll', function (envControlFsService, envControlIRService, utilService, $timeout ,$anchorScroll) {
         var thiz = this;
 
         thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
@@ -102,6 +102,12 @@ angular.module(asterics.appServices)
                 default:
                     return;
             }
+        };
+
+        thiz.scrollToEnd = function() {
+            $timeout(function () {
+                $anchorScroll('end');
+            });
         };
 
         function createIrElement(label, icon) {

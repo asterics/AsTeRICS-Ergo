@@ -7,6 +7,7 @@
         <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/animation.css">
         <link rel="stylesheet" href="css/saving-dots.css">
         <link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="resources/bootstrap-3.3.7/css/bootstrap.min.css">
@@ -17,7 +18,7 @@
         <div id="astericsApp">
             <div id="mainDiv">
                 <main-header/>
-                <div ui-view/>
+                <div ui-view=""/>
             </div>
             <a id="end"/>
         </div>
@@ -25,6 +26,7 @@
         <!-- libs -->
         <script src="javascript/lib/jquery.min.js"></script>
         <script src="javascript/lib/angular-1.6.0.min.js"></script>
+        <script src="javascript/lib/angular-animate.min.js"></script>
         <script src="javascript/lib/angular-ui-router.min.js"></script>
         <script src="javascript/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
         <script src="javascript/lib/lodash.min.js"></script>
@@ -45,6 +47,7 @@
         <script src="angular/global/service/areSaveService.js"></script>
         <script src="angular/global/service/utilService.js"></script>
         <script src="angular/global/service/messageService.js"></script>
+        <script src="angular/global/service/stateUtilService.js"></script>
         <script src="angular/global/component/cellBoard.js"></script>
         <script src="angular/global/component/mainHeader.js"></script>
         <script src="angular/global/component/mainMenu.js"></script>
@@ -52,17 +55,17 @@
 
         <!-- envControl -->
         <script src="angular/envControl/envControlConstants.js"></script>
+        <script src="angular/envControl/envControlPrototypes.js"></script>
         <script src="angular/envControl/envControlRoutes.js"></script>
         <script src="angular/envControl/service/envControlService.js"></script>
-        <!-- <script src="angular/envControl/service/envControlFsService.js"></script> -->
-        <!-- <script src="angular/envControl/service/envControlIRService.js"></script> -->
         <script src="angular/envControl/service/mock/envControlFsServiceMock.js"></script>
         <script src="angular/envControl/service/mock/envControlIRServiceMock.js"></script>
         <script src="angular/envControl/service/envControlUtilService.js"></script>
         <script src="angular/envControl/service/envControlDataService.js"></script>
         <script src="angular/envControl/service/envControlHelpDataService.js"></script>
-        <script src="angular/global/service/stateUtilService.js"></script>
+        <script src="angular/envControl/service/envControlTextService.js"></script>
         <script src="angular/envControl/component/envControlMain.js"></script>
+        <script src="angular/envControl/component/mock/envControlContainerMock.js"></script>
         <script src="angular/envControl/component/addmenu/envControlAdd.js"></script>
         <script src="angular/envControl/component/addmenu/envControlAddMore.js"></script>
         <script src="angular/envControl/component/addmenu/envControlAddSub.js"></script>
@@ -71,7 +74,9 @@
         <script src="angular/envControl/component/add/envControlAddIr.js"></script>
         <script src="angular/envControl/component/help/envControlHelp.js"></script>
         <script src="angular/envControl/component/help/envControlHelpSelect.js"></script>
-        <script src="angular/envControl/component/help/envControlHelpFaq.js"></script>
+        <script src="angular/envControl/component/help/faq/envControlHelpFaq.js"></script>
+        <script src="angular/envControl/component/help/faq/envControlFaqDe.js"></script>
+        <script src="angular/envControl/component/help/faq/envControlFaqEn.js"></script>
         <script src="angular/envControl/component/help/controls/envControlHelpControls.js"></script>
         <script src="angular/envControl/component/help/install/envControlHelpInstall.js"></script>
         <script src="angular/envControl/component/help/install/ecHelpInstallFs20.js"></script>
@@ -79,6 +84,9 @@
         <script src="angular/envControl/component/help/controls/envControlHelpFs.js"></script>
         <script src="angular/envControl/component/help/controls/envControlHelpIrtrans.js"></script>
         <script src="angular/envControl/component/help/controls/envControlHelpBulb.js"></script>
+
+        <!-- just for mock -->
+        <script src="angular/envControl/component/mock/envControlMockConfigurator.js"></script>
 
         <script src="angular/app-bootstrap.js"></script>
     </body>

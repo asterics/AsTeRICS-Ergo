@@ -19,15 +19,18 @@ angular.module(asterics.appServices)
                 headers: {
                     "Content-Type": "application/json"
                 },
-                data: angular.toJson(dataJSON)
-            });
-            $http({
-                method: 'POST',
-                url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath) + "/" + utilService.encodeParam(filename + _timestampSuffix),
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: {lastModified: modificationDate}
+                data: encodeURI(angular.toJson(dataJSON))
+            }).then(function () {
+                //timestamp is saved after data in order to guarantee that the data is already saved, when other clients
+                //receive new timestamp and therefore fetch the data
+                $http({
+                    method: 'POST',
+                    url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath) + "/" + utilService.encodeParam(filename + _timestampSuffix),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: {lastModified: modificationDate}
+                });
             });
             return modificationDate;
         };
@@ -43,9 +46,9 @@ angular.module(asterics.appServices)
                 method: 'GET',
                 url: utilService.getBaseUrl() + getPath + "/" + filename
             }).then(function (response) {
-                def.resolve(response.data);
-            }, function () {
-                def.reject();
+                def.resolve(angular.fromJson(decodeURI(response.data)));
+            }, function (reason) {
+                def.reject(reason);
             });
             return def.promise;
         };
@@ -112,6 +115,7 @@ angular.module(asterics.appServices)
         }
 
         init();
+
         function init() {
             $interval(checkForUpdatesAndNotify, asterics.const.PULL_RELOAD_INTERVAL_MS);
         }

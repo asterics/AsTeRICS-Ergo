@@ -56,6 +56,10 @@ img {
     max-height: 100%;
 }
 
+.img-500 {
+    max-width: 500px;
+}
+
 .red {
     color: red;
 }
@@ -68,16 +72,20 @@ ol li {
     margin-bottom: 0.5em;
 }
 
+.message ol li {
+    margin-bottom: 0;
+}
+
+.message ul li {
+    margin-bottom: 0;
+}
+
 .install-help li {
     margin-bottom: 0.5em;
 }
 
 .panel-title {
     font-weight: bold;
-}
-
-.messageListItem {
-    margin-bottom: 0;
 }
 
 .img-row {
@@ -96,6 +104,15 @@ ol li {
 
 .padding-top-little {
     padding-top: 1em;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+.mockConfigurator {
+    margin-top: 2em;
+    border-top: 5px solid green;
 }
 
 /* boxes */
