@@ -26,11 +26,9 @@ angular.module(asterics.appComponents)
             thiz.test = function () {
                 thiz.triedCheck = true;
                 thiz.isConnected = null;
-                envControlFsService.isConnected().then(function () { //do test twice because sometimes the first time is wrong?!
-                    envControlFsService.isConnected().then(function (isConnected) {
-                        thiz.isConnected = isConnected;
-                        scrollToEnd();
-                    });
+                envControlFsService.isConnected().then(function (isConnected) { //do test twice because sometimes the first time is wrong?!
+                    thiz.isConnected = isConnected;
+                    scrollToEnd();
                 });
             };
 
