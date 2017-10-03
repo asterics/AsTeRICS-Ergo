@@ -65,6 +65,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_tv: 'Fernseher',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
+    i18n_ec_cleaning_robot: 'Staubsaugerroboter',
+    i18n_ec_shutters: 'Jalousien',
     i18n_ec_irgeneric: 'Anderes Fernbedienungs-Gerät',
     i18n_ec_pluggeneric: 'Anderes Steckdosen-Gerät',
     i18n_ec_irgeneric_additional: 'Gemeint sind alle Geräte, die mit einer Infrarot-Fernbedienung gesteuert werden können.',
@@ -198,4 +200,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_fs20_click_on_links: 'Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:.',
     i18n_ec_have_needed_hardware: 'Sie haben bereits die benötigte Hardware?',
     i18n_ec_to_fs20_installation: 'Zur Installation von FS20',
+
+    //help IrTrans
+    i18n_ec_irtrans_replace_remotes: 'Mit einem IrTrans kann eine beliebige Anzahl an Fernbedienungen ersetzt werden. Sie brauchen also immer <b>nur einen IrTrans.</b>',
+    i18n_ec_irtrans_need_usbcable: 'Es wird ein <b>USB-Typ-B Kabel</b> benötigt. Sollten Sie dieses nicht besitzen nutzen Sie den Link unten um eines zu bestellen.',
+    i18n_ec_applications: 'Einsatzmöglichkeiten',
+    i18n_ec_to_irtrans_installation: 'Zur Installation von IrTrans',
 };
