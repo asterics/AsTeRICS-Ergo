@@ -163,5 +163,17 @@ asterics.i18n_envControl_de = {
     'home.envControl.add.ir': 'Fernbedienung',
     'home.envControl.add.lamp': 'Lampe',
     'home.envControl.add.amblight': 'Raumlicht',
-    'home.envControl.add/more': 'Mehr'
+    'home.envControl.add/more': 'Mehr',
+
+    //selection wizard
+    i18n_ec_choose_controls: 'Auswahl Steuerungsmöglichkeiten',
+    i18n_ec_which_devices: 'Welche Geräte möchten Sie mit AsTeRICS-Ergo steuern?',
+    i18n_ec_device_not_in_list: 'Das gewünschte Gerät ist nicht in der Liste?',
+    i18n_ec_devices_more_possibilities: 'Weitere Möglichkeiten',
+    i18n_ec_you_need_devices: 'Dafür benötigen Sie folgende Hardware:',
+    i18n_ec_hint: 'Hinweis',
+    i18n_ec_hints: 'Hinweise',
+    i18n_ec_alternative_hardware1: 'kann alternativ auch mit',
+    i18n_ec_alternative_hardware2: 'gesteuert werden (statt',
+    i18n_ec_choose_controls: '',
 };
