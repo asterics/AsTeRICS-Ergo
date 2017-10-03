@@ -191,4 +191,11 @@ asterics.i18n_envControl_de = {
     i18n_ec_supported_hardware: 'Von AsTeRICS Ergo unterstützte Hardware',
     i18n_ec_ir_bulbs: 'Infrarot Glühbirnen',
     i18n_ec_ir_bulbs_desc: 'Infrarot Glühbirnen können mit einer Fernbedienung gesteuert werden. In Kombination mit IrTrans kann damit die Steuerung einer Beleuchtung realisiert werden.',
+
+    //Help Fs20
+    i18n_ec_need_one_sender: 'Sie benötigten <b>pro</b> zu steuerndem <b>Gerät einen Zwischenstecker</b>. Insgesamt benötigen Sie nur <b>einen Sender</b>.',
+    i18n_ec_fs20_need_example: 'Wollen Sie also beispielsweise 3 Stehlampen steuern, benötigen Sie 3x FS20 Zwischenstecker und 1x FS20 Sender.',
+    i18n_ec_fs20_click_on_links: 'Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:.',
+    i18n_ec_have_needed_hardware: 'Sie haben bereits die benötigte Hardware?',
+    i18n_ec_to_fs20_installation: 'Zur Installation von FS20',
 };

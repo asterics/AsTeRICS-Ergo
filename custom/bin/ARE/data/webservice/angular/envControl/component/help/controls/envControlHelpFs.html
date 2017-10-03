@@ -7,15 +7,14 @@
         <div class="col-xs-10">
             <h2 translate="i18n_ec_help_fs"/>
             <p translate="i18n_ec_text_help_fs20"/>
-            <b>Hinweis</b>
+            <b translate="i18n_ec_hint"/>
             <ul>
-                <li>Sie benötigten <b>pro</b> zu steuerndem <b>Gerät einen Zwischenstecker</b>. Insgesamt benötigen Sie
-                    nur <b>einen Sender</b>.
-                    Wollen Sie also beispielsweise 3 Stehlampen steuern, benötigen Sie 3x FS20 Zwischenstecker und 1x
-                    FS20 Sender.
+                <li>
+                    <span translate="i18n_ec_need_one_sender"/>
+                    <span translate="i18n_ec_fs20_need_example"/>
                 </li>
             </ul>
-            <p>Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:</p>
+            <p translate="i18n_ec_fs20_click_on_links"/>
         </div>
     </div>
     <div class="row">
@@ -51,5 +50,5 @@
             </ul>
         </div>
     </div>
-    <p>Sie haben bereits die benötigte Hardware? <a href="" ng-click="$ctrl.goToInstall()">Zur Installation von FS20</a></p>
+    <p>{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_fs20_installation' | translate}}</a></p>
 </div>
