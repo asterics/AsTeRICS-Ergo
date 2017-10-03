@@ -206,4 +206,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_irtrans_need_usbcable: 'Es wird ein <b>USB-Typ-B Kabel</b> benötigt. Sollten Sie dieses nicht besitzen nutzen Sie den Link unten um eines zu bestellen.',
     i18n_ec_applications: 'Einsatzmöglichkeiten',
     i18n_ec_to_irtrans_installation: 'Zur Installation von IrTrans',
+
+    //help ir-bulb
+    i18n_ec_help_irbulb: 'Hilfe - IR Glühbirne',
+    i18n_ec_help_irbulb_p1: 'Eine Infrarot Glühbirne kann mit einer <b>Fernbedienung gesteuert</b> werden. Dadurch ist es möglich mithilfe von AsTeRICS-Ergo die Steuerung einer <b>Raumbeleuchtung</b> zu realisieren.',
+    i18n_ec_help_irbulb_p2: 'Eine IR-Glühbirne wird ganz normal <b>wie jede andere Glühbirne</b> in eine <b>bestehende Lampe geschraubt</b>.',
+    i18n_ec_help_irbulb_p3: 'Es gibt viele verschiedene Anbieter und Modelle von IR-Glühbirnen, klicken Sie auf einen der folgenden Links um zu ausgewählten Angeboten zu gelangen:',
 };
