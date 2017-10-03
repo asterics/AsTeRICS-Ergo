@@ -175,5 +175,20 @@ asterics.i18n_envControl_de = {
     i18n_ec_hints: 'Hinweise',
     i18n_ec_alternative_hardware1: 'kann alternativ auch mit',
     i18n_ec_alternative_hardware2: 'gesteuert werden (statt',
-    i18n_ec_choose_controls: '',
+
+    //help menu
+    i18n_ec_overview: 'Überblick',
+    i18n_ec_help_click_links: 'Klicken Sie auf einen der folgenden Links um Hilfe zu den Themen zu erhalten:',
+    i18n_ec_order_help: 'Bestell-Hilfe',
+    i18n_ec_order_help2: 'Was muss ich bestellen um bestimmte Geräte steuern zu können?',
+    i18n_ec_needed_hardware: 'Benötigte Hardware',
+    i18n_ec_needed_hardware2: 'Hintergrund und Bestellinfos zu benötigter Hardware.',
+    i18n_ec_hardware_installation: 'Installation der Hardware',
+    i18n_ec_hardware_installation2: 'Bereits bestellte Hardware am PC installieren.',
+    i18n_ec_faq: 'Häufig gestellte Fragen (FAQ)',
+
+    //help controls menu
+    i18n_ec_supported_hardware: 'Von AsTeRICS Ergo unterstützte Hardware',
+    i18n_ec_ir_bulbs: 'Infrarot Glühbirnen',
+    i18n_ec_ir_bulbs_desc: 'Infrarot Glühbirnen können mit einer Fernbedienung gesteuert werden. In Kombination mit IrTrans kann damit die Steuerung einer Beleuchtung realisiert werden.',
 };
