@@ -4,10 +4,10 @@
 <div class="clearfix"/>
 <h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_irtrans_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
 <div ng-if="$ctrl.isConnected != null">
     <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
-        <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
+        <span translate="i18n_ec_irmass_needhardware"/>
         <ul>
             <li ng-repeat="hardware in $ctrl.neededHardware">
                 <a href="" ng-click="$ctrl.goToHelp(hardware)">
@@ -19,16 +19,16 @@
 </div>
 <div ng-if="$ctrl.isConnected == false">
     <div class="col-lg-5">
-        <p>Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?</p>
+        <p translate="i18n_ec_irmass_boughtirtrans"/>
         <ul>
             <li>
                 <a href="" ng-click="$ctrl.goToIrTransHelp()">
-                    <b>Nein</b>, zu Infos und Bestellmöglichkeiten
+                   <span translate="i18n_ec_irmass_bought_no"/>
                 </a>
             </li>
             <li>
                 <a href="" ng-click="$ctrl.goToIrTransInstall()">
-                    <b>Ja</b>, zur Installation von IrTrans
+                    <span translate="i18n_ec_irmass_bought_yes"/>
                 </a>
             </li>
         </ul>

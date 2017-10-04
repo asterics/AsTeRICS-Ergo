@@ -10,6 +10,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_infotext_del: 'Löschen aktiviert! Klicken Sie auf ein Element um es zu löschen.',
     i18n_ec_activate_del: 'Löschen aktivieren',
     i18n_ec_deactivate_del: 'Löschen deaktivieren',
+    i18n_ec_delete: 'Löschen',
     i18n_delete_success: 'Element gelöscht!',
     i18n_delete_undo: 'Rückgängig machen',
     i18n_ec_activate_mov: 'Verschieben aktivieren',
@@ -117,6 +118,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_dvd: 'Bitte Namen für den DVD-Player auswählen',
     i18n_ec_irmass_name_hifi: 'Bitte Namen für den Radio/CD-Player auswählen',
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
+    i18n_ec_irmass_needhardware: 'Zur Einrichtung benötigen Sie folgende Hardware:',
+    i18n_ec_irmass_boughtirtrans: 'Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?',
+    i18n_ec_irmass_bought_yes: '<b>Ja</b>, zur Installation von IrTrans',
+    i18n_ec_irmass_bought_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
 
     //additional instructions
     i18n_additional_instr_amblight: 'Ersetzen Sie vor dem Lernvorgang die alte, normale Glühbirne mit der IR-Glühbirne.',
@@ -131,6 +136,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_choosename: 'Bitte Namen für nächsten den Befehl auswählen',
     i18n_ec_ir_pressbutton: 'Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!',
     i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',
+    i18n_ec_ir_neededhardware: 'Zum Lernen von Fernbedienungs-Befehlen benötigen Sie folgende Hardware:',
+    i18n_ec_ir_learn_instruction: 'Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in <b>Richtung IrTrans gerichtet</b>). Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.',
+    i18n_ec_ir_learn_press_button1: 'Drücken Sie jetzt "',
+    i18n_ec_ir_learn_press_button2: '" <b>einmal kurz</b> auf der Fernbedienung!',
 
     //add fs20
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
@@ -143,6 +152,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_fs_press_button: '<b>Halten Sie den grauen Knopf am FS20-Zwischenstecker gedrückt</b>, bis er rot zu blinken beginnt (ca. <b>10 Sekunden</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: '<b>Überprüfen Sie ob der graue Knopf rot blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
+    i18n_ec_fs_boughtfs20: 'Haben Sie bereits einen <b>FS20 PC-Sender</b> und einen <b>FS20 Zwischenstecker</b> gekauft?',
+    i18n_ec_fs_boughtfs20_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
+    i18n_ec_fs_boughtfs20_yes: '<b>Ja</b>, zur Installation des FS20 PC-Senders',
 
     //states
     'home': 'Home',
