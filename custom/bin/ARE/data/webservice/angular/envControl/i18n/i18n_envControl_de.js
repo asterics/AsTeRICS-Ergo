@@ -273,5 +273,5 @@ asterics.i18n_envControl_de = {
     i18n_ec_helpinstall_header: 'Installationshilfen.',
     i18n_ec_helpinstall_header2: 'Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:',
     i18n_ec_helpinstall_install_irtrans: 'IrTrans installieren',
-    i18n_ec_helpinstall_install_fs20: 'FS20 installieren',
+    i18n_ec_helpinstall_install_fs20: 'FS20 installieren'
 };
