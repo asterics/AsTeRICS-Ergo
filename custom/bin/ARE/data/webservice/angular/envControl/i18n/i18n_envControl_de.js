@@ -177,6 +177,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_hints: 'Hinweise',
     i18n_ec_alternative_hardware1: 'kann alternativ auch mit',
     i18n_ec_alternative_hardware2: 'gesteuert werden (statt',
+    i18n_ec_amount: 'Anzahl:',
 
     //help menu
     i18n_ec_overview: 'Überblick',
@@ -255,4 +256,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_test_success2_fs20: 'um eine Steuerung mit FS20 einzurichten.',
     i18n_ec_fs20_already_installed1: 'FS20 ist bereits erfolgreich installiert und kann verwendet werden. Klicken Sie auf',
     i18n_ec_fs20_already_installed2: 'um eine Steuerung mit FS20 einzurichten.',
+
+    //help install menu
+    i18n_ec_helpinstall_header: 'Installationshilfen.',
+    i18n_ec_helpinstall_header2: 'Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:',
+    i18n_ec_helpinstall_install_irtrans: 'IrTrans installieren',
+    i18n_ec_helpinstall_install_fs20: 'FS20 installieren',
 };
