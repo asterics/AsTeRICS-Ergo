@@ -51,7 +51,7 @@ asterics.envControl.faq.de = [
     },
     {
         id: 9,
-        title: 'Wie kann ich die Raumbeleuchtung mit AsTeRICS Ergo steuern?',
+        title: 'Wie kann ich das Raumlicht mit AsTeRICS Ergo steuern?',
         language: 'de',
         keywords: []
     },
@@ -142,6 +142,102 @@ asterics.envControl.faq.de = [
     {
         id: 24,
         title: 'Was ist der Unterschied zwischen „Fernbedienungs-Befehle“ und „Fernbedienungs-Gerät“?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 25,
+        title: 'Wie funktioniert der Bestell-Assistent?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 26,
+        title: 'Ich möchte mehrere Fernbedienungsgeräte steuern. Muss ich für jedes Gerät einen IrTrans erwerben oder kann ein IrTrans die Steuerung mehrerer Geräte übernehmen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 27,
+        title: 'Ich möchte mehrere Geräte steuern, die mit dem FS20-System gesteuert werden. Wie viele FS20 PC-Sender und FS20 Zwischenstecker werden benötigt?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 28,
+        title: 'Wo kann ich die zur Steuerung benötigte Hardware erwerben?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 29,
+        title: 'Ich habe ein Gerät (z.B. Tisch-/Stehlampe) mit dem FS20-System eingerichtet. Die Steuerung mit AsTeRICS Ergo funktioniert jedoch nicht. Was soll ich tun?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 30,
+        title: 'Ich habe ein Gerät (z.B. Tisch-/Stehlampe) mit dem FS20-System eingerichtet. Ich kann das Gerät jetzt aber nicht mehr mit dem herkömmlichen Schalter ein- und ausschalten. Was soll ich tun?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 31,
+        title: 'Kann ich einzelne, häufig verwendete Befehle direkt auf die Startseite der Umgebungssteuerung legen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 32,
+        title: 'Kann ich die Namen für die Geräte selbst auswählen?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 33,
+        title: 'Ich habe nur einen USB-Anschluss. Wie kann ich trotzdem den IrTrans und FS20 PC-Sender am PC / Laptop anstecken?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 34,
+        title: 'Ich habe ein Gerät mit dem FS20-System eingerichtet und konnte das Gerät mit AsTeRICS Ergo steuern. Die Steuerung des Geräts vom PC/Laptop/Tablet aus funktioniert jedoch nicht mehr. Was soll ich tun?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 35,
+        title: 'Was muss bei der Steuerung von Geräten via FS20 beachtet werden?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 36,
+        title: 'Muss die zusätzliche Hardware (IrTrans und FS20 PC-Sender) die ganze Zeit über mit dem PC / Laptop / Tablet verbunden sein?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 37,
+        title: 'Muss die Fernbedienung zum Gerät schauen, wenn ich das Gerät mit AsTeRICS Ergo steuern möchte?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 38,
+        title: 'Die Umgebung kann mit Hilfe von AsTeRICS Ergo auch vom Tablet oder Smartphone aus gesteuert werden. Wie kann ich diese Steuerung einrichten?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 39,
+        title: 'Gibt es Gründe gibt, warum die Steuerung nicht funktionieren könnte?',
+        language: 'de',
+        keywords: []
+    },
+    {
+        id: 40,
+        title: 'Darf das Programm geschlossen werden?',
         language: 'de',
         keywords: []
     }
