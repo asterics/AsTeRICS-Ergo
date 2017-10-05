@@ -81,13 +81,13 @@ asterics.envControl.faq.de = [
     },
     {
         id: 14,
-        title: 'Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die Steuerung der Umgebung vom PC/Laptop/Tablet aus funktioniert jedoch nicht. Was soll ich tun?',
+        title: 'Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die Steuerung der Umgebung vom PC/Laptop/Tablet aus funktioniert jedoch nicht mehr. Was soll ich tun?',
         language: 'de',
         keywords: []
     },
     {
         id: 15,
-        title: 'Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Die meisten Befehle funktionieren, bei anderen macht er jedoch nicht das, was ich möchte. Was soll ich tun?',
+        title: 'Ich habe ein Fernbedienungs-Gerät (z.B. Fernseher, DVD-Player, Raumbeleuchtung, Radio/CD-Player) eingerichtet und dafür den IrTrans verwendet. Ich kann die Umgebung nun mit AsTeRICS Ergo steuern. Die meisten Befehle funktionieren, andere jedoch nicht oder nicht richtig. Was soll ich tun?',
         language: 'de',
         keywords: []
     },
