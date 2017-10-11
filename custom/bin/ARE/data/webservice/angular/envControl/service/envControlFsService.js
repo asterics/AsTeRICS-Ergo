@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlFsService', ['areService', '$q', function (areService, $q) {
+    .service('envControlFsService', ['areService', 'areWebsocketService', '$q', function (areService, areWebsocketService, $q) {
         var thiz = this;
         var fs20SenderName = 'FS20Sender.1';
         var fs20ActionInput = 'Action';
@@ -61,7 +61,7 @@ angular.module(asterics.appServices)
         function fs20Send(cmd) {
             var def = $q.defer();
 
-            areService.getNextWebsocketValue(thiz.canceler, afterWebSocketOpen).then(function (response) {
+            areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler).then(function (response) {
                 console.log('fs response: ' + response);
                 if (parseInt(response) < 0) {
                     def.reject(response);
@@ -70,7 +70,7 @@ angular.module(asterics.appServices)
                 }
             });
 
-            function afterWebSocketOpen() {
+            function actionFunction() {
                 areService.sendDataToInputPort(fs20SenderName, fs20ActionInput, cmd, thiz.canceler).then(function success() {
                 }, function error() {
                     def.reject();
