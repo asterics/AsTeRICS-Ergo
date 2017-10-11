@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlIRService', ['areService', '$q', '$timeout', function (areService, $q, $timeout) {
+    .service('envControlIRService', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
         var irTransName = 'IrTrans.1';
         var irTransActionInput = 'action';
@@ -54,7 +54,7 @@ angular.module(asterics.appServices)
             var actionString = '@IRTRANS:' + cmd;
             console.log("sending: " + actionString);
 
-            areService.getNextWebsocketValue(thiz.canceler, afterWebSocketOpened).then(function (response) {
+            areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler).then(function (response) {
                 console.log('ir response: ' + response);
                 if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
                     def.reject(response);
@@ -63,7 +63,7 @@ angular.module(asterics.appServices)
                 }
             });
 
-            function afterWebSocketOpened() {
+            function actionFunction() {
                 areService.sendDataToInputPort(irTransName, irTransActionInput, actionString, thiz.canceler).then(function success() {
                 }, function error() {
                     def.reject();
