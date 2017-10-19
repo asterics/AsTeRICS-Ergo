@@ -62,7 +62,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getWebsocketUrl = function () {
-            return "ws://" + window.location.hostname + ":8082/ws/astericsData";
+            return "ws://" + window.location.hostname + ":9082/ws/astericsData";
         };
 
         /**
