@@ -62,3 +62,4 @@ asterics.envControl.STATE_ADD_AMBLIGHT = asterics.envControl.STATE_ADD + '.' + a
 asterics.const.HOME_STATES.push(asterics.envControl.STATE_MAIN);
 
 asterics.envControl.SAVE_FOLDER = 'envControl';
+asterics.envControl.SAVE_PATH = "webservice/";

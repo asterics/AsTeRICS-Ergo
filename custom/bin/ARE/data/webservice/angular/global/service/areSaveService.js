@@ -2,7 +2,6 @@ angular.module(asterics.appServices)
     .service('areSaveService', ['$http', '$q', 'utilService', '$interval', function ($http, $q, utilService, $interval) {
         var thiz = this;
         var _saveFolder = "saved";
-        var _pathToSaveFolder = "data/webservice/";
         var _timestampSuffix = ".timestamp";
         var _registeredUpdateListeners = [];
 
@@ -12,7 +11,7 @@ angular.module(asterics.appServices)
                 return;
             }
             var modificationDate = new Date().getTime();
-            var savepath = _pathToSaveFolder + _saveFolder + "/" + appName;
+            var savepath = asterics.envControl.SAVE_PATH + _saveFolder + "/" + appName;
             $http({
                 method: 'POST',
                 url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath) + "/" + utilService.encodeParam(filename),
