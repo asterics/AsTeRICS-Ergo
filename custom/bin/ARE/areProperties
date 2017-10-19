@@ -1,7 +1,7 @@
 #ARE Properties
 #Thu Jan 05 16:10:17 CET 2017
-ARE.webservice.port.websocket=9082
-ARE.webservice.port.REST=9081
+ARE.webservice.port.websocket=8092
+ARE.webservice.port.REST=8091
 ThreadPool.ModelExecutor.size=1
 showErrorDialogs=0
 ARE.hotKey.stopModel=VC_F7
