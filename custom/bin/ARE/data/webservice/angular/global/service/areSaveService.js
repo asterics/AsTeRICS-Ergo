@@ -14,9 +14,9 @@ angular.module(asterics.appServices)
             var savepath = asterics.envControl.SAVE_PATH + _saveFolder + "/" + appName;
             $http({
                 method: 'POST',
-                url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath) + "/" + utilService.encodeParam(filename),
+                url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath + "/" + filename),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "text/plain"
                 },
                 data: encodeURI(angular.toJson(dataJSON))
             }).then(function () {
@@ -24,9 +24,9 @@ angular.module(asterics.appServices)
                 //receive new timestamp and therefore fetch the data
                 $http({
                     method: 'POST',
-                    url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath) + "/" + utilService.encodeParam(filename + _timestampSuffix),
+                    url: utilService.getRestUrl() + "storage/data/" + utilService.encodeParam(savepath+ "/" + filename + _timestampSuffix),
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "text/plain"
                     },
                     data: {lastModified: modificationDate}
                 });
