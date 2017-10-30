@@ -130,6 +130,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_ir_pressbutton: 'Now press the button on the remote you want to learn!',
     i18n_ec_ir_learnsuccess: 'Already {{numlearned}} IR-Code(s) successfully learned! Click on "Finish" to complete or add another command.',
     i18n_ec_success_add_ir: '"{{deviceName}}" successfully learned.<br/><b>Note:</b> Point the IrTrans at the direction of the {{deviceName}} in order to ensure an errorless control.',
+    i18n_ec_remote_directed_irtrans: 'Remote control directed at IrTrans',
 
     //add fs20
     i18n_ec_fs_header: 'Control new device via plug',
