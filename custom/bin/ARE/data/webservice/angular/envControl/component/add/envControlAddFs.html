@@ -4,10 +4,10 @@
 <div class="clearfix"/>
 <h2>{{'i18n_ec_fs_header' | translate}}</h2>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob FS20 installiert ist <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_fs20_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
 <div ng-if="$ctrl.isConnected != null">
     <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
-        <span>Zur Einrichtung benötigen Sie folgende Hardware:</span>
+        <span translate="i18n_ec_irmass_needhardware"/>
         <ul>
             <li ng-repeat="hardware in $ctrl.neededHardware">
                 <a href="" ng-click="$ctrl.goToHelp(hardware)">
@@ -19,16 +19,16 @@
 </div>
 <div ng-if="$ctrl.isConnected == false">
     <div class="col-lg-5">
-        <p>Haben Sie bereits einen <b>FS20 PC-Sender</b> und einen <b>FS20 Zwischenstecker</b> gekauft?</p>
+        <p translate="i18n_ec_fs_boughtfs20"/>
         <ul>
             <li>
                 <a href="" ng-click="$ctrl.goToFs20Help()">
-                    <b>Nein</b>, zu Infos und Bestellmöglichkeiten
+                    <span translate="i18n_ec_fs_boughtfs20_no"/>
                 </a>
             </li>
             <li>
                 <a href="" ng-click="$ctrl.goToFs20Install()">
-                    <b>Ja</b>, zur Installation des FS20 PC-Senders
+                    <span translate="i18n_ec_fs_boughtfs20_yes"/>
                 </a>
             </li>
         </ul>

@@ -10,6 +10,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_infotext_del: 'Löschen aktiviert! Klicken Sie auf ein Element um es zu löschen.',
     i18n_ec_activate_del: 'Löschen aktivieren',
     i18n_ec_deactivate_del: 'Löschen deaktivieren',
+    i18n_ec_delete: 'Löschen',
     i18n_delete_success: 'Element gelöscht!',
     i18n_delete_undo: 'Rückgängig machen',
     i18n_ec_activate_mov: 'Verschieben aktivieren',
@@ -65,6 +66,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_tv: 'Fernseher',
     i18n_ec_dvd: 'DVD-Player',
     i18n_ec_hifi: 'Radio/CD-Player',
+    i18n_ec_cleaning_robot: 'Staubsaugerroboter',
+    i18n_ec_shutters: 'Jalousien',
     i18n_ec_irgeneric: 'Anderes Fernbedienungs-Gerät',
     i18n_ec_pluggeneric: 'Anderes Steckdosen-Gerät',
     i18n_ec_irgeneric_additional: 'Gemeint sind alle Geräte, die mit einer Infrarot-Fernbedienung gesteuert werden können.',
@@ -115,6 +118,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_dvd: 'Bitte Namen für den DVD-Player auswählen',
     i18n_ec_irmass_name_hifi: 'Bitte Namen für den Radio/CD-Player auswählen',
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
+    i18n_ec_irmass_needhardware: 'Zur Einrichtung benötigen Sie folgende Hardware:',
+    i18n_ec_irmass_boughtirtrans: 'Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?',
+    i18n_ec_irmass_bought_yes: '<b>Ja</b>, zur Installation von IrTrans',
+    i18n_ec_irmass_bought_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
 
     //additional instructions
     i18n_additional_instr_amblight: 'Ersetzen Sie vor dem Lernvorgang die alte, normale Glühbirne mit der IR-Glühbirne.',
@@ -129,6 +136,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_choosename: 'Bitte Namen für nächsten den Befehl auswählen',
     i18n_ec_ir_pressbutton: 'Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!',
     i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',
+    i18n_ec_ir_neededhardware: 'Zum Lernen von Fernbedienungs-Befehlen benötigen Sie folgende Hardware:',
+    i18n_ec_ir_learn_instruction: 'Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in <b>Richtung IrTrans gerichtet</b>). Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.',
+    i18n_ec_ir_learn_press_button1: 'Drücken Sie jetzt "',
+    i18n_ec_ir_learn_press_button2: '" <b>einmal kurz</b> auf der Fernbedienung!',
     i18n_ec_success_add_ir: '"{{deviceName}}" wurde erfolgreich hinzugefügt.<br/><b>Hinweis:</b> Richten Sie den IrTrans bei der Steuerung in Richtung {{deviceName}}, um eine fehlerlose Steuerung zu ermöglichen.',
     i18n_ec_remote_directed_irtrans: 'Fernbedienung in Richtung IrTrans gerichtet',
 
@@ -143,6 +154,9 @@ asterics.i18n_envControl_de = {
     i18n_ec_fs_press_button: '<b>Halten Sie den grauen Knopf am FS20-Zwischenstecker gedrückt</b>, bis er rot zu blinken beginnt (ca. <b>10 Sekunden</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: '<b>Überprüfen Sie ob der graue Knopf rot blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
+    i18n_ec_fs_boughtfs20: 'Haben Sie bereits einen <b>FS20 PC-Sender</b> und einen <b>FS20 Zwischenstecker</b> gekauft?',
+    i18n_ec_fs_boughtfs20_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
+    i18n_ec_fs_boughtfs20_yes: '<b>Ja</b>, zur Installation des FS20 PC-Senders',
 
     //states
     'home': 'Home',
@@ -165,5 +179,101 @@ asterics.i18n_envControl_de = {
     'home.envControl.add.ir': 'Fernbedienung',
     'home.envControl.add.lamp': 'Lampe',
     'home.envControl.add.amblight': 'Raumlicht',
-    'home.envControl.add/more': 'Mehr'
+    'home.envControl.add/more': 'Mehr',
+
+    //selection wizard
+    i18n_ec_choose_controls: 'Auswahl Steuerungsmöglichkeiten',
+    i18n_ec_which_devices: 'Welche Geräte möchten Sie mit AsTeRICS-Ergo steuern?',
+    i18n_ec_device_not_in_list: 'Das gewünschte Gerät ist nicht in der Liste?',
+    i18n_ec_devices_more_possibilities: 'Weitere Möglichkeiten',
+    i18n_ec_you_need_devices: 'Dafür benötigen Sie folgende Hardware:',
+    i18n_ec_hint: 'Hinweis',
+    i18n_ec_hints: 'Hinweise',
+    i18n_ec_alternative_hardware1: 'kann alternativ auch mit',
+    i18n_ec_alternative_hardware2: 'gesteuert werden (statt',
+    i18n_ec_amount: 'Anzahl:',
+
+    //help menu
+    i18n_ec_overview: 'Überblick',
+    i18n_ec_help_click_links: 'Klicken Sie auf einen der folgenden Links um Hilfe zu den Themen zu erhalten:',
+    i18n_ec_order_help: 'Bestell-Hilfe',
+    i18n_ec_order_help2: 'Was muss ich bestellen um bestimmte Geräte steuern zu können?',
+    i18n_ec_needed_hardware: 'Benötigte Hardware',
+    i18n_ec_needed_hardware2: 'Hintergrund und Bestellinfos zu benötigter Hardware.',
+    i18n_ec_hardware_installation: 'Installation der Hardware',
+    i18n_ec_hardware_installation2: 'Bereits bestellte Hardware am PC installieren.',
+    i18n_ec_faq: 'Häufig gestellte Fragen (FAQ)',
+
+    //help controls menu
+    i18n_ec_supported_hardware: 'Von AsTeRICS Ergo unterstützte Hardware',
+    i18n_ec_ir_bulbs: 'Infrarot Glühbirnen',
+    i18n_ec_ir_bulbs_desc: 'Infrarot Glühbirnen können mit einer Fernbedienung gesteuert werden. In Kombination mit IrTrans kann damit die Steuerung einer Beleuchtung realisiert werden.',
+
+    //Help Fs20
+    i18n_ec_need_one_sender: 'Sie benötigten <b>pro</b> zu steuerndem <b>Gerät einen Zwischenstecker</b>. Insgesamt benötigen Sie nur <b>einen Sender</b>.',
+    i18n_ec_fs20_need_example: 'Wollen Sie also beispielsweise 3 Stehlampen steuern, benötigen Sie 3x FS20 Zwischenstecker und 1x FS20 Sender.',
+    i18n_ec_fs20_click_on_links: 'Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:.',
+    i18n_ec_have_needed_hardware: 'Sie haben bereits die benötigte Hardware?',
+    i18n_ec_to_fs20_installation: 'Zur Installation von FS20',
+
+    //help IrTrans
+    i18n_ec_irtrans_replace_remotes: 'Mit einem IrTrans kann eine beliebige Anzahl an Fernbedienungen ersetzt werden. Sie brauchen also immer <b>nur einen IrTrans.</b>',
+    i18n_ec_irtrans_need_usbcable: 'Es wird ein <b>USB-Typ-B Kabel</b> benötigt. Sollten Sie dieses nicht besitzen nutzen Sie den Link unten um eines zu bestellen.',
+    i18n_ec_applications: 'Einsatzmöglichkeiten',
+    i18n_ec_to_irtrans_installation: 'Zur Installation von IrTrans',
+
+    //help ir-bulb
+    i18n_ec_help_irbulb: 'Hilfe - IR Glühbirne',
+    i18n_ec_help_irbulb_p1: 'Eine Infrarot Glühbirne kann mit einer <b>Fernbedienung gesteuert</b> werden. Dadurch ist es möglich mithilfe von AsTeRICS-Ergo die Steuerung einer <b>Raumbeleuchtung</b> zu realisieren.',
+    i18n_ec_help_irbulb_p2: 'Eine IR-Glühbirne wird ganz normal <b>wie jede andere Glühbirne</b> in eine <b>bestehende Lampe geschraubt</b>.',
+    i18n_ec_help_irbulb_p3: 'Es gibt viele verschiedene Anbieter und Modelle von IR-Glühbirnen, klicken Sie auf einen der folgenden Links um zu ausgewählten Angeboten zu gelangen:',
+
+    //install irtrans
+    i18n_ec_install_irtrans_header: 'Installation von IrTrans-USB',
+    i18n_ec_install_irtrans_header2: 'Wenn Sie bereits einen IrTrans-USB besitzen, können Sie diesen wie folgt installieren:',
+    i18n_ec_check_irtrans_installed: 'Es wird geprüft ob IrTrans bereits installiert ist',
+    i18n_ec_install_irtrans_p1: '<b>IrTrans darf noch nicht am PC angesteckt sein!</b> - Falls Sie ihn bereits angesteckt haben, stecken Sie ihn wieder ab.',
+    i18n_ec_install_irtrans_p21: '<b>Software herunterladen</b> - IrTrans benötigt zusätzliche Software. Bitte klicken Sie auf folgenden Link um diese herunterzuladen:',
+    i18n_ec_install_irtrans_p22: 'Software IrTrans USB',
+    i18n_ec_install_irtrans_p23: 'Öffnen Sie danach die heruntergeladene Datei mit dem Namen "setup.exe".',
+    i18n_ec_install_irtrans_p3: '<b>Installieren Sie die heruntergeladene Software</b> - Folgen Sie den Anweisungen und klicken Sie immer auf "Next". Beim Fenster mit der Überschrift "Program Shortcuts" wählen Sie "IrTrans USB" und aktivieren Sie die Option "Add IrTransServer to the Startup Folder":',
+    i18n_ec_install_irtrans_p41: '<b>An PC anstecken</b> - Stecken Sie nach Abschluss der Softwareinstallation den IrTrans mit einem USB-Kabel (Typ A-B, siehe',
+    i18n_ec_install_irtrans_p42: 'an dem Computer an.',
+    i18n_ec_install_irtrans_p5: 'Hardwareinstallation abwarten',
+    i18n_ec_install_irtrans_p5_win7_1: 'Die Hardwareinstallation startet automatisch und währenddessen ist das unten abgebildete Symbol in der Taskleiste zu sehen.',
+    i18n_ec_install_irtrans_p5_win7_2: 'Falls die Meldung und das Symbol nicht mehr zu sehen sind, gehen Sie zum nächsten Punkt.',
+    i18n_ec_install_irtrans_p5_win10_1: 'Öffnen Sie das Fenster in der Abbildung um den Verlauf der Installation zu sehen.',
+    i18n_ec_install_irtrans_p5_win10_2: 'Falls die Meldung und das Symbol nicht mehr zu sehen sind, gehen Sie zum nächsten Punkt.',
+    i18n_ec_install_irtrans_p6: '<b>IrTransServer starten</b> - Klicken Sie auf "Start". Suchen und starten Sie "IRTransServer USB". Das Programm läuft dann im Hintergrund und ist nicht zu sehen.',
+    i18n_ec_install_irtrans_p7: '<b>Installation testen</b> - Klicken Sie auf "Testen" um die korrekte Installation zu prüfen.',
+    i18n_ec_test: 'Testen',
+    i18n_ec_testing: 'wird getestet...',
+    i18n_ec_test_failed: 'Test fehlgeschlagen',
+    i18n_ec_test_success1: 'Test erfolgreich. Klicken Sie auf',
+    i18n_ec_test_success2: 'um eine Steuerung mit IrTrans einzurichten.',
+    i18n_ec_irtrans_already_installed1: 'IrTrans ist bereits erfolgreich installiert und kann verwendet werden. Klicken Sie auf',
+    i18n_ec_irtrans_already_installed2: 'um eine Steuerung mit IrTrans einzurichten.',
+
+    //install FS20
+    i18n_ec_install_fs20_header: 'Installation von FS20.',
+    i18n_ec_install_fs20_header2: 'Wenn Sie bereits einen FS20-Sender besitzen, können Sie diesen wie folgt installieren:',
+    i18n_ec_check_fs20_installed: 'Es wird geprüft ob FS20 bereits installiert ist',
+    i18n_ec_install_fs20_p1: 'Stecken Sie den FS20-Sender mit dem USB-Kabel an dem Computer an.',
+    i18n_ec_install_fs20_p21: 'Warten Sie 10 Sekunden und überprüfen Sie ob das rote Lämpchen am FS20-Sender leuchtet.',
+    i18n_ec_install_fs20_p22: 'Leuchtet das Lämpchen nach 10 Sekunden noch?',
+    i18n_ec_fs20_lamp_light: 'Lämpchen leuchtet',
+    i18n_ec_fs20_lamp_nolight: 'Lämpchen leuchtet nicht',
+    i18n_ec_install_fs20_problem: 'Es gibt ein Problem mit dem FS20-Sender, das behoben werden muss. Klicken Sie auf "Problem beheben" um das zu tun. Bestätigen Sie die dadurch erscheinende Abfrage mit "Ja".',
+    i18n_ec_install_fs20_fix_problem: 'Problem beheben',
+    i18n_ec_install_fs20_p23: 'Stecken Sie den FS20-Sender nochmal vom PC ab und danach wieder an. Das Lämpchen sollte nun durchgehend leuchten.',
+    i18n_ec_install_fs20_test: 'Klicken Sie auf "Testen" um die korrekte Installation zu prüfen.',
+    i18n_ec_test_success2_fs20: 'um eine Steuerung mit FS20 einzurichten.',
+    i18n_ec_fs20_already_installed1: 'FS20 ist bereits erfolgreich installiert und kann verwendet werden. Klicken Sie auf',
+    i18n_ec_fs20_already_installed2: 'um eine Steuerung mit FS20 einzurichten.',
+
+    //help install menu
+    i18n_ec_helpinstall_header: 'Installationshilfen.',
+    i18n_ec_helpinstall_header2: 'Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:',
+    i18n_ec_helpinstall_install_irtrans: 'IrTrans installieren',
+    i18n_ec_helpinstall_install_fs20: 'FS20 installieren'
 };

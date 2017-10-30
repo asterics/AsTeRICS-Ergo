@@ -144,5 +144,101 @@ asterics.envControl.faq.en  = [
         title: 'What is the difference between the wizards „Remote-commands“ and „Remote-device“?',
         language: 'en',
         keywords: []
+    },
+    {
+        id: 25,
+        title: 'How does the Order-Wizard work?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 26,
+        title: 'I would like to control several devices, which are operated by remote controls. Do I need to purchase one IrTrans for each device, or is one IrTrans able to control several devices?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 27,
+        title: 'I would like to control several using the FS20 system. How many FS20 PC transmitters and FS20 connectors do I need?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 28,
+        title: 'Where can I purchase the required hardware?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 29,
+        title: 'I set up a device (e.g. a table/floor lamp) using the FS20 system. However, I cannot control it using AsTeRICS Ergo. What shall I do?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 30,
+        title: 'I set up a device (for example a table / floor lamp) using the FS20 system. However, I cannot switch the device on/off using the conventional switch. What shall I do?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 31,
+        title: 'Is it possible to place frequently used commands on the page “Environmental Control”?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 32,
+        title: 'Is it possible to select the name of the device?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 33,
+        title: 'I have only one USB port. How can I use the IrTrans and FS20 PC transmitter at the same time?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 34,
+        title: 'I set up the control of a device using the FS20 system. I was able to control the device using AsTeRICS Ergo, however, the control of the device does not work anymore. What shall I do?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 35,
+        title: 'What do I need to consider when controlling devices using the FS20 system?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 36,
+        title: 'Does the additional hardware (IrTrans and FS20 PC transmitter) need to be connected to the computer / laptop / tablet all the time?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 37,
+        title: 'Does the remote control have to point at the device, if I control the device using AsTeRICS Ergo?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 38,
+        title: 'It is possible to control the environment via tablet or smartphone. How can I set up this control?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 39,
+        title: 'Are there any reasons why AsTeRICS Ergo might not be working properly?',
+        language: 'en',
+        keywords: []
+    },
+    {
+        id: 40,
+        title: 'Am I allowed to close the program?',
+        language: 'en',
+        keywords: []
     }
 ];

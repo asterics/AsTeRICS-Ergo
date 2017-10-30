@@ -9,8 +9,9 @@ angular.module(asterics.appComponents)
         },
         controller: ['$translate', function ($translate) {
             var thiz = this;
+            var _deleteText = $translate.instant('i18n_ec_delete');
             var _contextMenuOptions = [
-                ['Löschen', function ($itemScope, $event, modelValue, text, $li) {
+                [_deleteText, function ($itemScope, $event, modelValue, text, $li) {
                     thiz.removeHandler({item: $itemScope.item});
                 }]
             ];

@@ -4,10 +4,10 @@
 <div class="clearfix"/>
 <h2 translate="{{$ctrl.headerTitle}}" translate-values="{{$ctrl.deviceNameParam}}"/>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null">Es wird geprüft ob IrTrans installiert ist <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_irtrans_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
 <div ng-if="$ctrl.isConnected != null">
     <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
-        <span>Zum Lernen von Fernbedienungs-Befehlen benötigen Sie folgende Hardware:</span>
+        <span translate="i18n_ec_ir_neededhardware"/>
         <ul>
             <li>
                 <a href="" ng-click="$ctrl.goToIrTransHelp()">
@@ -19,16 +19,16 @@
 </div>
 <div ng-if="$ctrl.isConnected == false">
     <div class="col-lg-5">
-        <p>Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?</p>
+        <p translate="i18n_ec_irmass_boughtirtrans"/>
         <ul>
             <li>
                 <a href="" ng-click="$ctrl.goToIrTransHelp()">
-                    <b>Nein</b>, zu Infos und Bestellmöglichkeiten
+                    <span translate="i18n_ec_irmass_bought_no"/>
                 </a>
             </li>
             <li>
                 <a href="" ng-click="$ctrl.goToIrTransInstall()">
-                    <b>Ja</b>, zur Installation von IrTrans
+                    <span translate="i18n_ec_irmass_bought_yes"/>
                 </a>
             </li>
         </ul>
@@ -43,8 +43,8 @@
             </li>
         </ul>
         <ul ng-if="!$ctrl.isDeviceLearn || $ctrl.selectedDeviceName">
-            <li>Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in <b>Richtung IrTrans gerichtet</b>).
-                Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.
+            <li>
+                <span translate="i18n_ec_ir_learn_instruction"/>
             </li>
             <li ng-repeat="item in $ctrl.learnItems track by $index">
                 Befehl "{{item.name}}" <i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}
@@ -53,7 +53,7 @@
                 <label for="inputLabel">{{'i18n_ec_ir_choosename' | translate}}</label>
                 <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
                 <div ng-if="$ctrl.selectedLabel">
-                    Drücken Sie jetzt "{{$ctrl.selectedLabel}}" <b>einmal kurz</b> auf der Fernbedienung! <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
+                    <span translate="i18n_ec_ir_learn_press_button1"/>{{$ctrl.selectedLabel}}<span translate="i18n_ec_ir_learn_press_button2"/> <span ng-if="!$ctrl.code" class="saving"><span>.</span><span>.</span><span>.</span></span>
                     <br/>
                 </div>
             </li>
