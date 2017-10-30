@@ -140,6 +140,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_learn_instruction: 'Geben Sie jeweils den Namen des Befehls an und drücken Sie danach den Button auf der Fernbedienung (in <b>Richtung IrTrans gerichtet</b>). Nachdem Sie mindestens einen Befehl gelernt haben, können Sie diesen übernehmen oder einen weiteren hinzufügen.',
     i18n_ec_ir_learn_press_button1: 'Drücken Sie jetzt "',
     i18n_ec_ir_learn_press_button2: '" <b>einmal kurz</b> auf der Fernbedienung!',
+    i18n_ec_success_add_ir: '"{{deviceName}}" wurde erfolgreich hinzugefügt.<br/><b>Hinweis:</b> Richten Sie den IrTrans bei der Steuerung in Richtung {{deviceName}}, um eine fehlerlose Steuerung zu ermöglichen.',
+    i18n_ec_remote_directed_irtrans: 'Fernbedienung in Richtung IrTrans gerichtet',
 
     //add fs20
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',

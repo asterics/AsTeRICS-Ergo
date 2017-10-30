@@ -34,13 +34,23 @@
     <div class="asterics-fade" ng-if="$ctrl.neededHardware.length > 0">
         <p translate="i18n_ec_you_need_devices"/>
         <div class="row">
-            <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="hardware in $ctrl.neededHardware">
-                <span>{{$ctrl.neededHardwareAmounts[hardware]}}x</span>
-                <a href="" ng-click="$ctrl.goToHelp(hardware)">
-                    <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
-                         alt="{{ 'i18n_ec_' + hardware | translate}}"/>
-                    <p>{{ 'i18n_ec_' + hardware | translate}}</p>
-                </a>
+            <div ng-repeat="hardware in $ctrl.neededHardware">
+                <div class="col-xs-6 col-sm-3 col-lg-2">
+                    <span>{{$ctrl.neededHardwareAmounts[hardware]}}x</span>
+                    <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                        <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
+                             alt="{{ 'i18n_ec_' + hardware | translate}}"/>
+                        <p>{{ 'i18n_ec_' + hardware | translate}}</p>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="accessoire in $ctrl.getNeededAccessoires(hardware)">
+                    <span>1x</span>
+                    <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                        <img class="img-row" ng-src="{{'angular/envControl/img/' + accessoire + '.jpg'}}"
+                             alt="{{ 'i18n_ec_' + accessoire | translate}}"/>
+                        <p>{{ 'i18n_ec_' + accessoire | translate}}</p>
+                    </a>
+                </div>
             </div>
         </div>
 

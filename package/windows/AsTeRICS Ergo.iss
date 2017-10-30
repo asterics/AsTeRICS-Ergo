@@ -3,8 +3,8 @@
 [Setup]
 AppId={{AsTeRICS Ergo}}
 AppName=AsTeRICS Ergo
-AppVersion=3.2.3
-;AppVerName=AsTeRICS Ergo 3.2.3
+AppVersion=3.3.0
+;AppVerName=AsTeRICS Ergo 3.3.0
 AppPublisher=Asterics consortium
 AppComments=Assistive Technology for Occupational Therapy
 AppCopyright=Copyright (C) 2017
@@ -23,7 +23,7 @@ DefaultGroupName=Asterics consortium
 LicenseFile=
 ;WinXP or above
 MinVersion=0,5.1 
-OutputBaseFilename=AsTeRICS Ergo-3.2.3
+OutputBaseFilename=AsTeRICS Ergo-3.3.0
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
@@ -57,6 +57,9 @@ Filename: "{app}\AsTeRICS Ergo.exe"; Parameters: "-install -svcName ""AsTeRICS E
 
 [UninstallRun]
 Filename: "{app}\AsTeRICS Ergo.exe "; Parameters: "-uninstall -svcName AsTeRICS Ergo -stopOnUninstall"; Check: returnFalse()
+
+[UninstallDelete]
+Type: files; Name: "{app}\app\profile\loader_componentlist.ini"
 
 [Code]
 function returnTrue(): Boolean;

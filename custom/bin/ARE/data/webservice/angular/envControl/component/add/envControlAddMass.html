@@ -57,7 +57,7 @@
             </li>
             <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
                 <span translate="i18n_ec_irmass_pressbutton"/><span> '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/>  </span>
-                <span ng-if="!element.code && !element.skipped && !$ctrl.waiting" class="saving"><span>.</span><span>.</span><span>.</span></span>
+                <span ng-if="!element.code && !element.skipped" class="{{$ctrl.waiting ? 'pre-saving' : 'saving'}}"><span>.</span><span>.</span><span>.</span></span>
                 <span ng-if="element.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
                 <span ng-if="element.skipped"><i class="fa fa-ban"/> {{'i18n_ec_irmass_skipped' | translate}}</span>
                 <div class="clearfix"/>
@@ -89,8 +89,8 @@
     </div>
 </div>
 <a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToIrTransHelp()">
-    <div class="col-xs-4 col-md-3 col-lg-2">
-        <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
-        <div class=" text-center">IrTrans-USB</div>
+    <div class="col-xs-6 col-md-4 col-lg-3">
+        <img src="angular/envControl/img/irtrans_learn.png" alt="IrTrans-USB"/>
+        <div class=" text-center"><span translate="i18n_ec_remote_directed_irtrans"/></div>
     </div>
 </a>

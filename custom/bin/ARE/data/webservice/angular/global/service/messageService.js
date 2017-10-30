@@ -3,6 +3,9 @@ angular.module(asterics.appServices)
         var thiz = this;
         var _messageGroups = {};
 
+        //possible message-options:
+        //surviveClears ... number that determines how many calls of "clear" this message should survive
+
         thiz.info = function (group, codeI18n, msgArgs, options) {
             prepareGroup(group, asterics.const.MSG_INFO);
             var message = thiz.generateMessage(codeI18n, msgArgs, options);
@@ -32,17 +35,13 @@ angular.module(asterics.appServices)
         };
 
         thiz.clear = function (group) {
-            if(!group) {
-                angular.forEach(_messageGroups, function(msgGroup){
-                    msgGroup.messages = [];
+            if (!group) {
+                angular.forEach(_messageGroups, function (msgGroup) {
+                    msgGroup.messages = getRemainingMessages(msgGroup.messages);
                 });
             } else if (_messageGroups[group] && _messageGroups[group].messages) {
-                _messageGroups[group].messages = [];
+                _messageGroups[group].messages = getRemainingMessages(_messageGroups[group].messages);
             }
-        };
-
-        thiz.clearAll = function () {
-            _messageGroups = {};
         };
 
         thiz.generateMessage = function (codeI18n, msgArgs, options) {
@@ -54,7 +53,7 @@ angular.module(asterics.appServices)
                 msgArgs: msgArgs,
                 options: options
             };
-        }
+        };
 
         function prepareGroup(group, level) {
             if (!_messageGroups[group]) {
@@ -62,5 +61,16 @@ angular.module(asterics.appServices)
                 _messageGroups[group].messages = [];
             }
             _messageGroups[group].level = level;
+        }
+
+        function getRemainingMessages(messages) {
+            var toStay = [];
+            angular.forEach(messages, function (message) {
+                if (message.options.surviveClears && message.options.surviveClears > 0) {
+                    toStay.push(message);
+                    message.options.surviveClears--;
+                }
+            });
+            return toStay;
         }
     }]);

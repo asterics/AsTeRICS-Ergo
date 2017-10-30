@@ -39,7 +39,12 @@ angular.module(asterics.appComponents)
                 return _.includes([asterics.envControl.DEVICE_IR_GENERIC, asterics.envControl.DEVICE_PLUG_GENERIC], device);
             };
 
+            thiz.getNeededAccessoires = function (hardwareName) {
+                return envControlHelpDataService.getNeededAccessories(hardwareName);
+            };
+
             init();
+
             function init() {
                 thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
                 refreshNeededHardware();
