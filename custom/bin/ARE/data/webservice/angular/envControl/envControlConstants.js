@@ -9,6 +9,7 @@ asterics.envControl.CB_TYPE_IR = 'CB_TYPE_IR';
 asterics.envControl.HW_FS20_PCSENDER = 'HW_FS20_PCSENDER';
 asterics.envControl.HW_FS20_PLUG = 'HW_FS20_PLUG';
 asterics.envControl.HW_IRTRANS_USB = 'HW_IRTRANS_USB';
+asterics.envControl.HW_USB_CABLE_AB = 'HW_USB_CABLE_AB';
 asterics.envControl.HW_IR_BULB = 'HW_IR_BULB';
 
 asterics.envControl.IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
