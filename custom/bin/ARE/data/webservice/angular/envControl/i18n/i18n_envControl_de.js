@@ -129,6 +129,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_ir_choosename: 'Bitte Namen für nächsten den Befehl auswählen',
     i18n_ec_ir_pressbutton: 'Drücken Sie jetzt den entsprechenden Knopf auf der Fernbedienung!',
     i18n_ec_ir_learnsuccess: 'Es wurden bereits {{numlearned}} IR-Code(s) erfolgreich gelernt! Klicken Sie auf "Fertigstellen" um die Einrichtung abzuschließen oder geben Sie einen weiteren Befehl ein.',
+    i18n_ec_success_add_ir: '"{{deviceName}}" wurde erfolgreich hinzugefügt.<br/><b>Hinweis:</b> Richten Sie den IrTrans bei der Steuerung in Richtung {{deviceName}}, um eine fehlerlose Steuerung zu ermöglichen.',
+    i18n_ec_remote_directed_irtrans: 'Fernbedienung in Richtung IrTrans gerichtet',
 
     //add fs20
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
