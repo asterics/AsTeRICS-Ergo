@@ -114,6 +114,9 @@ angular.module(asterics.appServices)
         };
 
         thiz.existsLabel = function (label, parentState) {
+            if(!label) {
+                return false;
+            }
             return _.includes(getCbButtonLabels(parentState, true), label.toString().trim().toLowerCase());
         };
 

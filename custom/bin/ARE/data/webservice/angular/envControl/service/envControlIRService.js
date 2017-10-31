@@ -6,6 +6,7 @@ angular.module(asterics.appServices)
         var learnCmdResponse = 'LEARN ';
         var _learnWaitSeconds = 5;
         var _learnWaitMillis = _learnWaitSeconds * 1000;
+        var _testTimeout = 6000;
         var _lastLearnStartTime;
         thiz.canceler = $q.defer();
 
@@ -31,7 +32,7 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            irAction('snd irtrans,ok').then(function (response) {
+            irAction('snd irtrans,ok', _testTimeout).then(function (response) {
                 if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
                     def.resolve(false);
                 } else {
@@ -49,18 +50,20 @@ angular.module(asterics.appServices)
             thiz.canceler = $q.defer();
         };
 
-        function irAction(cmd) {
+        function irAction(cmd, timeout) {
             var def = $q.defer();
             var actionString = '@IRTRANS:' + cmd;
             console.log("sending: " + actionString);
 
-            areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler).then(function (response) {
+            areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler, timeout).then(function (response) {
                 console.log('ir response: ' + response);
                 if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
                     def.reject(response);
                 } else {
                     def.resolve(response);
                 }
+            }, function error() {
+                def.reject();
             });
 
             function actionFunction() {
