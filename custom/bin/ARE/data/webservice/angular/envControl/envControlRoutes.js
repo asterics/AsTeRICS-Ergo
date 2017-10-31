@@ -66,7 +66,12 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_ADD_FS20, {
             url: '/fs20/:cellBoardId',
-            template: '<env-control-add-fs/>'
+            template: '<env-control-add-fs selected-icon="$resolve.selectedIcon"/>',
+            resolve: {
+                selectedIcon: function() {
+                    return "plug";
+                }
+            }
         })
         .state(asterics.envControl.STATE_ADD_IR, {
             url: '/ir/:cellBoardId',
@@ -78,10 +83,13 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
-            template: '<env-control-add-fs selected-label="$resolve.selectedLabel"/>',
+            template: '<env-control-add-fs selected-label="$resolve.selectedLabel" selected-icon="$resolve.selectedIcon"/>',
             resolve: {
                 selectedLabel: function ($translate) {
                     return $translate.instant('i18n_ec_lamp');
+                },
+                selectedIcon: function() {
+                    return "lightbulb-o";
                 }
             }
         });

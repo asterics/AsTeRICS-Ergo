@@ -2,7 +2,8 @@ angular.module(asterics.appComponents)
     .component('envControlAddFs', {
 
         bindings: {
-            selectedLabel: '<'
+            selectedLabel: '<',
+            selectedIcon: '<'
         },
         controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService, $scope) {
             var thiz = this;
@@ -10,7 +11,6 @@ angular.module(asterics.appComponents)
             thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.code = envControlDataService.getNewFs20Code();
-            thiz.selectedIcon = 'lightbulb-o';
             thiz.isConnected = null;
             thiz.neededHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG];
 
