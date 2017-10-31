@@ -5,10 +5,11 @@ angular.module(asterics.appServices)
         var fs20ActionInput = 'Action';
         var houseCodeLength = 8;
         thiz.canceler = $q.defer();
+        var _testTimeout = 3000;
 
-        thiz.fs20Action = function (deviceCode, actionCode) {
+        thiz.fs20Action = function (deviceCode, actionCode, timeout) {
             var actionString = '@FS20:' + deviceCode + '_' + actionCode;
-            return fs20Send(actionString);
+            return fs20Send(actionString, timeout);
         };
 
         thiz.fs20Toggle = function (code) {
@@ -21,8 +22,8 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            thiz.fs20Action('1111_1111', '28').then(function () { //not defined command
-                thiz.fs20Action('1111_1111', '28').then(function () { //do double check because sometimes first time is wrong
+            thiz.fs20Action('1111_1111', '28', _testTimeout).then(function () { //not defined command
+                thiz.fs20Action('1111_1111', '28', _testTimeout).then(function () { //do double check because sometimes first time is wrong
                     def.resolve(true);
                 }, function error() {
                     def.resolve(false);
@@ -58,16 +59,18 @@ angular.module(asterics.appServices)
             }
         };
 
-        function fs20Send(cmd) {
+        function fs20Send(cmd, timeout) {
             var def = $q.defer();
 
-            areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler).then(function (response) {
+            areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler, timeout).then(function (response) {
                 console.log('fs response: ' + response);
                 if (parseInt(response) < 0) {
                     def.reject(response);
                 } else {
                     def.resolve(response);
                 }
+            }, function error() {
+                def.reject();
             });
 
             function actionFunction() {
