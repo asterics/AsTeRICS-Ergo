@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('utilService', ['$state', 'stateUtilService', function ($state, stateUtilService) {
+    .service('utilService', ['$state', 'stateUtilService', '$q', function ($state, stateUtilService, $q) {
         var thiz = this;
 
         thiz.createCellBoardItem = function (title, faIcon, type, clickAction) {
@@ -63,6 +63,39 @@ angular.module(asterics.appServices)
 
         thiz.getWebsocketUrl = function () {
             return "ws://" + window.location.hostname + ":8092/ws/astericsData";
+        };
+
+        thiz.getLocalIP = function() {
+            //see https://stackoverflow.com/questions/20194722/can-you-get-a-users-local-lan-ip-address-via-javascript
+            var def = $q.defer();
+            window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;   //compatibility for firefox and chrome
+            if(!RTCPeerConnection) {
+               def.resolve("");
+               return def.promise;
+            }
+            var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
+            console.log(pc);
+            if(!!pc.createDataChannel) {
+                pc.createDataChannel(""); //create a bogus data channel
+            } else {
+                def.resolve("");
+                return def.promise;
+            }
+            pc.createOffer(pc.setLocalDescription.bind(pc), noop);    // create offer and set local description
+            pc.onicecandidate = function(ice){  //listen for candidate events
+                if(!ice || !ice.candidate || !ice.candidate.candidate)  {
+                    def.resolve("");
+                    return;
+                }
+                var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+                pc.onicecandidate = noop;
+                def.resolve(myIP);
+            };
+            return def.promise;
+        };
+
+        thiz.getLocalPort = function() {
+            return window.location.port;
         };
 
         /**

@@ -225,7 +225,7 @@ asterics.envControl.faq.de = [
     },
     {
         id: 38,
-        title: 'Die Umgebung kann mit Hilfe von AsTeRICS Ergo auch vom Tablet oder Smartphone aus gesteuert werden. Wie kann ich diese Steuerung einrichten?',
+        title: 'Wie ist es möglich AsTeRICS-Ergo auf einem Smartphone oder Tablet zu verwenden?',
         language: 'de',
         keywords: []
     },

@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', function (utilService, $state, $stateParams, $anchorScroll, $timeout, envControlTextService, $scope, $rootScope, $sce, $translate) {
+        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', '$interval', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', function (utilService, $state, $stateParams, $anchorScroll, $timeout, $interval, envControlTextService, $scope, $rootScope, $sce, $translate) {
             var thiz = this;
             thiz.faqs = [];
             thiz.searchFaqs = [];
@@ -12,6 +12,8 @@ angular.module(asterics.appComponents)
             $scope.open = thiz.open;
             thiz.currentState = $state.current.name;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
+            thiz.localIP = null;
+            thiz.intervalPromise = null;
 
             thiz.toState = function (state) {
                 return $state.go(eval(state));
@@ -48,9 +50,27 @@ angular.module(asterics.appComponents)
                 thiz.searchFaqs = _searchFaqs;
             };
 
-            init();
+            thiz.getLocalAsTeRICSAddress = function() {
+                if(!thiz.intervalPromise && !!thiz.localIP) {
+                    thiz.intervalPromise = $interval(function() {
+                        console.log("refresing ip");
+                        utilService.getLocalIP().then(function(response) {
+                            thiz.localIP = response;
+                        });
+                    }, 2000);
+                }
+                return thiz.localIP + ":" + utilService.getLocalPort();
+            };
 
+            thiz.getLocalPort = function() {
+                return utilService.getLocalPort();
+            };
+
+            init();
             function init() {
+                utilService.getLocalIP().then(function(response) {
+                    thiz.localIP = response;
+                });
                 initFaqs($translate.use());
                 if ($stateParams.open) {
                     var number = parseInt($stateParams.open);
@@ -102,6 +122,11 @@ angular.module(asterics.appComponents)
 
             $rootScope.$on(asterics.const.EVENT_LANG_CHANGED, function (event, lang) {
                 initFaqs(lang);
+            });
+
+            $scope.$on('$destroy', function () {
+                console.log("canceling interval...");
+                $interval.cancel(thiz.intervalPromise);
             });
         }],
         templateUrl: "angular/envControl/component/help/faq/envControlHelpFaq.html"

@@ -225,7 +225,7 @@ asterics.envControl.faq.en  = [
     },
     {
         id: 38,
-        title: 'It is possible to control the environment via tablet or smartphone. How can I set up this control?',
+        title: 'How is it possible to use AsTeRICS-Ergo on a Smartphone or Tablet?',
         language: 'en',
         keywords: []
     },

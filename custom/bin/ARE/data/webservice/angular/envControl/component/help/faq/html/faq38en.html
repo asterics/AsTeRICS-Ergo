@@ -1,3 +1,20 @@
-<p>
-TODO add explanation
-</p>
+<div>
+    <p>On Windows-Tablets it is possible to install AsTeRICS-Ergo directly, like on any PC or Laptop.</p>
+    <p>If you want to use AsTeRICS-Ergo on an other Tablet or Smartphone follow these steps:</p>
+    <ol>
+        <li>AsTeRICS-Ergo has to be installed and started on a computer</li>
+        <li>Connect the computer and the Smartphone/Tablet with the same wireless network (wifi).</li>
+        <li ng-if="$ctrl.localIP">
+            On the Smartphone/Tablet enter the following address in the address bar:<br/>
+            <strong>{{$ctrl.getLocalAsTeRICSAddress()}}</strong>
+        </li>
+        <li ng-if="$ctrl.localIP">
+            Alternatively you can scan the following QR-code:<br/>
+            <qrcode error-correction-level="H" data="{{'http://' + $ctrl.getLocalAsTeRICSAddress()}}"></qrcode>
+        </li>
+        <li ng-if="!$ctrl.localIP">
+            On the Smartphone/Tablet enter the following address in the address bar:<br/>
+            <strong>&lt;IP-address of the computer&gt;:{{$ctrl.getLocalPort()}}</strong>
+        </li>
+    </ol>
+</div>
