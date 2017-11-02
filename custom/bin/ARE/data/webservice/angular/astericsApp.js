@@ -10,6 +10,7 @@ angular.module(asterics.app, [
     'ui.bootstrap.contextMenu',
     'ui.bootstrap',
     'ngAnimate',
+    'monospaced.qrcode',
     asterics.appServices,
     asterics.appComponents
 ]).config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function ($stateProvider, $urlRouterProvider, $translateProvider) {
