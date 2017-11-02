@@ -6,8 +6,8 @@
         <div class="clearfix"/>
         <h2 translate="i18n_ec_help"/>
     </div>
-    <h3>Häufig gestellte Fragen</h3>
-    <p>Klicken Sie auf eine der folgenden Fragen um die Antwort einzublenden.</p>
+    <h3 translate="i18n_ec_faq2"/>
+    <p translate="i18n_ec_faq_click_question"/>
     <div class="row-fluid">
         <span>Suche:</span>
         <input type="text" ng-model="$ctrl.searchText" ng-change="$ctrl.search()"/>
@@ -22,7 +22,5 @@
             <div ng-if="$ctrl.open[faq.id]" ng-include="$ctrl.getHtmlPath(faq)"/>
         </div>
     </uib-accordion>
-    <p ng-if="$ctrl.searchFaqs.length == 0">
-        Keine Suchergebnisse.
-    </p>
+    <p ng-if="$ctrl.searchFaqs.length == 0" translate="i18n_ec_no_search_result"/>
 </div>

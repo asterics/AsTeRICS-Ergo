@@ -204,6 +204,11 @@ asterics.i18n_envControl_de = {
     i18n_ec_hardware_installation2: 'Bereits bestellte Hardware am PC installieren.',
     i18n_ec_faq: 'Häufig gestellte Fragen (FAQ)',
 
+    //FAQ
+    i18n_ec_faq2: 'Häufig gestellte Fragen',
+    i18n_ec_faq_click_question: 'Klicken Sie auf eine der folgenden Fragen um die Antwort einzublenden.',
+    i18n_ec_no_search_result: 'Keine Suchergebnisse.',
+
     //help controls menu
     i18n_ec_supported_hardware: 'Von AsTeRICS Ergo unterstützte Hardware',
     i18n_ec_ir_bulbs: 'Infrarot Glühbirnen',

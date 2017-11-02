@@ -204,6 +204,11 @@ asterics.i18n_envControl_en = {
     i18n_ec_hardware_installation2: 'Installation of already purchased hardware.',
     i18n_ec_faq: 'Frequently Asked Questions (FAQs)',
 
+    //FAQ
+    i18n_ec_faq2: 'Frequently Asked Questions',
+    i18n_ec_faq_click_question: 'Click on one of the following questions to show the answer.',
+    i18n_ec_no_search_result: 'No search results.',
+
     //help controls menu
     i18n_ec_supported_hardware: 'Supported Hardware',
     i18n_ec_ir_bulbs: 'Infrared Light Bulbs',
