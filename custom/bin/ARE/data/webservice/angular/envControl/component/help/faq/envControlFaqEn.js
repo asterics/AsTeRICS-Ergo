@@ -240,5 +240,11 @@ asterics.envControl.faq.en  = [
         title: 'Am I allowed to close the program?',
         language: 'en',
         keywords: []
+    },
+    {
+        id: 41,
+        title: 'When downloading the AsTeRICS Ergo installation file and / or installing AsTeRICS Ergo, my antivirus program states that the program is not downloaded frequently and could cause damage to the device, that running the app may pose a risk to the PC or a similar warning appears. What should I do?',
+        language: 'en',
+        keywords: []
     }
 ];
