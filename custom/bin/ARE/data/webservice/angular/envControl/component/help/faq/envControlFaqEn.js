@@ -21,7 +21,7 @@ asterics.envControl.faq.en  = [
     },
     {
         id: 4,
-        title: 'What costs can I expect??',
+        title: 'What costs can I expect?',
         language: 'en',
         keywords: []
     },
