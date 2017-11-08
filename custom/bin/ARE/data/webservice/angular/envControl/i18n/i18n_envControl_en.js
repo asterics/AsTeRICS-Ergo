@@ -260,7 +260,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_irtrans_already_installed2: 'to set up a control using the IrTrans.',
 
     //install FS20
-    i18n_ec_install_fs20_header: 'Installation of the FS20 system0.',
+    i18n_ec_install_fs20_header: 'Installation of the FS20 system.',
     i18n_ec_install_fs20_header2: 'If you have already purchased the FS20 system, please follow the instructions:',
     i18n_ec_check_fs20_installed: 'The program examines whether the FS20 system has already been installed',
     i18n_ec_install_fs20_p1: 'Connect the FS20 PC transmitter to your computer.',
