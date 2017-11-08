@@ -96,7 +96,7 @@ angular.module(asterics.appServices)
          * returns if the state has changed since the last call of this method
          * @returns {boolean}
          */
-        thiz.hasStateChangedSinceLastCall = function() {
+        thiz.hasStateChangedSinceLastCall = function () {
             var toReturn = _stateHasChanged;
             _stateHasChanged = false;
             return toReturn;
@@ -108,12 +108,22 @@ angular.module(asterics.appServices)
             var lastElement = thiz.getLastState();
             if (lastElement && lastElement.name === to.name) {
                 _stateHistory.pop(); // moved back to last state -> remove it from history
-            } else if (_.some(_stateHistory, {'name': to.name}) || _.includes(asterics.const.HOME_STATES, to.name)) {
-                _stateHistory = [];
-            } else if (from.name) {
+            } else if (from.name) { //moved to new state -> add it to history
                 _stateHistory.push({
                     name: from.name,
                     params: fromParams
+                });
+            }
+
+            //if we got to a state, where we already were (circle) or if the state history does not contain a home state
+            //-> clear history and add only home states
+            if (_.some(_stateHistory, {'name': to.name}) ||
+                _.intersection(asterics.const.HOME_STATES, _.map(_stateHistory, 'name')).length == 0) {
+                _stateHistory = [];
+                angular.forEach(asterics.const.HOME_STATES, function (stateName) {
+                    if (stateName != to.name) {
+                        _stateHistory.push({name: stateName});
+                    }
                 });
             }
         });

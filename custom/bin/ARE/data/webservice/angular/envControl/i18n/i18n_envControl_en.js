@@ -260,7 +260,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_irtrans_already_installed2: 'to set up a control using the IrTrans.',
 
     //install FS20
-    i18n_ec_install_fs20_header: 'Installation of the FS20 system0.',
+    i18n_ec_install_fs20_header: 'Installation of the FS20 system.',
     i18n_ec_install_fs20_header2: 'If you have already purchased the FS20 system, please follow the instructions:',
     i18n_ec_check_fs20_installed: 'The program examines whether the FS20 system has already been installed',
     i18n_ec_install_fs20_p1: 'Connect the FS20 PC transmitter to your computer.',
@@ -280,5 +280,18 @@ asterics.i18n_envControl_en = {
     i18n_ec_helpinstall_header: 'Help - Installation',
     i18n_ec_helpinstall_header2: 'If you have already bought the required hardware to control the environment, please select one of the following links to install the hardware:',
     i18n_ec_helpinstall_install_irtrans: 'Installation of the IrTrans',
-    i18n_ec_helpinstall_install_fs20: 'Installation of the FS20 system'
+    i18n_ec_helpinstall_install_fs20: 'Installation of the FS20 system',
+
+    //links
+    i18n_ec_link_fs20sender_amazon: 'FS20 PC transmitter at Amazon',
+    i18n_ec_link_fs20sender_elv: 'FS20 PC transmitter at ELV',
+    i18n_ec_link_fs20plug_amazon: 'FS20 adapter plug at Amazon',
+    i18n_ec_link_fs20plug_elv: 'FS20 adapter plug at ELV',
+    i18n_ec_link_irtrans_knxshop: 'IrTrans at Knx-Shop',
+    i18n_ec_link_irtrans_amazon: 'IrTrans at Amazon',
+    i18n_ec_link_irtrans_producer: 'IrTrans from producer',
+    i18n_ec_link_usbcable_amazon: 'USB cable (Type A - Type B) at Amazon',
+    i18n_ec_link_irbulb_amazon: 'IR bulb 1 at Amazon',
+    i18n_ec_link_irbulb_amazon2: 'IR bulb 2 at Amazon',
+    i18n_ec_link_irbulb_conrad: 'IR bulb at Conrad'
 };

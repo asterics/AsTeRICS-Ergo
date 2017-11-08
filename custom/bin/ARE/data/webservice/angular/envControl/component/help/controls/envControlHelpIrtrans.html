@@ -28,14 +28,8 @@
                 <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans"/>
                 <div class=" text-center">IrTrans-USB</div>
                 <ul>
-                    <li>
-                        <a target="_blank" href="http://www.my-knx-shop.net/IRT-USB-Mod-IRTrans-USB-Fertiggeraet">IrTrans {{'i18n_ec_help_at' | translate}} Knx-Shop</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.amazon.de/IRTrans-Controller-Infrarot-irtrans-USB/dp/B01M7WU6SQ">IrTrans {{'i18n_ec_help_at' | translate}} Amazon</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="http://www.irtrans.de/de/shop/usb.php">IrTrans {{'i18n_ec_help_from_producer' | translate}}</a>
+                    <li ng-repeat="linkObject in $ctrl.irtransLinks">
+                        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
                     </li>
                 </ul>
             </div>
@@ -46,9 +40,8 @@
                 <img src="angular/envControl/img/usbab.png" alt="USB Cable"/>
                 <div class=" text-center">{{'i18n_ec_HW_USB_CABLE_AB' | translate}}</div>
                 <ul>
-                    <li>
-                        <a target="_blank" href="https://www.amazon.de/AmazonBasics-USB-2-0-Druckerkabel-Stecker-B-Stecker/dp/B00NH11KIK">{{'i18n_ec_HW_USB_CABLE_AB'
-                            | translate}} {{'i18n_ec_help_at' | translate}} Amazon</a>
+                    <li ng-repeat="linkObject in $ctrl.usbcableLinks">
+                        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
                     </li>
                 </ul>
             </div>

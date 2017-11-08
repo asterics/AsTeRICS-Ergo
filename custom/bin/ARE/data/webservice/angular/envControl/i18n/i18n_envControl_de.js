@@ -280,5 +280,18 @@ asterics.i18n_envControl_de = {
     i18n_ec_helpinstall_header: 'Installationshilfen.',
     i18n_ec_helpinstall_header2: 'Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:',
     i18n_ec_helpinstall_install_irtrans: 'IrTrans installieren',
-    i18n_ec_helpinstall_install_fs20: 'FS20 installieren'
+    i18n_ec_helpinstall_install_fs20: 'FS20 installieren',
+
+    //links
+    i18n_ec_link_fs20sender_amazon: 'FS20 PC-Sender bei Amazon',
+    i18n_ec_link_fs20sender_elv: 'FS20 PC-Sender bei ELV',
+    i18n_ec_link_fs20plug_amazon: 'FS20 Zwischenstecker bei Amazon',
+    i18n_ec_link_fs20plug_elv: 'FS20 Zwischenstecker bei ELV',
+    i18n_ec_link_irtrans_knxshop: 'IrTrans bei Knx-Shop',
+    i18n_ec_link_irtrans_amazon: 'IrTrans bei Amazon',
+    i18n_ec_link_irtrans_producer: 'IrTrans vom Hersteller',
+    i18n_ec_link_usbcable_amazon: 'USB Kabel (Typ A - Typ B) bei Amazon',
+    i18n_ec_link_irbulb_amazon: 'IR Glühbirne 1 bei Amazon',
+    i18n_ec_link_irbulb_amazon2: 'IR Glühbirne 2 bei Amazon',
+    i18n_ec_link_irbulb_conrad: 'IR Glühbirne bei Conrad'
 };

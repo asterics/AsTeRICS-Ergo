@@ -14,6 +14,11 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.localIP = null;
             thiz.intervalPromise = null;
+            thiz.irtransLinks = asterics.envControl.LINKS[asterics.envControl.HW_IRTRANS_USB];
+            thiz.usbcableLinks = asterics.envControl.LINKS[asterics.envControl.HW_USB_CABLE_AB];
+            thiz.fs20plugLinks = asterics.envControl.LINKS[asterics.envControl.HW_FS20_PLUG];
+            thiz.fs20senderLinks = asterics.envControl.LINKS[asterics.envControl.HW_FS20_PCSENDER];
+            thiz.irbulbLinks = asterics.envControl.LINKS[asterics.envControl.HW_IR_BULB];
 
             thiz.toState = function (state) {
                 return $state.go(eval(state));

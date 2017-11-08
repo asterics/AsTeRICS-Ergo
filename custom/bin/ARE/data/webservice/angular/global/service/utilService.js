@@ -1,6 +1,7 @@
 angular.module(asterics.appServices)
     .service('utilService', ['$state', 'stateUtilService', '$q', function ($state, stateUtilService, $q) {
         var thiz = this;
+        var _defaultPort = "8091";
 
         thiz.createCellBoardItem = function (title, faIcon, type, clickAction) {
             return {
@@ -74,7 +75,6 @@ angular.module(asterics.appServices)
                return def.promise;
             }
             var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
-            console.log(pc);
             if(!!pc.createDataChannel) {
                 pc.createDataChannel(""); //create a bogus data channel
             } else {
@@ -95,7 +95,8 @@ angular.module(asterics.appServices)
         };
 
         thiz.getLocalPort = function() {
-            return window.location.port;
+            var port = window.location.port;
+            return !!port ? port : _defaultPort;
         };
 
         /**
