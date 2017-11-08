@@ -74,7 +74,6 @@ angular.module(asterics.appServices)
                return def.promise;
             }
             var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
-            console.log(pc);
             if(!!pc.createDataChannel) {
                 pc.createDataChannel(""); //create a bogus data channel
             } else {
