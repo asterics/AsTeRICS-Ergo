@@ -245,6 +245,6 @@ asterics.envControl.faq.de = [
         id: 41,
         title: 'Beim Herunterladen der AsTeRICS-Ergo Installationsdatei und/oder beim Installieren von AsTeRICS Ergo werde ich von meinem Virenschutzprogramm gewarnt, dass das Programm nicht häufig heruntergeladen wird und auf dem Gerät Schaden anrichten könnte, dass die Ausführung der App unter Umständen ein Risiko für den PC darstelle oder eine ähnliche Warnung erscheint. Was soll ich tun?',
         language: 'de',
-        keywords: []
+        keywords: ['antivirus']
     }
 ];
