@@ -137,7 +137,7 @@ asterics.envControl.faq.en  = [
         id: 23,
         title: 'Do you provide technical support in case of any difficulties?',
         language: 'en',
-        keywords: []
+        keywords: ['contact']
     },
     {
         id: 24,
