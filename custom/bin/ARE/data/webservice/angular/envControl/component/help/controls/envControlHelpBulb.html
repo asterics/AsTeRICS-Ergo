@@ -9,14 +9,8 @@
         <p translate="i18n_ec_help_irbulb_p2"/>
         <p translate="i18n_ec_help_irbulb_p3"/>
         <ul>
-            <li>
-                <a target="_blank" href="https://www.amazon.de/dp/B01G1PJWYM/">{{'i18n_ec_HW_IR_BULB' | translate}} 1 {{'i18n_ec_help_at' | translate}} Amazon</a>
-            </li>
-            <li>
-                <a target="_blank" href="https://www.amazon.de/dp/B01FULHM72">{{'i18n_ec_HW_IR_BULB' | translate}} 2 {{'i18n_ec_help_at' | translate}} Amazon</a>
-            </li>
-            <li>
-                <a target="_blank" href="https://www.conrad.at/de/led-e27-gluehlampenform-10-w-60-w-rgbw-o-x-l-65-mm-x-130-mm-eek-a-lightme-colorchanging-dimmbar-inkl-fernbedienung-1-st-1498582.html">{{'i18n_ec_HW_IR_BULB' | translate}} {{'i18n_ec_help_at' | translate}} Conrad</a>
+            <li ng-repeat="linkObject in $ctrl.irbulbLinks">
+                <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
             </li>
         </ul>
     </div>

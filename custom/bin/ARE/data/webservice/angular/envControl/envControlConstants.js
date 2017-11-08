@@ -67,3 +67,26 @@ asterics.const.HOME_STATES.push(asterics.envControl.STATE_MAIN);
 
 asterics.envControl.SAVE_FOLDER = 'envControl';
 asterics.envControl.SAVE_PATH = "webservice/";
+
+asterics.envControl.LINKS = {};
+asterics.envControl.LINKS[asterics.envControl.HW_IRTRANS_USB] = [
+    {link: "http://www.my-knx-shop.net/IRT-USB-Mod-IRTrans-USB-Fertiggeraet", label: "i18n_ec_link_irtrans_knxshop"},
+    {link: "https://www.amazon.de/IRTrans-Controller-Infrarot-irtrans-USB/dp/B01M7WU6SQ", label: "i18n_ec_link_irtrans_amazon"},
+    {link: "http://www.irtrans.de/de/shop/usb.php", label: "i18n_ec_link_irtrans_producer"}
+];
+asterics.envControl.LINKS[asterics.envControl.HW_USB_CABLE_AB] = [
+    {link: "https://www.amazon.de/AmazonBasics-USB-2-0-Druckerkabel-Stecker-B-Stecker/dp/B00NH11KIK", label: "i18n_ec_link_usbcable_amazon"}
+];
+asterics.envControl.LINKS[asterics.envControl.HW_IR_BULB] = [
+    {link: "https://www.amazon.de/dp/B01G1PJWYM/", label: "i18n_ec_link_irbulb_amazon"},
+    {link: "https://www.amazon.de/dp/B01FULHM72/", label: "i18n_ec_link_irbulb_amazon2"},
+    {link: "https://www.conrad.at/de/led-e27-gluehlampenform-10-w-60-w-rgbw-o-x-l-65-mm-x-130-mm-eek-a-lightme-colorchanging-dimmbar-inkl-fernbedienung-1-st-1498582.html", label: "i18n_ec_link_irbulb_conrad"}
+];
+asterics.envControl.LINKS[asterics.envControl.HW_FS20_PLUG] = [
+    {link: "https://www.amazon.de/Unbekannt-Funk-Schaltsteckdose-FS20-ST-4/dp/B0030T7RWC", label: "i18n_ec_link_fs20plug_amazon"},
+    {link: "https://www.elv.at/elv-funk-schaltsteckdose-fs20-st.html", label: "i18n_ec_link_fs20plug_elv"}
+];
+asterics.envControl.LINKS[asterics.envControl.HW_FS20_PCSENDER] = [
+    {link: "https://www.amazon.de/ELV-FS20-PC-Sender-FS20-PCS/dp/B004S7FVIC/", label: "i18n_ec_link_fs20sender_amazon"},
+    {link: "https://www.elv.at/fs20-pc-sender-fs20-pcs.html", label: "i18n_ec_link_fs20sender_elv"}
+];
