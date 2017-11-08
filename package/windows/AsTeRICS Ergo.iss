@@ -3,8 +3,8 @@
 [Setup]
 AppId={{AsTeRICS Ergo}}
 AppName=AsTeRICS Ergo
-AppVersion=3.3.0
-;AppVerName=AsTeRICS Ergo 3.3.0
+AppVersion=4.0.0-alpha
+;AppVerName=AsTeRICS Ergo 4.0.0-alpha
 AppPublisher=Asterics consortium
 AppComments=Assistive Technology for Occupational Therapy
 AppCopyright=Copyright (C) 2017
@@ -23,10 +23,10 @@ DefaultGroupName=Asterics consortium
 LicenseFile=
 ;WinXP or above
 MinVersion=0,5.1 
-OutputBaseFilename=AsTeRICS Ergo-3.3.0
+OutputBaseFilename=AsTeRICS Ergo-4.0.0-alpha
 Compression=lzma
 SolidCompression=yes
-PrivilegesRequired=lowest
+PrivilegesRequired=admin
 SetupIconFile=AsTeRICS Ergo\AsTeRICS Ergo.ico
 UninstallDisplayIcon={app}\AsTeRICS Ergo.ico
 UninstallDisplayName=AsTeRICS Ergo
@@ -54,6 +54,7 @@ Name: "{commondesktop}\AsTeRICS Ergo"; Filename: "{app}\AsTeRICS Ergo.exe";  Ico
 Filename: "{app}\AsTeRICS Ergo.exe"; Parameters: "-Xappcds:generatecache"; Check: returnFalse()
 Filename: "{app}\AsTeRICS Ergo.exe"; Description: "{cm:LaunchProgram,AsTeRICS Ergo}"; Flags: nowait postinstall skipifsilent; Check: returnTrue()
 Filename: "{app}\AsTeRICS Ergo.exe"; Parameters: "-install -svcName ""AsTeRICS Ergo"" -svcDesc ""Assistive Technology Application based on AsTeRICS for Occupational Therapy"" -mainExe ""AsTeRICS Ergo.exe""  "; Check: returnFalse()
+Filename: "{app}\app\tools\fixfirewall.bat";
 
 [UninstallRun]
 Filename: "{app}\AsTeRICS Ergo.exe "; Parameters: "-uninstall -svcName AsTeRICS Ergo -stopOnUninstall"; Check: returnFalse()
