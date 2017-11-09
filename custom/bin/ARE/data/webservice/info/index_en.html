@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../resources/bootstrap-3.3.7/css/bootstrap.min.css">
+        <title>AsTeRICS Ergo - Information</title>
+		
+		<!-- libs -->
+        <script src="../javascript/lib/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 col-md-6 col-lg-5">
+                    <h1>AsTeRICS Ergo - Information</h1>
+                </div>
+                <div class="col-sm-4 lang-choose">
+                    <span>Choose language:</span>
+                    <select onchange="onCheckboxChange(this.value)">
+                        <option value="de">German</option>
+                        <option value="en" selected>English</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-lg-8">
+                <h2>General Information</h2>
+                <p>AsTeRICS-Ergo ist eine freie Open Source Software, die es ermöglicht Unterstützungstechnologien einfach und
+                    kostengünstig einzurichten. Es ist eine Erweiterung des <a target="_blank"
+                                                                               href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Frameworks</a>
+                    mit einer intuitiven und flexiblen Web-Benutzeroberfläche.</p>
+                <p>Anwendungsgebiete für AsTeRICS-Ergo:</p>
+                <ul>
+                    <li>Umgebungssteuerung</li>
+                    <li>Alternative Computersteuerungen wie Mundmaus, Kopfmaus oder Buttons (in Planung)</li>
+                </ul>
+            </div>
+            <div class="row col-lg-8">
+                <h2>Download</h2>
+                <p>Klicken Sie auf folgenden Link um die aktuelle Version von AsTeRICS-Ergo herunterzuladen:</p>
+                <p><a href="https://github.com/asterics/AsTeRICS-Ergo/releases/download/v4.0.0-alpha/AsTeRICS.Ergo-javaembedded-4.0.0-alpha.exe">Download AsTeRICS-Ergo (Version 4.0.0-alpha)</a></p>
+            </div>
+            <div class="row col-lg-8">
+                <h2>Demo</h2>
+                <p>Sie können AsTeRICS-Ergo auch online einfach ausprobieren, klicken Sie dafür auf folgenden Link</p>
+                <p><a target="_blank" href="https://asterics.github.io/AsTeRICS-Ergo/mock.html#!/home">Jetzt ausprobieren!</a></p>
+                <p>In der Online-Demo können unter folgendem Link auch häufig gestellte Fragen zu AsTeRICS-Ergo eingesehen werden:</p>
+                <p><a target="_blank" href="https://asterics.github.io/AsTeRICS-Ergo/mock.html#!/home/envcontrol/help/faq/">Häufig gestellte Fragen (FAQ)</a></p>
+            </div>
+        </div>
+
+    <script type="application/javascript">
+        function onCheckboxChange(lang) {
+            goToLang(lang);
+        }
+
+        function goToLang(lang) {
+            if(lang !== 'en') {
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+    </body>
+</html>
