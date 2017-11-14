@@ -5,6 +5,7 @@ set RULE_NAME_OUT="Open Port %PORT% out for AsTeRICS-Ergo"
 
 :: disable existing, auto-generated rules for "asterics ergo.exe"
 netsh advfirewall firewall set rule name="asterics ergo.exe" new enable=no
+netsh advfirewall firewall set rule name="asterics ergo" new enable=no
 
 :: add or set rule for in-traffic
 netsh advfirewall firewall show rule name=%RULE_NAME% >nul
