@@ -57,10 +57,12 @@ Filename: "{app}\AsTeRICS Ergo.exe"; Parameters: "-install -svcName ""AsTeRICS E
 Filename: "{app}\app\tools\fixfirewall.bat";
 
 [UninstallRun]
+Filename: "taskkill"; Parameters: "/f /im ""AsTeRICS Ergo.exe"""; Flags: runhidden
 Filename: "{app}\AsTeRICS Ergo.exe "; Parameters: "-uninstall -svcName AsTeRICS Ergo -stopOnUninstall"; Check: returnFalse()
 
 [UninstallDelete]
-Type: files; Name: "{app}\app\profile\loader_componentlist.ini"
+Type: filesandordirs; Name: "{app}\app\profile"
+Type: filesandordirs; Name: "{app}\app\tmp"
 
 [Code]
 function returnTrue(): Boolean;
@@ -74,10 +76,39 @@ begin
 end;
 
 function InitializeSetup(): Boolean;
+var
+  UninstallPath : String;
+  RegPath : String;
+  InfoString: String;
+  ResultCode: Integer;
 begin
-// Possible future improvements:
-//   if version less or same => just launch app
-//   if upgrade => check if same app is running and wait for it to exit
-//   Add pack200/unpack200 support? 
+  RegPath := 'Software\Microsoft\Windows\CurrentVersion\Uninstall\{AsTeRICS Ergo}}_is1';
+  if RegValueExists(HKEY_LOCAL_MACHINE, RegPath, 'UninstallString') then  //Your App GUID/ID
+  begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, RegPath, 'UninstallString', UninstallPath);
+  end;
+
+  RegPath := 'Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AsTeRICS Ergo}}_is1';
+  if RegValueExists(HKEY_LOCAL_MACHINE,RegPath, 'UninstallString') then  //Your App GUID/ID
+  begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, RegPath, 'UninstallString', UninstallPath);
+  end;
+
+  if Length(UninstallPath) > 0 then
+  begin
+	  if ExpandConstant('{language}') = 'de' then
+		begin
+		InfoString := 'Es wurde eine alte Version von AsTeRICS Ergo auf Ihrem Computer festgestellt. M' + #$00F6 + 'chten Sie diese deinstallieren (empfohlen)?';
+		end
+	  else
+		begin
+		InfoString := 'An old version of AsTeRCIS Ergo was detected. Do you want to uninstall it (recommended)?';
+		end;
+	  if MsgBox(InfoString, mbConfirmation, MB_YESNO) = IDYES then
+	  begin
+		Exec(RemoveQuotes(ExpandConstant(UninstallPath)),'', '', SW_SHOW,ewWaitUntilTerminated, ResultCode);
+	  end; 
+  end;
+
   Result := True;
 end;  
