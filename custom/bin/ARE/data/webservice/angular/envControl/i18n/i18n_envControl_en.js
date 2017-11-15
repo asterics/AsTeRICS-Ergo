@@ -37,7 +37,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_irtrans_text_tolink: 'Select one of the following <b>links</b> to navigate to <b>a provider of the IrTrans</b>:',
 
     //help fs20
-    i18n_ec_text_help_fs20: 'The <b>FS20 system</b> allows to <b>control electric sockets</b> with AsTeRICS Ergo. Thus it is possible to <b>turn on/off</b> devices (e.g. a table lamp, fan), <b>which are connected to a socket</b>. To control these devices via AsTeRICS Ergo, an <b>adapter plug</b> and a <b>PC-sender</b> are required.',
+    i18n_ec_text_help_fs20: 'The <b>FS20 system</b> allows to <b>control electric sockets</b> with AsTeRICS Ergo. Thus it is possible to <b>turn on/off</b> devices (e.g. a table lamp, fan), <b>which are connected to a socket</b>. To control these devices via AsTeRICS Ergo, an <b>adapter plug</b> and a <b>transmitter</b> are required.',
 
     //ir commands
     i18n_ec_onoff: 'ON/OFF',
@@ -254,7 +254,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_test: 'Test',
     i18n_ec_testing: 'Testing...',
     i18n_ec_test_failed: 'Test failed',
-    i18n_ec_test_success1: 'Test successfully. Please select',
+    i18n_ec_test_success1: 'Test successful. Please select',
     i18n_ec_test_success2: 'to set up a control using the IrTrans.',
     i18n_ec_irtrans_already_installed1: 'The IrTrans has been installed successfully. Please select',
     i18n_ec_irtrans_already_installed2: 'to set up a control using the IrTrans.',
@@ -264,13 +264,11 @@ asterics.i18n_envControl_en = {
     i18n_ec_install_fs20_header2: 'If you have already purchased the FS20 system, please follow the instructions:',
     i18n_ec_check_fs20_installed: 'The program examines whether the FS20 system has already been installed',
     i18n_ec_install_fs20_p1: 'Connect the FS20 PC transmitter to your computer.',
-    i18n_ec_install_fs20_p21: 'Wait for 10 seconds. Check whether the red light on the FS20 PC transmitter is still lit.',
-    i18n_ec_install_fs20_p22: 'Does the light still shine after 10 seconds?',
-    i18n_ec_fs20_lamp_light: 'Lamp is lit',
-    i18n_ec_fs20_lamp_nolight: 'Lamp is not lit',
-    i18n_ec_install_fs20_problem: 'There is a problem concerning the FS20 transmitter that needs to be fixed. Select "Fix problem" and confirm the appearing query with "Yes".',
-    i18n_ec_install_fs20_fix_problem: 'Fix problem',
-    i18n_ec_install_fs20_p23: 'Disconnect the FS20 transmitter from the PC and reconnect it again. The lamp should now be lit continuously.',
+    i18n_ec_install_fs20_p2: 'Wait for 10 seconds in order to wait for completion of the installation of the FS20 transmitter.',
+    i18n_ec_install_fs20_p3: 'Click on "Check" to ensure that FS20 is working properly on this computer. This can lead to a confirmation prompt that has to be confirmed with "Yes".',
+    i18n_ec_install_fs20_check: 'Check',
+    i18n_ec_install_fs20_check_success: 'Check successful!',
+    i18n_ec_install_fs20_p23: 'Disconnect the FS20 transmitter from the PC and reconnect it again.',
     i18n_ec_install_fs20_test: 'Select "Test" to examine whether the installation was successful.',
     i18n_ec_test_success2_fs20: 'to set up a control using the FS20 system.',
     i18n_ec_fs20_already_installed1: 'The FS20 system was installed successfully. Please select',
