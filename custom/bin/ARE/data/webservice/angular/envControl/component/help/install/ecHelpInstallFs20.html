@@ -7,49 +7,51 @@
         <h2 translate="i18n_ec_help"/>
     </div>
     <h3 translate="i18n_ec_install_fs20_header"/>
-    <p ng-if="!$ctrl.show"><span translate="i18n_ec_check_fs20_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+    <p ng-if="!$ctrl.show"><span translate="i18n_ec_check_fs20_installed"/> <span
+            class="saving"><span>.</span><span>.</span><span>.</span></span></p>
     <div ng-if="$ctrl.show && $ctrl.showAssistant">
         <p translate="i18n_ec_install_fs20_header2"/>
         <ol class="install-help">
             <li>
                 <span translate="i18n_ec_install_fs20_p1"/>
                 <div class="row">
-                    <img class="img-row col-xs-3" src="angular/envControl/img/fs20-usba.png" alt="FS20-Sender with USB-A"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/fs20-usba.png"
+                         alt="FS20-Sender with USB-A"/>
                     <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
                 </div>
             </li>
             <li>
-                <span translate="i18n_ec_install_fs20_p21"/>
-                <div class="row">
-                    <img class="img-row col-xs-3" src="angular/envControl/img/fs20-sender-laempchen.jpg"
-                         alt="IrTrans-USB"/>
-                </div>
-                <span translate="i18n_ec_install_fs20_p22"/><br/>
-                <button ng-click="$ctrl.setNeedsPatch(false)"><span translate="i18n_ec_fs20_lamp_light"/></button>
-                <button ng-click="$ctrl.setNeedsPatch(true)"><span translate="i18n_ec_fs20_lamp_nolight"/></button>
+                <span translate="i18n_ec_install_fs20_p2"/>
             </li>
-            <li ng-if="$ctrl.needpatch">
-                <span translate="i18n_ec_install_fs20_problem"/><br/>
-                <button ng-click="$ctrl.patch()"><span translate="i18n_ec_install_fs20_fix_problem"/></button>
+            <li>
+                <span translate="i18n_ec_install_fs20_p3"/><br/>
+                <button ng-click="$ctrl.patch()"><span translate="i18n_ec_install_fs20_check"/></button>
+                <span ng-if="$ctrl.patched">
+                    <i class="fa fa-check"/> <span translate="i18n_ec_install_fs20_check_success"/>
+                </span>
             </li>
-            <li ng-if="$ctrl.needpatch && $ctrl.patched">
+            <li ng-if="$ctrl.patched">
                 <span translate="i18n_ec_install_fs20_p23"/>
             </li>
-            <li ng-if="$ctrl.needpatch && $ctrl.patched || $ctrl.needpatch == false">
+            <li ng-if="$ctrl.patched">
                 <span translate="i18n_ec_install_fs20_test"/>
                 <button ng-click="$ctrl.test()" translate="i18n_ec_test"></button>
                 <div ng-if="$ctrl.triedCheck">
                     <span ng-if="$ctrl.isConnected == null" translate="i18n_ec_testing"/>
-                    <span ng-if="$ctrl.isConnected == false"><i class="fa fa-2x fa-times"/> <span translate="i18n_ec_test_failed"/></span>
+                    <span ng-if="$ctrl.isConnected == false"><i class="fa fa-2x fa-times"/> <span
+                            translate="i18n_ec_test_failed"/></span>
                     <span ng-if="$ctrl.isConnected">
                         <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_test_success1"/>
-                        <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span translate="i18n_ec_test_success2_fs20"/>
+                        <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span
+                            translate="i18n_ec_test_success2_fs20"/>
                     </span>
                 </div>
             </li>
         </ol>
     </div>
     <div ng-if="$ctrl.show && !$ctrl.showAssistant">
-        <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_fs20_already_installed1"/> <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span translate="i18n_ec_fs20_already_installed2"/>
+        <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_fs20_already_installed1"/> <a
+            ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span
+            translate="i18n_ec_fs20_already_installed2"/>
     </div>
 </div>

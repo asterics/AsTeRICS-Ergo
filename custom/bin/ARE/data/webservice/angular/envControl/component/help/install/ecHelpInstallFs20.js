@@ -4,17 +4,11 @@ angular.module(asterics.appComponents)
         controller: ['utilService', 'envControlFsService', '$timeout', '$anchorScroll', '$stateParams', function (utilService, envControlFsService, $timeout, $anchorScroll, $stateParams) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
-            thiz.needpatch = null;
             thiz.isConnected = null;
             thiz.patched = false;
             thiz.triedCheck = false;
             thiz.show = false;
             thiz.showAssistant = false;
-
-            thiz.setNeedsPatch = function (bool) {
-                thiz.needpatch = bool;
-                scrollToEnd();
-            };
 
             thiz.patch = function () {
                 envControlFsService.fs20Patch().then(function () {
