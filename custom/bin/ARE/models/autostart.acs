@@ -10,7 +10,7 @@
       </ports>
       <properties>
         <property name="defaultApplication" value="explorer" />
-        <property name="arguments" value="http://localhost:8091" />
+        <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="True" />
