@@ -250,7 +250,7 @@ asterics.envControl.faq.en  = [
     {
         id: 42,
         title: 'While installing the software for IrTrans I get an error (.NET Framework). What can I do?',
-        language: 'de',
+        language: 'en',
         keywords: ['failure']
     }
 ];
