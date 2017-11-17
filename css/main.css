@@ -1,0 +1,174 @@
+* {
+    font-size: 20px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    height: 100%;
+}
+
+#astericsApp, #mainDiv {
+    height: 100%;
+    min-height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+ul.nodots {
+    list-style-type: none;
+}
+
+.fa-check {
+    color: green;
+}
+
+.fa-times {
+    color: red;
+}
+
+div .active {
+    border-color: red;
+    border-style: solid;
+}
+
+.last-list-item {
+    padding-top: 1em;
+}
+
+.cb-element {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.cb-element button {
+    width: 100%;
+    height: 100%;
+}
+
+.lang-choose {
+    padding-top: 0.5em;
+}
+
+.vcenter {
+    float: left;
+    vertical-align: middle;
+    padding-right: 0.5em;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.img-500 {
+    max-width: 500px;
+}
+
+.red {
+    color: red;
+}
+
+ul li {
+    margin-bottom: 0.5em;
+}
+
+ol li {
+    margin-bottom: 0.5em;
+}
+
+.message ol li {
+    margin-bottom: 0;
+}
+
+.message ul li {
+    margin-bottom: 0;
+}
+
+.install-help li {
+    margin-bottom: 0.5em;
+}
+
+.panel-title {
+    font-weight: bold;
+}
+
+.img-row {
+    padding-bottom: 15px;
+    max-height: 100px;
+    width: auto !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.padding-top {
+    padding-top: 2em;
+}
+
+.padding-top-little {
+    padding-top: 1em;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+.mockConfigurator {
+    margin-top: 2em;
+    border-top: 5px solid green;
+}
+
+#container {
+    position: relative;
+    min-height: 100%;
+}
+
+#content {
+    padding-bottom: 8rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 0.7em;
+}
+
+/* boxes */
+.info, .success, .warn, .error, .validation {
+    float: left;
+    border: 1px solid;
+    margin: 10px 50px 10px 15px;
+    padding: 15px 10px 15px 20px;
+}
+
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.warn {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}

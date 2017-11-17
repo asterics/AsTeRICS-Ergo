@@ -1,0 +1,96 @@
+<div>
+    <cell-board choose-items="$ctrl.cellBoardConfig"/>
+</div>
+<div class="clearfix"/>
+<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
+<div class="clearfix"/>
+<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_irtrans_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+<div ng-if="$ctrl.isConnected != null">
+    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
+        <span translate="i18n_ec_irmass_needhardware"/>
+        <ul>
+            <li ng-repeat="hardware in $ctrl.neededHardware">
+                <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                    {{'i18n_ec_' + hardware | translate}}
+                </a>
+            </li>
+        </ul>
+    </asterics-message>
+</div>
+<div ng-if="$ctrl.isConnected == false">
+    <div class="col-lg-5">
+        <p translate="i18n_ec_irmass_boughtirtrans"/>
+        <ul>
+            <li>
+                <a href="" ng-click="$ctrl.goToIrTransHelp()">
+                   <span translate="i18n_ec_irmass_bought_no"/>
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="$ctrl.goToIrTransInstall()">
+                    <span translate="i18n_ec_irmass_bought_yes"/>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div ng-if="$ctrl.isConnected">
+    <div class="col-lg-8">
+        <ul>
+            <li ng-model-options="{debounce: 500}">
+                <label for="inputLabel">{{$ctrl.nameLabelI18n | translate}}</label>
+                <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
+            </li>
+            <li ng-if="$ctrl.selectedLabel">
+                <span translate="i18n_ec_irmass_text_keeporiginal"/><br/>
+            </li>
+            <li ng-if="$ctrl.selectedLabel">
+                <span translate="i18n_ec_irmass_text_starthint"/><br/>
+            </li>
+            <li ng-repeat="instrCode in $ctrl.getAdditionalInstructions()" ng-if="$ctrl.selectedLabel">
+                <span translate="{{instrCode}}"/><br/>
+            </li>
+            <li ng-if="$ctrl.selectedLabel">
+                <span translate="i18n_ec_irmass_text_startlearn"/><br/>
+                <button id="inputTrain" ng-click="$ctrl.trainCode()" ng-disabled="$ctrl.inLearn">{{'i18n_ec_irmass_startlearn' | translate}}</button>
+                <br/>
+            </li>
+            <li ng-repeat="element in $ctrl.learnItems track by $index" ng-if="$ctrl.isItemVisible(element)">
+                <span translate="i18n_ec_irmass_pressbutton"/><span> '{{element.label | translate}}' <i ng-class="'fa fa-2x fa-' + element.icon"/>  </span>
+                <span ng-if="!element.code && !element.skipped" class="{{$ctrl.waiting ? 'pre-saving' : 'saving'}}"><span>.</span><span>.</span><span>.</span></span>
+                <span ng-if="element.code"><i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}</span>
+                <span ng-if="element.skipped"><i class="fa fa-ban"/> {{'i18n_ec_irmass_skipped' | translate}}</span>
+                <div class="clearfix"/>
+                <div ng-if="!element.code && !element.skipped">
+                    <button ng-click="$ctrl.skipItem(element)">{{'i18n_ec_irmass_skip' | translate}}</button>
+                    <button ng-if="$index > 0" ng-click="$ctrl.goToPreviousItem(element)">{{'i18n_ec_irmass_gotoprev' | translate}}</button>
+                    <button ng-if="$index > 0" ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+                    <button ng-if="$ctrl.getNumberOfLearnedItems() > 0" ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_uselearned' | translate}}</button>
+                </div>
+            </li>
+            <li class="last-list-item" ng-if="$ctrl.allCodesLearned()">
+                <div ng-if="$ctrl.getNumberOfLearnedItems() > 0">
+                    <span translate="i18n_ec_irmass_alllearned"/><br/>
+                    <button ng-click="$ctrl.goToPreviousItem()">{{'i18n_ec_irmass_gotoprev' | translate}}</button>
+                    <button ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+                    <button ng-click="$ctrl.addCellBoardItemsAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+                </div>
+                <div ng-if="$ctrl.getNumberOfLearnedItems() == 0">
+                    <span translate="i18n_ec_irmass_nolearned"/><br/>
+                    <button ng-click="$ctrl.goToPreviousItem()">{{'i18n_ec_irmass_gotoprev' | translate}}</button>
+                    <button ng-click="$ctrl.clearItemsAndRestartLearning()">{{'i18n_ec_irmass_restartlearn' | translate}}</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div ng-if="$ctrl.showError" class="error col-xs-12 col-md-8">
+        <i class="fa fa-exclamation-triangle fa-2x vcenter"/>
+        <span translate="i18n_ec_irtrans_error"/>
+    </div>
+</div>
+<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToIrTransHelp()">
+    <div class="col-xs-6 col-md-4 col-lg-3">
+        <img src="angular/envControl/img/irtrans_learn.png" alt="IrTrans-USB"/>
+        <div class=" text-center"><span translate="i18n_ec_remote_directed_irtrans"/></div>
+    </div>
+</a>

@@ -1,0 +1,40 @@
+<p>
+    Here are some examples of where the additional hardware can be acquired.
+</p>
+<p><b>IrTrans USB:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.irtransLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>USB cable Type A - Type B (needed for IrTrans):</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.usbcableLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>Infrared light bulbs:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.irbulbLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>FS20 transmitter:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.fs20senderLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>FS20 adapter plug:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.fs20plugLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p translate="i18n_ec_to_fs20_hint_set"/>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.fs20setLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+

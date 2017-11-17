@@ -1,0 +1,13 @@
+<div ui-view="">
+    <div>
+        <cell-board choose-items="$ctrl.cellBoardConfig"/>
+    </div>
+    <div class="clearfix"/>
+    <h2 translate="i18n_ec_text_add_to_existing" translate-values="{{$ctrl.translateParam}}"/>
+    <div>
+        <label for="cellBoardType">{{'i18n_ec_text_addtype' | translate}}</label>
+        <div id="cellBoardType">
+            <cell-board choose-items="$ctrl.cellBoardChoose"/>
+        </div>
+    </div>
+</div>

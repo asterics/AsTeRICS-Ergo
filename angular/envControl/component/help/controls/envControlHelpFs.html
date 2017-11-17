@@ -1,0 +1,52 @@
+<div>
+    <div ng-if="!$ctrl.singlePageMode">
+        <cell-board choose-items="$ctrl.cellBoardConfig"/>
+    </div>
+    <div class="clearfix"/>
+    <div class="row">
+        <div class="col-xs-10">
+            <h2 translate="i18n_ec_help_fs"/>
+            <p translate="i18n_ec_text_help_fs20"/>
+            <b translate="i18n_ec_hint"/>
+            <ul>
+                <li>
+                    <span translate="i18n_ec_need_one_sender"/>
+                    <span translate="i18n_ec_fs20_need_example"/>
+                </li>
+            </ul>
+            <p translate="i18n_ec_fs20_click_on_links"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-lg-3">
+            <img src="angular/envControl/img/HW_FS20_PLUG.jpg" alt="{{'i18n_ec_HW_FS20_PLUG' | translate}}"/>
+            <div>{{'i18n_ec_HW_FS20_PLUG' | translate}}</div>
+            <ul>
+                <li ng-repeat="linkObject in $ctrl.fs20plugLinks">
+                    <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-1 col-lg-1 padding-top">
+            <i class="fa fa-plus fa-3x"/>
+        </div>
+        <div class="col-md-5 col-lg-3">
+            <img src="angular/envControl/img/HW_FS20_PCSENDER.jpg" alt="{{'i18n_ec_HW_FS20_PCSENDER' | translate}}"/>
+            <div>{{'i18n_ec_HW_FS20_PCSENDER' | translate}}</div>
+            <ul>
+                <li ng-repeat="linkObject in $ctrl.fs20senderLinks">
+                    <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <p>
+        <div translate="i18n_ec_to_fs20_hint_set"/>
+        <ul>
+            <li ng-repeat="linkObject in $ctrl.fs20setLinks">
+                <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+            </li>
+        </ul>
+    </p>
+    <p ng-if="!$ctrl.singlePageMode">{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_fs20_installation' | translate}}</a></p>
+</div>

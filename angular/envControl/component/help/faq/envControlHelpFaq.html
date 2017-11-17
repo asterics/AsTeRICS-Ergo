@@ -1,0 +1,26 @@
+<div>
+    <div ng-if="!$ctrl.hideBack && !$ctrl.singlePageMode">
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+    </div>
+    <h2 translate="i18n_ec_help"/>
+    <h3 translate="i18n_ec_faq2"/>
+    <p translate="i18n_ec_faq_click_question"/>
+    <div class="row-fluid">
+        <span>Suche:</span>
+        <input type="text" ng-model="$ctrl.searchText" ng-change="$ctrl.search()"/>
+        <br/><br/>
+    </div>
+    <uib-accordion close-others="true">
+        <div uib-accordion-group ng-repeat="faq in $ctrl.searchFaqs" class="panel-default" is-open="$ctrl.open[faq.id]">
+            <a id="{{faq.id}}"></a>
+            <uib-accordion-heading>
+                <span ng-bind-html="$ctrl.getTitle(faq)" style="font-weight: normal"></span>
+            </uib-accordion-heading>
+            <div ng-if="$ctrl.open[faq.id]" ng-include="$ctrl.getHtmlPath(faq)"/>
+        </div>
+    </uib-accordion>
+    <p ng-if="$ctrl.searchFaqs.length == 0" translate="i18n_ec_no_search_result"/>
+</div>

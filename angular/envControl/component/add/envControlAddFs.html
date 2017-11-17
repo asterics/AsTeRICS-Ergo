@@ -1,0 +1,64 @@
+<div>
+    <cell-board choose-items="$ctrl.cellBoardConfig"/>
+</div>
+<div class="clearfix"/>
+<h2>{{'i18n_ec_fs_header' | translate}}</h2>
+<div class="clearfix"/>
+<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_fs20_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+<div ng-if="$ctrl.isConnected != null">
+    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
+        <span translate="i18n_ec_irmass_needhardware"/>
+        <ul>
+            <li ng-repeat="hardware in $ctrl.neededHardware">
+                <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                    {{'i18n_ec_' + hardware | translate}}
+                </a>
+            </li>
+        </ul>
+    </asterics-message>
+</div>
+<div ng-if="$ctrl.isConnected == false">
+    <div class="col-lg-5">
+        <p translate="i18n_ec_fs_boughtfs20"/>
+        <ul>
+            <li>
+                <a href="" ng-click="$ctrl.goToFs20Help()">
+                    <span translate="i18n_ec_fs_boughtfs20_no"/>
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="$ctrl.goToFs20Install()">
+                    <span translate="i18n_ec_fs_boughtfs20_yes"/>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div ng-if="$ctrl.isConnected">
+    <div class="col-lg-8">
+        <ul>
+            <li ng-model-options="{debounce: 500}">
+                <label for="inputLabel">{{'i18n_ec_fs_choosename' | translate}}</label>
+                <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
+            </li>
+            <li ng-if="$ctrl.selectedLabel">
+                <span translate="{{'i18n_ec_fs_device_on_' + $ctrl.stateLastPart}}"/><br/>
+                <span translate="i18n_ec_fs_adapt_plug">{{'i18n_ec_fs_adapt_plug' | translate}}</span><br/>
+                <span translate="{{'i18n_ec_fs_plug_in_' + $ctrl.stateLastPart}}"/><br/>
+            </li>
+            <li ng-if="$ctrl.selectedLabel">
+                <span translate="i18n_ec_fs_press_button"/><br/>
+            </li>
+            <li ng-if="$ctrl.selectedLabel">
+                <span translate="i18n_ec_fs_text_finish"/><br/>
+                <button ng-click="$ctrl.addCellBoardItemAndReturn()">{{'i18n_ec_irmass_finish' | translate}}</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToFs20Help()">
+    <div class="col-xs-4 col-md-3 col-lg-2">
+        <img src="angular/envControl/img/HW_FS20_PLUG.jpg" alt="{{'i18n_ec_HW_FS20_PLUG' | translate}}"/>
+        <div class=" text-center">{{'i18n_ec_HW_FS20_PLUG' | translate}}</div>
+    </div>
+</a>

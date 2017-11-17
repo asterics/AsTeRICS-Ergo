@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/bootstrap-3.3.7/css/bootstrap.min.css">
+    <title>AsTeRICS Ergo - Information</title>
+
+    <!-- libs -->
+    <script src="../javascript/lib/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="container">
+    <div id="content" class="container-fluid" style="padding-bottom: 10em">
+        <div class="row">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <a><h1>AsTeRICS Ergo</h1></a>
+            </div>
+            <div class="col-sm-4 lang-choose">
+                <span>Choose language:</span>
+                <select onchange="onCheckboxChange(this.value)">
+                    <option value="de">German</option>
+                    <option selected value="en">English</option>
+                </select>
+            </div>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Application Area</h2>
+            <p>AsTeRICS-Ergo allows to install an environmental control system easily and without technical background
+                knowledge. Currently it is possible to control power sockets and all devices with an infrared remote
+                control. These are for instance:
+            <ul>
+                <li>TV</li>
+                <li>DVD player</li>
+                <li>Radio/CD player</li>
+                <li>Robotic vacuum cleaner</li>
+                <li>Blinds</li>
+            </ul>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Download</h2>
+            <p>Click on the following link in order to download the latest version of AsTeRICS-Ergo:</p>
+            <p>
+                <a id="downloadLink"
+                   href="https://github.com/asterics/AsTeRICS-Ergo/releases/download/v3.3.0/AsTeRICS.Ergo-javaembedded-3.3.0.exe">Download
+                    AsTeRICS-Ergo</a></p>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Demo</h2>
+            <p>You can also simply try out AsTeRICS-Ergo online, just click on the following link:</p>
+            <p><a target="_blank" href="../mock.html#!/home">Try out now!</a>
+            </p>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Help</h2>
+            <p>The following help resources are available:</p>
+            <p><a href="../mock.html#!/home/envcontrol/help/faq/?singlePageMode=true">Frequently Asked Questions
+                (FAQ)</a></p>
+            <p><a href="../mock.html#!/home/envcontrol/help/devices?singlePageMode=true">Hardware Order Wizard</a></p>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Further Information</h2>
+            <p>AsTeRICS-Ergo is an extension of the <a href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Framework</a>
+                with focus on a intuitive and easily understandable web user-interface.</p>
+            <p>Besides environmental control it is planned to make it possible to install and configure alternative
+                means of computer control in future versions. However also the current version can be used by
+                alternative means of computer control if it emulates the mouse or the keyboard.</p>
+        </div>
+    </div>
+    <div id="footer" class="row">
+        <span class="footer-text">AsTeRICS-Ergo, </span>
+        <a class="footer-text" target="_blank" href="http://www.asterics-foundation.org">www.asterics-foundation.org</a>
+    </div>
+</div>
+
+<script type="application/javascript">
+    $.get('https://api.github.com/repos/asterics/AsTeRICS-Ergo/releases/latest', {}, function (response) {
+        var downloadLink = response.assets[0].browser_download_url;
+        var version = response.tag_name;
+        $('#downloadLink').text('Download AsTeRICS-Ergo (' + version + ')');
+        $('#downloadLink').attr('href', downloadLink);
+    }, 'json');
+
+    function onCheckboxChange(lang) {
+        goToLang(lang);
+    }
+
+    function goToLang(lang) {
+        if (lang !== 'en') {
+            window.location.href = "index.html";
+        }
+    }
+</script>
+</body>
+</html>

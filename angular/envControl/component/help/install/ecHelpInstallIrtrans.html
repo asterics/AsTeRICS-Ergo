@@ -1,0 +1,84 @@
+<div>
+    <div>
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+        <h2 translate="i18n_ec_help"/>
+    </div>
+    <h3 translate="i18n_ec_install_irtrans_header"></h3>
+    <p ng-if="!$ctrl.show">{{'i18n_ec_check_irtrans_installed' | translate}} <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+    <div ng-if="$ctrl.show && $ctrl.showAssistant">
+        <p translate="i18n_ec_install_irtrans_header2"/>
+        <ol class="install-help">
+            <li>
+                <span translate="i18n_ec_install_irtrans_p1"/>
+            </li>
+            <li>
+                <p translate="i18n_ec_install_irtrans_p21"/>
+                <p><a href="http://www.irtrans.de/download/setup.exe">{{'i18n_ec_install_irtrans_p22' | translate}}</a></p>
+                <p translate="i18n_ec_install_irtrans_p23"/>
+            </li>
+            <li>
+                <p translate="i18n_ec_install_irtrans_p3"></p>
+                <p>
+                    <span translate="i18n_ec_install_irtrans_p24"/> <a ui-sref="home.envControl.help/faq({open: 42})">FAQ</a>
+                </p>
+                <div class="row">
+                    <img class="img-500" src="angular/envControl/img/install-irtrans-win-assistant1.png"
+                         alt="IrTrans Installationsfenster"/>
+                    <img class="img-500" src="angular/envControl/img/install-irtrans-win-assistant2.png"
+                         alt="IrTrans Installationsfenster"/>
+                </div>
+            </li>
+            <li>
+                <span translate="i18n_ec_install_irtrans_p41"/> <a ui-sref="home.envControl.help/controls/HW_IRTRANS_USB">{{'i18n_ec_help' | translate}}</a>) <span translate="i18n_ec_install_irtrans_p42"/>
+                <div class="row">
+                    <img class="img-row col-xs-3" src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/usbab.png" alt="USB Stecker Typ B - USB Stecker Typ A"/>
+                    <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+                </div>
+            </li>
+            <li>
+                <p><b translate="i18n_ec_install_irtrans_p5"></b></p>
+                <div ng-if="$ctrl.isWin7OrOther()">
+                    <p translate="i18n_ec_install_irtrans_p5_win7_1"/>
+                    <p><b translate="i18n_ec_install_irtrans_p5_win7_2"/></p>
+                    <div class="row">
+                        <img src="angular/envControl/img/install-irtrans-win7-1.png" alt="IrTrans-USB Installationsmeldung Windows 7"/>
+                        <img src="angular/envControl/img/install-irtrans-win7-1b.png" alt="IrTrans-USB Installationsmeldung Windows 7"/>
+                    </div>
+                </div>
+                <div ng-if="$ctrl.isWin10()">
+                    <p translate="i18n_ec_install_irtrans_p5_win10_1"/>
+                    <p translate="i18n_ec_install_irtrans_p5_win10_2"/>
+                    <div class="row">
+                        <img src="angular/envControl/img/install-irtrans-win10-1.png" alt="IrTrans-USB Installationsfenster Windows 10"/>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <span translate="i18n_ec_install_irtrans_p6"/>
+                <div class="row">
+                    <img class="img-responsive" ng-if="$ctrl.isWin7OrOther()" src="angular/envControl/img/install-irtrans-win7-2.png" alt="IrTrans-Server"/>
+                    <img class="img-responsive" ng-if="$ctrl.isWin10()" src="angular/envControl/img/install-irtrans-win10-2.png" alt="IrTrans-Server"/>
+                </div>
+            </li>
+            <li>
+                <span translate="i18n_ec_install_irtrans_p7"/>
+                <button ng-click="$ctrl.test()"><span translate="i18n_ec_test"/></button>
+                <div ng-if="$ctrl.triedCheck">
+                    <span ng-if="!$ctrl.checkResult" translate="i18n_ec_testing"></span>
+                    <span ng-if="$ctrl.checkResult && !$ctrl.isConnected"><i class="fa fa-2x fa-times"/> <span translate="i18n_ec_test_failed"/></span>
+                    <span ng-if="$ctrl.checkResult && $ctrl.isConnected">
+                        <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_test_success1"/>
+                        <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span translate="i18n_ec_test_success2"/>
+                    </span>
+                </div>
+            </li>
+        </ol>
+    </div>
+    <div ng-if="$ctrl.show && !$ctrl.showAssistant">
+        <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_irtrans_already_installed1"/> <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span translate="i18n_ec_irtrans_already_installed2"/>
+    </div>
+</div>

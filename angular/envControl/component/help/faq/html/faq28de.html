@@ -1,0 +1,39 @@
+<p>
+    Nachfolgend sind Beispiele angeführt, wo die zusätzliche Hardware erworben werden kann.
+</p>
+<p><b>IrTrans USB:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.irtransLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>USB Kabel Typ A - Typ B (benötigt für IrTrans):</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.usbcableLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>FS20 PC-Sender:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.fs20senderLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>FS20 Zwischenstecker:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.fs20plugLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p><b>Infrarot-Glühbirnen:</b></p>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.irbulbLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>
+<p translate="i18n_ec_to_fs20_hint_set"/>
+<ul>
+    <li ng-repeat="linkObject in $ctrl.fs20setLinks">
+        <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+    </li>
+</ul>

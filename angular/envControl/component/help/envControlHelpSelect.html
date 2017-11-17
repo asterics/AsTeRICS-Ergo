@@ -1,0 +1,76 @@
+<div>
+    <div ng-if="!$ctrl.hideBack && !$ctrl.singlePageMode">
+        <div>
+            <cell-board choose-items="$ctrl.cellBoardConfig"/>
+        </div>
+        <div class="clearfix"/>
+    </div>
+    <h2 ng-if="!$ctrl.hideBack" translate="i18n_ec_help"/>
+    <h3 ng-if="!$ctrl.hideBack" translate="i18n_ec_choose_controls"/>
+    <p translate="i18n_ec_which_devices"/>
+    <ul class="nodots">
+        <li ng-repeat="device in $ctrl.devices">
+            <div class="row">
+                <label class="col-xs-12 col-sm-5 col-md-4">
+                    <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device].chosen"
+                           ng-change="$ctrl.selectedDevicesChanged(device)"/>
+                    <span>{{'i18n_ec_' + device | translate}}</span>
+                    <i ng-if="$ctrl.isDeviceWithAdditionalInfo(device)" class="fa fa-info-circle" title="{{'i18n_ec_' + device + '_additional' | translate}}"></i>
+                </label>
+                <div class="col-xs-3 col-sm-3 col-md-2">
+                    <div class="row">
+                        <label class="col-xs-7" for="inputNumber" class="" translate="i18n_ec_amount"/>
+                        <input class="col-xs-5" id="inputNumber" type="number" min="1" max="99"
+                               ng-model="$ctrl.deviceSelectionMap[device].amount"
+                               ng-disabled="!$ctrl.deviceSelectionMap[device].chosen"
+                               ng-blur="$ctrl.onAmountBlur(device)"
+                               ng-change="$ctrl.selectedDevicesChanged()"/>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>{{'i18n_ec_device_not_in_list' | translate}} <a ui-sref="home.envControl.help/faq({open: 1})">{{'i18n_ec_devices_more_possibilities' | translate}}</a></li>
+    </ul>
+    <div class="asterics-fade" ng-if="$ctrl.neededHardware.length > 0">
+        <p translate="i18n_ec_you_need_devices"/>
+        <div class="row">
+            <div ng-repeat="hardware in $ctrl.neededHardware">
+                <div class="col-xs-6 col-sm-3 col-lg-2">
+                    <span>{{$ctrl.neededHardwareAmounts[hardware]}}x</span>
+                    <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                        <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
+                             alt="{{ 'i18n_ec_' + hardware | translate}}"/>
+                        <p>{{ 'i18n_ec_' + hardware | translate}}</p>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-lg-2" ng-repeat="accessoire in $ctrl.getNeededAccessoires(hardware)">
+                    <span>1x</span>
+                    <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                        <img class="img-row" ng-src="{{'angular/envControl/img/' + accessoire + '.jpg'}}"
+                             alt="{{ 'i18n_ec_' + accessoire | translate}}"/>
+                        <p>{{ 'i18n_ec_' + accessoire | translate}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="padding-top-little" ng-if="$ctrl.alternativeHardwareDevices.length > 0">
+            <p ng-if="$ctrl.alternativeHardwareDevices.length == 1"><b translate="i18n_ec_hint"/></p>
+            <p ng-if="$ctrl.alternativeHardwareDevices.length > 1"><b translate="i18n_ec_hints"/></p>
+            <ul ng-repeat="device in $ctrl.alternativeHardwareDevices">
+                <li>
+                    <b>{{'i18n_ec_' + device | translate}}</b> {{'i18n_ec_alternative_hardware1' | translate}}
+                    <span ng-repeat="alternative in $ctrl.alternativeHardare[device][0]">
+                        <a href="" ng-click="$ctrl.goToHelp(alternative)">{{ 'i18n_ec_' + alternative | translate}}</a>
+                        <span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1">+</span>
+                    </span>
+                    {{'i18n_ec_alternative_hardware2' | translate}}
+                    <span ng-repeat="primarySuggestion in $ctrl.getNeededHardware(device)">
+                        {{ 'i18n_ec_' + primarySuggestion | translate}}
+                        <span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1">+</span>
+                    </span>).
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

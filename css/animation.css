@@ -1,0 +1,10 @@
+/* The starting CSS styles for the enter animation */
+.asterics-fade.ng-enter {
+    transition:1.0s linear all;
+    opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.asterics-fade.ng-enter.ng-enter-active {
+    opacity:1;
+}
