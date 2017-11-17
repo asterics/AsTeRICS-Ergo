@@ -246,5 +246,11 @@ asterics.envControl.faq.en  = [
         title: 'When downloading the AsTeRICS Ergo installation file and / or installing AsTeRICS Ergo, my antivirus program states that the program is not downloaded frequently and could cause damage to the device, that running the app may pose a risk to the PC or a similar warning appears. What should I do?',
         language: 'en',
         keywords: ['antivirus']
+    },
+    {
+        id: 42,
+        title: 'While installing the software for IrTrans I get an error (.NET Framework). What can I do?',
+        language: 'de',
+        keywords: ['failure']
     }
 ];
