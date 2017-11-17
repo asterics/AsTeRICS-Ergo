@@ -167,7 +167,7 @@ asterics.envControl.faq.de = [
         id: 28,
         title: 'Wo kann ich die zur Steuerung benötigte Hardware erwerben?',
         language: 'de',
-        keywords: ['bestellen', 'kaufen', 'shop']
+        keywords: ['bestellen', 'kaufen', 'shop', 'links']
     },
     {
         id: 29,

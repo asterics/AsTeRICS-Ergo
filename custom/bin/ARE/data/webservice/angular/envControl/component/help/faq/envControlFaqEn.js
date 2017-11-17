@@ -167,7 +167,7 @@ asterics.envControl.faq.en  = [
         id: 28,
         title: 'Where can I purchase the required hardware?',
         language: 'en',
-        keywords: ['order', 'buy', 'shop']
+        keywords: ['order', 'buy', 'shop', 'links']
     },
     {
         id: 29,
