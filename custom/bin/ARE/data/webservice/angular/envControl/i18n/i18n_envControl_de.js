@@ -241,6 +241,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_install_irtrans_p21: '<b>Software herunterladen</b> - IrTrans benötigt zusätzliche Software. Bitte klicken Sie auf folgenden Link um diese herunterzuladen:',
     i18n_ec_install_irtrans_p22: 'Software IrTrans USB',
     i18n_ec_install_irtrans_p23: 'Öffnen Sie danach die heruntergeladene Datei mit dem Namen "setup.exe".',
+    i18n_ec_install_irtrans_p24: '<i>Hinweis:</i> kommt es zu einem Fehler bei der Installation, siehe',
     i18n_ec_install_irtrans_p3: '<b>Installieren Sie die heruntergeladene Software</b> - Folgen Sie den Anweisungen und klicken Sie immer auf "Next". Beim Fenster mit der Überschrift "Program Shortcuts" wählen Sie "IrTrans USB" und aktivieren Sie die Option "Add IrTransServer to the Startup Folder":',
     i18n_ec_install_irtrans_p41: '<b>An PC anstecken</b> - Stecken Sie nach Abschluss der Softwareinstallation den IrTrans mit einem USB-Kabel (Typ A-B, siehe',
     i18n_ec_install_irtrans_p42: 'an dem Computer an.',

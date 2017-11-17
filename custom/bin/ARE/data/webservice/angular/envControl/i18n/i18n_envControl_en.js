@@ -241,6 +241,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_install_irtrans_p21: '<b>Download the software</b> - To install the IrTrans, additional software is needed. Please select the following link to download the software:',
     i18n_ec_install_irtrans_p22: 'Software IrTrans USB',
     i18n_ec_install_irtrans_p23: 'Please open the downloaded file named "setup.exe".',
+    i18n_ec_install_irtrans_p24: '<i>Hint:</i> if an error occurs see',
     i18n_ec_install_irtrans_p3: '<b>Installation of the downloaded software</b> - Follow the instructions & select "next" on every page. When the window "Program Shortcuts" opens, select "IrTrans USB" and tick "Add IrTransServer to the Startup Folder":',
     i18n_ec_install_irtrans_p41: '<b>Connect IrTrans to your computer</b> - Connect the IrTrans to your PC using a USB type B cable.',
     i18n_ec_install_irtrans_p42: 'EN - an dem Computer an.',
