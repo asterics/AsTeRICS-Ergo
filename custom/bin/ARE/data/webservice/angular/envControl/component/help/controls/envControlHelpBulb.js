@@ -3,6 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['utilService', '$stateParams', function (utilService, $stateParams) {
             var thiz = this;
+            thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.irbulbLinks = asterics.envControl.LINKS[asterics.envControl.HW_IR_BULB];
 

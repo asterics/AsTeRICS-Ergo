@@ -16,47 +16,81 @@
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-8 col-md-6 col-lg-5">
-            <h1>AsTeRICS Ergo - Information</h1>
+<div id="container">
+    <div id="content" class="container-fluid" style="padding-bottom: 10em">
+        <div class="row">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <a><h1>AsTeRICS Ergo</h1></a>
+            </div>
+            <div class="col-sm-4 lang-choose">
+                <span>Sprache wählen:</span>
+                <select onchange="onCheckboxChange(this.value)">
+                    <option value="de">Deutsch</option>
+                    <option value="en">Englisch</option>
+                </select>
+            </div>
         </div>
-        <div class="col-sm-4 lang-choose">
-            <span>Sprache wählen:</span>
-            <select onchange="onCheckboxChange(this.value)">
-                <option value="de">Deutsch</option>
-                <option value="en">Englisch</option>
-            </select>
+        <div class="row col-lg-8">
+            <h2>Anwendungsgebiet</h2>
+            <p>AsTeRICS-Ergo ermöglicht es eine <strong>Umgebungssteuerung</strong> einfach und ohne technische
+                Vorkenntnisse einzurichten. Derzeit können Steckdosen und alle Geräte mit Infrarot-Fernbedienung
+                gesteuert
+                werden, also zum Beispiel:</p>
+            <ul>
+                <li>Fernseher</li>
+                <li>DVD-Player</li>
+                <li>Radio/CD-Player</li>
+                <li>Staubsaugerroboter</li>
+                <li>Jalousien</li>
+            </ul>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Download</h2>
+            <p>Klicken Sie auf folgenden Link um die aktuelle Version von AsTeRICS-Ergo herunterzuladen:</p>
+            <p>
+                <a id="downloadLink"
+                   href="https://github.com/asterics/AsTeRICS-Ergo/releases/download/v3.3.0/AsTeRICS.Ergo-javaembedded-3.3.0.exe">Download
+                    AsTeRICS-Ergo</a></p>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Demo</h2>
+            <p>Sie können AsTeRICS-Ergo auch einfach online ausprobieren, klicken Sie dafür auf folgenden Link:</p>
+            <p><a target="_blank" href="../mock.html#!/home">Jetzt ausprobieren!</a>
+            </p>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Hilfe</h2>
+            <p>Es sind folgende Hilfeangebote verfügbar:</p>
+            <p><a href="../mock.html#!/home/envcontrol/help/faq/?singlePageMode=true">Häufig gestellte
+                Fragen (FAQ)</a></p>
+            <p><a href="../mock.html#!/home/envcontrol/help/devices?singlePageMode=true">Hardware
+                Bestell-Hilfe</a></p>
+        </div>
+        <div class="row col-lg-8">
+            <h2>Weiterführende Informationen</h2>
+            <p>AsTeRICS-Ergo ist eine Erweiterung des <a href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Frameworks</a>
+                mit Fokus auf einer intuitiven und einfach verständlichen Web-Benutzeroberfläche.</p>
+            <p> Neben der Umgebungssteuerung ist für künftige Versionen eine einfache Einrichtung und Konfiguration von
+                alternativen Möglichkeiten zur Computersteuerung geplant. Es ist allerdings auch schon jetzt möglich
+                AsTeRICS-Ergo mit jeder alternativen Computersteuerung zu bedienen, welche Maus oder
+                Tastatur ersetzt.</p>
         </div>
     </div>
-    <div class="row col-lg-8">
-        <h2>Allgemeine Informationen</h2>
-        <p>AsTeRICS-Ergo ist eine freie Open Source Software, die es ermöglicht Unterstützungstechnologien einfach und
-            kostengünstig einzurichten. Es ist eine Erweiterung des <a target="_blank"
-                                                                       href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Frameworks</a>
-            mit einer intuitiven und flexiblen Web-Benutzeroberfläche.</p>
-        <p>Anwendungsgebiete für AsTeRICS-Ergo:</p>
-        <ul>
-            <li>Umgebungssteuerung</li>
-            <li>Alternative Computersteuerungen wie Mundmaus, Kopfmaus oder Buttons (in Planung)</li>
-        </ul>
-    </div>
-    <div class="row col-lg-8">
-        <h2>Download</h2>
-        <p>Klicken Sie auf folgenden Link um die aktuelle Version von AsTeRICS-Ergo herunterzuladen:</p>
-        <p><a href="https://github.com/asterics/AsTeRICS-Ergo/releases/download/v4.0.0-alpha/AsTeRICS.Ergo-javaembedded-4.0.0-alpha.exe">Download AsTeRICS-Ergo (Version 4.0.0-alpha)</a></p>
-    </div>
-    <div class="row col-lg-8">
-        <h2>Demo</h2>
-        <p>Sie können AsTeRICS-Ergo auch online einfach ausprobieren, klicken Sie dafür auf folgenden Link</p>
-        <p><a target="_blank" href="https://asterics.github.io/AsTeRICS-Ergo/mock.html#!/home">Jetzt ausprobieren!</a></p>
-        <p>In der Online-Demo können unter folgendem Link auch häufig gestellte Fragen zu AsTeRICS-Ergo eingesehen werden:</p>
-        <p><a target="_blank" href="https://asterics.github.io/AsTeRICS-Ergo/mock.html#!/home/envcontrol/help/faq/">Häufig gestellte Fragen (FAQ)</a></p>
+    <div id="footer" class="row">
+        <span class="footer-text">AsTeRICS-Ergo, </span>
+        <a class="footer-text" target="_blank" href="http://www.asterics-foundation.org">www.asterics-foundation.org</a>
     </div>
 </div>
 
+
 <script type="application/javascript">
-    console.log(navigator.language);
+    $.get('https://api.github.com/repos/asterics/AsTeRICS-Ergo/releases/latest', {}, function (response) {
+        var downloadLink = response.assets[0].browser_download_url;
+        var version = response.tag_name;
+        $('#downloadLink').text('Download AsTeRICS-Ergo (' + version + ')');
+        $('#downloadLink').attr('href', downloadLink);
+    }, 'json');
+
     if (navigator.language !== 'de') {
         goToLang('en');
     }

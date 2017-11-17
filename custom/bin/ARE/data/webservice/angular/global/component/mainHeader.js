@@ -2,8 +2,9 @@ angular.module(asterics.appComponents)
     .component('mainHeader', {
 
         bindings: {},
-        controller: ['stateUtilService', '$rootScope', '$translate', function (stateUtilService, $rootScope, $translate) {
+        controller: ['stateUtilService', '$rootScope', '$translate', '$stateParams', function (stateUtilService, $rootScope, $translate, $stateParams) {
             var thiz = this;
+            thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.breadCrumbStates = [];
             thiz.selectedLanguage = _.find(asterics.const.languages, function (lang) {
                     return _.includes(navigator.language, lang);

@@ -1,5 +1,5 @@
 <div>
-    <div>
+    <div ng-if="!$ctrl.singlePageMode">
         <cell-board choose-items="$ctrl.cellBoardConfig"/>
     </div>
     <div class="clearfix"/>
@@ -40,5 +40,5 @@
             </ul>
         </div>
     </div>
-    <p>{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_fs20_installation' | translate}}</a></p>
+    <p ng-if="!$ctrl.singlePageMode">{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_fs20_installation' | translate}}</a></p>
 </div>
