@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', '$scope', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService, $scope) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService) {
             var thiz = this;
             var _msgGroup = 'envControlMain';
             var _msgGroupDelete = 'envControlMainDelete';
