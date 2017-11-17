@@ -5,6 +5,7 @@ angular.module(asterics.appComponents)
         },
         controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', '$interval', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', function (utilService, $state, $stateParams, $anchorScroll, $timeout, $interval, envControlTextService, $scope, $rootScope, $sce, $translate) {
             var thiz = this;
+            thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.faqs = [];
             thiz.searchFaqs = [];
             thiz.searchText = '';

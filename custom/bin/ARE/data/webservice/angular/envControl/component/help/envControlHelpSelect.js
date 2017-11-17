@@ -3,8 +3,9 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService) {
+        controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', '$stateParams', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService, $stateParams) {
             var thiz = this;
+            thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.devices = asterics.envControl.DEVICES;
             thiz.deviceSelectionMap = {};
