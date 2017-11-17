@@ -21,7 +21,7 @@ angular.module(asterics.app, [
 
     $stateProvider
         .state("home", {
-            url: '/home',
+            url: '/home?singlePageMode',
             template: '<main-menu/>'
         });
     $urlRouterProvider.otherwise('/home');
