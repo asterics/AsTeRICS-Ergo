@@ -19,6 +19,7 @@ angular.module(asterics.appComponents)
             thiz.usbcableLinks = asterics.envControl.LINKS[asterics.envControl.HW_USB_CABLE_AB];
             thiz.fs20plugLinks = asterics.envControl.LINKS[asterics.envControl.HW_FS20_PLUG];
             thiz.fs20senderLinks = asterics.envControl.LINKS[asterics.envControl.HW_FS20_PCSENDER];
+            thiz.fs20setLinks = asterics.envControl.LINKS[asterics.envControl.HW_FS20_SET];
             thiz.irbulbLinks = asterics.envControl.LINKS[asterics.envControl.HW_IR_BULB];
 
             thiz.toState = function (state) {

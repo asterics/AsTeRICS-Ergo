@@ -40,5 +40,13 @@
             </ul>
         </div>
     </div>
+    <p>
+        <div translate="i18n_ec_to_fs20_hint_set"/>
+        <ul>
+            <li ng-repeat="linkObject in $ctrl.fs20setLinks">
+                <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+            </li>
+        </ul>
+    </p>
     <p ng-if="!$ctrl.singlePageMode">{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_fs20_installation' | translate}}</a></p>
 </div>

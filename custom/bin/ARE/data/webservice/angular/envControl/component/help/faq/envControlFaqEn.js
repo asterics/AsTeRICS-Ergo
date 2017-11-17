@@ -23,7 +23,7 @@ asterics.envControl.faq.en  = [
         id: 4,
         title: 'What costs can I expect?',
         language: 'en',
-        keywords: []
+        keywords: ['money', 'funding', 'financing', 'donate']
     },
     {
         id: 5,
@@ -167,7 +167,7 @@ asterics.envControl.faq.en  = [
         id: 28,
         title: 'Where can I purchase the required hardware?',
         language: 'en',
-        keywords: []
+        keywords: ['order', 'buy', 'shop']
     },
     {
         id: 29,

@@ -220,6 +220,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_fs20_click_on_links: 'Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von FS20</b> zu gelangen:.',
     i18n_ec_have_needed_hardware: 'Sie haben bereits die benötigte Hardware?',
     i18n_ec_to_fs20_installation: 'Zur Installation von FS20',
+    i18n_ec_to_fs20_hint_set: '<b>Hinweis:</b> Planen Sie mehrere Geräte mit FS20 zu steuern, gibt es auch Set-Angebote:',
 
     //help IrTrans
     i18n_ec_irtrans_replace_remotes: 'Mit einem IrTrans kann eine beliebige Anzahl an Fernbedienungen ersetzt werden. Sie brauchen also immer <b>nur einen IrTrans.</b>',
@@ -286,6 +287,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_link_fs20sender_elv: 'FS20 PC-Sender bei ELV',
     i18n_ec_link_fs20plug_amazon: 'FS20 Zwischenstecker bei Amazon',
     i18n_ec_link_fs20plug_elv: 'FS20 Zwischenstecker bei ELV',
+    i18n_ec_link_fs20set_amazon: 'FS20 Set: PC-Sender + 4x Zwischenstecker bei Amazon',
     i18n_ec_link_irtrans_knxshop: 'IrTrans bei Knx-Shop',
     i18n_ec_link_irtrans_amazon: 'IrTrans bei Amazon',
     i18n_ec_link_irtrans_producer: 'IrTrans vom Hersteller',

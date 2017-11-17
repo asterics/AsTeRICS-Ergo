@@ -220,6 +220,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_fs20_click_on_links: 'Select one of the following <b>links</b> to access <b>FS20 system providers</b>:',
     i18n_ec_have_needed_hardware: 'Have you already bought the required hardware?',
     i18n_ec_to_fs20_installation: 'Go to "Installation of the FS20 system"',
+    i18n_ec_to_fs20_hint_set: '<b>Hint:</b> If you plan to control several devices with FS20, there are also sets:',
 
     //help IrTrans
     i18n_ec_irtrans_replace_remotes: 'One IrTrans can be used to replace any number of remote controls. Consequently, <b>you only need one IrTrans</b>.',
@@ -286,6 +287,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_link_fs20sender_elv: 'FS20 PC transmitter at ELV',
     i18n_ec_link_fs20plug_amazon: 'FS20 adapter plug at Amazon',
     i18n_ec_link_fs20plug_elv: 'FS20 adapter plug at ELV',
+    i18n_ec_link_fs20set_amazon: 'FS20 Set: PC transmitter + 4x adapter plug at Amazon',
     i18n_ec_link_irtrans_knxshop: 'IrTrans at Knx-Shop',
     i18n_ec_link_irtrans_amazon: 'IrTrans at Amazon',
     i18n_ec_link_irtrans_producer: 'IrTrans from producer',

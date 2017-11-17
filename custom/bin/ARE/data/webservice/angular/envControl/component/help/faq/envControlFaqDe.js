@@ -23,7 +23,7 @@ asterics.envControl.faq.de = [
         id: 4,
         title: 'Mit welchen Kosten muss ich rechnen?',
         language: 'de',
-        keywords: []
+        keywords: ['geld', 'finanzierung', 'förderung', 'spenden']
     },
     {
         id: 5,
@@ -167,7 +167,7 @@ asterics.envControl.faq.de = [
         id: 28,
         title: 'Wo kann ich die zur Steuerung benötigte Hardware erwerben?',
         language: 'de',
-        keywords: []
+        keywords: ['bestellen', 'kaufen', 'shop']
     },
     {
         id: 29,
