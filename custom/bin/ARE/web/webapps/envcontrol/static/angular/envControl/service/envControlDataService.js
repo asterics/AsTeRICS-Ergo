@@ -142,7 +142,7 @@ angular.module(asterics.appServices)
             data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
             data._dynamicCellBoardIds = _dynamicCellBoardIds;
             data._fs20Codes = _fs20Codes;
-            _saveTimestamp = areSaveService.saveData(asterics.envControl.SAVE_FOLDER, _dataFilename, data);
+            _saveTimestamp = areSaveService.saveData(_dataFilename, data);
         };
 
         function addCellBoardElement(cellBoardName, element) {
@@ -179,7 +179,7 @@ angular.module(asterics.appServices)
         function init() {
             var promise1 = $q.defer();
             var promise2 = $q.defer();
-            areSaveService.getSavedData(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+            areSaveService.getSavedData(_dataFilename).then(function (response) {
                 if (response) {
                     setNewData(response);
                 } else {
@@ -190,11 +190,11 @@ angular.module(asterics.appServices)
                 thiz.saveData(); // save (empty) data, if nothing existing
                 promise1.resolve();
             });
-            areSaveService.getLastModificationDate(asterics.envControl.SAVE_FOLDER, _dataFilename).then(function (response) {
+            areSaveService.getLastModificationDate(_dataFilename).then(function (response) {
                 _saveTimestamp = response;
                 promise2.resolve();
             });
-            areSaveService.registerForUpdates(asterics.envControl.SAVE_FOLDER, _dataFilename, setNewData, function () {
+            areSaveService.registerForUpdates(_dataFilename, setNewData, function () {
                 return _saveTimestamp
             });
             $q.all([promise1, promise2]).then(function () {
