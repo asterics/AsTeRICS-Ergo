@@ -32,7 +32,7 @@
         </div>
         <div class="row col-lg-8">
             <h2>Application Area</h2>
-            <p>AsTeRICS-Ergo allows to install an environmental control system easily and without technical background
+            <p>AsTeRICS Ergo allows to install an environmental control system easily and without technical background
                 knowledge. Currently it is possible to control power sockets and all devices with an infrared remote
                 control. These are for instance:
             <ul>
@@ -45,15 +45,15 @@
         </div>
         <div class="row col-lg-8">
             <h2>Download</h2>
-            <p>Click on the following link in order to download the latest version of AsTeRICS-Ergo:</p>
+            <p>Click on the following link in order to download the latest version of AsTeRICS Ergo:</p>
             <p>
                 <a id="downloadLink"
                    href="https://github.com/asterics/AsTeRICS-Ergo/releases/download/v3.3.0/AsTeRICS.Ergo-javaembedded-3.3.0.exe">Download
-                    AsTeRICS-Ergo</a></p>
+                    AsTeRICS Ergo</a></p>
         </div>
         <div class="row col-lg-8">
             <h2>Demo</h2>
-            <p>You can also simply try out AsTeRICS-Ergo online, just click on the following link:</p>
+            <p>You can also simply try out AsTeRICS Ergo online, just click on the following link:</p>
             <p><a target="_blank" href="../mock.html#!/home">Try out now!</a>
             </p>
         </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="row col-lg-8">
             <h2>Further Information</h2>
-            <p>AsTeRICS-Ergo is an extension of the <a href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Framework</a>
+            <p>AsTeRICS Ergo is an extension of the <a href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Framework</a>
                 with focus on a intuitive and easily understandable web user-interface.</p>
             <p>Besides environmental control it is planned to make it possible to install and configure alternative
                 means of computer control in future versions. However also the current version can be used by
@@ -74,8 +74,9 @@
         </div>
     </div>
     <div id="footer" class="row">
-        <span class="footer-text">AsTeRICS-Ergo, </span>
-        <a class="footer-text" target="_blank" href="http://www.asterics-foundation.org">www.asterics-foundation.org</a>
+        <span class="footer-text">AsTeRICS Ergo, </span>
+        <a class="footer-text" href="mailto:info@asterics-foundation.org">info@asterics-foundation.org</a>,
+        <a class="footer-text" target="_blank" href="http://asterics-academy.net/about-us/impressum">Impressum</a>
     </div>
 </div>
 
@@ -83,7 +84,7 @@
     $.get('https://api.github.com/repos/asterics/AsTeRICS-Ergo/releases/latest', {}, function (response) {
         var downloadLink = response.assets[0].browser_download_url;
         var version = response.tag_name;
-        $('#downloadLink').text('Download AsTeRICS-Ergo (' + version + ')');
+        $('#downloadLink').text('Download AsTeRICS Ergo (' + version + ')');
         $('#downloadLink').attr('href', downloadLink);
     }, 'json');
 
