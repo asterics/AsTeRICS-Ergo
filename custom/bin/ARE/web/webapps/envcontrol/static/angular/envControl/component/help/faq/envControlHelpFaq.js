@@ -66,7 +66,7 @@ angular.module(asterics.appComponents)
                         });
                     }, 2000);
                 }
-                return thiz.localIP + ":" + utilService.getLocalPort();
+                return thiz.localIP + ":" + utilService.getLocalPort() + '/webapps/envcontrol/static/';
             };
 
             thiz.getLocalPort = function() {

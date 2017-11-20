@@ -10,11 +10,11 @@
         </li>
         <li ng-if="$ctrl.localIP">
             Alternatively you can scan the following QR-code:<br/>
-            <qrcode error-correction-level="H" data="{{'http://' + $ctrl.getLocalAsTeRICSAddress()}}"></qrcode>
+            <qrcode error-correction-level="H" version="10" data="{{'http://' + $ctrl.getLocalAsTeRICSAddress()}}"></qrcode>
         </li>
         <li ng-if="!$ctrl.localIP">
             On the Smartphone/Tablet enter the following address in the address bar:<br/>
-            <strong>&lt;IP-address of the computer&gt;:{{$ctrl.getLocalPort()}}</strong>
+            <strong>&lt;IP-address of the computer&gt;:{{$ctrl.getLocalPort()}}/webapps/envcontrol/static/</strong>
         </li>
     </ol>
 </div>
