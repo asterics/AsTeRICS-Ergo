@@ -18,11 +18,12 @@
                 <p translate="i18n_ec_install_irtrans_p21"/>
                 <p><a href="http://www.irtrans.de/download/setup.exe">{{'i18n_ec_install_irtrans_p22' | translate}}</a></p>
                 <p translate="i18n_ec_install_irtrans_p23"/>
+                <span translate="i18n_ec_install_irtrans_p24"/>
             </li>
             <li>
                 <p translate="i18n_ec_install_irtrans_p3"></p>
                 <p>
-                    <span translate="i18n_ec_install_irtrans_p24"/> <a ui-sref="home.envControl.help/faq({open: 42})">FAQ</a>
+                    <span translate="i18n_ec_install_irtrans_p25"/> <a ui-sref="home.envControl.help/faq({open: 42})">FAQ</a>
                 </p>
                 <div class="row">
                     <img class="img-500" src="angular/envControl/img/install-irtrans-win-assistant1.png"
@@ -69,7 +70,10 @@
                 <button ng-click="$ctrl.test()"><span translate="i18n_ec_test"/></button>
                 <div ng-if="$ctrl.triedCheck">
                     <span ng-if="!$ctrl.checkResult" translate="i18n_ec_testing"></span>
-                    <span ng-if="$ctrl.checkResult && !$ctrl.isConnected"><i class="fa fa-2x fa-times"/> <span translate="i18n_ec_test_failed"/></span>
+                    <span ng-if="$ctrl.checkResult && !$ctrl.isConnected">
+                        <i class="fa fa-2x fa-times"/> <span translate="i18n_ec_test_failed"/></br>
+                        <span translate="i18n_ec_install_irtrans_p71"/>
+                    </span>
                     <span ng-if="$ctrl.checkResult && $ctrl.isConnected">
                         <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_test_success1"/>
                         <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span translate="i18n_ec_test_success2"/>
@@ -81,4 +85,5 @@
     <div ng-if="$ctrl.show && !$ctrl.showAssistant">
         <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_irtrans_already_installed1"/> <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span translate="i18n_ec_irtrans_already_installed2"/>
     </div>
+    <a id="end"/>
 </div>
