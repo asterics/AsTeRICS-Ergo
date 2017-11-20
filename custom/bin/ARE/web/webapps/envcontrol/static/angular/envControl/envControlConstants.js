@@ -76,7 +76,7 @@ asterics.envControl.LINKS[asterics.envControl.HW_USB_CABLE_AB] = [
     {link: "https://www.amazon.de/gp/product/B00NH11KIK/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=astericsfound-21&camp=1638&creative=6742&linkCode=as2&creativeASIN=B00NH11KIK&linkId=609503fb5ac80ff1b8a8c05d7a6d27c4", label: "i18n_ec_link_usbcable_amazon"}
 ];
 asterics.envControl.LINKS[asterics.envControl.HW_IR_BULB] = [
-    {link: "https://www.amazon.de/gp/product/B01G1PJWYM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=astericsfound-21&camp=1638&creative=6742&linkCode=as2&creativeASIN=B01G1PJWYM&linkId=8d9afcea1b8dc8a0d8e907f5ea6b0a89", label: "i18n_ec_link_irbulb_amazon"},
+    {link: "https://www.amazon.de/gp/product/B017XWJFYO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=astericsfound-21&camp=1638&creative=6742&linkCode=as2&creativeASIN=B017XWJFYO&linkId=91c6e363bea5a43fdba428a94d9a729c", label: "i18n_ec_link_irbulb_amazon"},
     {link: "https://www.amazon.de/gp/product/B01FULHM72/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=astericsfound-21&camp=1638&creative=6742&linkCode=as2&creativeASIN=B01FULHM72&linkId=dd3df2b813b601e04b9ad4c2eeedb83c", label: "i18n_ec_link_irbulb_amazon2"},
     {link: "https://www.conrad.at/de/led-e27-gluehlampenform-10-w-60-w-rgbw-o-x-l-65-mm-x-130-mm-eek-a-lightme-colorchanging-dimmbar-inkl-fernbedienung-1-st-1498582.html", label: "i18n_ec_link_irbulb_conrad"}
 ];
