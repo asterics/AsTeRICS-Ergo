@@ -66,24 +66,25 @@ angular.module(asterics.appServices)
             return "ws://" + window.location.hostname + ":8092/ws/astericsData";
         };
 
-        thiz.getLocalIP = function() {
+        thiz.getLocalIP = function () {
             //see https://stackoverflow.com/questions/20194722/can-you-get-a-users-local-lan-ip-address-via-javascript
             var def = $q.defer();
             window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;   //compatibility for firefox and chrome
-            if(!RTCPeerConnection) {
-               def.resolve("");
-               return def.promise;
+            if (!RTCPeerConnection) {
+                def.resolve("");
+                return def.promise;
             }
-            var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
-            if(!!pc.createDataChannel) {
+            var pc = new RTCPeerConnection({iceServers: []}), noop = function () {
+            };
+            if (!!pc.createDataChannel) {
                 pc.createDataChannel(""); //create a bogus data channel
             } else {
                 def.resolve("");
                 return def.promise;
             }
             pc.createOffer(pc.setLocalDescription.bind(pc), noop);    // create offer and set local description
-            pc.onicecandidate = function(ice){  //listen for candidate events
-                if(!ice || !ice.candidate || !ice.candidate.candidate)  {
+            pc.onicecandidate = function (ice) {  //listen for candidate events
+                if (!ice || !ice.candidate || !ice.candidate.candidate) {
                     def.resolve("");
                     return;
                 }
@@ -94,7 +95,7 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
-        thiz.getLocalPort = function() {
+        thiz.getLocalPort = function () {
             var port = window.location.port;
             return !!port ? port : _defaultPort;
         };
@@ -108,11 +109,27 @@ angular.module(asterics.appServices)
          * to the prototype function
          * @returns {Array}
          */
-        thiz.getObjectsFromList = function(prototypeFunction, elementList) {
+        thiz.getObjectsFromList = function (prototypeFunction, elementList) {
             var returnList = [];
             angular.forEach(elementList, function (element) {
                 returnList.push(new prototypeFunction(element));
             });
             return returnList;
         };
+
+
+        /**
+         * checks if a given elem is visible on current viewport with jQuery
+         * @param elem
+         * @returns {boolean} true, if element is visible
+         */
+        thiz.isInView = function (elem) {
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + $(elem).height();
+
+            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+        }
     }]);

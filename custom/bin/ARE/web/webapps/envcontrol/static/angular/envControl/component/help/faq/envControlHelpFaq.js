@@ -123,6 +123,15 @@ angular.module(asterics.appComponents)
                 angular.forEach(opens, function (open, idx) {
                     if (open) {
                         $state.params.open = idx;
+                        $timeout(function() {
+                            if(!utilService.isInView('#' + idx + '-end')) {
+                                console.log('no');
+                                $anchorScroll('' + idx);
+                            }
+                            else {
+                                console.log('yes');
+                            }
+                        }, 500);
                     }
                 })
             }, true);
