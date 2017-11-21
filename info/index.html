@@ -41,7 +41,7 @@
                 <li>DVD-Player</li>
                 <li>Radio/CD-Player</li>
                 <li>Staubsaugerroboter</li>
-                <li>Jalousien</li>
+                <li><a href="../mock.html#!/home/envcontrol/help/faq/10?singlePageMode=true">Jalousien</a></li>
             </ul>
         </div>
         <div class="row col-lg-8">
@@ -70,16 +70,32 @@
             <h2>Weiterführende Informationen</h2>
             <p>AsTeRICS Ergo ist eine Erweiterung des <a href="http://www.asterics-academy.net/tools/asterics">AsTeRICS-Frameworks</a>
                 mit Fokus auf einer intuitiven und einfach verständlichen Web-Benutzeroberfläche.</p>
-            <p> Neben der Umgebungssteuerung ist für künftige Versionen eine einfache Einrichtung und Konfiguration von
-                alternativen Möglichkeiten zur Computersteuerung geplant. Es ist allerdings auch schon jetzt möglich
-                AsTeRICS Ergo mit jeder alternativen Computersteuerung zu bedienen, welche Maus oder
-                Tastatur ersetzt.</p>
+            <p>Neben der Umgebungssteuerung ist für künftige Versionen eine einfache Einrichtung und Konfiguration von
+                alternativen Möglichkeiten zur Computersteuerung geplant.
+            </p>
+
+            <h3>Alternative Computersteuerungen</h3>
+            <p>
+                Es ist möglich AsTeRICS Ergo mit jeder alternativen Computersteuerung zu bedienen, welche Maus oder Tastatur ersetzt, das können z.B. sein:
+            </p>
+            <ul>
+                <li><b>FlipMouse</b> - eine kostengünstige und flexible Maus, die mit Mund (oder Hand) gesteuert wird<br/>
+                    <a href="http://www.asterics-academy.net/tools/flip">weitere Informationen zu FlipMouse</a>
+                </li>
+                <li><b>FABI</b> - ein flexibles System um den Computer mit Buttons zu steuern<br/>
+                    <a href="http://www.asterics-academy.net/tools/fabi">weitere Informationen zu FABI</a>
+                </li>
+                <li>Weitere alternative Eingabegeräte für Maus oder Tastatur können Sie hier finden:<br/>
+                    <a href="https://ul.gpii.net/search?search_api_views_fulltext=Maus">weitere alternative Maussteuerungen</a><br/>
+                    <a href="https://ul.gpii.net/search?search_api_views_fulltext=Tastatur">weitere alternative Tastatursteuerungen</a>
+                </li>
+            </ul>
         </div>
     </div>
     <div id="footer" class="row">
         <span class="footer-text">AsTeRICS Ergo, </span>
         <a class="footer-text" href="mailto:info@asterics-foundation.org">info@asterics-foundation.org</a>,
-        <a class="footer-text" target="_blank" href="http://asterics-academy.net/about-us/impressum">Impressum</a>
+        <a class="footer-text" href="http://asterics-academy.net/about-us/impressum">Impressum</a>
     </div>
 </div>
 
@@ -92,7 +108,7 @@
         $('#downloadLink').attr('href', downloadLink);
     }, 'json');
 
-    if (navigator.language !== 'de') {
+    if (navigator.language !== 'de' && window.location.search.indexOf("manualLang") == -1) {
         goToLang('en');
     }
 
