@@ -98,11 +98,11 @@ begin
   begin
 	  if ExpandConstant('{language}') = 'de' then
 		begin
-		InfoString := 'Es wurde eine alte Version von AsTeRICS Ergo auf Ihrem Computer festgestellt. M' + #$00F6 + 'chten Sie diese deinstallieren (empfohlen)?';
+		InfoString := 'Es wurde eine alte Version von AsTeRICS Ergo auf Ihrem Computer festgestellt. M' + #$00F6 + 'chten Sie diese deinstallieren (empfohlen)? Die Konfiguration der alten Version bleibt dabei erhalten und wird nicht gel' + #$00F6 + 'scht.';
 		end
 	  else
 		begin
-		InfoString := 'An old version of AsTeRCIS Ergo was detected. Do you want to uninstall it (recommended)?';
+		InfoString := 'An old version of AsTeRCIS Ergo was detected. Do you want to uninstall it (recommended)? The configuration of the old version will not be deleted.';
 		end;
 	  if MsgBox(InfoString, mbConfirmation, MB_YESNO) = IDYES then
 	  begin
