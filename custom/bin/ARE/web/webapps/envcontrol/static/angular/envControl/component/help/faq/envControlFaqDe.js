@@ -252,5 +252,11 @@ asterics.envControl.faq.de = [
         title: 'Beim Installieren der Software für IrTrans kommt es zu einem Fehler (.NET Framework). Was kann ich tun?',
         language: 'de',
         keywords: ['error']
+    },
+    {
+        id: 43,
+        title: 'Wie kann AsTeRICS Ergo mit der Tastatur statt einer Maus gesteuert werden?',
+        language: 'de',
+        keywords: ['bedienung']
     }
 ];

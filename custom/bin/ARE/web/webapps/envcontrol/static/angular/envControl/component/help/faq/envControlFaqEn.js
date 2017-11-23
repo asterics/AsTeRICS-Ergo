@@ -252,5 +252,11 @@ asterics.envControl.faq.en  = [
         title: 'While installing the software for IrTrans I get an error (.NET Framework). What can I do?',
         language: 'en',
         keywords: ['failure']
+    },
+    {
+        id: 43,
+        title: 'How is it possible to use AsTeRICS Ergo with a keyboard instead of a mouse?',
+        language: 'en',
+        keywords: ['control']
     }
 ];
