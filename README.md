@@ -1,4 +1,7 @@
 ## AsTeRICS Models for occupational therapy
+
+Also see the AsTeRICS Ergo [Info page](https://asterics.github.io/AsTeRICS-Ergo/info/)
+
 This is an AsTeRICS based edition for occupational therapy. It will contain parametrizable models for environmental control, game accessibility and other use cases with easy configurator user interfaces.
 
 The model files are located in [custom/bin/ARE/models](custom/bin/ARE/models).
