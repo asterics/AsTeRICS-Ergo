@@ -145,6 +145,13 @@ ol li {
     font-size: 0.7em;
 }
 
+.key {
+    border: solid;
+    padding: 3px 15px 3px 15px;
+    margin: 5px 0px 5px 0px;
+    background-color: lightblue;
+}
+
 /* boxes */
 .info, .success, .warn, .error, .validation {
     float: left;
