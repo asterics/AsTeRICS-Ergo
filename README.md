@@ -9,22 +9,17 @@ The document root of the embedded webserver is located at [custom/bin/ARE/data/w
 
 ### Install and build instructions of prerequisites 
 
-AsTeRICS-Ergo is based on this development branch of [AsTeRICS](https://github.com/klues/AsTeRICS/tree/bklaus/development-branch).
+AsTeRICS-Ergo is based on the master branch of [AsTeRICS](https://github.com/asterics/AsTeRICS).
 
-1. Clone the AsTeRICS repository
+1. Clone the AsTeRICS repository including submodules
 ```
-git clone -b bklaus/development-branch https://github.com/klues/AsTeRICS.git
+git clone --recurse-submodules https://github.com/asterics/AsTeRICS.git
 ```
 2. Install the [**Java Development Kit 8 (32-bit)**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
   * Verify the java installation by opening a command shell and entering ```javac -version```. In case of trouble, ensure to set ```JAVA_HOME``` to the folder where you installed the Java JDK and add the JDK bin path to the Environment Variable ```PATH```
 3. Install the [**apache ant build framework (version >= 1.9.1)**](http://ant.apache.org/bindownload.cgi)
   * Ensure to set ```ANT_HOME``` to the folder where you installed ant and add the ant bin path to the Environment Variable ```Path```
-4. Build AsTeRICS
-```
-cd AsTeRICS
-ant
-```
-5. Clone AsTeRICS-Ergo repository to parallel folder
+4. Clone AsTeRICS-Ergo repository to parallel folder
 ```
 git clone https://github.com/asterics/AsTeRICS-Ergo.git
 ```
