@@ -20,9 +20,9 @@ set -e
 #source appname
 #. APE.properties
 APPNAME="$DPKG_MAINTSCRIPT_PACKAGE"
-APPPATH="/opt/$APPNAME/app/"
+APPPATH="/opt/$APPNAME/app"
 APPINSTALLDIR="/opt/$APPNAME"
-WRITEDIR="/var/opt/$APPNAME/"
+WRITEDIR="/var/opt/$APPNAME"
 
 case "$1" in
     configure)
@@ -39,15 +39,24 @@ case "$1" in
 		echo creating symlinks for models, profile and data folders to tmp folder
 		rm -Rf $WRITEDIR
 		mkdir -p $WRITEDIR
+		mkdir -p $APPPATH/tmp
 		mv $APPPATH/models  $WRITEDIR
 		mv $APPPATH/profile $WRITEDIR 
 		mv $APPPATH/data $WRITEDIR
+		mv $APPPATH/web $WRITEDIR
+		mv $APPPATH/tmp $WRITEDIR
 		[ -e $APPPATH/areProperties ] && mv $APPPATH/areProperties $WRITEDIR || touch $APPPATH/areProperties
+	
+		# component FS20 udev rules
+		echo creating udev rule 50-asterics-fs20.rules for FS20 devices
+		echo 'ATTRS{idProduct}=="e015", ATTRS{idVendor}=="18ef", MODE="0660", GROUP="plugdev"' > /etc/udev/rules.d/50-asterics-fs20.rules
 	
 		chmod -R o+w $WRITEDIR
 		ln -sf $WRITEDIR/models $APPPATH/models
 		ln -sf $WRITEDIR/profile $APPPATH/profile
 		ln -sf $WRITEDIR/data $APPPATH/data
+		ln -sf $WRITEDIR/web $APPPATH/web
+		ln -sf $WRITEDIR/tmp $APPPATH/tmp
 		ln -sf $WRITEDIR/areProperties $APPPATH/areProperties
 	
 		chmod +x $APPPATH/start*.sh
@@ -56,9 +65,6 @@ case "$1" in
 		echo ""
 		echo "You need a Java Runtime, oracle java 8 is recommended, but openjdk should work as well:"
 		echo sudo apt-get install oracle-java8-installer
-		echo ""
-		echo "For xfacetrackerlk (XCameraMouse) to work, please install libgstreamer0.10:"
-		echo "sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools gstreamer0.10-plugins-base libgstreamer-plugins-base0.10-dev gstreamer0.10-plugins-good"
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
