@@ -14,7 +14,7 @@
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="True" />
-        <property name="autoClose" value="true" />
+        <property name="autoClose" value="false" />
         <property name="onlyByEvent" value="false" />
       </properties>
       <layout>
@@ -31,11 +31,11 @@
       </ports>
       <properties>
         <property name="defaultApplication" value="sensible-browser" />
-        <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/ &" />
+        <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="True" />
-        <property name="autoClose" value="true" />
+        <property name="autoClose" value="false" />
         <property name="onlyByEvent" value="false" />
       </properties>
       <layout>
