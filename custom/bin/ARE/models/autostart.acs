@@ -22,6 +22,27 @@
         <posY>40</posY>
       </layout>
     </component>
+	<component id="ApplicationLauncher.2" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+      </ports>
+      <properties>
+        <property name="defaultApplication" value="sensible-browser" />
+        <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/ &" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="True" />
+        <property name="autoClose" value="true" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>40</posX>
+        <posY>80</posY>
+      </layout>
+    </component>
   </components>
   <modelGUI>
     <Decoration>true</Decoration>
