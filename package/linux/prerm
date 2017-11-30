@@ -19,7 +19,7 @@ set -e
 #source appname
 #. APE.properties
 APPNAME="$DPKG_MAINTSCRIPT_PACKAGE"
-APPPATH="/opt/$APPNAME/app/"
+APPPATH="/opt/$APPNAME/app"
 APPINSTALLDIR="/opt/$APPNAME"
 WRITEDIR="/var/opt/$APPNAME/"
 
@@ -34,6 +34,8 @@ case "$1" in
 	   rm -f $APPPATH/modules
 	   rm -f $APPPATH/profile
 	   rm -f $APPPATH/data
+	   rm -f $APPPATH/web
+	   rm -f $APPPATH/tmp
 	   rm -f $APPPATH/areProperties
 
     ;;
