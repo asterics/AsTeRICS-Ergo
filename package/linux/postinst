@@ -33,6 +33,9 @@ case "$1" in
 		if [ -d "$APPPATH/../runtime" ]; then
 			echo "Creating desktop menu entry $APPNAME"
         	xdg-desktop-menu install --novendor $APPINSTALLDIR/$APPNAME.desktop
+			echo "Creating desktop menu entry for irtrans"
+        	xdg-desktop-menu install --novendor $APPPATH/tools/irtrans-server.desktop
+			mkdir -p $APPPATH/tools/remotes
         fi
 
 
@@ -50,6 +53,10 @@ case "$1" in
 		# component FS20 udev rules
 		echo creating udev rule 50-asterics-fs20.rules for FS20 devices
 		echo 'ATTRS{idProduct}=="e015", ATTRS{idVendor}=="18ef", MODE="0660", GROUP="plugdev"' > /etc/udev/rules.d/50-asterics-fs20.rules
+		
+		# component IrTrans udev rules
+		echo creating udev rule 49-asterics-irtrans.rules for IRTrans devices
+		echo 'SUBSYSTEMS=="usb", ATTRS{idProduct}=="0001", ATTRS{idVendor}=="1d6b",SYMLINK+="ttyIRTrans", MODE="0666"' > /etc/udev/rules.d/49-asterics-irtrans.rules
 	
 		chmod -R o+w $WRITEDIR
 		ln -sf $WRITEDIR/models $APPPATH/models
