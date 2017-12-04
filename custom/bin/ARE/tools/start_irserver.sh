@@ -1,4 +1,6 @@
 echo "killing already running irserver..."
+sudo pkill irserver64
+sudo pkill irserver_arm
 sudo pkill irserver
 
 DEV_NAME=$(readlink /dev/ttyIRTrans)

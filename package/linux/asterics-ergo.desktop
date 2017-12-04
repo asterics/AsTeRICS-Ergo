@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=asterics-ergo
 Comment=Assistive Technology Application
-Exec=/opt/asterics-ergo/app/start.sh
+Exec=bash /opt/asterics-ergo/app/start.sh
 Icon=/opt/asterics-ergo/asterics-ergo.png
 Terminal=true
 Type=Application
