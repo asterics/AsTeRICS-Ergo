@@ -16,3 +16,5 @@ elif [ "$(dpkg --print-architecture)" == "armhf" ]; then
 else
   sudo /opt/asterics-ergo/app/tools/irserver /dev/$DEV_NAME
 fi
+echo "press any key to close..."
+read -n 1 -s
