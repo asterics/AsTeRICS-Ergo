@@ -59,7 +59,9 @@ case "$1" in
 		# https://github.com/gary-rowe/hid4java
 		if [ "$(dpkg --print-architecture)" == "armhf" ]; then
 			echo "linking libudev for hid4java library (only on ARM)"
-			ln -sf /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0
+			if [ ! -e /lib/arm-linux-gnueabihf/libudev.so.0 ]; then
+				ln -sf /lib/arm-linux-gnueabihf/libudev.so.1 /lib/arm-linux-gnueabihf/libudev.so.0
+			fi
 			if [ ! -e /usr/lib/arm-linux-gnueabihf/libhidapi.so ]; then
 				ln -s /usr/lib/arm-linux-gnueabihf/libhidapi-libusb.so.0 /usr/lib/arm-linux-gnueabihf/libhidapi.so
 			fi
