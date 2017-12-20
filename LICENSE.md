@@ -1,6 +1,6 @@
-AsTeRICS framework Licensing
+AsTeRICS-Ergo Licensing
 
-The AsTeRICS framework offers a dual-licensing concept, using 
+The AsTeRICS-Ergo project offers a dual-licensing concept, using 
 either the MIT License or the GNU General Public License (GPL) version 3. 
 See both license texts below.
 
