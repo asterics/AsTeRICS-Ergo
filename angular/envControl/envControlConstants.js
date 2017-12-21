@@ -15,6 +15,7 @@ asterics.envControl.HW_IR_BULB = 'HW_IR_BULB';
 
 asterics.envControl.IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
 asterics.envControl.IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
+asterics.envControl.LIPMOUSE_TIMEOUT_ERROR = 'IR_TIMEOUT';
 
 asterics.envControl.DEVICE_TABLELAMP = 'lamp';
 asterics.envControl.DEVICE_AMB_LAMP = 'amblight';
