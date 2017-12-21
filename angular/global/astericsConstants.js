@@ -35,7 +35,7 @@ asterics.const.MSG_ERROR = 'error';
 asterics.const.EVENT_LANG_CHANGED = 'languageChanged';
 
 asterics.const.PULL_RELOAD_INTERVAL_MS = 500;
-asterics.const.WEBSOCKET_TIMEOUT = 10000;
+asterics.const.WEBSOCKET_TIMEOUT = 11000;
 
 asterics.const.OS_IS_WIN10 = (window.navigator.userAgent.indexOf("Windows NT 10.0") != -1);
 asterics.const.OS_IS_WIN7 = (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1);
