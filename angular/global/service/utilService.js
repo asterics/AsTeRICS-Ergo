@@ -1,11 +1,13 @@
 angular.module(asterics.appServices)
-    .service('utilService', ['$state', 'stateUtilService', '$q', function ($state, stateUtilService, $q) {
+    .service('utilService', ['$state', 'stateUtilService', '$q', '$translate', function ($state, stateUtilService, $q, $translate) {
         var thiz = this;
         var _defaultPort = "8091";
 
         thiz.createCellBoardItem = function (title, faIcon, type, clickAction) {
+            var translatedTitle = $translate.instant(title);
             return {
                 title: title,
+                translatedTitle: translatedTitle,
                 faIcon: faIcon,
                 type: type,
                 clickAction: clickAction,
