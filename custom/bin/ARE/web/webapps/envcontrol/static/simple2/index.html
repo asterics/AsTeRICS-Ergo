@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <!-- disable caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
+
+    <!-- libs -->
+    <script type="application/javascript" src="loadScripts.js"></script>
+    <script type="application/javascript" src="areCommunicatorLight.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/bootstrap-3.3.7/css/bootstrap.min.css">
+
+    <title>AsTeRICS Ergo - Simple</title>
+</head>
+
+<body>
+<div id="astericsApp">
+    <div id="container">
+        <div id="content" class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-5 col-lg-3">
+                    <h1 id="heading">AsTeRICS Ergo</h1>
+                </div>
+                <div id="backbutton" class="col-sm-3 col-lg-2 cb-element" style="padding-top: 1em">
+                    <button onclick="javascript:window.location.href='../index.html';"><i class="fa fa-arrow-left"></i>
+                        back
+                    </button>
+                </div>
+            </div>
+            <div id="controls">
+                <!-- buttons will be inserted here -->
+            </div>
+        </div>
+    </div>
+    <a id="end"/>
+    <div id="spacer" style="padding-top: 50px;"/>
+</div>
+
+<!-- main script -->
+<script type="application/javascript">
+    //alert('test7');
+
+    if (MODE_COMPATIBILITY) {
+        removeElement('backbutton');
+        document.getElementById("heading").style.fontSize = "1.4em";
+    }
+
+    var data = parseJson(decodeURIComponent(getWebappData('envControl', 'ecdata')));
+    var keys = getKeys(data._cellBoards);
+    for (var i = 0; i < keys.length; i++) {
+        var cellboard = data._cellBoards[keys[i]];
+        var title = toTitleCase(keys[i].substring("home.envControl.".length));
+        if (!title) {
+            title = 'Main';
+        }
+        var titleElem = createTitle(title);
+        appendElement(titleElem);
+        for (var j = 0; j < cellboard.length; j++) {
+            var elem = cellboard[j];
+            if (elem.type === 'CB_TYPE_FS20') {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "fs20Send('" + elem.code + "')");
+                appendElement(button);
+            } else if (elem.type === 'CB_TYPE_IR') {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "irSend('" + elem.code + "')");
+                appendElement(button);
+            }
+        }
+    }
+
+    function parseJson(text) {
+        return eval('(' + text + ')');
+    }
+
+    function createButton(caption, faIcon, onClickFunctionCall) {
+        var btn = document.createElement("BUTTON");
+        var caption = document.createTextNode(caption);
+        if(!MODE_COMPATIBILITY) {
+            btn.appendChild(createFaIcon(faIcon));
+        }
+        btn.appendChild(caption);
+        var att = document.createAttribute("onclick");
+        att.value = 'javascript:' + onClickFunctionCall + ';';
+        btn.setAttributeNode(att);
+        var attClass = document.createAttribute("class");
+        attClass.value = 'col-xs-12 col-sm-3 col-lg-2 cb-element';
+        if(!MODE_COMPATIBILITY) {
+            btn = wrapInDiv(btn);
+        }
+        btn.setAttributeNode(attClass);
+        return btn;
+    }
+
+    function createFaIcon(faCode) {
+        var div = document.createElement("DIV");
+        var i = document.createElement("I");
+        i = appendClass(i, 'fa fa-3x fa-' + faCode);
+        return wrapInDiv(i);
+    }
+
+    function wrapInDiv(element) {
+        var div = document.createElement("DIV");
+        div.appendChild(element);
+        return div;
+    }
+
+    function appendClass(element, classValue) {
+        var attClass = document.createAttribute("class");
+        attClass.value = classValue;
+        element.setAttributeNode(attClass);
+        return element;
+    }
+
+    function createTitle(caption) {
+        var title = document.createElement("H2");
+        var caption = document.createTextNode(caption);
+        title.appendChild(caption);
+        var attClass = document.createAttribute("class");
+        attClass.value = 'row col-xs-12';
+        title.setAttributeNode(attClass);
+        if (MODE_COMPATIBILITY) {
+            title.style.fontSize = "1em";
+        }
+        return title;
+    }
+
+    function appendElement(element) {
+        document.getElementById("controls").appendChild(element);
+    }
+
+    function irSend(code) {
+        sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
+    }
+
+    function fs20Send(code) {
+        sendDataToInputPort('FS20Sender.1', 'Action', '@FS20:' + code + '_18');
+    }
+
+    function getKeys(obj) {
+        var r = [];
+        for (var k in obj) {
+            if (!obj.hasOwnProperty(k))
+                continue;
+            r.push(k);
+        }
+        return r;
+    }
+
+    function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
+    function removeElement(elemID) {
+        var elem = document.getElementById(elemID);
+        if (elem.parentNode) {
+            elem.parentNode.removeChild(elem);
+        }
+    }
+</script>
+</body>
+</html>
