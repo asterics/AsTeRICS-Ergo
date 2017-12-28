@@ -9,6 +9,7 @@ angular.module(asterics.appServices)
             element.code = code;
             element.tooltip = 'i18n_ec_tooltip_click_fs20';
             element.tooltipParams = {device: title};
+            element.class = 'action-button';
             return element;
         };
 
@@ -17,6 +18,7 @@ angular.module(asterics.appServices)
                 envControlIRService.irSend(code);
             });
             element.code = code;
+            element.class = 'action-button';
             return element;
         };
 
@@ -25,6 +27,7 @@ angular.module(asterics.appServices)
             element.toState = toState;
             element.tooltip = 'i18n_ec_tooltip_click_subcb';
             element.tooltipParams = {device: title};
+            element.class = 'subfolder-button';
             return element;
         };
 
