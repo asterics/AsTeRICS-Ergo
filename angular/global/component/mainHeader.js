@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('mainHeader', {
 
         bindings: {},
-        controller: ['stateUtilService', '$rootScope', '$translate', '$stateParams', function (stateUtilService, $rootScope, $translate, $stateParams) {
+        controller: ['stateUtilService', '$rootScope', '$translate', '$stateParams', 'envControlDataService', function (stateUtilService, $rootScope, $translate, $stateParams, envControlDataService) {
             var thiz = this;
             thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.breadCrumbStates = [];
@@ -25,6 +25,14 @@ angular.module(asterics.appComponents)
             thiz.languageChanged = function () {
                 $rootScope.$broadcast(asterics.const.EVENT_LANG_CHANGED, thiz.selectedLanguage);
                 $translate.use(thiz.selectedLanguage);
+            };
+
+            thiz.goToSimpleVersion = function goToSimpleVersion() {
+                window.location.replace("./simple/");
+            };
+
+            thiz.showSimpleVersion = function() {
+                return envControlDataService.hasData();
             };
 
             init();
