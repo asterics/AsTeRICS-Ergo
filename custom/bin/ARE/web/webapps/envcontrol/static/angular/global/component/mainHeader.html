@@ -5,12 +5,17 @@
                 <a ng-if="$ctrl.singlePageMode" href="./info/"><h1>AsTeRICS Ergo</h1></a>
                 <a ng-if="!$ctrl.singlePageMode" ui-sref="home"><h1>AsTeRICS Ergo</h1></a>
             </div>
-            <div class="col-sm-3 lang-choose">
+            <div class="col-sm-3 lang-choose" style="padding-top: 1em">
                 <span>{{ 'i18n_choose_lang' | translate }}</span>
                 <select ng-model="$ctrl.selectedLanguage" ng-change="$ctrl.languageChanged()">
                     <option value="de">{{ 'i18n_lang_de' | translate }}</option>
                     <option value="en">{{ 'i18n_lang_en' | translate }}</option>
                 </select>
+            </div>
+            <div ng-if="!$ctrl.singlePageMode && $ctrl.showSimpleVersion()" id="simpleModeButton" class="col-sm-3 cb-element" style="padding-top: 1em">
+                <button ng-click="$ctrl.goToSimpleVersion()"><i class="fa fa-eye"></i>
+                    <span translate="i18n_simple_mode"/>
+                </button>
             </div>
         </div>
         <div class="row" ng-if="!$ctrl.singlePageMode">
@@ -26,7 +31,7 @@
             <div class="col-xs-12" ui-view=""/>
         </div>
     </div>
-    <div id="footer" class="row">
+    <div id="footer">
         <span class="footer-text">AsTeRICS-Ergo Version 4.0.0, </span>
         <a class="footer-text" target="_blank" href="http://www.asterics-foundation.org">www.asterics-foundation.org</a>
     </div>
