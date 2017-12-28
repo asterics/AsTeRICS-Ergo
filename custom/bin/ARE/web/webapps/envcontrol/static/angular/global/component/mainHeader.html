@@ -12,7 +12,7 @@
                     <option value="en">{{ 'i18n_lang_en' | translate }}</option>
                 </select>
             </div>
-            <div ng-if="$ctrl.showSimpleVersion()" id="simpleModeButton" class="col-sm-3 cb-element" style="padding-top: 1em">
+            <div ng-if="!$ctrl.singlePageMode && $ctrl.showSimpleVersion()" id="simpleModeButton" class="col-sm-3 cb-element" style="padding-top: 1em">
                 <button ng-click="$ctrl.goToSimpleVersion()"><i class="fa fa-eye"></i>
                     <span translate="i18n_simple_mode"/>
                 </button>
