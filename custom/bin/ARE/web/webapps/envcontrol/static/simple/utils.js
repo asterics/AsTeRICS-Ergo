@@ -12,12 +12,11 @@ function createButton(caption, faIcon, onClickFunctionCall) {
     var att = document.createAttribute("onclick");
     att.value = 'javascript:' + onClickFunctionCall + ';';
     btn.setAttributeNode(att);
-    var attClass = document.createAttribute("class");
-    attClass.value = 'col-xs-12 col-sm-3 col-lg-2 cb-element';
+    btn = appendClass(btn, 'action-button');
     if (!MODE_COMPATIBILITY) {
         btn = wrapInDiv(btn);
     }
-    btn.setAttributeNode(attClass);
+    btn = appendClass(btn, 'col-xs-12 col-sm-3 col-lg-2 cb-element');
     return btn;
 }
 
