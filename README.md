@@ -50,3 +50,19 @@ You must run the installer build process on the target platform of the installer
 #### Installer creation
 
 ```ant deploy```
+
+## License
+
+Licensed under a dual license [MIT or GPL with CLASSPATH exception](LICENSE.md)
+
+##### How to apply the dual licensing
+
+You may use these components under the terms of the MIT License, if no source code (plugins, services, libraries, ...) which is contained in your desired collection of ARE plugins and services is licensed under the GNU General Public License (GPL).
+In order for that, you can remove unneeded plugins or services.
+
+Please have a look at the individual licenses of the AsTeRICS plugins and services. You find the license files in the subfolder LICENSE of every plugin.
+
+## Disclaimer
+
+This software is provided 'as-is', without any express or implied warranty. 
+In no event will the authors be held liable for any damages arising from the use of this software. See [DISCLAIMER](DISCLAIMER.txt)

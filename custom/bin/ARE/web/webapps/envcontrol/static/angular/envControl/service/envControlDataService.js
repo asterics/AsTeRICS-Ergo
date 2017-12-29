@@ -145,6 +145,10 @@ angular.module(asterics.appServices)
             _saveTimestamp = areSaveService.saveData(_dataFilename, data);
         };
 
+        thiz.hasData = function() {
+            return _cellBoards[asterics.envControl.STATE_MAIN].length > 0;
+        };
+
         function addCellBoardElement(cellBoardName, element) {
             initCellBoard(cellBoardName);
             _cellBoards[cellBoardName].unshift(element);

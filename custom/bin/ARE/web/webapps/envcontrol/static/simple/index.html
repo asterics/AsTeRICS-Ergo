@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <!-- disable caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../resources/favicon.ico" type="image/x-icon">
+
+    <!-- libs -->
+    <script type="application/javascript" src="loadScripts.js"></script>
+    <script type="application/javascript" src="areCommunicatorLight.js"></script>
+    <script type="application/javascript" src="utils.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/button.css">
+    <link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/bootstrap-3.3.7/css/bootstrap.min.css">
+
+    <title>AsTeRICS Ergo - Simple</title>
+</head>
+
+<body>
+<div id="astericsApp">
+    <div id="container">
+        <div id="content" class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-5 col-lg-3">
+                    <h1 id="heading">AsTeRICS Ergo</h1>
+                </div>
+                <div id="backbutton" class="col-sm-3 col-lg-2 cb-element" style="padding-top: 1em">
+                    <button tabindex="-1" onclick="javascript:goToFullVersion();"><i class="fa fa-cog"></i>
+                        Full Mode
+                    </button>
+                </div>
+            </div>
+            <div id="controls">
+                <!-- buttons will be inserted here -->
+            </div>
+        </div>
+        <div id="spacer" style="padding-top: 50px;"/>
+        <div id="footer">
+            <span class="footer-text">AsTeRICS-Ergo Version 4.0.0, </span>
+            <span class="footer-text">www.asterics-foundation.org</span>
+        </div>
+    </div>
+    <a id="end"/>
+</div>
+
+<!-- main script -->
+<script type="application/javascript">
+
+    //get and check data
+    var data = parseJson(decodeURIComponent(getWebappData('envControl', 'ecdata')));
+    var keys = getKeys(data._cellBoards);
+    if (MODE_COMPATIBILITY) {
+        removeElement('backbutton');
+        removeElement('footer');
+        document.getElementById("heading").style.fontSize = "1.4em";
+    }
+    if (isDataEmpty(data)) {
+        if (!MODE_COMPATIBILITY) {
+            goToFullVersion();
+        } else {
+            appendElement(createText('No elements. Please start AsTeRICS Ergo on a computer and configure devices.'));
+        }
+    }
+
+    //create headings and buttons
+    var headings = getHeadings(data._cellBoards[keys[0]]);
+    for (var i = 0; i < keys.length; i++) {
+        var cellboard = data._cellBoards[keys[i]];
+        var actionButtons = getActionButtons(cellboard);
+        var heading = headings.shift();
+        if (actionButtons.length > 0) {
+            var titleElem = createTitle(heading, 'row col-xs-12');
+            appendElement(titleElem);
+            for (var j = 0; j < actionButtons.length; j++) {
+                appendElement(actionButtons[j]);
+            }
+        }
+    }
+
+    function irSend(code) {
+        setClickedClassToButtons();
+        sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
+    }
+
+    function fs20Send(code) {
+        setClickedClassToButtons();
+        sendDataToInputPort('FS20Sender.1', 'Action', '@FS20:' + code + '_18');
+    }
+
+    //add class 'clicked' on button click and remove it after 1 second in order to show click animation on click, but not on tab
+    function setClickedClassToButtons() {
+        if (!MODE_COMPATIBILITY) {
+            var buttons = document.getElementsByTagName('button');
+            for (var i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
+                button.classList.add("clicked");
+            }
+            setTimeout(function () {
+                for (var i = 0; i < buttons.length; i++) {
+                    var button = buttons[i];
+                    button.classList.remove("clicked");
+                }
+            }, 1000);
+        }
+    }
+
+    function appendElement(element) {
+        document.getElementById("controls").appendChild(element);
+    }
+
+    function goToFullVersion() {
+        window.location.replace("../index.html#!/home/envcontrol");
+    }
+
+    function getHeadings(mainCellboard) {
+        var headings = ['Main'];
+        for (var i = 0; i < mainCellboard.length; i++) {
+            if (mainCellboard[i].type === 'CB_TYPE_SUBCB') {
+                headings.push(mainCellboard[i].translatedTitle);
+            }
+        }
+        return headings;
+    }
+
+    function getActionButtons(cellboard) {
+        var buttons = [];
+        for (var i = 0; i < cellboard.length; i++) {
+            var elem = cellboard[i];
+            if (elem.type === 'CB_TYPE_FS20') {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "fs20Send('" + elem.code + "')");
+                buttons.push(button);
+            } else if (elem.type === 'CB_TYPE_IR') {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "irSend('" + elem.code + "')");
+                buttons.push(button);
+            }
+        }
+        return buttons;
+    }
+
+    function isDataEmpty(data) {
+        return !data || !data._cellBoards || !data._cellBoards['home.envControl'] || data._cellBoards['home.envControl'].length == 0;
+    }
+</script>
+</body>
+</html>
