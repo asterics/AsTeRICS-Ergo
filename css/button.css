@@ -65,7 +65,7 @@ button.clicked:focus:not(:active)::after {
     animation: ripple 1s ease-out;
 }
 
-button:focus {
+button:focus, *:focus {
     border-style: solid;
     border-color: red;
 }
