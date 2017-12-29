@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
         controller: ['stateUtilService', '$rootScope', '$translate', '$stateParams', 'envControlDataService', function (stateUtilService, $rootScope, $translate, $stateParams, envControlDataService) {
             var thiz = this;
             thiz.singlePageMode = !!$stateParams.singlePageMode;
-            thiz.breadCrumbStates = [];
+            thiz.breadCrumbStates = stateUtilService.getBreadCrumbStates();
             thiz.selectedLanguage = _.find(asterics.const.languages, function (lang) {
                     return _.includes(navigator.language, lang);
                 }) || asterics.const.I18N_DE;
