@@ -34,9 +34,24 @@
                     <h1 id="heading">AsTeRICS Ergo</h1>
                 </div>
                 <div id="backbutton" class="col-sm-3 col-lg-2 cb-element" style="padding-top: 1em">
-                    <button tabindex="-1" onclick="javascript:goToFullVersion();"><i class="fa fa-cog"></i>
+                    <button onclick="javascript:goToFullVersion();"><i class="fa fa-cog"></i>
                         Full Mode
                     </button>
+                </div>
+                <div id="scanningDiv1" class="col-sm-3 col-lg-2 cb-element" style="padding-top: 1em">
+                    <button id="scanningButton" onclick="javascript:startScanning();">
+                        <i class="fa fa-ellipsis-h"></i>
+                        <span id="scanningButtonText">Start Scanning</span>
+                    </button>
+                </div>
+                <div id="scanningDiv2" class="col-sm-3 col-lg-2" style="padding-top: 1em">
+                    <div class="row">
+                        <div class="col-xs-4">Speed:</div>
+                        <div class="col-xs-8">
+                            <input type="range" min="200" max="2500" value="1700" id="scanningSlider"
+                                   onchange="javascript:scanningSpeedChanged(event)">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="controls">
@@ -60,6 +75,8 @@
     var keys = getKeys(data._cellBoards);
     if (MODE_COMPATIBILITY) {
         removeElement('backbutton');
+        removeElement('scanningDiv1');
+        removeElement('scanningDiv2');
         removeElement('footer');
         document.getElementById("heading").style.fontSize = "1.4em";
     }
@@ -87,16 +104,19 @@
     }
 
     function irTransSend(code) {
+        extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
     }
 
     function irFlipMouseSend(code) {
+        extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('LipMouse.1', 'send', 'AT IP ' + code);
     }
 
     function fs20Send(code) {
+        extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('FS20Sender.1', 'Action', '@FS20:' + code + '_18');
     }
@@ -116,6 +136,53 @@
                 }
             }, 1000);
         }
+    }
+
+    //Scanning
+    var scanTime = 1000;
+    var scanning = false;
+    var extraWait = false;
+
+    function doScanning(buttons, currentIndex) {
+        if (!scanning) {
+            return;
+        }
+        if (extraWait) {
+            extraWait = false;
+            setTimeout(function () {
+                doScanning(buttons, currentIndex);
+            }, 1000);
+            return;
+        }
+        var buttons = buttons || document.getElementsByClassName('action-button');
+        var currentIndex = currentIndex || 0;
+        if (currentIndex > buttons.length - 1) {
+            currentIndex = 0;
+        }
+        buttons[currentIndex].focus();
+        setTimeout(function () {
+            doScanning(buttons, currentIndex + 1);
+        }, scanTime);
+    }
+
+    function startScanning() {
+        var button = document.getElementById('scanningButton');
+        button.setAttribute('onclick', 'javascript:stopScanning()');
+        document.getElementById('scanningButtonText').innerHTML = 'Stop Scanning';
+        scanning = true;
+        doScanning();
+    }
+
+    function stopScanning() {
+        var button = document.getElementById('scanningButton');
+        button.setAttribute('onclick', 'javascript:startScanning()');
+        document.getElementById('scanningButtonText').innerHTML = 'Start Scanning';
+        scanning = false;
+    }
+
+    function scanningSpeedChanged(evt) {
+        scanTime = 2700 - evt.target.value;
+        console.log('set scan time to ' + scanTime + 'ms');
     }
 
     function appendElement(element) {
