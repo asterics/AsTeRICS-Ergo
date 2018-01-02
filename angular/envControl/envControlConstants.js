@@ -1,3 +1,5 @@
+var asterics = asterics || {};
+asterics.const = asterics.const || {};
 asterics.envControl = asterics.envControl || {};
 
 asterics.envControl.FS20_TOGGLE_CODE = 18;
@@ -67,6 +69,7 @@ asterics.envControl.STATE_ADD_HIFI = asterics.envControl.STATE_ADD + '.' + aster
 
 asterics.envControl.STATE_ADD_AMBLIGHT = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_AMB_LAMP;
 
+asterics.const.HOME_STATES = asterics.const.HOME_STATES || [];
 asterics.const.HOME_STATES.push(asterics.envControl.STATE_MAIN);
 
 asterics.envControl.LINKS = {};
