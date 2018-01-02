@@ -15,6 +15,7 @@
     <script type="application/javascript" src="loadScripts.js"></script>
     <script type="application/javascript" src="areCommunicatorLight.js"></script>
     <script type="application/javascript" src="utils.js"></script>
+    <script type="application/javascript" src="../angular/envControl/envControlConstants.js"></script>
 
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/button.css">
@@ -85,9 +86,14 @@
         }
     }
 
-    function irSend(code) {
+    function irTransSend(code) {
         setClickedClassToButtons();
         sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
+    }
+
+    function irFlipMouseSend(code) {
+        setClickedClassToButtons();
+        sendDataToInputPort('LipMouse.1', 'send', 'AT IP ' + code);
     }
 
     function fs20Send(code) {
@@ -134,11 +140,14 @@
         var buttons = [];
         for (var i = 0; i < cellboard.length; i++) {
             var elem = cellboard[i];
-            if (elem.type === 'CB_TYPE_FS20') {
+            if (elem.type === asterics.envControl.HW_FS20_PCSENDER) {
                 var button = createButton(elem.translatedTitle, elem.faIcon, "fs20Send('" + elem.code + "')");
                 buttons.push(button);
-            } else if (elem.type === 'CB_TYPE_IR') {
-                var button = createButton(elem.translatedTitle, elem.faIcon, "irSend('" + elem.code + "')");
+            } else if (elem.type === asterics.envControl.HW_IRTRANS_USB) {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "irTransSend('" + elem.code + "')");
+                buttons.push(button);
+            } else if (elem.type === asterics.envControl.HW_IR_FLIPMOUSE) {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "irFlipMouseSend('" + elem.code + "')");
                 buttons.push(button);
             }
         }
@@ -146,7 +155,7 @@
     }
 
     function isDataEmpty(data) {
-        return !data || !data._cellBoards || !data._cellBoards['home.envControl'] || data._cellBoards['home.envControl'].length == 0;
+        return !data || !data._cellBoards || !data._cellBoards[asterics.envControl.STATE_MAIN] || data._cellBoards[asterics.envControl.STATE_MAIN].length == 0;
     }
 </script>
 </body>
