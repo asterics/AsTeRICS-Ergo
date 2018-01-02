@@ -3,8 +3,9 @@ asterics.envControl = asterics.envControl || {};
 asterics.envControl.FS20_TOGGLE_CODE = 18;
 asterics.envControl.FS20_LEARN_CODE = 23;
 
-asterics.envControl.CB_TYPE_FS20 = 'CB_TYPE_FS20';
-asterics.envControl.CB_TYPE_IR = 'CB_TYPE_IR';
+//not used anymore, just for comatibility resons:
+asterics.envControl.CB_TYPE_FS20 = 'HW_FS20_PCSENDER';
+asterics.envControl.CB_TYPE_IR = 'HW_IRTRANS_USB';
 
 asterics.envControl.HW_FS20_PCSENDER = 'HW_FS20_PCSENDER';
 asterics.envControl.HW_FS20_PLUG = 'HW_FS20_PLUG';
@@ -12,6 +13,7 @@ asterics.envControl.HW_FS20_SET = 'HW_FS20_SET';
 asterics.envControl.HW_IRTRANS_USB = 'HW_IRTRANS_USB';
 asterics.envControl.HW_USB_CABLE_AB = 'HW_USB_CABLE_AB';
 asterics.envControl.HW_IR_BULB = 'HW_IR_BULB';
+asterics.envControl.HW_IR_FLIPMOUSE = 'HW_IR_FLIPMOUSE';
 
 asterics.envControl.IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
 asterics.envControl.IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
