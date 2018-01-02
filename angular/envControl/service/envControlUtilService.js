@@ -3,7 +3,7 @@ angular.module(asterics.appServices)
         var thiz = this;
 
         thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
-            var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.CB_TYPE_FS20, function () {
+            var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.HW_FS20_PCSENDER, function () {
                 envControlFsService.fs20Toggle(code);
             });
             element.code = code;
@@ -13,9 +13,9 @@ angular.module(asterics.appServices)
             return element;
         };
 
-        thiz.createCellBoardItemIrTrans = function (title, faIcon, code) {
-            var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.CB_TYPE_IR, function () {
-                envControlIRService.irSend(code);
+        thiz.createCellBoardItemIrDevice = function (title, faIcon, code, hardwareDevice) {
+            var element = utilService.createCellBoardItem(title, faIcon, hardwareDevice, function () {
+                envControlIRService.irSend(code, hardwareDevice);
             });
             element.code = code;
             element.class = 'action-button';
@@ -37,10 +37,12 @@ angular.module(asterics.appServices)
                 var newItem;
                 if (item.type === asterics.const.CB_TYPE_SUBCB) {
                     newItem = thiz.createCellBoardItemNavSubcellboard(item.title, item.faIcon, item.toState);
-                } else if (item.type === asterics.envControl.CB_TYPE_FS20) {
+                } else if (item.type === asterics.envControl.HW_FS20_PCSENDER) {
                     newItem = thiz.createCellBoardItemFs20(item.title, item.faIcon, item.code);
-                } else if (item.type === asterics.envControl.CB_TYPE_IR) {
-                    newItem = thiz.createCellBoardItemIrTrans(item.title, item.faIcon, item.code);
+                } else if (item.type === asterics.envControl.HW_IRTRANS_USB) {
+                    newItem = thiz.createCellBoardItemIrDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_IRTRANS_USB);
+                } else if (item.type === asterics.envControl.HW_IR_FLIPMOUSE) {
+                    newItem = thiz.createCellBoardItemIrDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_IR_FLIPMOUSE);
                 }
                 reinitList.push(newItem);
             });

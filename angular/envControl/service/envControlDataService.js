@@ -31,11 +31,11 @@ angular.module(asterics.appServices)
             _fs20Codes.push(code);
         };
 
-        thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
+        thiz.addCellBoardElementIr = function (title, faIcon, code, cellBoard, irHardware) {
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
-            var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
+            var element = envControlUtilService.createCellBoardItemIrDevice(title, faIcon, code, irHardware);
             _cellBoards[cellBoard].push(element);
         };
 
@@ -45,7 +45,7 @@ angular.module(asterics.appServices)
             if (element.type === asterics.const.CB_TYPE_SUBCB && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
                 _.pull(_dynamicCellBoardIds, element.toState);
-            } else if (element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
+            } else if (element.type === asterics.envControl.HW_FS20_PCSENDER && element.code) {
                 _.pull(_fs20Codes, element.code);
             }
             thiz.saveData();
