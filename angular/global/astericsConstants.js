@@ -1,3 +1,4 @@
+var asterics = asterics || {};
 asterics.const = asterics.const || {};
 asterics.const.WEBAPP_NAME = 'envcontrol';
 
