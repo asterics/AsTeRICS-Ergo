@@ -22,7 +22,7 @@ angular.module(asterics.appComponents)
                     cbToAddButtons = envControlDataService.addSubCellboard(thiz.selectedDeviceName, 'building-o', thiz.cbToAdd);
                 }
                 angular.forEach(thiz.learnItems, function (item) {
-                    envControlDataService.addCellBoardElementIrTrans(item.name, thiz.selectedIcon, item.code, cbToAddButtons);
+                    envControlDataService.addCellBoardElementIr(item.name, thiz.selectedIcon, item.code, cbToAddButtons, asterics.envControl.HW_IR_FLIPMOUSE);
                 });
                 envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
