@@ -94,7 +94,7 @@ angular.module(asterics.appComponents)
                 var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, _addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
-                        envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
+                        envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, asterics.envControl.HW_IR_FLIPMOUSE);
                     }
                 });
                 envControlDataService.saveData();
