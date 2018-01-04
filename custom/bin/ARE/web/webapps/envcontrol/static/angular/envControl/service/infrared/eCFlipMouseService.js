@@ -33,17 +33,31 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
+            isConnectedInternal(def, false);
+            return def.promise;
+        };
+
+        function isConnectedInternal(def, wasRescanStart) {
             irAction('AT', _testTimeout).then(function (response) {
-                if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
-                    def.resolve(false);
+                if (response.indexOf(asterics.envControl.LIPMOUSE_IN_RESCAN) !== -1) {
+                    $timeout(function() {
+                        isConnectedInternal(def, wasRescanStart);
+                    }, 1000);
+                } else if (response.indexOf(asterics.envControl.LIPMOUSE_NEW_RESCAN) !== -1) {
+                    if(!wasRescanStart) {
+                        $timeout(function() {
+                            isConnectedInternal(def, true);
+                        }, 1000);
+                    } else {
+                        def.resolve(false);
+                    }
                 } else {
                     def.resolve(true);
                 }
             }, function error(response) {
                 def.resolve(false);
             });
-            return def.promise;
-        };
+        }
 
         //aborts a current action, closes websocket
         thiz.abortAction = function () {
