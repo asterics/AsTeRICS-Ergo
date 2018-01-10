@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService) {
+        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', function (envControlDataService, $state, ecDeviceService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService) {
             var thiz = this;
             var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
@@ -55,7 +55,7 @@ angular.module(asterics.appComponents)
                     }
                 }
 
-                envControlIRService.irLearn().then(success, error);
+                thiz.irDevice.irLearn().then(success, error);
                 if (!thiz.inLearn) {
                     scrollToEnd();
                 }
@@ -147,15 +147,20 @@ angular.module(asterics.appComponents)
             init();
 
             function init() {
-                envControlIRService.isConnected().then(function (isConnected) {
-                    thiz.isConnected = isConnected;
+                ecDeviceService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function(response) {
+                    if(response) {
+                        thiz.isConnected = true;
+                        thiz.irDevice = response;
+                    } else {
+                        thiz.isConnected = false;
+                    }
                 });
             }
 
             function abortLearning() {
                 thiz.learningAborted = true;
                 thiz.inLearn = false;
-                envControlIRService.abortAction();
+                thiz.irDevice.abortAction();
             }
 
             function clearItems() {
