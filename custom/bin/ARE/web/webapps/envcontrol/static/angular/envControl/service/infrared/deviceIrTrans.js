@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlIRService', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
+    .service('deviceIrTrans', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q) {
         var thiz = this;
         var irTransName = 'IrTrans.1';
         var irTransActionInput = 'action';
@@ -9,6 +9,10 @@ angular.module(asterics.appServices)
         var _testTimeout = 6000;
         var _lastLearnStartTime;
         thiz.canceler = $q.defer();
+
+        thiz.getName = function() {
+            return irTransName;
+        };
 
         thiz.irSend = function (cmd) {
             return irAction('sndhex H' + cmd);
