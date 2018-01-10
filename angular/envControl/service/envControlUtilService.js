@@ -1,10 +1,10 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', '$timeout', '$anchorScroll', function (envControlFsService, envControlIRService, utilService, $timeout ,$anchorScroll) {
+    .service('envControlUtilService', ['deviceFs20Sender', 'deviceIrTrans', 'utilService', '$timeout', '$anchorScroll', function (deviceFs20Sender, deviceIrTrans, utilService, $timeout ,$anchorScroll) {
         var thiz = this;
 
         thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
             var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.HW_FS20_PCSENDER, function () {
-                envControlFsService.fs20Toggle(code);
+                deviceFs20Sender.fs20Toggle(code);
             });
             element.code = code;
             element.tooltip = 'i18n_ec_tooltip_click_fs20';
@@ -15,7 +15,7 @@ angular.module(asterics.appServices)
 
         thiz.createCellBoardItemIrDevice = function (title, faIcon, code, hardwareDevice) {
             var element = utilService.createCellBoardItem(title, faIcon, hardwareDevice, function () {
-                envControlIRService.irSend(code, hardwareDevice);
+                deviceIrTrans.irSend(code, hardwareDevice);
             });
             element.code = code;
             element.class = 'action-button';

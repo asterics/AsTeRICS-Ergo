@@ -1,11 +1,15 @@
 angular.module(asterics.appServices)
-    .service('envControlFsService', ['areService', 'areWebsocketService', '$q', function (areService, areWebsocketService, $q) {
+    .service('deviceFs20Sender', ['areService', 'areWebsocketService', '$q', function (areService, areWebsocketService, $q) {
         var thiz = this;
         var fs20SenderName = 'FS20Sender.1';
         var fs20ActionInput = 'Action';
         var houseCodeLength = 8;
         thiz.canceler = $q.defer();
         var _testTimeout = 3000;
+
+        thiz.getName = function() {
+            return fs20SenderName;
+        };
 
         thiz.fs20Action = function (deviceCode, actionCode, timeout) {
             var actionString = '@FS20:' + deviceCode + '_' + actionCode;

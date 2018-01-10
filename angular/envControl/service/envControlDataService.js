@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, envControlFsService, $q) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'deviceFs20Sender', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, deviceFs20Sender, $q) {
         var thiz = this;
         var _dataFilename = "ecdata";
         var _saveTimestamp = -1;
@@ -100,7 +100,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getNewFs20Code = function () {
-            return envControlFsService.getNewFs20Code(_fs20Codes);
+            return deviceFs20Sender.getNewFs20Code(_fs20Codes);
         };
 
         thiz.getNonConflictingLabel = function (label, parentState) {
