@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService, $scope) {
+        controller: ['envControlDataService', '$state', 'deviceFs20Sender', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, deviceFs20Sender, utilService, $stateParams, stateUtilService, $scope) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
@@ -15,7 +15,7 @@ angular.module(asterics.appComponents)
             thiz.neededHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG];
 
             thiz.addCellBoardItemAndReturn = function () {
-                envControlFsService.trainCode(thiz.code);
+                deviceFs20Sender.trainCode(thiz.code);
                 envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
                 envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
@@ -35,7 +35,7 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                envControlFsService.isConnected().then(function (isConnected) {
+                deviceFs20Sender.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                 });
             }

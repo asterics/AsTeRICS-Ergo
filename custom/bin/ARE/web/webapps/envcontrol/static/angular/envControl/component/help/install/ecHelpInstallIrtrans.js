@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('ecHelpInstallIrtrans', {
         bindings: {},
-        controller: ['utilService', 'envControlIRService', '$scope', '$timeout', '$anchorScroll', '$stateParams', 'stateUtilService', function (utilService, envControlIRService, $scope, $timeout, $anchorScroll, $stateParams, stateUtilService) {
+        controller: ['utilService', 'deviceIrTrans', '$scope', '$timeout', '$anchorScroll', '$stateParams', 'stateUtilService', function (utilService, deviceIrTrans, $scope, $timeout, $anchorScroll, $stateParams, stateUtilService) {
             var thiz = this;
             thiz.show = false;
             thiz.showAssistant = false;
@@ -14,7 +14,7 @@ angular.module(asterics.appComponents)
                 thiz.triedCheck = true;
                 thiz.checkResult = false;
                 scrollToEnd();
-                envControlIRService.isConnected().then(function (isConnected) {
+                deviceIrTrans.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                     thiz.checkResult = true;
                     scrollToEnd();
@@ -31,7 +31,7 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                envControlIRService.isConnected().then(function (isConnected) {
+                deviceIrTrans.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                     thiz.showAssistant = !thiz.isConnected;
                     thiz.show = true;
@@ -45,7 +45,7 @@ angular.module(asterics.appComponents)
             }
 
             stateUtilService.addOneTimeStateChangeFunction(function () {
-                envControlIRService.abortAction();
+                deviceIrTrans.abortAction();
             });
         }],
         templateUrl: "angular/envControl/component/help/install/ecHelpInstallIrtrans.html"
