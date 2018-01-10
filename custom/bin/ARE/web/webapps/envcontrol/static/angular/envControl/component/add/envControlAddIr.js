@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {
             isDeviceLearn: '@'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
+        controller: ['envControlDataService', '$state', 'deviceIrTrans', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, deviceIrTrans, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
@@ -40,7 +40,7 @@ angular.module(asterics.appComponents)
                     thiz.headerTitle = 'i18n_ec_ir_headerto';
                     thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
                 }
-                envControlIRService.isConnected().then(function (isConnected) {
+                deviceIrTrans.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                     if (isConnected) {
                         startTrainCodes();
@@ -57,7 +57,7 @@ angular.module(asterics.appComponents)
             };
 
             function startTrainCodes() {
-                envControlIRService.irLearn().then(function (response) {
+                deviceIrTrans.irLearn().then(function (response) {
                     if (thiz.selectedLabel) {
                         var item = generateIrTransItem(thiz.selectedLabel, response);
                         thiz.learnItems.push(item);
@@ -91,7 +91,7 @@ angular.module(asterics.appComponents)
             //aborting all current learning when leaving the page
             stateUtilService.addOneTimeStateChangeFunction(function () {
                 thiz.inTrain = false;
-                envControlIRService.abortAction();
+                deviceIrTrans.abortAction();
             });
         }],
         templateUrl: "angular/envControl/component/add/envControlAddIr.html"

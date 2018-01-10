@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlIRService', ['areService', '$q', '$timeout', function (areService, $q, $timeout) {
+    .service('deviceIrTrans', ['areService', '$q', '$timeout', function (areService, $q, $timeout) {
         var thiz = this;
         var irTransName = 'IrTrans.1';
         var irTransActionInput = 'action';
