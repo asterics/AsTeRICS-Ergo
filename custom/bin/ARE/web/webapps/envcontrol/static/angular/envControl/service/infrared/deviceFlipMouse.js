@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlIRService', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
+    .service('deviceFlipMouse', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
         var componentName = 'LipMouse.1';
         var portName = 'send';
@@ -9,6 +9,10 @@ angular.module(asterics.appServices)
         var _testTimeout = 6000;
         var _lastLearnStartTime;
         thiz.canceler = $q.defer();
+
+        thiz.getName = function() {
+            return componentName;
+        };
 
         thiz.irSend = function (cmd) {
             return irAction('AT IP ' + cmd);
