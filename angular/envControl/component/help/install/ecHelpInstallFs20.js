@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('ecHelpInstallFs20', {
         bindings: {},
-        controller: ['utilService', 'envControlFsService', '$timeout', '$anchorScroll', '$stateParams', function (utilService, envControlFsService, $timeout, $anchorScroll, $stateParams) {
+        controller: ['utilService', 'deviceFs20Sender', '$timeout', '$anchorScroll', '$stateParams', function (utilService, deviceFs20Sender, $timeout, $anchorScroll, $stateParams) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.isConnected = null;
@@ -11,7 +11,7 @@ angular.module(asterics.appComponents)
             thiz.showAssistant = false;
 
             thiz.patch = function () {
-                envControlFsService.fs20Patch().then(function () {
+                deviceFs20Sender.fs20Patch().then(function () {
                     thiz.patched = true;
                     scrollToEnd();
                 });
@@ -20,7 +20,7 @@ angular.module(asterics.appComponents)
             thiz.test = function () {
                 thiz.triedCheck = true;
                 thiz.isConnected = null;
-                envControlFsService.isConnected().then(function (isConnected) { //do test twice because sometimes the first time is wrong?!
+                deviceFs20Sender.isConnected().then(function (isConnected) { //do test twice because sometimes the first time is wrong?!
                     thiz.isConnected = isConnected;
                     scrollToEnd();
                 });
@@ -28,7 +28,7 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                envControlFsService.isConnected().then(function (isConnected) {
+                deviceFs20Sender.isConnected().then(function (isConnected) {
                     thiz.showAssistant = !isConnected;
                     thiz.show = true;
                 });

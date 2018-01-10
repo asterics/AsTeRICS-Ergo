@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlService', ['areService', 'envControlIRService', 'envControlFsService', '$q', function (areService, envControlIRService, envControlFsService, $q) {
+    .service('envControlService', ['areService', 'deviceIrTrans', 'deviceFs20Sender', '$q', function (areService, deviceIrTrans, deviceFs20Sender, $q) {
         var thiz = this;
         var envModelName = 'envControl.acs';
 
@@ -14,8 +14,8 @@ angular.module(asterics.appServices)
         thiz.getActiveHardware = function () {
             var def = $q.defer();
             var devices = [];
-            var promiseIrTrans = envControlIRService.isConnected();
-            var promiseFs20 = envControlFsService.isConnected();
+            var promiseIrTrans = deviceIrTrans.isConnected();
+            var promiseFs20 = deviceFs20Sender.isConnected();
             $q.all([promiseIrTrans, promiseFs20]).then(function() {
                 if(promiseIrTrans.$$state.value) {
                     devices.push(asterics.envControl.HW_IRTRANS_USB);
