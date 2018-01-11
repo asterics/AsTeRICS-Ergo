@@ -160,7 +160,9 @@ angular.module(asterics.appComponents)
             function abortLearning() {
                 thiz.learningAborted = true;
                 thiz.inLearn = false;
-                thiz.irDevice.abortAction();
+                if(thiz.irDevice) {
+                    thiz.irDevice.abortAction();
+                }
             }
 
             function clearItems() {
