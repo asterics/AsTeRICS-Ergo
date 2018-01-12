@@ -44,6 +44,7 @@ angular.module(asterics.appServices)
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
             if (element.type === asterics.const.CB_TYPE_SUBCB && element.toState) {
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
+                delete _cellBoards[element.toState];
                 _.pull(_dynamicCellBoardIds, element.toState);
             } else if (element.type === asterics.envControl.HW_FS20_PCSENDER && element.code) {
                 _.pull(_fs20Codes, element.code);
