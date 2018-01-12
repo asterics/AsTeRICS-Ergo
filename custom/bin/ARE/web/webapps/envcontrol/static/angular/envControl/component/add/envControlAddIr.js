@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {
             isDeviceLearn: '@'
         },
-        controller: ['envControlDataService', '$state', 'deviceIrTrans', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, deviceIrTrans, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
+        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, ecDeviceService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
@@ -15,6 +15,7 @@ angular.module(asterics.appComponents)
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
             thiz.isConnected = null;
+            thiz.irDevice = null;
 
             thiz.addCellBoardItemAndReturn = function () {
                 var cbToAddButtons = thiz.cbToAdd;
@@ -22,7 +23,7 @@ angular.module(asterics.appComponents)
                     cbToAddButtons = envControlDataService.addSubCellboard(thiz.selectedDeviceName, 'building-o', thiz.cbToAdd);
                 }
                 angular.forEach(thiz.learnItems, function (item) {
-                    envControlDataService.addCellBoardElementIr(item.name, thiz.selectedIcon, item.code, cbToAddButtons, asterics.envControl.HW_IR_FLIPMOUSE);
+                    envControlDataService.addCellBoardElementIr(item.name, thiz.selectedIcon, item.code, cbToAddButtons, thiz.irDevice.getName());
                 });
                 envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
@@ -40,10 +41,13 @@ angular.module(asterics.appComponents)
                     thiz.headerTitle = 'i18n_ec_ir_headerto';
                     thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
                 }
-                deviceIrTrans.isConnected().then(function (isConnected) {
-                    thiz.isConnected = isConnected;
-                    if (isConnected) {
+                ecDeviceService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function (response) {
+                    if (response) {
+                        thiz.isConnected = true;
+                        thiz.irDevice = response;
                         startTrainCodes();
+                    } else {
+                        thiz.isConnected = false;
                     }
                 });
             };
@@ -57,7 +61,7 @@ angular.module(asterics.appComponents)
             };
 
             function startTrainCodes() {
-                deviceIrTrans.irLearn().then(function (response) {
+                thiz.irDevice.irLearn().then(function (response) {
                     if (thiz.selectedLabel) {
                         var item = generateIrTransItem(thiz.selectedLabel, response);
                         thiz.learnItems.push(item);
@@ -91,7 +95,9 @@ angular.module(asterics.appComponents)
             //aborting all current learning when leaving the page
             stateUtilService.addOneTimeStateChangeFunction(function () {
                 thiz.inTrain = false;
-                deviceIrTrans.abortAction();
+                if(thiz.device) {
+                    thiz.irDevice.abortAction();
+                }
             });
         }],
         templateUrl: "angular/envControl/component/add/envControlAddIr.html"

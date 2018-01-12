@@ -21,6 +21,7 @@ angular.module(asterics.appComponents)
             thiz.isNumberLearn = _addDevice == 'numbers';
             thiz.isConnected = null;
             thiz.neededHardware = envControlHelpDataService.getNeededHardware(_addDevice) || [asterics.envControl.HW_IRTRANS_USB];
+            thiz.irDevice = null;
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
@@ -46,10 +47,11 @@ angular.module(asterics.appComponents)
                 }
 
                 function error(response) {
-                    if (response === asterics.envControl.IRTRANS_SOCKET_ERROR) {
+                    if (response !== asterics.envControl.IRLEARN_TIMEOUT) {
                         thiz.inLearn = false;
                         thiz.showError = true;
                         clearItems();
+                        abortLearning();
                     } else if (thiz.inLearn) {
                         thiz.trainCode();
                     }
@@ -94,7 +96,7 @@ angular.module(asterics.appComponents)
                 var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, _addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
-                        envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, asterics.envControl.HW_IR_FLIPMOUSE);
+                        envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, thiz.irDevice.getName());
                     }
                 });
                 envControlDataService.saveData();
@@ -147,8 +149,8 @@ angular.module(asterics.appComponents)
             init();
 
             function init() {
-                ecDeviceService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function(response) {
-                    if(response) {
+                ecDeviceService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function (response) {
+                    if (response) {
                         thiz.isConnected = true;
                         thiz.irDevice = response;
                     } else {
@@ -160,7 +162,7 @@ angular.module(asterics.appComponents)
             function abortLearning() {
                 thiz.learningAborted = true;
                 thiz.inLearn = false;
-                if(thiz.irDevice) {
+                if (thiz.irDevice) {
                     thiz.irDevice.abortAction();
                 }
             }
