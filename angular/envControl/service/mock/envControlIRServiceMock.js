@@ -10,7 +10,7 @@ angular.module(asterics.appServices)
         var _plugged = true;
         thiz.canceler = $q.defer();
 
-        thiz.irSend = function (cmd) {
+        thiz.send = function (cmd) {
             var def = $q.defer();
             console.log("sending mocked IrTrans command: " + cmd);
             def.resolve();
