@@ -72,7 +72,6 @@
 
     //get and check data
     var data = parseJson(decodeURIComponent(getWebappData('envControl', 'ecdata')));
-    var keys = getKeys(data._cellBoards);
     if (MODE_COMPATIBILITY) {
         removeElement('backbutton');
         removeElement('scanningDiv1');
@@ -89,7 +88,9 @@
     }
 
     //create headings and buttons
-    var headings = getHeadings(data._cellBoards[keys[0]]);
+    var mainCbName = 'home.envControl';
+    var headings = ['Main'].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'translatedTitle'));
+    var keys = [mainCbName].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'toState'));
     for (var i = 0; i < keys.length; i++) {
         var cellboard = data._cellBoards[keys[i]];
         var actionButtons = getActionButtons(cellboard);
@@ -104,18 +105,21 @@
     }
 
     function irTransSend(code) {
+        log("sending to irTrans: " + code);
         extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
     }
 
     function irFlipMouseSend(code) {
+        log("sending to FlipMouse: " + code);
         extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('LipMouse.1', 'send', 'AT IP ' + code);
     }
 
     function fs20Send(code) {
+        log("sending to FS20: " + code);
         extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('FS20Sender.1', 'Action', '@FS20:' + code + '_18');
@@ -193,14 +197,14 @@
         window.location.replace("../index.html#!/home/envcontrol");
     }
 
-    function getHeadings(mainCellboard) {
-        var headings = ['Main'];
+    function getSubCbPropertyList(mainCellboard, property) {
+        var properties = [];
         for (var i = 0; i < mainCellboard.length; i++) {
             if (mainCellboard[i].type === 'CB_TYPE_SUBCB') {
-                headings.push(mainCellboard[i].translatedTitle);
+                properties.push(mainCellboard[i][property]);
             }
         }
-        return headings;
+        return properties;
     }
 
     function getActionButtons(cellboard) {
@@ -223,6 +227,12 @@
 
     function isDataEmpty(data) {
         return !data || !data._cellBoards || !data._cellBoards[asterics.envControl.STATE_MAIN] || data._cellBoards[asterics.envControl.STATE_MAIN].length == 0;
+    }
+
+    function log(string) {
+        if(!MODE_COMPATIBILITY) {
+            console.log(string);
+        }
     }
 </script>
 </body>
