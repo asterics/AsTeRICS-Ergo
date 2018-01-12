@@ -8,7 +8,7 @@ angular.module(asterics.appServices)
         var _testTimeout = 3000;
 
         thiz.getName = function() {
-            return fs20SenderName;
+            return asterics.envControl.HW_FS20_PCSENDER;
         };
 
         thiz.fs20Action = function (deviceCode, actionCode, timeout) {
