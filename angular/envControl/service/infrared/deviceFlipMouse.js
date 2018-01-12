@@ -1,31 +1,30 @@
 angular.module(asterics.appServices)
     .service('deviceFlipMouse', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
+        var LIPMOUSE_TIMEOUT_ERROR = 'IR_TIMEOUT';
+        var LIPMOUSE_IN_RESCAN = 'IN_PORT_RESCAN';
+        var LIPMOUSE_NEW_RESCAN = 'NEW_PORT_RESCAN';
         var componentName = 'LipMouse.1';
         var portName = 'send';
         var learnCmdResponse = 'IR: recorded';
-        var _learnWaitSeconds = 5;
-        var _learnWaitMillis = _learnWaitSeconds * 1000;
         var _testTimeout = 6000;
-        var _lastLearnStartTime;
         thiz.canceler = $q.defer();
 
         thiz.getName = function() {
-            return componentName;
+            return asterics.envControl.HW_IR_FLIPMOUSE;
         };
 
-        thiz.irSend = function (cmd) {
+        thiz.send = function (cmd) {
             return irAction('AT IP ' + cmd);
         };
 
         thiz.irLearn = function () {
-            _lastLearnStartTime = new Date().getTime();
             var def = $q.defer();
             var commandId = new Date().getTime();
             irAction('AT IR ' + commandId).then(function (response) {
                 var index = response.indexOf(learnCmdResponse);
-                if (index == -1 || response.indexOf(asterics.envControl.LIPMOUSE_TIMEOUT_ERROR) !== -1) {
-                    def.reject(response);
+                if (index == -1 || response.indexOf(LIPMOUSE_TIMEOUT_ERROR) !== -1) {
+                    def.reject(asterics.envControl.IRLEARN_TIMEOUT);
                 } else {
                     def.resolve(commandId);
                 }
@@ -43,11 +42,11 @@ angular.module(asterics.appServices)
 
         function isConnectedInternal(def, wasRescanStart) {
             irAction('AT', _testTimeout).then(function (response) {
-                if (response.indexOf(asterics.envControl.LIPMOUSE_IN_RESCAN) !== -1) {
+                if (response.indexOf(LIPMOUSE_IN_RESCAN) !== -1) {
                     $timeout(function() {
                         isConnectedInternal(def, wasRescanStart);
                     }, 1000);
-                } else if (response.indexOf(asterics.envControl.LIPMOUSE_NEW_RESCAN) !== -1) {
+                } else if (response.indexOf(LIPMOUSE_NEW_RESCAN) !== -1) {
                     if(!wasRescanStart) {
                         $timeout(function() {
                             isConnectedInternal(def, true);
@@ -75,11 +74,7 @@ angular.module(asterics.appServices)
 
             areWebsocketService.doActionAndGetWebsocketResponse(actionFunction, thiz.canceler, timeout).then(function (response) {
                 console.log('ir response: ' + response);
-                if (response.indexOf(asterics.envControl.IRTRANS_SOCKET_ERROR) !== -1) {
-                    def.reject(response);
-                } else {
-                    def.resolve(response);
-                }
+                def.resolve(response);
             }, function error() {
                 def.reject();
             });
