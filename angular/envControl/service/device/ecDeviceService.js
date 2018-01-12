@@ -41,6 +41,7 @@ angular.module(asterics.appServices)
             if (lastConnectedDevice && !forceFullRescan) {
                 lastConnectedDevice.isConnected().then(function (response) {
                     if (response) {
+                        console.log("found connected device for hardware group <" + groupId + ">: " + lastConnectedDevice.getName());
                         returnDef.resolve(lastConnectedDevice);
                     } else {
                         getOneConnectedDeviceInternal(groupId, lastConnectedDevice).then(function (response) {
@@ -59,8 +60,8 @@ angular.module(asterics.appServices)
         };
 
         thiz.sendToDevice = function (code, hardwareId) {
-            for(var i=0; i<_allDevices.length; i++) {
-                if(_allDevices[i].getName() == hardwareId) {
+            for (var i = 0; i < _allDevices.length; i++) {
+                if (_allDevices[i].getName() == hardwareId) {
                     _allDevices[i].send(code);
                 }
             }
@@ -112,7 +113,7 @@ angular.module(asterics.appServices)
             //return null if all promises resolved and nothing returned yet
             lastDoneDef.promise.then(function () {
                 if (!returned) {
-                    console.log("no connected found device for hardware group <" + groupId + ">.");
+                    console.log("no connected device found device for hardware group <" + groupId + ">.");
                     returnDef.resolve(null);
                 }
             });
