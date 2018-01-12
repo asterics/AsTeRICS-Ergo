@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'deviceFs20Sender', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, deviceFs20Sender, $q) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q) {
         var thiz = this;
         var _dataFilename = "ecdata";
         var _saveTimestamp = -1;
@@ -9,7 +9,7 @@ angular.module(asterics.appServices)
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
         var _cellBoardDeviceMapping = {};
         var _dynamicCellBoardIds = [];
-        var _fs20Codes = [];
+        var _additionalDeviceData = {};
         var _clipBoard = {};
         var _undoCellBoards = {};
         var _callbackToCallOnNewData = null;
@@ -22,13 +22,23 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
-        thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
+        thiz.addCellBoardElementPlug = function (title, faIcon, code, cellBoard, plugHardware) {
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
-            var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
+            var element = envControlUtilService.createCellBoardItemPlugDevice(title, faIcon, code, plugHardware);
             _cellBoards[cellBoard].push(element);
-            _fs20Codes.push(code);
+        };
+
+        thiz.getAdditionalDeviceData = function (hardwareId) {
+            return _additionalDeviceData[hardwareId];
+        };
+
+        thiz.setAdditionalDeviceData = function(data, hardwareId) {
+            if(!hardwareId) {
+                return;
+            }
+            _additionalDeviceData[hardwareId] = data;
         };
 
         thiz.addCellBoardElementIr = function (title, faIcon, code, cellBoard, irHardware) {
@@ -47,7 +57,7 @@ angular.module(asterics.appServices)
                 delete _cellBoards[element.toState];
                 _.pull(_dynamicCellBoardIds, element.toState);
             } else if (element.type === asterics.envControl.HW_FS20_PCSENDER && element.code) {
-                _.pull(_fs20Codes, element.code);
+                _.pull(_additionalDeviceData[element.type], element.code);
             }
             thiz.saveData();
             return _cellBoards[cellBoardName];
@@ -100,10 +110,6 @@ angular.module(asterics.appServices)
             _clipBoard = {};
         };
 
-        thiz.getNewFs20Code = function () {
-            return deviceFs20Sender.getNewFs20Code(_fs20Codes);
-        };
-
         thiz.getNonConflictingLabel = function (label, parentState) {
             var newLabel = label;
             var count = 1;
@@ -142,7 +148,7 @@ angular.module(asterics.appServices)
             data._cellBoards = _cellBoards;
             data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
             data._dynamicCellBoardIds = _dynamicCellBoardIds;
-            data._fs20Codes = _fs20Codes;
+            data._additionalDeviceData = _additionalDeviceData;
             _saveTimestamp = areSaveService.saveData(_dataFilename, data);
         };
 
@@ -214,7 +220,7 @@ angular.module(asterics.appServices)
                 _cellBoards = data._cellBoards || _cellBoards;
                 _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
                 _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
-                _fs20Codes = data._fs20Codes || _fs20Codes;
+                _additionalDeviceData = data._additionalDeviceData || _additionalDeviceData;
                 reinitCellBoards();
             }
             if (newTimestamp) {
