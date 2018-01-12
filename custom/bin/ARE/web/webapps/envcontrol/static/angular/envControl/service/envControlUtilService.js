@@ -1,10 +1,10 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['deviceFs20Sender', 'ecDeviceService', 'utilService', '$timeout', '$anchorScroll', function (deviceFs20Sender, ecDeviceService, utilService, $timeout ,$anchorScroll) {
+    .service('envControlUtilService', ['ecDeviceService', 'utilService', '$timeout', '$anchorScroll', function (ecDeviceService, utilService, $timeout ,$anchorScroll) {
         var thiz = this;
 
-        thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
-            var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.HW_FS20_PCSENDER, function () {
-                deviceFs20Sender.fs20Toggle(code);
+        thiz.createCellBoardItemPlugDevice = function (title, faIcon, code, hardwareDevice) {
+            var element = utilService.createCellBoardItem(title, faIcon, hardwareDevice, function () {
+                ecDeviceService.sendToDevice(code, hardwareDevice);
             });
             element.code = code;
             element.tooltip = 'i18n_ec_tooltip_click_fs20';
@@ -38,7 +38,7 @@ angular.module(asterics.appServices)
                 if (item.type === asterics.const.CB_TYPE_SUBCB) {
                     newItem = thiz.createCellBoardItemNavSubcellboard(item.title, item.faIcon, item.toState);
                 } else if (item.type === asterics.envControl.HW_FS20_PCSENDER) {
-                    newItem = thiz.createCellBoardItemFs20(item.title, item.faIcon, item.code);
+                    newItem = thiz.createCellBoardItemPlugDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_FS20_PCSENDER);
                 } else if (item.type === asterics.envControl.HW_IRTRANS_USB) {
                     newItem = thiz.createCellBoardItemIrDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_IRTRANS_USB);
                 } else if (item.type === asterics.envControl.HW_IR_FLIPMOUSE) {
