@@ -19,11 +19,7 @@ asterics.envControl.HW_IR_FLIPMOUSE = 'HW_IR_FLIPMOUSE';
 asterics.envControl.HW_GROUP_IR = 'HW_GROUP_IR';
 asterics.envControl.HW_GROUP_PLUG = 'HW_GROUP_PLUG';
 
-asterics.envControl.IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
-asterics.envControl.IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
-asterics.envControl.LIPMOUSE_TIMEOUT_ERROR = 'IR_TIMEOUT';
-asterics.envControl.LIPMOUSE_IN_RESCAN = 'IN_PORT_RESCAN';
-asterics.envControl.LIPMOUSE_NEW_RESCAN = 'NEW_PORT_RESCAN';
+asterics.envControl.IRLEARN_TIMEOUT = 'IRLEARN_TIMEOUT';
 
 asterics.envControl.DEVICE_TABLELAMP = 'lamp';
 asterics.envControl.DEVICE_AMB_LAMP = 'amblight';
