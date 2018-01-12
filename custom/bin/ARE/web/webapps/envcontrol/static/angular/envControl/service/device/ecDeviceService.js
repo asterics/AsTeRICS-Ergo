@@ -8,6 +8,7 @@ angular.module(asterics.appServices)
         var _plugDevices = [deviceFs20Sender];
         var _deviceMap = {};                    //stores all devices by hardware group
         var _lastConnectedDeviceMap = {};       //stores one last (and maybe still connected) device by hardware group
+        var _allDevices = _irDevices.concat(_plugDevices);     //list of all known devices
         _deviceMap[asterics.envControl.HW_GROUP_IR] = _irDevices;
         _deviceMap[asterics.envControl.HW_GROUP_PLUG] = _plugDevices;
 
@@ -55,6 +56,14 @@ angular.module(asterics.appServices)
             }
             return returnDef.promise;
 
+        };
+
+        thiz.sendToDevice = function (code, hardwareId) {
+            for(var i=0; i<_allDevices.length; i++) {
+                if(_allDevices[i].getName() == hardwareId) {
+                    _allDevices[i].send(code);
+                }
+            }
         };
 
         function getOneConnectedDeviceInternal(groupId, ignoreDevice) {
