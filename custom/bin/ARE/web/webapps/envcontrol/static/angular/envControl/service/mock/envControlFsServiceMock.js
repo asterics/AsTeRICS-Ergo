@@ -12,7 +12,7 @@ angular.module(asterics.appServices)
             return fs20Send(actionString);
         };
 
-        thiz.fs20Toggle = function (code) {
+        thiz.send = function (code) {
             return thiz.fs20Action(code, asterics.envControl.FS20_TOGGLE_CODE);
         };
 
@@ -38,7 +38,7 @@ angular.module(asterics.appServices)
             return code;
         };
 
-        thiz.getNewFs20Code = function (existingCodes) {
+        thiz.getNewCode = function (existingCodes) {
             if (!existingCodes || existingCodes.length == 0) {
                 return thiz.generateFs20HouseCode() + '_1111';
             } else {
