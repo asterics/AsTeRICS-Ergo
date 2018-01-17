@@ -9,7 +9,7 @@
     <h3 ng-if="!$ctrl.hideBack" translate="i18n_ec_choose_controls"/>
     <p translate="i18n_ec_which_devices"/>
     <ul class="nodots">
-        <li ng-repeat="device in $ctrl.devices">
+        <li ng-repeat="device in $ctrl.devices" title="{{$ctrl.neededHardwareTooltips[device]}}">
             <div class="row">
                 <label class="col-xs-12 col-sm-5 col-md-4">
                     <input type="checkbox" ng-model="$ctrl.deviceSelectionMap[device].chosen"
@@ -24,7 +24,7 @@
                                ng-model="$ctrl.deviceSelectionMap[device].amount"
                                ng-disabled="!$ctrl.deviceSelectionMap[device].chosen"
                                ng-blur="$ctrl.onAmountBlur(device)"
-                               ng-change="$ctrl.selectedDevicesChanged()"/>
+                               ng-change="$ctrl.selectedDevicesChanged(device, true)"/>
                     </div>
                 </div>
             </div>
