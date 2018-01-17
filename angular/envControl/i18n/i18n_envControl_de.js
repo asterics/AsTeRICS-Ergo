@@ -87,6 +87,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
     i18n_ec_HW_USB_CABLE_AB: 'USB Kabel (Typ A - Typ B)',
     i18n_ec_HW_IR_BULB: 'IR Glühbirne',
+    i18n_ec_HW_IR_FLIPMOUSE: 'FlipMouse',
 
     //addmenu
     i18n_ec_text_addnew: 'Neue Komponente zu Umgebungssteuerung hinzufügen',
@@ -186,7 +187,11 @@ asterics.i18n_envControl_de = {
     i18n_ec_which_devices: 'Welche Geräte möchten Sie mit AsTeRICS-Ergo steuern?',
     i18n_ec_device_not_in_list: 'Das gewünschte Gerät ist nicht in der Liste?',
     i18n_ec_devices_more_possibilities: 'Weitere Möglichkeiten',
-    i18n_ec_you_need_devices: 'Dafür benötigen Sie folgende Hardware:',
+    i18n_ec_you_need_devices: 'Dafür wird folgende Hardware empfohlen:',
+    i18n_ec_possible_alternatives: 'Folgende Hardware-Alternativen sind möglich, klicken Sie auf einen der Buttons (⇄) um eine zu übernehmen:',
+    i18n_ec_button_replace_descr: 'Übernehmen der vorgeschlagenen Hardware-Alternative',
+    i18n_ec_replace: 'ersetze',
+    i18n_ec_with: 'mit',
     i18n_ec_hint: 'Hinweis',
     i18n_ec_hints: 'Hinweise',
     i18n_ec_alternative_hardware1: 'kann alternativ auch mit',
