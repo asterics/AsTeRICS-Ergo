@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', '$stateParams', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService, $stateParams) {
+        controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', '$stateParams', '$translate', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService, $stateParams, $translate) {
             var thiz = this;
             thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
@@ -11,11 +11,12 @@ angular.module(asterics.appComponents)
             thiz.deviceSelectionMap = {};
             thiz.neededHardware = [];
             thiz.neededHardwareAmounts = {};
+            thiz.neededHardwareTooltips = {};
             thiz.alternativeHardare = {};
             thiz.alternativeHardwareForDevices = [];
 
-            thiz.selectedDevicesChanged = function (deviceChanged) {
-                refreshNeededHardware(deviceChanged);
+            thiz.selectedDevicesChanged = function (deviceChanged, keepnumbers) {
+                refreshNeededHardware(deviceChanged, keepnumbers);
                 if (!_.isEmpty(thiz.neededHardware) && stateUtilService.hasStateChangedSinceLastCall()) {
                     envControlUtilService.scrollToEnd();
                 }
@@ -44,17 +45,17 @@ angular.module(asterics.appComponents)
                 return envControlHelpDataService.getNeededAccessories(hardwareName);
             };
 
-            thiz.replaceDeviceHardware = function(device) {
+            thiz.replaceDeviceHardware = function (device) {
                 envControlHelpDataService.replaceDeviceHardware(device);
                 refreshNeededHardware();
             };
 
-            thiz.replaceAlternativeHardware = function(alternative) {
+            thiz.replaceAlternativeHardware = function (alternative) {
                 envControlHelpDataService.replaceAlternativeHardware(alternative);
                 refreshNeededHardware();
             };
 
-            thiz.resetAlternatives = function() {
+            thiz.resetAlternatives = function () {
                 envControlHelpDataService.resetData();
                 refreshNeededHardware();
             };
@@ -64,13 +65,14 @@ angular.module(asterics.appComponents)
             };
 
             init();
+
             function init() {
                 thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
                 refreshNeededHardware();
             }
 
-            function refreshNeededHardware(deviceChanged) {
-                if (deviceChanged && thiz.deviceSelectionMap[deviceChanged]) {
+            function refreshNeededHardware(deviceChanged, keepNumbers) {
+                if (!keepNumbers && thiz.deviceSelectionMap[deviceChanged]) {
                     if (thiz.deviceSelectionMap[deviceChanged].chosen) {
                         thiz.deviceSelectionMap[deviceChanged].amount = 1;
                     } else {
@@ -78,6 +80,7 @@ angular.module(asterics.appComponents)
                     }
                 }
                 thiz.neededHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap);
+                getTooltipLines();
                 thiz.neededHardware = Object.keys(thiz.neededHardwareAmounts);
                 thiz.hardwareAlternatives = envControlHelpDataService.getHardwareAlternatives(thiz.neededHardware);
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(thiz.deviceSelectionMap);
@@ -90,6 +93,34 @@ angular.module(asterics.appComponents)
                 return (thiz.hardwareAlternatives && thiz.hardwareAlternatives.length > 0) ||
                     (thiz.alternativeHardare && thiz.alternativeHardare.length > 0);
             }
+
+            function getTooltipLines() {
+                var devices = Object.keys(thiz.deviceSelectionMap);
+                for (var i = 0; i < devices.length; i++) {
+                    var device = devices[i];
+                    var singleHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap, device);
+                    if (_.isEmpty(singleHardwareAmounts)) {
+                        thiz.neededHardwareTooltips[device] = '';
+                    } else {
+                        var deviceTranslated = $translate.instant('i18n_ec_' + device);
+                        var str = $translate.instant('i18n_ec_tooltip_device_assistant', {
+                            "amount": thiz.deviceSelectionMap[device].amount,
+                            "device": deviceTranslated
+                        });
+                        var keys = Object.keys(singleHardwareAmounts);
+                        for (var j = 0; j < keys.length; j++) {
+                            var hwNameTranslated = $translate.instant('i18n_ec_' + keys[j]);
+                            var deviceAmount = singleHardwareAmounts[keys[j]];
+                            str += ' ' + deviceAmount + 'x ' + hwNameTranslated;
+                            if (j != keys.length - 1) {
+                                str += ",";
+                            }
+                        }
+                        thiz.neededHardwareTooltips[device] = str;
+                    }
+
+                }
+            };
         }],
         templateUrl: "angular/envControl/component/help/envControlHelpSelect.html"
     })
