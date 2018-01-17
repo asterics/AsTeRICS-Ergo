@@ -88,6 +88,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_HW_USB_CABLE_AB: 'USB cable (type A - type B)',
     i18n_ec_HW_IR_BULB: 'IR light bulb',
     i18n_ec_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_HW_IR_PLUG: 'Infrared Plug',
 
     //addmenu
     i18n_ec_text_addnew: 'Add a new component to environmental control',

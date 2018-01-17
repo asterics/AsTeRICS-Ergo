@@ -88,6 +88,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_HW_USB_CABLE_AB: 'USB Kabel (Typ A - Typ B)',
     i18n_ec_HW_IR_BULB: 'IR Glühbirne',
     i18n_ec_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_HW_IR_PLUG: 'Infrarot Stecker',
 
     //addmenu
     i18n_ec_text_addnew: 'Neue Komponente zu Umgebungssteuerung hinzufügen',
