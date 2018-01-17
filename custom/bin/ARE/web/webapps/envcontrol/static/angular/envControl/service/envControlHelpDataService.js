@@ -17,8 +17,21 @@ angular.module(asterics.appServices)
             return data._deviceSelectionMap;
         };
 
-        thiz.getNeededHardwareAmounts = function (deviceSelectionMap) {
-            var devicesList = getSelectedDevicesList(deviceSelectionMap);
+        /**
+         * returns a map of needed hardware and their amounts
+         *
+         * @param deviceSelectionMap a map containing the data that was selected in the hardware assistant
+         * @param device if specified, only data from the given device is returned, do not specify to return all hardware
+         * @return {{}}
+         */
+        thiz.getNeededHardwareAmounts = function (deviceSelectionMap, device) {
+            var tempDeviceSelectionMap = angular.copy(deviceSelectionMap);
+            if(device) {
+                var temp = {};
+                temp[device] = tempDeviceSelectionMap[device];
+                tempDeviceSelectionMap = temp;
+            }
+            var devicesList = getSelectedDevicesList(tempDeviceSelectionMap);
             var amounts = {};
             angular.forEach(devicesList, function (device) {
                 var neededForDevice = _deviceMappings[device].hardware[0];
@@ -26,7 +39,7 @@ angular.module(asterics.appServices)
                     if (_hardwareAmount[hardware] == 1) {
                         amounts[hardware] = 1;
                     } else {
-                        amounts[hardware] = (amounts[hardware] || 0) + deviceSelectionMap[device].amount;
+                        amounts[hardware] = (amounts[hardware] || 0) + tempDeviceSelectionMap[device].amount;
                     }
                 });
             });
