@@ -31,8 +31,8 @@
         </li>
         <li>{{'i18n_ec_device_not_in_list' | translate}} <a ui-sref="home.envControl.help/faq({open: 1})">{{'i18n_ec_devices_more_possibilities' | translate}}</a></li>
     </ul>
-    <div class="asterics-fade" ng-if="$ctrl.neededHardware.length > 0">
-        <p translate="i18n_ec_you_need_devices"/>
+    <div class="asterics-fade padding-top-little" ng-if="$ctrl.neededHardware.length > 0">
+        <p><b translate="i18n_ec_you_need_devices"/></p>
         <div class="row">
             <div ng-repeat="hardware in $ctrl.neededHardware">
                 <div class="col-xs-6 col-sm-3 col-lg-2">
@@ -53,22 +53,32 @@
                 </div>
             </div>
         </div>
-
-        <div class="padding-top-little" ng-if="$ctrl.alternativeHardwareDevices.length > 0">
-            <p ng-if="$ctrl.alternativeHardwareDevices.length == 1"><b translate="i18n_ec_hint"/></p>
-            <p ng-if="$ctrl.alternativeHardwareDevices.length > 1"><b translate="i18n_ec_hints"/></p>
-            <ul ng-repeat="device in $ctrl.alternativeHardwareDevices">
-                <li>
-                    <b>{{'i18n_ec_' + device | translate}}</b> {{'i18n_ec_alternative_hardware1' | translate}}
-                    <span ng-repeat="alternative in $ctrl.alternativeHardare[device][0]">
+        <div class="padding-top-little" ng-if="$ctrl.showAlternatives">
+            <p><b translate="i18n_ec_possible_alternatives"/></p>
+            <ul class="nodots">
+                <li ng-repeat="device in $ctrl.alternativeHardwareForDevices">
+                    <button ng-click="$ctrl.replaceDeviceHardware(device)" title="{{'i18n_ec_button_replace_descr' | translate}}"><i class="fa fa-exchange" style="color: green"/></button>
+                    <b>{{'i18n_ec_' + device | translate}}:</b>
+                    {{'i18n_ec_replace'| translate}}
+                    [<span ng-repeat="primarySuggestion in $ctrl.getNeededHardware(device)">{{'i18n_ec_' + primarySuggestion | translate}}<span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1"> + </span></span>]
+                    {{'i18n_ec_with'| translate}}
+                    [<span ng-repeat="alternative in $ctrl.alternativeHardare[device][0]">
                         <a href="" ng-click="$ctrl.goToHelp(alternative)">{{ 'i18n_ec_' + alternative | translate}}</a>
                         <span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1">+</span>
-                    </span>
-                    {{'i18n_ec_alternative_hardware2' | translate}}
-                    <span ng-repeat="primarySuggestion in $ctrl.getNeededHardware(device)">
-                        {{ 'i18n_ec_' + primarySuggestion | translate}}
-                        <span ng-if="$index < $ctrl.alternativeHardare[device][0].length-1">+</span>
-                    </span>).
+                    </span>]
+                </li>
+                <li ng-repeat="alternative in $ctrl.hardwareAlternatives">
+                    <button ng-click="$ctrl.replaceAlternativeHardware(alternative)" title="{{'i18n_ec_button_replace_descr' | translate}}"><i class="fa fa-exchange" style="color: green"/></button>
+                    {{'i18n_ec_replace'| translate}}
+                    [<span ng-repeat="hw in alternative[0]">
+                        {{ 'i18n_ec_' + hw | translate}}
+                        <span ng-if="$index < alternative[0].length-1">+</span>
+                    </span>]
+                    {{'i18n_ec_with'| translate}}
+                    [<span ng-repeat="hw in alternative[1]"><a href="" ng-click="$ctrl.goToHelp(alternative)">{{ 'i18n_ec_' + hw | translate}}</a><span ng-if="$index < alternative[0].length-1"> + </span></span>]
+                </li>
+                <li ng-if="!$ctrl.isOriginalState()">
+                    <button ng-click="$ctrl.resetAlternatives()"><i class="fa fa-undo"/> Reset</button>
                 </li>
             </ul>
         </div>

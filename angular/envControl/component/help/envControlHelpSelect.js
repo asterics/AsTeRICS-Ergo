@@ -12,7 +12,7 @@ angular.module(asterics.appComponents)
             thiz.neededHardware = [];
             thiz.neededHardwareAmounts = {};
             thiz.alternativeHardare = {};
-            thiz.alternativeHardwareDevices = [];
+            thiz.alternativeHardwareForDevices = [];
 
             thiz.selectedDevicesChanged = function (deviceChanged) {
                 refreshNeededHardware(deviceChanged);
@@ -44,8 +44,26 @@ angular.module(asterics.appComponents)
                 return envControlHelpDataService.getNeededAccessories(hardwareName);
             };
 
-            init();
+            thiz.replaceDeviceHardware = function(device) {
+                envControlHelpDataService.replaceDeviceHardware(device);
+                refreshNeededHardware();
+            };
 
+            thiz.replaceAlternativeHardware = function(alternative) {
+                envControlHelpDataService.replaceAlternativeHardware(alternative);
+                refreshNeededHardware();
+            };
+
+            thiz.resetAlternatives = function() {
+                envControlHelpDataService.resetData();
+                refreshNeededHardware();
+            };
+
+            thiz.isOriginalState = function () {
+                return envControlHelpDataService.isOriginalState();
+            };
+
+            init();
             function init() {
                 thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
                 refreshNeededHardware();
@@ -61,9 +79,16 @@ angular.module(asterics.appComponents)
                 }
                 thiz.neededHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap);
                 thiz.neededHardware = Object.keys(thiz.neededHardwareAmounts);
+                thiz.hardwareAlternatives = envControlHelpDataService.getHardwareAlternatives(thiz.neededHardware);
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(thiz.deviceSelectionMap);
-                thiz.alternativeHardwareDevices = Object.keys(thiz.alternativeHardare);
+                thiz.alternativeHardwareForDevices = Object.keys(thiz.alternativeHardare);
                 envControlHelpDataService.setDeviceSelectionMap(thiz.deviceSelectionMap);
+                thiz.showAlternatives = shouldShowAlternatives();
+            }
+
+            function shouldShowAlternatives() {
+                return (thiz.hardwareAlternatives && thiz.hardwareAlternatives.length > 0) ||
+                    (thiz.alternativeHardare && thiz.alternativeHardare.length > 0);
             }
         }],
         templateUrl: "angular/envControl/component/help/envControlHelpSelect.html"
