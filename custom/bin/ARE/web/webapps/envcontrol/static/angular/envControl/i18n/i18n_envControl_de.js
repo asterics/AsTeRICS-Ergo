@@ -191,6 +191,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_you_need_devices: 'Dafür wird folgende Hardware empfohlen:',
     i18n_ec_possible_alternatives: 'Folgende Hardware-Alternativen sind möglich, klicken Sie auf einen der Buttons (⇄) um eine zu übernehmen:',
     i18n_ec_button_replace_descr: 'Übernehmen der vorgeschlagenen Hardware-Alternative',
+    i18n_ec_tooltip_device_assistant: '{{amount}}x {{device}} benötigt Hardware:',
     i18n_ec_replace: 'ersetze',
     i18n_ec_with: 'mit',
     i18n_ec_hint: 'Hinweis',
