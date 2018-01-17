@@ -55,6 +55,13 @@ angular.module(asterics.appServices)
             return alternatives;
         };
 
+        /**
+         * returns an array of alternatives from a given list of currently used hardware.
+         *
+         * @param hardwareList the list of currently used hardware
+         * @return {Array} an array containing all alternatives that are applicable to the given hardwarelist in form
+         *          of the values stored in __hardwareAlternatives
+         */
         thiz.getHardwareAlternatives = function (hardwareList) {
             var returnList = [];
             if (!hardwareList || hardwareList.length == 0) {
@@ -70,6 +77,13 @@ angular.module(asterics.appServices)
             return returnList;
         };
 
+        /**
+         * chooses the alternative hardware for the given device.
+         * Currently just swaps the first and the second entry in the hardware mapping of the device. In order to support
+         * more than 2 hardware alternatives for a given device, this method has to be adapted.
+         *
+         * @param device the name of the device where the alternative hardware should be selected
+         */
         thiz.replaceDeviceHardware = function (device) {
             _originalState = false;
             var deviceMapping = _deviceMappings[device];
@@ -77,24 +91,52 @@ angular.module(asterics.appServices)
                 var temp = deviceMapping.hardware[0];
                 deviceMapping.hardware[0] = deviceMapping.hardware[1];
                 deviceMapping.hardware[1] = temp;
-                console.log(deviceMapping);
             }
         };
 
+        /**
+         * chooses an alternative hardware, e.g. FlipMouse instead of IrTrans, which is contained in the given "alternative"
+         * parameter.
+         * This method does 3 things:
+         *      1) Swap the elements in the _hardwareAlternatives mapping, e.g. changing the entry:
+         *      [[IrTrans],[Flipmouse]] to [[Flipmouse],[IrTrans]]
+         *      -> now the reverse alternative will be suggested in the UI
+         *
+         *      2) Exchange the given element in other _hardwareAlternatives mappings, e.g. change
+         *      [[HW_FS20_PLUG, HW_FS20_PCSENDER], [HW_IRTRANS_USB, HW_IR_PLUG]]
+         *      to
+         *      [[HW_FS20_PLUG, HW_FS20_PCSENDER], [**FlipMouse**, HW_IR_PLUG]]
+         *      --> now other hardware alternatives will be suggested containing the already performed swap (IrTrans -> Flipmouse)
+         *
+         *      3) Exchange the given alternative in the deviceMappings, e.g. changing IrTrans -> Flipmouse in all device mappings
+         *      in order to use Flipmouse for all devices that formerly used IrTrans
+         *
+         * @param alternative an array defining the chosen alternative where alternative[0] is an array of hardware constant
+         * strings that should be replaced by the hardware constant strings in the array alternative[1].
+         * So valid values of "alternative" could e.g. be:
+         * 1) [[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]
+         * 2) [[asterics.envControl.HW_FS20_PLUG, asterics.envControl.HW_FS20_PCSENDER], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]
+         * -> so the "alternative" is always an element of the array _hardwareAlternatives
+         */
         thiz.replaceAlternativeHardware = function (alternative) {
+            if (!_.some(_hardwareAlternatives, function (element) { //check parameter
+                    return isEqual(element, alternative);
+                })) {
+                console.log("replaceAlternativeHardware() called with wrong parameters!");
+                return;
+            }
             _originalState = false;
             for (var i = 0; i < _hardwareAlternatives.length; i++) {
-                if (_hardwareAlternatives[i][0] == alternative[0]) {
-                    var temp = _hardwareAlternatives[i][0];
-                    for (var j = 0; j < _hardwareAlternatives[i].length; j++) {
-                        if (_hardwareAlternatives[i][j] == alternative[1]) {
+                for (var j = 0; j < _hardwareAlternatives[i].length; j++) {
+                    if (isEqual(_hardwareAlternatives[i][0], alternative[0])) { //found the _hardwareAlternative entry to change
+                        if (_hardwareAlternatives[i][j] == alternative[1]) {    //found the replacement entry
+                            var temp = _hardwareAlternatives[i][0];             //swap elements
                             _hardwareAlternatives[i][0] = _hardwareAlternatives[i][j];
                             _hardwareAlternatives[i][j] = temp;
-                            console.log(_hardwareAlternatives[i]);
                         }
-                    }
-                } else {
-                    for (var j = 0; j < _hardwareAlternatives[i].length; j++) {
+                    } else {
+                        //in other elements than the one, that is the selected alternative:
+                        //replace subsets, that can be replaced by the selected alternative
                         replaceElements(_hardwareAlternatives[i][j], alternative);
                     }
                 }
@@ -102,11 +144,18 @@ angular.module(asterics.appServices)
             replaceAlternativeHardwareInDeviceMappings(alternative);
         };
 
-        thiz.isOriginalState = function() {
+        /**
+         * returns true if the device and hardware mapping data was not changed from its original state, otherwise false
+         * @return {boolean}
+         */
+        thiz.isOriginalState = function () {
             return _originalState;
         };
 
-        thiz.resetData = function() {
+        /**
+         * resets all data to the original state
+         */
+        thiz.resetData = function () {
             _deviceMappings = angular.copy(data._deviceMappings);
             _hardwareAmount = angular.copy(data._hardwareAmount);
             _accessories = angular.copy(data._accessories);
@@ -114,32 +163,59 @@ angular.module(asterics.appServices)
             _originalState = true;
         };
 
+        /**
+         * replaces an original hardware with an alternative in all device mappings.
+         * Currently only works for alternatives where the original hardware and the hardware to replace are exactly
+         * one piece of hardware (= array with one element).
+         *
+         * @param alternative see #replaceAlternativeHardware()
+         */
         function replaceAlternativeHardwareInDeviceMappings(alternative) {
+            var originalHardware = alternative[0];
+            var replaceHardware = alternative[1];
             var keys = Object.keys(_deviceMappings);
             for (var i = 0; i < keys.length; i++) {
                 var deviceMapping = _deviceMappings[keys[i]];
-                if (isEqual(deviceMapping.hardware[0], alternative[0])) {
-                    deviceMapping.hardware[0] = alternative[1];
+                if (isEqual(deviceMapping.hardware[0], originalHardware)) {
+                    deviceMapping.hardware[0] = replaceHardware;
                 } else {
                     for (var j = 0; j < deviceMapping.hardware.length; j++) {
-                        for (var k = 0; k < deviceMapping.hardware[j].length; k++) {
-                            if (isEqual(deviceMapping.hardware[j][k], alternative[0])) {
-                                deviceMapping.hardware[j][k] = alternative[1][0];
-                            }
-                        }
+                        replaceElements(deviceMapping.hardware[j], alternative);
                     }
                 }
             }
         }
 
+        /**
+         * searches in the given array for occurences of the originalHardware to be replaced and replaces them.
+         * Currently only works for alternatives where the original hardware and the hardware to replace are exactly
+         * one piece of hardware.
+         *
+         * @param array
+         * @param alternative
+         */
         function replaceElements(array, alternative) {
+            var originalHardware = alternative[0];
+            var replaceHardware = alternative[1];
             for (var i = 0; i < array.length; i++) {
-                if (isEqual(array[i], alternative[0])) {
-                    array[i] = alternative[1][0];
+                if (isEqual(array[i], originalHardware)) {
+                    array[i] = replaceHardware[0];
                 }
             }
         }
 
+        /**
+         * checks if two values/arrays are equal. also returns true, if one parameter is a single value and the other
+         * a array containing exactly this single value.
+         * isEqual('a','a') == true;
+         * isEqual(['a'],['a']) == true;
+         * isEqual('a',['a']) == true;
+         * isEqual('a',['a', 'b']) == false;
+         *
+         * @param valOrArray1
+         * @param valOrArray2
+         * @return {boolean}
+         */
         function isEqual(valOrArray1, valOrArray2) {
             if (valOrArray1 == valOrArray2) {
                 return true; //objects are equal
@@ -150,7 +226,7 @@ angular.module(asterics.appServices)
             if (valOrArray2.length && valOrArray2.length == 1 && valOrArray2[0] == valOrArray1) {
                 return true; //second object is array with one element and first exactly this element
             }
-            if (valOrArray1.length && valOrArray2.length && _.intersection(valOrArray1, valOrArray2).length == valOrArray1.length) {
+            if (valOrArray1.length && valOrArray2.length && valOrArray1.length == valOrArray2.length && _.intersection(valOrArray1, valOrArray2).length == valOrArray1.length) {
                 return true; //both objects are arrays containing the same values (maybe in different order)
             }
             return false;
@@ -168,6 +244,7 @@ angular.module(asterics.appServices)
         }
 
         initData();
+
         function initData() {
             data._deviceSelectionMap = {};
             data._deviceMappings = {};
@@ -176,8 +253,8 @@ angular.module(asterics.appServices)
             data._hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
             data._deviceMappings[asterics.envControl.DEVICE_TABLELAMP] = {
                 hardware: [
-                    [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG],
-                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB]
+                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB],
+                    [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]
                 ]
             };
             data._deviceMappings[asterics.envControl.DEVICE_AMB_LAMP] = {
@@ -218,7 +295,7 @@ angular.module(asterics.appServices)
             data._hardwareAmount[asterics.envControl.HW_IR_PLUG] = undefined;
             data._accessories[asterics.envControl.HW_IRTRANS_USB] = [asterics.envControl.HW_USB_CABLE_AB];
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]);
-            data._hardwareAlternatives.push([[asterics.envControl.HW_FS20_PLUG, asterics.envControl.HW_FS20_PCSENDER], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]);
+            data._hardwareAlternatives.push([[asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]);
             thiz.resetData();
         }
     }]);
