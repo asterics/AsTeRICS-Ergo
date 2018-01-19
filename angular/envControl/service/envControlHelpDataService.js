@@ -8,6 +8,7 @@ angular.module(asterics.appServices)
         var _accessories = {};
         var _hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
         var _originalState = true;
+        var _computerConfiguredDevives = [];
 
         thiz.setDeviceSelectionMap = function (map) {
             data._deviceSelectionMap = map;
@@ -26,7 +27,7 @@ angular.module(asterics.appServices)
          */
         thiz.getNeededHardwareAmounts = function (deviceSelectionMap, device) {
             var tempDeviceSelectionMap = angular.copy(deviceSelectionMap);
-            if(device) {
+            if (device) {
                 var temp = {};
                 temp[device] = tempDeviceSelectionMap[device];
                 tempDeviceSelectionMap = temp;
@@ -51,6 +52,29 @@ angular.module(asterics.appServices)
                 return _deviceMappings[device].hardware[0];
             }
             return null;
+        };
+
+        /**
+         * returns all hardware possibilities for a given device
+         * @param device
+         */
+        thiz.getHardwarePossibilities = function (device) {
+            var possibilites = _deviceMappings[device] ? _deviceMappings[device].hardware : [];
+            var alternatives = [];
+            _hardwareAlternatives.forEach(function (alternative) {
+                possibilites.forEach(function (possibility) {
+                    if(isEqual(alternative[0], possibility)) {
+                        alternatives.push(alternative[1]);
+                    } else {
+                        var newPossibility = angular.copy(possibility);
+                        replaceElements(newPossibility, alternative);
+                        if(!isEqual(newPossibility, possibility)) {
+                            alternatives.push(newPossibility);
+                        }
+                    }
+                });
+            });
+            return possibilites.concat(alternatives);
         };
 
         thiz.getNeededAccessories = function (hardwareName) {
@@ -165,6 +189,10 @@ angular.module(asterics.appServices)
             return _originalState;
         };
 
+        thiz.getComputerConfiguredDevices = function(devices) {
+            return _.intersection(_computerConfiguredDevives, devices);
+        };
+
         /**
          * resets all data to the original state
          */
@@ -174,6 +202,7 @@ angular.module(asterics.appServices)
             _accessories = angular.copy(data._accessories);
             _hardwareAlternatives = angular.copy(data._hardwareAlternatives);
             _originalState = true;
+            _computerConfiguredDevives = data._computerConfiguredDevices;
         };
 
         /**
@@ -309,6 +338,7 @@ angular.module(asterics.appServices)
             data._accessories[asterics.envControl.HW_IRTRANS_USB] = [asterics.envControl.HW_USB_CABLE_AB];
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]);
             data._hardwareAlternatives.push([[asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]);
+            data._computerConfiguredDevices = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE];
             thiz.resetData();
         }
     }]);
