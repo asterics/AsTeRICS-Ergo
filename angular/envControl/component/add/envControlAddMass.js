@@ -16,7 +16,7 @@ angular.module(asterics.appComponents)
             thiz.inLearn = false;
             thiz.learningAborted = false;
             thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
-            thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
+            thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
             thiz.isNumberLearn = _addDevice == 'numbers';
             thiz.isConnected = null;
@@ -154,7 +154,10 @@ angular.module(asterics.appComponents)
                         thiz.isConnected = true;
                         thiz.irDevice = response;
                     } else {
-                        thiz.isConnected = false;
+                        $state.go(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
+                            headerI18n: thiz.headerI18n,
+                            device: _addDevice
+                        });
                     }
                 });
             }
