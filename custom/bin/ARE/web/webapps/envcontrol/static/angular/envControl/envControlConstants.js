@@ -63,6 +63,7 @@ asterics.envControl.STATE_ADD_FS20 = 'home.envControl.add.fs20';
 asterics.envControl.STATE_ADD_IR = 'home.envControl.add.ir';
 asterics.envControl.STATE_ADD_IR_DEVICE = 'home.envControl.add.irdevice';
 asterics.envControl.STATE_ADD_LAMP = 'home.envControl.add.lamp';
+asterics.envControl.STATE_NO_HARDWARE_FOUND = 'home.envControl.add.nohardware';
 asterics.envControl.SUBSTATE_ADD_NUMBERS = 'numbers';
 asterics.envControl.STATE_ADD_TV = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_TV;
 asterics.envControl.STATE_ADD_DVD = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_DVD;
