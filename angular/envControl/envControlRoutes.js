@@ -92,6 +92,15 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
                     return "lightbulb-o";
                 }
             }
+        })
+        .state(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
+            url: '/add/nohardware',
+            template: '<no-hardware-found/>',
+            params: {
+                headerI18n: null,
+                device: null,
+                selectedHardware: null
+            }
         });
 
     configRouteAddIrMass(asterics.envControl.DEVICE_AMB_LAMP, 'i18n_ec_amblight', 'sun-o');
