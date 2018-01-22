@@ -20,7 +20,7 @@ angular.module(asterics.appComponents)
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
             thiz.isNumberLearn = _addDevice == 'numbers';
             thiz.isConnected = null;
-            thiz.neededHardware = envControlHelpDataService.getNeededHardware(_addDevice) || [asterics.envControl.HW_IRTRANS_USB];
+            thiz.neededHardware = null;
             thiz.irDevice = null;
 
             //learns the next item to learn, after success automatically learns next item.
@@ -153,6 +153,7 @@ angular.module(asterics.appComponents)
                     if (response) {
                         thiz.isConnected = true;
                         thiz.irDevice = response;
+                        thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(_addDevice, thiz.irDevice.getName()), thiz.irDevice.getName());
                     } else {
                         $state.go(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
                             headerI18n: thiz.headerI18n,
