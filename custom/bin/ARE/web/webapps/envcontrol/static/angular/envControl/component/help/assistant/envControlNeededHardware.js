@@ -2,6 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControlNeededHardware', {
         bindings: {
             registerListener: '&',
+            updateFunction: '&',
             deviceSelectionMap: '<'
         },
         controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService) {
@@ -43,7 +44,9 @@ angular.module(asterics.appComponents)
             };
 
             thiz.$onInit = function () {
-                thiz.registerListener({fn: refreshNeededHardware});
+                if(_.isFunction(thiz.registerListener)) {
+                    thiz.registerListener({fn: refreshNeededHardware});
+                }
                 refreshNeededHardware();
             };
 
@@ -57,6 +60,9 @@ angular.module(asterics.appComponents)
                 thiz.showAlternatives = shouldShowAlternatives();
                 if (!_.isEmpty(thiz.neededHardware) && stateUtilService.hasStateChangedSinceLastCall()) {
                     envControlUtilService.scrollToEnd();
+                }
+                if(_.isFunction(thiz.updateFunction)) {
+                    thiz.updateFunction();
                 }
             }
 
