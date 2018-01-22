@@ -189,6 +189,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_device_not_in_list: 'The device which I would like to control is not listed.',
     i18n_ec_devices_more_possibilities: 'Further possibilities',
     i18n_ec_you_need_devices: 'The following hardware is recommended to control these devices:',
+    i18n_ec_you_need_devices_singular: 'The following hardware is recommended to control this device:',
     i18n_ec_possible_alternatives: 'The following alternatives for hardware are possible, click on one of the buttons (⇄) to apply it:',
     i18n_ec_button_replace_descr: 'Apply the suggested hardware alternative',
     i18n_ec_tooltip_device_assistant: '{{amount}}x {{device}} needs hardware:',

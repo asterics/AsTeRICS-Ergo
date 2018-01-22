@@ -81,6 +81,7 @@ angular.module(asterics.appComponents)
                 }
                 thiz.neededHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap);
                 getTooltipLines();
+                thiz.selectedCount = countSelected();
                 thiz.neededHardware = Object.keys(thiz.neededHardwareAmounts);
                 thiz.hardwareAlternatives = envControlHelpDataService.getHardwareAlternatives(thiz.neededHardware);
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(thiz.deviceSelectionMap);
@@ -92,6 +93,17 @@ angular.module(asterics.appComponents)
             function shouldShowAlternatives() {
                 return (thiz.hardwareAlternatives && thiz.hardwareAlternatives.length > 0) ||
                     (thiz.alternativeHardare && thiz.alternativeHardare.length > 0);
+            }
+
+            function countSelected() {
+                var keys = Object.keys(thiz.deviceSelectionMap);
+                var count = 0;
+                keys.forEach(function (key) {
+                    if(thiz.deviceSelectionMap[key].chosen) {
+                        count += thiz.deviceSelectionMap[key].amount;
+                    }
+                });
+                return count;
             }
 
             function getTooltipLines() {
