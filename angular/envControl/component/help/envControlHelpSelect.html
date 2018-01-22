@@ -32,7 +32,8 @@
         <li>{{'i18n_ec_device_not_in_list' | translate}} <a ui-sref="home.envControl.help/faq({open: 1})">{{'i18n_ec_devices_more_possibilities' | translate}}</a></li>
     </ul>
     <div class="asterics-fade padding-top-little" ng-if="$ctrl.neededHardware.length > 0">
-        <p><b translate="i18n_ec_you_need_devices"/></p>
+        <p ng-if="$ctrl.selectedCount > 1"><b translate="i18n_ec_you_need_devices"/></p>
+        <p ng-if="$ctrl.selectedCount <= 1"><b translate="i18n_ec_you_need_devices_singular"/></p>
         <div class="row">
             <div ng-repeat="hardware in $ctrl.neededHardware">
                 <div class="col-xs-6 col-sm-3 col-lg-2">
