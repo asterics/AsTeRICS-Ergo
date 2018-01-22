@@ -44,7 +44,10 @@ angular.module(asterics.appComponents)
                         thiz.isConnected = true;
                         thiz.plugDevice = response;
                     } else {
-                        thiz.isConnected = false;
+                        $state.go(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
+                            headerI18n: 'i18n_ec_fs_header',
+                            device: asterics.envControl.DEVICE_TABLELAMP
+                        });
                     }
                 });
             }
