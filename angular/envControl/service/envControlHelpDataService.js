@@ -8,7 +8,7 @@ angular.module(asterics.appServices)
         var _accessories = {};
         var _hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
         var _originalState = true;
-        var _computerConfiguredDevives = [];
+        var _computerConfiguredHardware = [];
 
         thiz.setDeviceSelectionMap = function (map) {
             data._deviceSelectionMap = map;
@@ -189,8 +189,14 @@ angular.module(asterics.appServices)
             return _originalState;
         };
 
-        thiz.getComputerConfiguredDevices = function(devices) {
-            return _.intersection(_computerConfiguredDevives, devices);
+        /**
+         * returns hardware that has to be configured on the computer (hardware installation) for a given device
+         * @param device
+         * @return {*}
+         */
+        thiz.getComputerConfiguredHardware = function(device) {
+            var neededHardware = thiz.getNeededHardware(device);
+            return _.intersection(_computerConfiguredHardware, neededHardware);
         };
 
         /**
@@ -202,7 +208,7 @@ angular.module(asterics.appServices)
             _accessories = angular.copy(data._accessories);
             _hardwareAlternatives = angular.copy(data._hardwareAlternatives);
             _originalState = true;
-            _computerConfiguredDevives = data._computerConfiguredDevices;
+            _computerConfiguredHardware = data._computerConfiguredDevices;
         };
 
         /**
