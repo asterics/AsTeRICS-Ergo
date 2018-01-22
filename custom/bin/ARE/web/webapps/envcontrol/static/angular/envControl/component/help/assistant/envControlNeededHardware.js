@@ -43,19 +43,11 @@ angular.module(asterics.appComponents)
             };
 
             thiz.$onInit = function () {
-                thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
                 thiz.registerListener({fn: refreshNeededHardware});
                 refreshNeededHardware();
             };
 
-            function refreshNeededHardware(deviceChanged, keepNumbers) {
-                if (!keepNumbers && thiz.deviceSelectionMap[deviceChanged]) {
-                    if (thiz.deviceSelectionMap[deviceChanged].chosen) {
-                        thiz.deviceSelectionMap[deviceChanged].amount = 1;
-                    } else {
-                        thiz.deviceSelectionMap[deviceChanged].amount = undefined;
-                    }
-                }
+            function refreshNeededHardware() {
                 thiz.neededHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap);
                 thiz.selectedCount = countSelected();
                 thiz.neededHardware = Object.keys(thiz.neededHardwareAmounts);
@@ -77,7 +69,7 @@ angular.module(asterics.appComponents)
                 var keys = Object.keys(thiz.deviceSelectionMap);
                 var count = 0;
                 keys.forEach(function (key) {
-                    if(thiz.deviceSelectionMap[key].chosen) {
+                    if (thiz.deviceSelectionMap[key].chosen) {
                         count += thiz.deviceSelectionMap[key].amount;
                     }
                 });
