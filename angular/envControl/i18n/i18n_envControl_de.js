@@ -242,6 +242,10 @@ asterics.i18n_envControl_de = {
     i18n_ec_help_irbulb_p2: 'Eine IR-Glühbirne wird ganz normal <b>wie jede andere Glühbirne</b> in eine <b>bestehende Lampe geschraubt</b>.',
     i18n_ec_help_irbulb_p3: 'Es gibt viele verschiedene Anbieter und Modelle von IR-Glühbirnen, klicken Sie auf einen der folgenden Links um zu ausgewählten Angeboten zu gelangen:',
 
+    //no hardware
+    i18n_ec_to_installation_generic: 'Zur Installation von',
+    i18n_ec_no_hardware_detected: 'Es wurde keine Hardware erkannt, mit der "{{device}}" gesteuert werden kann.',
+
     //install irtrans
     i18n_ec_install_irtrans_header: 'Installation von IrTrans-USB',
     i18n_ec_install_irtrans_header2: 'Wenn Sie bereits einen IrTrans-USB besitzen, können Sie diesen wie folgt installieren:',
