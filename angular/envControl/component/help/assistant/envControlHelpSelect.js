@@ -13,12 +13,20 @@ angular.module(asterics.appComponents)
             thiz.listeners = [];
 
             thiz.selectedDevicesChanged = function (deviceChanged, keepnumbers) {
+                if (!keepnumbers && thiz.deviceSelectionMap[deviceChanged]) {
+                    if (thiz.deviceSelectionMap[deviceChanged].chosen) {
+                        thiz.deviceSelectionMap[deviceChanged].amount = 1;
+                    } else {
+                        thiz.deviceSelectionMap[deviceChanged].amount = undefined;
+                    }
+                }
+                envControlHelpDataService.setDeviceSelectionMap(thiz.deviceSelectionMap);
+                getTooltipLines();
                 thiz.listeners.forEach(function (listener) {
-                    if(_.isFunction(listener)) {
-                        listener(deviceChanged, keepnumbers);
+                    if (_.isFunction(listener)) {
+                        listener();
                     }
                 });
-                getTooltipLines();
             };
 
             thiz.onAmountBlur = function (deviceChanged) {
@@ -32,11 +40,12 @@ angular.module(asterics.appComponents)
                 return _.includes([asterics.envControl.DEVICE_IR_GENERIC, asterics.envControl.DEVICE_PLUG_GENERIC], device);
             };
 
-            thiz.registerListener = function(fn) {
+            thiz.registerListener = function (fn) {
                 thiz.listeners.push(fn);
             };
 
             init();
+
             function init() {
                 thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
             }
