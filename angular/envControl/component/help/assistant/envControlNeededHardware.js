@@ -1,33 +1,15 @@
 angular.module(asterics.appComponents)
-    .component('envControlHelpSelect', {
+    .component('envControlNeededHardware', {
         bindings: {
-            hideBack: '<',
+            registerListener: '&',
+            deviceSelectionMap: '<'
         },
-        controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', '$stateParams', '$translate', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService, $stateParams, $translate) {
+        controller: ['utilService', '$state', 'envControlHelpDataService', 'envControlUtilService', 'stateUtilService', function (utilService, $state, envControlHelpDataService, envControlUtilService, stateUtilService) {
             var thiz = this;
-            thiz.singlePageMode = !!$stateParams.singlePageMode;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
-            thiz.devices = asterics.envControl.DEVICES;
-            thiz.deviceSelectionMap = {};
             thiz.neededHardware = [];
             thiz.neededHardwareAmounts = {};
-            thiz.neededHardwareTooltips = {};
             thiz.alternativeHardare = {};
             thiz.alternativeHardwareForDevices = [];
-
-            thiz.selectedDevicesChanged = function (deviceChanged, keepnumbers) {
-                refreshNeededHardware(deviceChanged, keepnumbers);
-                if (!_.isEmpty(thiz.neededHardware) && stateUtilService.hasStateChangedSinceLastCall()) {
-                    envControlUtilService.scrollToEnd();
-                }
-            };
-
-            thiz.onAmountBlur = function (deviceChanged) {
-                if (thiz.deviceSelectionMap[deviceChanged] && !thiz.deviceSelectionMap[deviceChanged].amount) {
-                    thiz.deviceSelectionMap[deviceChanged].amount = 1;
-                    thiz.selectedDevicesChanged(deviceChanged);
-                }
-            };
 
             thiz.getNeededHardware = function (device) {
                 return envControlHelpDataService.getNeededHardware([device]);
@@ -35,10 +17,6 @@ angular.module(asterics.appComponents)
 
             thiz.goToHelp = function (hardware) {
                 $state.go('home.envControl.help/controls/' + hardware);
-            };
-
-            thiz.isDeviceWithAdditionalInfo = function (device) {
-                return _.includes([asterics.envControl.DEVICE_IR_GENERIC, asterics.envControl.DEVICE_PLUG_GENERIC], device);
             };
 
             thiz.getNeededAccessoires = function (hardwareName) {
@@ -64,12 +42,11 @@ angular.module(asterics.appComponents)
                 return envControlHelpDataService.isOriginalState();
             };
 
-            init();
-
-            function init() {
+            thiz.$onInit = function () {
                 thiz.deviceSelectionMap = envControlHelpDataService.getDeviceSelectionMap();
+                thiz.registerListener({fn: refreshNeededHardware});
                 refreshNeededHardware();
-            }
+            };
 
             function refreshNeededHardware(deviceChanged, keepNumbers) {
                 if (!keepNumbers && thiz.deviceSelectionMap[deviceChanged]) {
@@ -80,14 +57,15 @@ angular.module(asterics.appComponents)
                     }
                 }
                 thiz.neededHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap);
-                getTooltipLines();
                 thiz.selectedCount = countSelected();
                 thiz.neededHardware = Object.keys(thiz.neededHardwareAmounts);
                 thiz.hardwareAlternatives = envControlHelpDataService.getHardwareAlternatives(thiz.neededHardware);
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(thiz.deviceSelectionMap);
                 thiz.alternativeHardwareForDevices = Object.keys(thiz.alternativeHardare);
-                envControlHelpDataService.setDeviceSelectionMap(thiz.deviceSelectionMap);
                 thiz.showAlternatives = shouldShowAlternatives();
+                if (!_.isEmpty(thiz.neededHardware) && stateUtilService.hasStateChangedSinceLastCall()) {
+                    envControlUtilService.scrollToEnd();
+                }
             }
 
             function shouldShowAlternatives() {
@@ -105,35 +83,7 @@ angular.module(asterics.appComponents)
                 });
                 return count;
             }
-
-            function getTooltipLines() {
-                var devices = Object.keys(thiz.deviceSelectionMap);
-                for (var i = 0; i < devices.length; i++) {
-                    var device = devices[i];
-                    var singleHardwareAmounts = envControlHelpDataService.getNeededHardwareAmounts(thiz.deviceSelectionMap, device);
-                    if (_.isEmpty(singleHardwareAmounts)) {
-                        thiz.neededHardwareTooltips[device] = '';
-                    } else {
-                        var deviceTranslated = $translate.instant('i18n_ec_' + device);
-                        var str = $translate.instant('i18n_ec_tooltip_device_assistant', {
-                            "amount": thiz.deviceSelectionMap[device].amount,
-                            "device": deviceTranslated
-                        });
-                        var keys = Object.keys(singleHardwareAmounts);
-                        for (var j = 0; j < keys.length; j++) {
-                            var hwNameTranslated = $translate.instant('i18n_ec_' + keys[j]);
-                            var deviceAmount = singleHardwareAmounts[keys[j]];
-                            str += ' ' + deviceAmount + 'x ' + hwNameTranslated;
-                            if (j != keys.length - 1) {
-                                str += ",";
-                            }
-                        }
-                        thiz.neededHardwareTooltips[device] = str;
-                    }
-
-                }
-            };
         }],
-        templateUrl: "angular/envControl/component/help/envControlHelpSelect.html"
+        templateUrl: "angular/envControl/component/help/assistant/envControlNeededHardware.html"
     })
 ;
