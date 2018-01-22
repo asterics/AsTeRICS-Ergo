@@ -242,6 +242,10 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_irbulb_p2: 'It is possible to <b>replace the conventional bulbs</b> with the <b>IR bulbs</b>.',
     i18n_ec_help_irbulb_p3: 'There are various models and providers of IR light bulbs. Select a link to access one of the providers:',
 
+    //no hardware
+    i18n_ec_to_installation_generic: 'Go to installation of',
+    i18n_ec_no_hardware_detected: 'No hardware detected that can be used to control "{{device}}".',
+
     //install irtrans
     i18n_ec_install_irtrans_header: 'Installation of the IrTrans USB',
     i18n_ec_install_irtrans_header2: 'If you have already purchased an IrTrans USB, you can follow the instructions to install it:',
