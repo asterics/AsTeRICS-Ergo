@@ -5,32 +5,8 @@
 <h2 translate="{{$ctrl.headerI18n}}"></h2>
 <div class="clearfix"/>
 <div>
-    <div>
-        <p>No hardware detected that can be used to control: {{'i18n_ec_' + $ctrl.device | translate}}</p>
-        <p>Choose one from the following hardware combinations:</p>
-        <select ng-model="$ctrl.selectedHardware" ng-options="$ctrl.getLabel(possibility) for possibility in $ctrl.hardwarePossibilities"/>
-        <div class="row">
-            <div ng-repeat="hardware in $ctrl.selectedHardware track by $index">
-                <div class="col-xs-6 col-sm-3 col-lg-2">
-                    <a href="" ng-click="$ctrl.goToHelp(hardware)">
-                        <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
-                             alt="{{ 'i18n_ec_' + hardware | translate}}"/>
-                        <p>{{ 'i18n_ec_' + hardware | translate}}</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransHelp()">
-                   <span translate="i18n_ec_irmass_bought_no"/>
-                </a>
-            </li>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransInstall()">
-                    <span translate="i18n_ec_irmass_bought_yes"/>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <asterics-message message-level="warn" message-code="i18n_ec_no_hardware_detected" message-args="$ctrl.i18nArgDevice"/>
+    <env-control-needed-hardware device-selection-map="$ctrl.deviceSelectionMap" update-function="$ctrl.refresh()"/>
+    <br/>
+    <p ng-if="$ctrl.computerConfiguredHardware">{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_installation_generic' | translate}} {{'i18n_ec_' + $ctrl.computerConfiguredHardware | translate}}</a></p>
 </div>
