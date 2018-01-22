@@ -6,9 +6,14 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
             thiz.headerI18n = $stateParams.headerI18n;
             thiz.device = $stateParams.device;
-            thiz.hardwarePossibilities = envControlHelpDataService.getHardwarePossibilities(thiz.device);
-            thiz.selectedHardware = getSelectedHardware();
-            var test = null;
+            thiz.i18nArgDevice = {
+                device: $translate.instant('i18n_ec_' + thiz.device)
+            };
+            thiz.computerConfiguredHardware = getComputerConfiguredHardware();
+            thiz.deviceSelectionMap = {};
+            thiz.deviceSelectionMap[thiz.device] = {};
+            thiz.deviceSelectionMap[thiz.device].chosen = true;
+            thiz.deviceSelectionMap[thiz.device].amount = 1;
 
             thiz.getLabel = function (hardwarePossibility) {
                 var str = '';
@@ -22,20 +27,22 @@ angular.module(asterics.appComponents)
                 return str;
             };
 
+            thiz.refresh = function () {
+                thiz.computerConfiguredHardware = getComputerConfiguredHardware();
+            };
+
             thiz.goToHelp = function (hardware) {
                 $state.params.selectedHardware = thiz.selectedHardware;
                 $state.go('home.envControl.help/controls/' + hardware);
             };
 
-            function getSelectedHardware() {
-                if ($stateParams.selectedHardware) {
-                    for (var i = 0; i < thiz.hardwarePossibilities.length; i++) {
-                        if (_.isEqual($stateParams.selectedHardware, thiz.hardwarePossibilities[i])) {
-                            return thiz.hardwarePossibilities[i];
-                        }
-                    }
-                }
-                return thiz.hardwarePossibilities[0];
+            thiz.goToInstall = function() {
+                $state.go('home.envControl.help/install/' + thiz.computerConfiguredHardware);
+            };
+
+            function getComputerConfiguredHardware() {
+                var computerHardware = envControlHelpDataService.getComputerConfiguredHardware(thiz.device);
+                return computerHardware ? computerHardware[0] : null;
             }
         }],
         templateUrl: "angular/envControl/component/add/noHardwareFound.html"
