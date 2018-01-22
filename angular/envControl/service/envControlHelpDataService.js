@@ -47,9 +47,22 @@ angular.module(asterics.appServices)
             return amounts;
         };
 
-        thiz.getNeededHardware = function (device) {
+        /**
+         * returning the (recommended) needed hardware for a given device
+         * @param device the device to get the needed hardware
+         * @param existingHardware if specified a possible hardware combination is returned, that
+         *        contains the given existing Hardware, otherwise the default/recommended combination
+         *        is returned.
+         * @return {*}
+         */
+        thiz.getNeededHardware = function (device, existingHardware) {
             if (device && _deviceMappings[device]) {
-                return _deviceMappings[device].hardware[0];
+                if(!existingHardware) {
+                    return _deviceMappings[device].hardware[0];
+                } else {
+                    var allPossibilities = thiz.getHardwarePossibilities(device);
+                    return allPossibilities.filter(possibility => _.includes(possibility, existingHardware))[0];
+                }
             }
             return null;
         };
