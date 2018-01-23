@@ -1,27 +1,27 @@
 angular.module(asterics.appComponents)
     .component('envControlAddMass', {
 
-        bindings: {
-            learnItems: '<',
-            selectedLabel: '<',
-            selectedIcon: '<'
-        },
-        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', function (envControlDataService, $state, ecDeviceService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService) {
+        bindings: {},
+        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', 'envControlUtilService', function (envControlDataService, $state, ecDeviceService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService, envControlUtilService) {
             var thiz = this;
             var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
-            var _addDevice = stateUtilService.getLastPart($state.current.name);
+            var _addDevice = $stateParams.device;
 
-            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
+            thiz.irDevice = $stateParams.hardware;
+            thiz.headerI18n = $stateParams.headerI18n;
+
+            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
             thiz.inLearn = false;
             thiz.learningAborted = false;
-            thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
             thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
             thiz.isNumberLearn = _addDevice == 'numbers';
-            thiz.isConnected = null;
-            thiz.neededHardware = null;
-            thiz.irDevice = null;
+            thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(_addDevice, thiz.irDevice.getName()), thiz.irDevice.getName());
+
+            thiz.learnItems = envControlUtilService.getIrElements(_addDevice);
+            thiz.selectedIcon = envControlUtilService.getIcon(_addDevice);
+            thiz.selectedLabel = $translate.instant('i18n_ec_' + _addDevice);
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
@@ -145,23 +145,6 @@ angular.module(asterics.appComponents)
             thiz.getAdditionalInstructions = function () {
                 return envControlTextService.getAdditionalInstructions($state.current.name);
             };
-
-            init();
-
-            function init() {
-                ecDeviceService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function (response) {
-                    if (response) {
-                        thiz.isConnected = true;
-                        thiz.irDevice = response;
-                        thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(_addDevice, thiz.irDevice.getName()), thiz.irDevice.getName());
-                    } else {
-                        $state.go(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
-                            headerI18n: thiz.headerI18n,
-                            device: _addDevice
-                        });
-                    }
-                });
-            }
 
             function abortLearning() {
                 thiz.learningAborted = true;
