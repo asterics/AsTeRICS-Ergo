@@ -109,6 +109,23 @@ angular.module(asterics.appServices)
             }
         };
 
+        thiz.getIcon = function(device) {
+            switch (device) {
+                case asterics.envControl.DEVICE_AMB_LAMP:
+                    return 'sun-o';
+                case asterics.envControl.DEVICE_TV:
+                    return 'tv';
+                case asterics.envControl.DEVICE_HIFI:
+                    return 'music';
+                case asterics.envControl.DEVICE_DVD:
+                    return 'circle';
+                case asterics.envControl.DEVICE_TABLELAMP:
+                    return 'lightbulb-o';
+                default:
+                    return;
+            }
+        };
+
         thiz.scrollToEnd = function() {
             $timeout(function () {
                 $anchorScroll('end');
