@@ -90,6 +90,16 @@ angular.module(asterics.appServices)
             return possibilites.concat(alternatives);
         };
 
+        /**
+         * returns all computer configured hardware that can be used to control the given device
+         * @param device
+         */
+        thiz.getComputerConfiguredHardwarePossibilities = function(device) {
+            var allPossibilities = thiz.getHardwarePossibilities(device);
+            var flattenedPossibilities = [].concat.apply([], allPossibilities);
+            return _.uniq(flattenedPossibilities).filter(element => _.includes(_computerConfiguredHardware, element));
+        };
+
         thiz.getNeededAccessories = function (hardwareName) {
             return _accessories[hardwareName];
         };
@@ -314,7 +324,7 @@ angular.module(asterics.appServices)
             data._hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
             data._deviceMappings[asterics.envControl.DEVICE_TABLELAMP] = {
                 hardware: [
-                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB],
+                    /*[asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB],*/
                     [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]
                 ]
             };
