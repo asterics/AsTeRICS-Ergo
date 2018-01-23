@@ -1,14 +1,13 @@
 angular.module(asterics.appComponents)
     .component('connectionCheck', {
-        bindings: {
-            headerI18n: '<',
-            deviceId: '<'
-        },
+        bindings: {},
         controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'ecDeviceService', '$timeout', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, ecDeviceService, $timeout) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
             thiz.connectedHardware = null;
             thiz.notConnected = {};
+            thiz.deviceId = $stateParams.deviceId;
+            thiz.headerI18n = 'i18n_ec_irmass_header_' + thiz.deviceId;
             var _somethingNotified = false;
 
             thiz.$onInit = function () {
@@ -27,7 +26,7 @@ angular.module(asterics.appComponents)
                                 device: thiz.deviceId,
                                 hardware: thiz.connectedHardware
                             };
-                            $state.go(asterics.envControl.STATE_ADD_IR_DEVICE_PREDEF, params);
+                            $state.go(asterics.envControl.STATE_ADD + '.' + thiz.deviceId, params);
                         }, timeout);
                     } else {
                         $timeout(function () {
