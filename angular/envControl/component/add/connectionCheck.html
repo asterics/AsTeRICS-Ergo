@@ -1,0 +1,15 @@
+<div>
+    <cell-board choose-items="$ctrl.cellBoardConfig"/>
+</div>
+<div class="clearfix"/>
+<h2 translate="{{$ctrl.headerI18n}}"></h2>
+<div class="clearfix"/>
+<div>
+    <p><span translate="i18n_ec_searching_hardware_for" translate-values="{{$ctrl.i18nArgDevice}}"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
+    <div ng-repeat="hardware in $ctrl.possibleHardware">
+        <span translate="{{'i18n_ec_' + hardware}}"/>
+        <span ng-if="$ctrl.notConnected[hardware] == undefined"><i class="fa fa-spinner fa-pulse fa-fw"/></span>
+        <span ng-if="$ctrl.notConnected[hardware] == true"><i class="fa fa-times"/></span>
+        <span ng-if="$ctrl.notConnected[hardware] == false"><i class="fa fa-check"/></span>
+    </div>
+</div>
