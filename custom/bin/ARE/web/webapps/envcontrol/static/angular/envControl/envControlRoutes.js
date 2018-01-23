@@ -91,40 +91,45 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
                 selectedIcon: function() {
                     return "lightbulb-o";
                 }
+            },
+            params: {
+                headerI18n: null,
+                device: null,
+                hardware: null
             }
         })
         .state(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
-            url: '/add/nohardware',
+            url: '/nohardware',
             template: '<no-hardware-found/>',
             params: {
                 headerI18n: null,
                 device: null,
                 selectedHardware: null
             }
+        })
+        .state(asterics.envControl.STATE_CONNECTION_CHECK, {
+            url: '/connectioncheck',
+            template: '<connection-check/>',
+            params: {
+                deviceId: null
+            }
         });
 
-    configRouteAddIrMass(asterics.envControl.DEVICE_AMB_LAMP, 'i18n_ec_amblight', 'sun-o');
-    configRouteAddIrMass(asterics.envControl.DEVICE_TV, 'i18n_ec_tv', 'tv');
-    configRouteAddIrMass(asterics.envControl.DEVICE_DVD, 'i18n_ec_dvd', 'circle');
-    configRouteAddIrMass(asterics.envControl.DEVICE_HIFI, 'i18n_ec_hifi', 'music');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'i18n_ec_numbers', 'th');
+    configRouteAddIrMass(asterics.envControl.DEVICE_AMB_LAMP);
+    configRouteAddIrMass(asterics.envControl.DEVICE_TV);
+    configRouteAddIrMass(asterics.envControl.DEVICE_DVD);
+    configRouteAddIrMass(asterics.envControl.DEVICE_HIFI);
 
-    function configRouteAddIrMass(substateName, selectedLabel, selectedIcon) {
+    function configRouteAddIrMass(deviceId) {
         var configObject = {
-            url: '/' + substateName + "/:cellBoardId",
-            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel" selected-icon="$resolve.selectedIcon"/>',
-            resolve: {
-                learnItems: function (envControlUtilService) {
-                    return envControlUtilService.getIrElements(substateName);
-                },
-                selectedLabel: function ($translate) {
-                    return $translate.instant(selectedLabel);
-                },
-                selectedIcon: function () {
-                    return selectedIcon;
-                }
+            url: '/' + deviceId,
+            template: '<env-control-add-mass/>',
+            params: {
+                headerI18n: null,
+                device: null,
+                hardware: null
             }
         };
-        $stateProvider.state(asterics.envControl.STATE_ADD + '.' + substateName, configObject);
+        $stateProvider.state(asterics.envControl.STATE_ADD + '.' + deviceId, configObject);
     }
 }]);
