@@ -1,0 +1,15 @@
+<asterics-message  message-level="success" transclude="true">
+    <p>
+        <span translate="i18n_ec_installed_hardware"/> <a href="" ng-click="$ctrl.goToHelp($ctrl.connectedHardware)">
+        {{'i18n_ec_' + $ctrl.connectedHardware | translate}}
+    </a> <span translate="i18n_ec_was_detected"/>
+    </p>
+    <p ng-if="$ctrl.neededAdditionalHardware.length > 0" translate="i18n_ec_irmass_needhardware"/>
+    <ul>
+        <li ng-repeat="hardware in $ctrl.neededAdditionalHardware">
+            <a href="" ng-click="$ctrl.goToHelp(hardware)">
+                {{'i18n_ec_' + hardware | translate}}
+            </a>
+        </li>
+    </ul>
+</asterics-message>
