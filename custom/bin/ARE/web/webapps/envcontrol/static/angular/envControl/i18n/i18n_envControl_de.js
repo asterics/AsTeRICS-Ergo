@@ -111,6 +111,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_nolearned: '<b>Es wurden keine Befehle gelernt</b> (alle übersprungen). Klicken Sie auf "Neu starten" oder "Korrektur" um zumindest einen Befehl zu lernen.',
     i18n_ec_irmass_finish: 'Fertigstellen',
     i18n_ec_irmass_header_amblight: 'Neue Raumlicht-Steuerung einrichten',
+    i18n_ec_irmass_header_lamp: 'Neue Steuerung einer Tisch-/Stehlampe einrichten',
     i18n_ec_irmass_header_tv: 'Neue Fernsehsteuerung einrichten',
     i18n_ec_irmass_header_dvd: 'Neue Steuerung eines DVD-Players einrichten',
     i18n_ec_irmass_header_hifi: 'Neue Steuerung eines Radio/CD-Players einrichten',
@@ -120,7 +121,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_irmass_name_dvd: 'Bitte Namen für den DVD-Player auswählen',
     i18n_ec_irmass_name_hifi: 'Bitte Namen für den Radio/CD-Player auswählen',
     i18n_ec_irmass_name_numbers: 'Bitte Namen für die Zifferntasten auswählen',
-    i18n_ec_irmass_needhardware: 'Zur Einrichtung benötigen Sie folgende Hardware:',
+    i18n_ec_irmass_needhardware: 'Zusätzlich wird noch folgende Hardware benötigt:',
     i18n_ec_irmass_boughtirtrans: 'Haben Sie bereits einen <b>IrTrans-USB</b> gekauft?',
     i18n_ec_irmass_bought_yes: '<b>Ja</b>, zur Installation von IrTrans',
     i18n_ec_irmass_bought_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
@@ -245,6 +246,13 @@ asterics.i18n_envControl_de = {
     //no hardware
     i18n_ec_to_installation_generic: 'Zur Installation von',
     i18n_ec_no_hardware_detected: 'Es wurde keine Hardware erkannt, mit der "{{device}}" gesteuert werden kann.',
+
+    //connection check
+    i18n_ec_searching_hardware_for: 'Es wird nach verbundener Hardware zur Steuerung von "{{device}}" gesucht',
+
+    //hardware message
+    i18n_ec_installed_hardware: 'Installierte Hardware',
+    i18n_ec_was_detected: 'wurde gefunden.',
 
     //install irtrans
     i18n_ec_install_irtrans_header: 'Installation von IrTrans-USB',
