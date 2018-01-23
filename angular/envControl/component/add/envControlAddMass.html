@@ -5,21 +5,7 @@
 <h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.headerI18nParams}}"></h2>
 <div class="clearfix"/>
 <div>
-    <asterics-message  message-level="success" transclude="true">
-        <p>
-            Installed <a href="" ng-click="$ctrl.goToHelp($ctrl.irDevice.getName())">
-            {{'i18n_ec_' + $ctrl.irDevice.getName() | translate}}
-        </a> was detected!
-        </p>
-        <p ng-if="$ctrl.neededHardware.length > 0" translate="i18n_ec_irmass_needhardware"/>
-        <ul>
-            <li ng-repeat="hardware in $ctrl.neededHardware">
-                <a href="" ng-click="$ctrl.goToHelp(hardware)">
-                    {{'i18n_ec_' + hardware | translate}}
-                </a>
-            </li>
-        </ul>
-    </asterics-message>
+    <hardware-message device="$ctrl.addDevice" connected-hardware="$ctrl.irDevice.getName()"/>
     <div class="col-lg-8">
         <ul>
             <li ng-model-options="{debounce: 500}">
