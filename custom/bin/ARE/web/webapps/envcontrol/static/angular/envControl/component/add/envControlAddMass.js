@@ -4,9 +4,9 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', 'envControlUtilService', function (envControlDataService, $state, ecDeviceService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService, envControlUtilService) {
             var thiz = this;
-            var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
+            var _cbToAdd = asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
-            var _addDevice = $stateParams.device;
+            thiz.addDevice = $stateParams.device;
 
             thiz.irDevice = $stateParams.hardware;
             thiz.headerI18n = $stateParams.headerI18n;
@@ -15,13 +15,13 @@ angular.module(asterics.appComponents)
             thiz.inLearn = false;
             thiz.learningAborted = false;
             thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
-            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
-            thiz.isNumberLearn = _addDevice == 'numbers';
-            thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(_addDevice, thiz.irDevice.getName()), thiz.irDevice.getName());
+            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addDevice;
+            thiz.isNumberLearn = thiz.addDevice == 'numbers';
+            thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(thiz.addDevice, thiz.irDevice.getName()), thiz.irDevice.getName());
 
-            thiz.learnItems = envControlUtilService.getIrElements(_addDevice);
-            thiz.selectedIcon = envControlUtilService.getIcon(_addDevice);
-            thiz.selectedLabel = $translate.instant('i18n_ec_' + _addDevice);
+            thiz.learnItems = envControlUtilService.getIrElements(thiz.addDevice);
+            thiz.selectedIcon = envControlUtilService.getIcon(thiz.addDevice);
+            thiz.selectedLabel = $translate.instant('i18n_ec_' + thiz.addDevice);
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
@@ -93,7 +93,7 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemsAndReturn = function () {
                 abortLearning();
-                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, _addDevice);
+                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, thiz.addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
                         envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, thiz.irDevice.getName());
