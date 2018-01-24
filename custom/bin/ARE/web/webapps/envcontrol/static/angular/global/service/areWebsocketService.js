@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('areWebsocketService', ['$http', '$q', 'utilService', '$timeout', function ($http, $q, utilService, $timeout) {
+    .service('areWebsocketService', ['httpWrapper', '$q', 'utilService', '$timeout', function ($http, $q, utilService, $timeout) {
         var thiz = this;
         var _websocket = null;
         var _actionQueue = [];
