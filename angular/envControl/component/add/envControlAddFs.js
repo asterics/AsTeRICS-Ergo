@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, ecDeviceService, utilService, $stateParams, stateUtilService, $scope) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $scope) {
             var thiz = this;
             thiz.device = $stateParams.device;
             thiz.hardware = $stateParams.hardware;

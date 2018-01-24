@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {
             isDeviceLearn: '@'
         },
-        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, ecDeviceService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
@@ -41,7 +41,7 @@ angular.module(asterics.appComponents)
                     thiz.headerTitle = 'i18n_ec_ir_headerto';
                     thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
                 }
-                ecDeviceService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function (response) {
+                hardwareService.getOneConnectedDevice(asterics.envControl.HW_GROUP_IR).then(function (response) {
                     if (response) {
                         thiz.isConnected = true;
                         thiz.irDevice = response;

@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('deviceFlipMouse', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
+    .service('hardwareFlipMouse', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
         var LIPMOUSE_TIMEOUT_ERROR = 'IR_TIMEOUT';
         var LIPMOUSE_IN_RESCAN = 'IN_PORT_RESCAN';

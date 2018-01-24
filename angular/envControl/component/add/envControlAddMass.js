@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControlAddMass', {
 
         bindings: {},
-        controller: ['envControlDataService', '$state', 'ecDeviceService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', 'envControlUtilService', function (envControlDataService, $state, ecDeviceService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService, envControlUtilService) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService, envControlUtilService) {
             var thiz = this;
             var _cbToAdd = asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;

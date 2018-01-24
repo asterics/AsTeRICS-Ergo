@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('deviceIrTrans', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q) {
+    .service('hardwareIrTrans', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q) {
         var thiz = this;
         var IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
         var IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';

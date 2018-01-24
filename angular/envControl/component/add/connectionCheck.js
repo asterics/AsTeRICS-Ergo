@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('connectionCheck', {
         bindings: {},
-        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'ecDeviceService', '$timeout', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, ecDeviceService, $timeout) {
+        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'hardwareService', '$timeout', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, hardwareService, $timeout) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
             thiz.connectedHardware = null;
@@ -23,7 +23,7 @@ angular.module(asterics.appComponents)
                     thiz.possibleHardware = _.without(thiz.possibleHardware, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IRTRANS_USB);
                 }
 
-                ecDeviceService.getOneConnectedHardware(thiz.possibleHardware).then(function (response) {
+                hardwareService.getOneConnectedHardware(thiz.possibleHardware).then(function (response) {
                     if(response) {
                         thiz.connectedHardware = response;
                         thiz.notConnected[thiz.connectedHardware.getName()] = false;

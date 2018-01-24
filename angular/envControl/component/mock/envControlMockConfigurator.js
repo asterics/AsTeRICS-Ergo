@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('mockConfigurator', {
 
         bindings: {},
-        controller: ['deviceFs20Sender', 'deviceIrTrans', '$stateParams', function (deviceFs20Sender, deviceIrTrans, $stateParams) {
+        controller: ['hardwareFs20Sender', 'hardwareIrTrans', '$stateParams', function (hardwareFs20Sender, hardwareIrTrans, $stateParams) {
             var thiz = this;
             thiz.show = false;
             thiz.fsPlugged = true;
@@ -11,12 +11,12 @@ angular.module(asterics.appComponents)
             thiz.fsPlugStateChanged = function () {
                 console.log("setting fs20 to plugged: " + thiz.fsPlugged);
                 console.log($stateParams);
-                deviceFs20Sender.setDevicePlugged(thiz.fsPlugged);
+                hardwareFs20Sender.setDevicePlugged(thiz.fsPlugged);
             };
 
             thiz.irPlugStateChanged = function () {
                 console.log("setting irTrans to plugged: " + thiz.irPlugged);
-                deviceIrTrans.setDevicePlugged(thiz.irPlugged);
+                hardwareIrTrans.setDevicePlugged(thiz.irPlugged);
             };
 
             init();
@@ -28,11 +28,11 @@ angular.module(asterics.appComponents)
                     }
                     if ($stateParams.mockFs20Connected) {
                         thiz.fsPlugged = ($stateParams.mockFs20Connected == 'true');
-                        deviceFs20Sender.setDevicePlugged(thiz.fsPlugged);
+                        hardwareFs20Sender.setDevicePlugged(thiz.fsPlugged);
                     }
                     if ($stateParams.mockIrConnected) {
                         thiz.irPlugged = ($stateParams.mockIrConnected == 'true');
-                        deviceIrTrans.setDevicePlugged(thiz.irPlugged);
+                        hardwareIrTrans.setDevicePlugged(thiz.irPlugged);
                     }
                 }
             }
