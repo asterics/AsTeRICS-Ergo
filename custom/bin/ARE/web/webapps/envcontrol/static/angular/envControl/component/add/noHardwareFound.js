@@ -32,12 +32,11 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.params.selectedHardware = thiz.selectedHardware;
                 $state.go('home.envControl.help/controls/' + hardware);
             };
 
             thiz.goToInstall = function() {
-                $state.go('home.envControl.help/install/' + thiz.computerConfiguredHardware);
+                $state.go('home.envControl.help/install/' + thiz.computerConfiguredHardware, {skipConnectionTest: true});
             };
 
             function getComputerConfiguredHardware() {
