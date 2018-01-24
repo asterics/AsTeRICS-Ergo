@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('areSaveService', ['$http', '$q', 'utilService', '$interval', function ($http, $q, utilService, $interval) {
+    .service('areSaveService', ['httpWrapper', '$q', 'utilService', '$interval', function ($http, $q, utilService, $interval) {
         var thiz = this;
         var _timestampSuffix = ".timestamp";
         var _registeredUpdateListeners = [];

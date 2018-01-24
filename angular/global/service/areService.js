@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('areService', ['$http', '$q', 'utilService', function ($http, $q, utilService) {
+    .service('areService', ['httpWrapper', '$q', 'utilService', function ($http, $q, utilService) {
         var thiz = this;
         var _eventSourceMap = {};
 
