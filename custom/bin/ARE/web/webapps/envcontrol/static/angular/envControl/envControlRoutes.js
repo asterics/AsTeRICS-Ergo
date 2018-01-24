@@ -30,11 +30,17 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_HELP_INSTALL_IR, {
             url: '/help/install/irtrans',
-            template: '<ec-help-install-irtrans/>'
+            template: '<ec-help-install-irtrans/>',
+            params: {
+                skipConnectionTest: false
+            }
         })
         .state(asterics.envControl.STATE_HELP_INSTALL_FS20, {
             url: '/help/install/fs20',
-            template: '<ec-help-install-fs20/>'
+            template: '<ec-help-install-fs20/>',
+            params: {
+                skipConnectionTest: false
+            }
         })
         .state(asterics.envControl.STATE_HELP_FS20, {
             url: '/help/controls/HW_FS20_PCSENDER',

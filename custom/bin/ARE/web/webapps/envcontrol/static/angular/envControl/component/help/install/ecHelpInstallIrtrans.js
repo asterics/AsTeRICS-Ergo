@@ -31,11 +31,17 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                deviceIrTrans.isConnected().then(function (isConnected) {
-                    thiz.isConnected = isConnected;
-                    thiz.showAssistant = !thiz.isConnected;
+                if($stateParams.skipConnectionTest) {
                     thiz.show = true;
-                });
+                    thiz.showAssistant = true;
+                    thiz.isConnected = false;
+                } else {
+                    deviceIrTrans.isConnected().then(function (isConnected) {
+                        thiz.isConnected = isConnected;
+                        thiz.showAssistant = !thiz.isConnected;
+                        thiz.show = true;
+                    });
+                }
             }
 
             function scrollToEnd() {

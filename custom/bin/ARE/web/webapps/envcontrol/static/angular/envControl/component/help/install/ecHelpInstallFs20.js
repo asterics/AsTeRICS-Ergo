@@ -20,7 +20,7 @@ angular.module(asterics.appComponents)
             thiz.test = function () {
                 thiz.triedCheck = true;
                 thiz.isConnected = null;
-                deviceFs20Sender.isConnected().then(function (isConnected) { //do test twice because sometimes the first time is wrong?!
+                deviceFs20Sender.isConnected().then(function (isConnected) {
                     thiz.isConnected = isConnected;
                     scrollToEnd();
                 });
@@ -28,10 +28,15 @@ angular.module(asterics.appComponents)
 
             init();
             function init() {
-                deviceFs20Sender.isConnected().then(function (isConnected) {
-                    thiz.showAssistant = !isConnected;
+                if($stateParams.skipConnectionTest) {
                     thiz.show = true;
-                });
+                    thiz.showAssistant = true;
+                } else {
+                    deviceFs20Sender.isConnected().then(function (isConnected) {
+                        thiz.showAssistant = !isConnected;
+                        thiz.show = true;
+                    });
+                }
             }
 
             function scrollToEnd() {
