@@ -5,7 +5,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
 
     $stateProvider
         .state(asterics.envControl.STATE_MAIN, {
-            url: '/envcontrol?showMockConfig?mockFs20Connected?mockIrConnected',
+            url: '/envcontrol?showConfig?fs20?irtrans?flipmouse',
             template: '<env-control-container/>'
         })
         .state(asterics.envControl.STATE_HELP, {
