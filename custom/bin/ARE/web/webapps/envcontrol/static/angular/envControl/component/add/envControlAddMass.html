@@ -13,7 +13,7 @@
                 <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
             </li>
             <li ng-if="$ctrl.selectedLabel">
-                <span translate="i18n_ec_irmass_text_keeporiginal"/><br/>
+                <span translate="i18n_ec_irmass_text_keeporiginal" translate-values="$ctrl.hardwareI18nParams"/><br/>
             </li>
             <li ng-if="$ctrl.selectedLabel">
                 <span translate="i18n_ec_irmass_text_starthint"/><br/>
@@ -59,9 +59,9 @@
         <span translate="i18n_ec_irtrans_error"/>
     </div>
 </div>
-<a href="" ng-click="$ctrl.goToIrTransHelp()">
+<a href="" ng-click="$ctrl.goToHelp()">
     <div class="col-xs-6 col-md-4 col-lg-3">
-        <img src="{{'angular/envControl/img/' +  + '_learn.png'}}" alt="IrTrans-USB"/>
-        <div class=" text-center"><span translate="i18n_ec_remote_directed_irtrans"/></div>
+        <img src="{{'angular/envControl/img/' + $ctrl.irHardware.getName() + '_learn.jpg'}}" alt="{{'i18n_ec_' + $ctrl.irHardware.getName() | translate}}"/>
+        <div class=" text-center"><span translate="{{'i18n_ec_' + $ctrl.irHardware.getName()}}"/></div>
     </div>
 </a>

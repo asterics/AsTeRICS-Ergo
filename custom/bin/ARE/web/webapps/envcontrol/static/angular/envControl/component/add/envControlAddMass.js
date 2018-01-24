@@ -14,7 +14,8 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
             thiz.inLearn = false;
             thiz.learningAborted = false;
-            thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
+            thiz.headerI18nParams = {device: thiz.addDevice};
+            thiz.hardwareI18nParams = {hardware: $translate.instant('i18n_ec_' + thiz.irHardware.getName())};
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addDevice;
             thiz.isNumberLearn = thiz.addDevice == 'numbers';
             thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(thiz.addDevice, thiz.irHardware.getName()), thiz.irHardware.getName());
@@ -130,16 +131,8 @@ angular.module(asterics.appComponents)
                 return false;
             };
 
-            thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
-            };
-
-            thiz.goToIrTransHelp = function () {
-                thiz.goToHelp(asterics.envControl.HW_IRTRANS_USB);
-            };
-
-            thiz.goToIrTransInstall = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
+            thiz.goToHelp = function () {
+                $state.go('home.envControl.help/controls/' + thiz.irHardware.getName());
             };
 
             thiz.getAdditionalInstructions = function () {
