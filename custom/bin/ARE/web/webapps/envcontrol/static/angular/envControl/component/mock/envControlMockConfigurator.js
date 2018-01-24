@@ -2,11 +2,12 @@ angular.module(asterics.appComponents)
     .component('mockConfigurator', {
 
         bindings: {},
-        controller: ['hardwareFs20Sender', 'hardwareIrTrans', '$stateParams', function (hardwareFs20Sender, hardwareIrTrans, $stateParams) {
+        controller: ['hardwareFs20Sender', 'hardwareIrTrans', 'hardwareFlipMouse', '$stateParams', function (hardwareFs20Sender, hardwareIrTrans, hardwareFlipMouse, $stateParams) {
             var thiz = this;
             thiz.show = false;
             thiz.fsPlugged = true;
             thiz.irPlugged = true;
+            thiz.flipPlugged = true;
 
             thiz.fsPlugStateChanged = function () {
                 console.log("setting fs20 to plugged: " + thiz.fsPlugged);
@@ -19,20 +20,28 @@ angular.module(asterics.appComponents)
                 hardwareIrTrans.setDevicePlugged(thiz.irPlugged);
             };
 
-            init();
+            thiz.flipMouseStateChanged = function () {
+                console.log("setting flipMouse to plugged: " + thiz.irPlugged);
+                hardwareFlipMouse.setDevicePlugged(thiz.flipPlugged);
+            };
 
+            init();
             function init() {
                 if ($stateParams) {
-                    if ($stateParams.showMockConfig) {
-                        thiz.show = ($stateParams.showMockConfig == 'true');
+                    if ($stateParams.showConfig) {
+                        thiz.show = ($stateParams.showConfig == 'true');
                     }
-                    if ($stateParams.mockFs20Connected) {
-                        thiz.fsPlugged = ($stateParams.mockFs20Connected == 'true');
+                    if ($stateParams.fs20) {
+                        thiz.fsPlugged = ($stateParams.fs20 == 'true');
                         hardwareFs20Sender.setDevicePlugged(thiz.fsPlugged);
                     }
-                    if ($stateParams.mockIrConnected) {
-                        thiz.irPlugged = ($stateParams.mockIrConnected == 'true');
+                    if ($stateParams.irtrans) {
+                        thiz.irPlugged = ($stateParams.irtrans == 'true');
                         hardwareIrTrans.setDevicePlugged(thiz.irPlugged);
+                    }
+                    if ($stateParams.flipmouse) {
+                        thiz.flipPlugged = ($stateParams.flipmouse == 'true');
+                        hardwareFlipMouse.setDevicePlugged(thiz.irPlugged);
                     }
                 }
             }
