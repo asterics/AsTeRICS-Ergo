@@ -1,119 +1,135 @@
 angular.module(asterics.appServices)
-    .service('ecDeviceService', ['$q', 'deviceFlipMouse', 'deviceIrTrans', 'deviceFs20Sender', function ($q, deviceFlipMouse, deviceIrTrans, deviceFs20Sender) {
+    .service('hardwareService', ['$q', 'hardwareFlipMouse', 'hardwareIrTrans', 'hardwareFs20Sender', 'envControlHelpDataService', function ($q, hardwareFlipMouse, hardwareIrTrans, hardwareFs20Sender, envControlHelpDataService) {
         var thiz = this;
 
-        //arrays storing the known devices for each category. first devices in the array have higher priority,
-        //which means that using them is preferred if several devices are connected
-        var _irDevices = [deviceIrTrans, deviceFlipMouse];
-        var _plugDevices = [deviceFs20Sender];
-        var _deviceMap = {};                    //stores all devices by hardware group
-        var _lastConnectedDeviceMap = {};       //stores one last (and maybe still connected) device by hardware group
-        var _allDevices = _irDevices.concat(_plugDevices);     //list of all known devices
-        _deviceMap[asterics.envControl.HW_GROUP_IR] = _irDevices;
-        _deviceMap[asterics.envControl.HW_GROUP_PLUG] = _plugDevices;
+        //arrays storing the known hardware for each category. first hardware in the array have higher priority,
+        //which means that using them is preferred if several hardware instances are connected
+        var _irHardware = [hardwareIrTrans, hardwareFlipMouse];
+        var _plugHardware = [hardwareFs20Sender];
+        var _hardwareMap = {};                    //stores all hardware hardware group
+        var _lastConnectedHardwareMap = {};        //stores one last connection status of hardware by hardwareId
+        var _allHardware = _irHardware.concat(_plugHardware);     //list of all known hardware instances
+        _hardwareMap[asterics.envControl.HW_GROUP_IR] = _irHardware;
+        _hardwareMap[asterics.envControl.HW_GROUP_PLUG] = _plugHardware;
 
         /**
-         * returns all known devices with the given groupId
-         * @param groupId
-         * @returns {*}
+         * returns exactly one connected hardware for a given hardware list of hardware IDs. If several hardware instances
+         * for the given list are connected the hardware with higher priority is returned.
+         * Exception: If "forceFullRescan" is not set and a lower
+         * priority hardware was at first the only connected hardware, all subsequent calls will return the same hardware,
+         * even if a hardware with higher priority was connected in the meantime.
+         * @param possibleHardwareList the possible hardware ids to get a hardware
+         * @param forceFullRescan if true a full rescan is always triggered and the returned hardware surely has the
+         *        highest priority of all currently connected hardware instances
+         * @return a promise resolving to a found connected hardware or "null" if no hardware was found
+         *         the promise notifies not connected hardware (by ID) as soon as the result is available
          */
-        thiz.getDevices = function (groupId) {
-            var devices = _deviceMap[groupId];
-            if (!devices || devices.length == 0) {
-                return [];
+        thiz.getOneConnectedHardware = function (possibleHardwareList, forceFullRescan) {
+            if(!_.isArray(possibleHardwareList)) {
+                console.log("invalid arguments for getOneConnectedHardware()");
+                return;
             }
-            return devices;
-        };
-
-        /**
-         * returns exactly one connected device for a given hardware groupId. If several devices for the groupId are
-         * connected the device with higher priority is returned. Exception: If "forceFullRescan" is not set and a lower
-         * priority device was at first the only connected device, all subsequent calls will return the same device,
-         * even if a device with higher priority was connected in the meantime.
-         * @param groupId the hardware groupId to get a device
-         * @param forceFullRescan if true a full rescan is always triggered and the returned device surely has the
-         *        highest priority of all currently connected devices
-         * @return a promise resolving to a found connected device or "null" if no device was found
-         */
-        thiz.getOneConnectedDevice = function (groupId, forceFullRescan) {
-            var lastConnectedDevice = _lastConnectedDeviceMap[groupId];
             var returnDef = $q.defer();
-            if (lastConnectedDevice && !forceFullRescan) {
-                lastConnectedDevice.isConnected().then(function (response) {
+            var lastConnectedHardware = null;
+            possibleHardwareList.forEach(function(hardwareId) {
+                if(_lastConnectedHardwareMap[hardwareId]) {
+                    lastConnectedHardware = _lastConnectedHardwareMap[hardwareId];
+                }
+            });
+            if (lastConnectedHardware && !forceFullRescan) {
+                lastConnectedHardware.isConnected().then(function (response) {
                     if (response) {
-                        console.log("found connected device for hardware group <" + groupId + ">: " + lastConnectedDevice.getName());
-                        returnDef.resolve(lastConnectedDevice);
+                        console.log("found connected hardware for list <" + possibleHardwareList + ">: " + lastConnectedHardware.getName());
+                        returnDef.resolve(lastConnectedHardware);
                     } else {
-                        getOneConnectedDeviceInternal(groupId, lastConnectedDevice).then(function (response) {
+                        console.log("hardware <" + lastConnectedHardware.getName() + "> is not connected.");
+                        returnDef.notify(lastConnectedHardware.getName());
+                        getOneConnectedHardwareInternal(possibleHardwareList, lastConnectedHardware).then(function (response) {
                             returnDef.resolve(response);
+                        }, function error () {
+
+                        }, function notifiy (hardware) {
+                            returnDef.notify(hardware);
                         });
-                        _lastConnectedDeviceMap[groupId] = null;
+                        possibleHardwareList.forEach(function(hardwareId) {
+                            _lastConnectedHardwareMap[hardwareId] = null;
+                        });
                     }
                 });
             } else {
-                getOneConnectedDeviceInternal(groupId).then(function (response) {
+                getOneConnectedHardwareInternal(possibleHardwareList).then(function (response) {
                     returnDef.resolve(response);
+                }, function error () {
+
+                }, function notifiy (hardware) {
+                    returnDef.notify(hardware);
                 });
             }
             return returnDef.promise;
 
         };
 
-        thiz.sendToDevice = function (code, hardwareId) {
-            for (var i = 0; i < _allDevices.length; i++) {
-                if (_allDevices[i].getName() == hardwareId) {
-                    _allDevices[i].send(code);
+        thiz.sendToHardware = function (code, hardwareId) {
+            for (var i = 0; i < _allHardware.length; i++) {
+                if (_allHardware[i].getName() == hardwareId) {
+                    _allHardware[i].send(code);
                 }
             }
         };
 
-        function getOneConnectedDeviceInternal(groupId, ignoreDevice) {
+        /**
+         * returns all known hardware for the given list of hardware IDs
+         * @param hardwareIds
+         * @returns {*}
+         */
+        function getHardware(hardwareIds) {
+            return _allHardware.filter(hardware => _.includes(hardwareIds, hardware.getName()));
+        }
+
+        function getOneConnectedHardwareInternal(possibleHardwareList, ignoreHardware) {
             var returnDef = $q.defer();
             var lastDoneDef = $q.defer();
             var returned = false;
             var promises = [];
-            var devices = thiz.getDevices(groupId);
-            devices = devices.filter(e => e !== ignoreDevice); //remove ignored device
-            if (devices.length == 0) {
+            var hardwareInstances = getHardware(possibleHardwareList);
+            hardwareInstances = hardwareInstances.filter(e => e !== ignoreHardware); //remove ignored hardware
+            if (hardwareInstances.length == 0) {
                 returnDef.resolve(null);
             }
-            for (var i = 0; i < devices.length; i++) {
-                var promise = devices[i].isConnected();
-                evaluatePromise(promise, devices, i);
+            for (var i = 0; i < hardwareInstances.length; i++) {
+                var promise = hardwareInstances[i].isConnected();
+                evaluatePromise(promise, hardwareInstances, i);
             }
 
-            function evaluatePromise(promise, devices, i) {
+            function evaluatePromise(promise, hardwareInstances, i) {
                 promise.isDone = false;
                 var higherPrioDefs = promises.slice(); // all promises currently saved have higher priority -> copy them to new array
                 promises.push(promise);
                 promise.then(function (response) {
                     promise.isDone = true;
-                    if (!returned && response === true && awaitAllDone(higherPrioDefs)) {
-                        returned = true;
-                        console.log("found connected device for hardware group <" + groupId + ">: " + devices[i].getName());
-                        _lastConnectedDeviceMap[groupId] = devices[i];
-                        returnDef.resolve(devices[i]);
+                    if(response == false) {
+                        console.log("hardware <" + hardwareInstances[i].getName() + "> is not connected.");
+                        returnDef.notify(hardwareInstances[i].getName());
                     }
-                    if (devices.length - 1 == i) {
-                        awaitAllDone(higherPrioDefs);
-                        lastDoneDef.resolve();
-                    }
-                });
-            }
+                    $q.all(higherPrioDefs).then(function () {
+                        if (!returned && response === true) {
+                            returned = true;
+                            console.log("found connected hardware for list <" + possibleHardwareList + ">: " + hardwareInstances[i].getName());
+                            _lastConnectedHardwareMap[hardwareInstances[i].getName()] = hardwareInstances[i];
+                            returnDef.resolve(hardwareInstances[i]);
+                        }
+                        if (hardwareInstances.length - 1 == i) {
+                            lastDoneDef.resolve();
+                        }
+                    });
 
-            //busy-waiting for all given promises to until done
-            function awaitAllDone(promises) {
-                for (var i = 0; i < promises.length; i++) {
-                    while (!promises[i].isDone) {
-                    }
-                }
-                return true;
+                });
             }
 
             //return null if all promises resolved and nothing returned yet
             lastDoneDef.promise.then(function () {
                 if (!returned) {
-                    console.log("no connected device found device for hardware group <" + groupId + ">.");
+                    console.log("no connected hardware found for list <" + possibleHardwareList + ">.");
                     returnDef.resolve(null);
                 }
             });
