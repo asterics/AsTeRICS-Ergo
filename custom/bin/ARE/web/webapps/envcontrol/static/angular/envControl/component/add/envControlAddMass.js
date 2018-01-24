@@ -8,7 +8,7 @@ angular.module(asterics.appComponents)
             var _currentLearnItem = null;
             thiz.addDevice = $stateParams.device;
 
-            thiz.irDevice = $stateParams.hardware;
+            thiz.irHardware = $stateParams.hardware;
             thiz.headerI18n = $stateParams.headerI18n;
 
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
@@ -17,7 +17,7 @@ angular.module(asterics.appComponents)
             thiz.headerI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addDevice;
             thiz.isNumberLearn = thiz.addDevice == 'numbers';
-            thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(thiz.addDevice, thiz.irDevice.getName()), thiz.irDevice.getName());
+            thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(thiz.addDevice, thiz.irHardware.getName()), thiz.irHardware.getName());
 
             thiz.learnItems = envControlUtilService.getIrElements(thiz.addDevice);
             thiz.selectedIcon = envControlUtilService.getIcon(thiz.addDevice);
@@ -57,7 +57,7 @@ angular.module(asterics.appComponents)
                     }
                 }
 
-                thiz.irDevice.irLearn().then(success, error);
+                thiz.irHardware.irLearn().then(success, error);
                 if (!thiz.inLearn) {
                     scrollToEnd();
                 }
@@ -96,7 +96,7 @@ angular.module(asterics.appComponents)
                 var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, thiz.addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
-                        envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, thiz.irDevice.getName());
+                        envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, thiz.irHardware.getName());
                     }
                 });
                 envControlDataService.saveData();
@@ -149,8 +149,8 @@ angular.module(asterics.appComponents)
             function abortLearning() {
                 thiz.learningAborted = true;
                 thiz.inLearn = false;
-                if (thiz.irDevice) {
-                    thiz.irDevice.abortAction();
+                if (thiz.irHardware) {
+                    thiz.irHardware.abortAction();
                 }
             }
 
