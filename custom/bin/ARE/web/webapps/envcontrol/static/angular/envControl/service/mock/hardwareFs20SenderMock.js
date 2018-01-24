@@ -1,11 +1,13 @@
 angular.module(asterics.appServices)
     .service('hardwareFs20Sender', ['areService', '$q', '$timeout', function (areService, $q, $timeout) {
         var thiz = this;
-        var fs20SenderName = 'FS20Sender.1';
-        var fs20ActionInput = 'Action';
         var houseCodeLength = 8;
         var _plugged = true;
         thiz.canceler = $q.defer();
+
+        thiz.getName = function() {
+            return asterics.envControl.HW_FS20_PCSENDER;
+        };
 
         thiz.fs20Action = function (deviceCode, actionCode) {
             var actionString = '@FS20:' + deviceCode + '_' + actionCode;
@@ -22,7 +24,9 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            def.resolve(_plugged);
+            $timeout(function () {
+                def.resolve(_plugged);
+            }, 500);
             return def.promise;
         };
 

@@ -1,26 +1,25 @@
 angular.module(asterics.appServices)
-    .service('hardwareIrTrans', ['areService', '$q', '$timeout', function (areService, $q, $timeout) {
+    .service('hardwareFlipMouse', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
         var _plugged = true;
         thiz.canceler = $q.defer();
 
         thiz.getName = function() {
-            return asterics.envControl.HW_IRTRANS_USB;
+            return asterics.envControl.HW_IR_FLIPMOUSE;
         };
 
         thiz.send = function (cmd) {
             var def = $q.defer();
-            console.log("sending mocked IrTrans command: " + cmd);
+            console.log("sending mocked FlipMouse command: " + cmd);
             def.resolve();
             return def.promise;
         };
 
         thiz.irLearn = function () {
             var def = $q.defer();
-
             $timeout(function () {
-                var cmd = "HEXCODE" + new Date().getTime();
-                console.log("learned mocked IrTrans command: " + cmd);
+                var cmd = "CODE" + new Date().getTime();
+                console.log("learned mocked FlipMouse command: " + cmd);
                 def.resolve(cmd);
             }, 500);
             return def.promise;
@@ -34,10 +33,10 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
+        //aborts a current action, closes websocket
         thiz.abortAction = function () {
-            var def = $q.defer();
-            def.resolve();
-            return def.promise;
+            thiz.canceler.resolve();
+            thiz.canceler = $q.defer();
         };
 
         //only for mock mode:
