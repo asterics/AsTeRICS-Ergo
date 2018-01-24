@@ -15,6 +15,14 @@ angular.module(asterics.appComponents)
                     device: $translate.instant('i18n_ec_' + thiz.deviceId)
                 };
                 thiz.possibleHardware = envControlHelpDataService.getComputerConfiguredHardwarePossibilities(thiz.deviceId);
+
+                //TODO: remove this
+                //only temporary solution to make table-lamp working as always
+                //-> needs implementation to also allow to configure a table lamp e.g. with IRTrans or Flipmouse.
+                if(thiz.deviceId == asterics.envControl.DEVICE_TABLELAMP) {
+                    thiz.possibleHardware = _.without(thiz.possibleHardware, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IRTRANS_USB);
+                }
+
                 ecDeviceService.getOneConnectedHardware(thiz.possibleHardware).then(function (response) {
                     if(response) {
                         thiz.connectedHardware = response;
