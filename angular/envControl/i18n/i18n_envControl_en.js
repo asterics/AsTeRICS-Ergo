@@ -97,7 +97,7 @@ asterics.i18n_envControl_en = {
 
     //add mass
     i18n_ec_irmass_text_startlearn: 'Select "Start learning" to learn the commands.',
-    i18n_ec_irmass_text_keeporiginal: 'Please have the <b>original remote control</b> of your device ready and <b>point it towards the IrTrans</b> during the learning process.',
+    i18n_ec_irmass_text_keeporiginal: 'Please have the <b>original remote control</b> of your device ready and <b>point it towards the {{hardware}}</b> during the learning process.',
     i18n_ec_irmass_text_starthint: '<b>Important:</b> Always ensure that only <b>one</b> command is learned when pressing one button of the remote control!',
     i18n_ec_irmass_startlearn: 'Start learning',
     i18n_ec_irmass_pressbutton: 'Now <b>once shortly</b> press the button',

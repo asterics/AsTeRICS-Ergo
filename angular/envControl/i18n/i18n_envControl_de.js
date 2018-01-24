@@ -97,7 +97,7 @@ asterics.i18n_envControl_de = {
 
     //add mass
     i18n_ec_irmass_text_startlearn: 'Klicken Sie auf "Lernen starten" um die Befehle anzulernen.',
-    i18n_ec_irmass_text_keeporiginal: 'Halten Sie bitte die <b>originale Fernbedienung</b> des Geräts bereit und richten Sie sie beim Lernen <b>in Richtung IrTrans</b>.',
+    i18n_ec_irmass_text_keeporiginal: 'Halten Sie bitte die <b>originale Fernbedienung</b> des Geräts bereit und richten Sie sie beim Lernen <b>in Richtung {{hardware}}</b>.',
     i18n_ec_irmass_text_starthint: '<b>Wichtige Info:</b> Achten Sie darauf, dass pro Knopfdruck auf der Fernbedienung nur jeweils <b>ein</b> Befehl gelernt wird!',
     i18n_ec_irmass_startlearn: 'Lernen starten',
     i18n_ec_irmass_pressbutton: 'Drücken Sie jetzt <b>einmal kurz</b> den Knopf',
