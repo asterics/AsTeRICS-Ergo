@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('deviceFs20Sender', ['areService', 'areWebsocketService', '$q', function (areService, areWebsocketService, $q) {
+    .service('deviceFs20Sender', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
         var fs20SenderName = 'FS20Sender.1';
         var fs20ActionInput = 'Action';
@@ -26,15 +26,29 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            thiz.fs20Action('1111_1111', '28', _testTimeout).then(function () { //not defined command
-                thiz.fs20Action('1111_1111', '28', _testTimeout).then(function () { //do double check because sometimes first time is wrong
-                    def.resolve(true);
-                }, function error() {
-                    def.resolve(false);
-                });
-            }, function error() {
-                def.resolve(false);
+
+            //do first check without resolving -> avoids error that return is true, but FS20 not really connected, e.g. in power save mode
+            thiz.fs20Action('1111_1111', '28', _testTimeout).finally(function () {
+                check(2); //do real check n times, sometimes no correct value after first times
             });
+
+            function check(count) {
+                count--;
+                if (count < 0) {
+                    def.resolve(false);
+                } else {
+                    thiz.fs20Action('1111_1111', '28', _testTimeout).then(success, function () {
+                        $timeout(function () {
+                            check(count);
+                        }, 3000);
+                    });
+                }
+            }
+
+            function success() {
+                def.resolve(true);
+            }
+
             return def.promise;
         };
 
