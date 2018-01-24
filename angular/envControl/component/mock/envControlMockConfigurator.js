@@ -11,7 +11,6 @@ angular.module(asterics.appComponents)
 
             thiz.fsPlugStateChanged = function () {
                 console.log("setting fs20 to plugged: " + thiz.fsPlugged);
-                console.log($stateParams);
                 hardwareFs20Sender.setDevicePlugged(thiz.fsPlugged);
             };
 
