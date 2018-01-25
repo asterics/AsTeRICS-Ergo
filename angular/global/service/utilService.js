@@ -36,6 +36,10 @@ angular.module(asterics.appServices)
             var element = thiz.createCellBoardItem(title, faIcon, asterics.const.CB_TYPE_SUBCB, function () {
                 $state.go(navState, stateParams);
             });
+            element.toState = navState;
+            element.tooltip = 'i18n_ec_tooltip_click_subcb';
+            element.tooltipParams = {device: title};
+            element.class = 'subfolder-button';
             return element;
         };
 

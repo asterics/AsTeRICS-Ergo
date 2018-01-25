@@ -2,7 +2,7 @@ angular.module(asterics.appComponents)
     .component('envControl', {
 
         bindings: {},
-        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService) {
+        controller: ['envControlService', 'envControlDataService', '$state', 'utilService', 'stateUtilService', '$translate', 'messageService', 'envControlUtilService', function (envControlService, envControlDataService, $state, utilService, stateUtilService, $translate, messageService, envControlUtilService) {
             var thiz = this;
             var _msgGroup = 'envControlMain';
             var _msgGroupDelete = 'envControlMainDelete';
@@ -17,13 +17,17 @@ angular.module(asterics.appComponents)
             thiz.pasteItem = null;
 
             thiz.getSubpageName = function () {
+                return {subpage: getCellboardName()};
+            };
+
+            function getCellboardName() {
                 if (thiz.cellBoardId === asterics.envControl.STATE_MAIN) {
-                    return {subpage: $translate.instant('i18n_ec_mainpage')};
+                    return $translate.instant('i18n_ec_mainpage');
                 } else {
                     var states = stateUtilService.getBreadCrumbStates();
-                    return {subpage: stateUtilService.getLastPartUpper(states[2])};
+                    return stateUtilService.getLastPartUpper(states[2]);
                 }
-            };
+            }
 
             thiz.removeHandler = function (item) {
                 thiz.cellBoardEnvControl = envControlDataService.removeCellBoardElement(thiz.cellBoardId, item);
@@ -83,11 +87,19 @@ angular.module(asterics.appComponents)
                 } else {
                     items.push(utilService.createCellBoardItemBack());
                     if (thiz.substateDepth < 3) {
-                        var navState = asterics.envControl.STATE_ADD_IR;
+                        var stateParams = {
+                            cellBoardId: thiz.cellBoardId,
+                            cellBoardName: getCellboardName()
+                        };
+                        var item = null;
                         if (_.includes(asterics.envControl.DEVICES_WITH_NUMBERS, envControlDataService.getDeviceType(thiz.cellBoardId))) {
-                            navState = asterics.envControl.STATE_ADDSUB;
+                            item = utilService.createCellBoardItemNav('i18n_ec_newelement_sub', 'plus', asterics.envControl.STATE_ADDSUB, stateParams);
+                        } else {
+                            item = envControlUtilService.createCellBoardItemAdd(asterics.envControl.DEVICE_IR_CMD_GENERIC, false, stateParams);
+                            item.title = 'i18n_ec_newelement_sub';
+                            item.faIcon = 'plus';
                         }
-                        items.push(utilService.createCellBoardItemNav('i18n_ec_newelement_sub', 'plus', navState, {cellBoardId: thiz.cellBoardId}));
+                        items.push(item);
                     }
                 }
                 thiz.deleteItem = generateSwitchModeItem('i18n_ec_activate_del', 'i18n_ec_deactivate_del', 'trash', asterics.const.CELLB_MODE_DELETE, 'i18n_ec_infotext_del');

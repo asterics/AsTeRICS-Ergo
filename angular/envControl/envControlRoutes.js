@@ -68,39 +68,28 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_ADDSUB, {
             url: '/addsub/:cellBoardId',
-            template: '<env-control-add-sub/>'
+            template: '<env-control-add-sub/>',
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_ADD_PLUG_GENERIC, {
             url: '/pluggeneric/:cellBoardId',
             template: '<env-control-add-fs selected-icon="$resolve.selectedIcon"/>',
             resolve: {
-                selectedIcon: function() {
+                selectedIcon: function () {
                     return "plug";
                 }
             },
-            params: {
-                headerI18n: null,
-                device: null,
-                hardware: null
-            }
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_ADD_IR_GENERIC, {
             url: '/irgeneric/:cellBoardId',
             template: '<env-control-add-ir is-device-learn="true"/>',
-            params: {
-                headerI18n: null,
-                device: null,
-                hardware: null
-            }
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_ADD_IR_CMD_GENERIC, {
             url: '/ircmdgeneric/:cellBoardId',
             template: '<env-control-add-ir/>',
-            params: {
-                headerI18n: null,
-                device: null,
-                hardware: null
-            }
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
@@ -109,49 +98,44 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
                 selectedLabel: function ($translate) {
                     return $translate.instant('i18n_ec_lamp');
                 },
-                selectedIcon: function() {
+                selectedIcon: function () {
                     return "lightbulb-o";
                 }
             },
-            params: {
-                headerI18n: null,
-                device: null,
-                hardware: null
-            }
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
             url: '/nohardware',
             template: '<no-hardware-found/>',
-            params: {
-                headerI18n: null,
-                device: null,
-                selectedHardware: null
-            }
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_CONNECTION_CHECK, {
-            url: '/connectioncheck',
+            url: '/connectioncheck/:cellBoardId',
             template: '<connection-check/>',
-            params: {
-                headerI18n: null,
-                deviceId: null
-            }
+            params: getAddParams()
         });
 
     configRouteAddIrMass(asterics.envControl.DEVICE_AMB_LAMP);
     configRouteAddIrMass(asterics.envControl.DEVICE_TV);
     configRouteAddIrMass(asterics.envControl.DEVICE_DVD);
     configRouteAddIrMass(asterics.envControl.DEVICE_HIFI);
+    configRouteAddIrMass(asterics.envControl.DEVICE_IR_NUMBERS);
 
     function configRouteAddIrMass(deviceId) {
         var configObject = {
-            url: '/' + deviceId,
+            url: '/' + deviceId + '/:cellBoardId',
             template: '<env-control-add-mass/>',
-            params: {
-                headerI18n: null,
-                device: null,
-                hardware: null
-            }
+            params: getAddParams()
         };
         $stateProvider.state(asterics.envControl.STATE_ADD + '.' + deviceId, configObject);
+    }
+
+    function getAddParams() {
+        return {
+            headerI18n: null,
+            device: null,
+            hardware: null,
+            cellBoardName: null
+        }
     }
 }]);

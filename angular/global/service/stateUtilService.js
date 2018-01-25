@@ -103,6 +103,7 @@ angular.module(asterics.appServices)
         };
 
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+            console.log("changed to state: " + to.name);
             _stateHasChanged = true;
             callAllStateChangeFunctions();
             var lastElement = thiz.getLastState();

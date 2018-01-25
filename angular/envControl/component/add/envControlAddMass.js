@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService, envControlUtilService) {
             var thiz = this;
-            var _cbToAdd = asterics.envControl.STATE_MAIN;
+            var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
             thiz.addDevice = $stateParams.device;
 
@@ -14,7 +14,7 @@ angular.module(asterics.appComponents)
             thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
             thiz.inLearn = false;
             thiz.learningAborted = false;
-            thiz.headerI18nParams = {device: thiz.addDevice};
+            thiz.headerI18nParams = {device: $stateParams.cellBoardName};
             thiz.hardwareI18nParams = {hardware: $translate.instant('i18n_ec_' + thiz.irHardware.getName())};
             thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addDevice;
             thiz.isNumberLearn = thiz.addDevice == 'numbers';
