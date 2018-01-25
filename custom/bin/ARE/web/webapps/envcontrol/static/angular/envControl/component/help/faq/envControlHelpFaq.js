@@ -26,6 +26,11 @@ angular.module(asterics.appComponents)
                 return $state.go(eval(state));
             };
 
+            thiz.toDeviceLearn = function(device) {
+                var params = {device: eval(device)};
+                $state.go(asterics.envControl.STATE_CONNECTION_CHECK, params);
+            };
+
             thiz.getTitle = function (faq) {
                 var _title = faq.title;
                 if (thiz.searchText) {

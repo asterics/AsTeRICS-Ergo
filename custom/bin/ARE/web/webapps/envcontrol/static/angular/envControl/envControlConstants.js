@@ -33,7 +33,9 @@ asterics.envControl.DEVICE_TV = 'tv';
 asterics.envControl.DEVICE_DVD = 'dvd';
 asterics.envControl.DEVICE_HIFI = 'hifi';
 asterics.envControl.DEVICE_IR_GENERIC = 'irgeneric';
+asterics.envControl.DEVICE_IR_CMD_GENERIC = 'ircmdgeneric';
 asterics.envControl.DEVICE_PLUG_GENERIC = 'pluggeneric';
+asterics.envControl.DEVICE_IR_NUMBERS = 'numbers';
 asterics.envControl.DEVICES = [
     asterics.envControl.DEVICE_TABLELAMP,
     asterics.envControl.DEVICE_AMB_LAMP,
@@ -64,17 +66,17 @@ asterics.envControl.STATE_HELP_IRBULB = 'home.envControl.help/controls/HW_IR_BUL
 asterics.envControl.STATE_ADD = 'home.envControl.add';
 asterics.envControl.STATE_ADDMORE = 'home.envControl.add/more';
 asterics.envControl.STATE_ADDSUB = 'home.envControl.addsub';
-asterics.envControl.STATE_ADD_FS20 = 'home.envControl.add.fs20';
-asterics.envControl.STATE_ADD_IR = 'home.envControl.add.ir';
-asterics.envControl.STATE_ADD_IR_DEVICE = 'home.envControl.add.irdevice';
 asterics.envControl.STATE_ADD_LAMP = 'home.envControl.add.lamp';
 asterics.envControl.STATE_NO_HARDWARE_FOUND = 'home.envControl.add.nohardware';
 asterics.envControl.STATE_CONNECTION_CHECK = 'home.envControl.add.connectioncheck';
-asterics.envControl.SUBSTATE_ADD_NUMBERS = 'numbers';
 asterics.envControl.STATE_ADD_TV = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_TV;
 asterics.envControl.STATE_ADD_DVD = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_DVD;
 asterics.envControl.STATE_ADD_HIFI = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_HIFI;
 asterics.envControl.STATE_ADD_AMBLIGHT = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_AMB_LAMP;
+asterics.envControl.STATE_ADD_PLUG_GENERIC = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_PLUG_GENERIC;
+asterics.envControl.STATE_ADD_IR_GENERIC = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_IR_GENERIC;
+asterics.envControl.STATE_ADD_IR_CMD_GENERIC = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_IR_CMD_GENERIC;
+asterics.envControl.STATE_ADD_NUMBERS = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_IR_NUMBERS;
 
 asterics.const.HOME_STATES = asterics.const.HOME_STATES || [];
 asterics.const.HOME_STATES.push(asterics.envControl.STATE_MAIN);
