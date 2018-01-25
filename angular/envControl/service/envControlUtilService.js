@@ -121,6 +121,12 @@ angular.module(asterics.appServices)
                     return 'circle';
                 case asterics.envControl.DEVICE_TABLELAMP:
                     return 'lightbulb-o';
+                case asterics.envControl.DEVICE_IR_GENERIC:
+                    return 'building-o';
+                case asterics.envControl.DEVICE_IR_CMD_GENERIC:
+                    return 'wifi';
+                case asterics.envControl.DEVICE_PLUG_GENERIC:
+                    return 'plug';
                 default:
                     return;
             }
