@@ -78,6 +78,9 @@ asterics.envControl.STATE_ADD_IR_GENERIC = asterics.envControl.STATE_ADD + '.' +
 asterics.envControl.STATE_ADD_IR_CMD_GENERIC = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_IR_CMD_GENERIC;
 asterics.envControl.STATE_ADD_NUMBERS = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_IR_NUMBERS;
 
+asterics.const.NAVIGATION_IGNORE_STATES = asterics.const.NAVIGATION_IGNORE_STATES || [];
+asterics.const.NAVIGATION_IGNORE_STATES.push(asterics.envControl.STATE_CONNECTION_CHECK);
+
 asterics.const.HOME_STATES = asterics.const.HOME_STATES || [];
 asterics.const.HOME_STATES.push(asterics.envControl.STATE_MAIN);
 

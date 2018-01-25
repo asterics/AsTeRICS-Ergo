@@ -11,7 +11,7 @@ angular.module(asterics.appComponents)
             thiz.irHardware = $stateParams.hardware;
             thiz.headerI18n = $stateParams.headerI18n;
 
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.inLearn = false;
             thiz.learningAborted = false;
             thiz.headerI18nParams = {device: $stateParams.cellBoardName};

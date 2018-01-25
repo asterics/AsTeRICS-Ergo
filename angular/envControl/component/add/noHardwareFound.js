@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', function ($stateParams, utilService, envControlHelpDataService, $translate, $state) {
             var thiz = this;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.headerI18n = $stateParams.headerI18n;
             thiz.device = $stateParams.device;
             thiz.i18nArgDevice = {
