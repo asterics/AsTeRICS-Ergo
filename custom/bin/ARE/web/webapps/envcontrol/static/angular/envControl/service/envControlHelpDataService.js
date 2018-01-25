@@ -358,6 +358,11 @@ angular.module(asterics.appServices)
                     [asterics.envControl.HW_IRTRANS_USB]
                 ]
             };
+            data._deviceMappings[asterics.envControl.DEVICE_IR_NUMBERS] = {
+                hardware: [
+                    [asterics.envControl.HW_IRTRANS_USB]
+                ]
+            };
             data._deviceMappings[asterics.envControl.DEVICE_PLUG_GENERIC] = {
                 hardware: [
                     [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]

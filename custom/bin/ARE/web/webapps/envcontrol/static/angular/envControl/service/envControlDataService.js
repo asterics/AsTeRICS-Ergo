@@ -77,7 +77,7 @@ angular.module(asterics.appServices)
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState, deviceType) {
             title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
             var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
-            var navToCbElement = envControlUtilService.createCellBoardItemNavSubcellboard(title, faIcon, newStateName);
+            var navToCbElement = utilService.createCellBoardItemSubCb(title, faIcon, newStateName);
             _cellBoardDeviceMapping[newStateName] = deviceType;
             addCellBoardElement(parentCellBoardState, navToCbElement);
             initCellBoard(newStateName);

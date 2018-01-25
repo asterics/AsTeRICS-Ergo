@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', function (hardwareService, utilService, $timeout ,$anchorScroll) {
+    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', function (hardwareService, utilService, $timeout, $anchorScroll) {
         var thiz = this;
 
         thiz.createCellBoardItemPlugDevice = function (title, faIcon, code, hardwareDevice) {
@@ -22,13 +22,16 @@ angular.module(asterics.appServices)
             return element;
         };
 
-        thiz.createCellBoardItemNavSubcellboard = function (title, faIcon, toState, stateParams) {
-            var element = utilService.createCellBoardItemSubCb(title, faIcon, toState, stateParams);
-            element.toState = toState;
-            element.tooltip = 'i18n_ec_tooltip_click_subcb';
-            element.tooltipParams = {device: title};
-            element.class = 'subfolder-button';
-            return element;
+        thiz.createCellBoardItemAdd = function (device, hasTooltip, stateParams) {
+            stateParams = stateParams || {};
+            stateParams.device = device;
+            var icon = thiz.getIcon(device);
+            var label = 'i18n_ec_' + device;
+            var item = utilService.createCellBoardItemNav(label, icon, asterics.envControl.STATE_CONNECTION_CHECK, stateParams);
+            if (hasTooltip) {
+                item.tooltip = 'i18n_ec_' + device + '_tooltip';
+            }
+            return item;
         };
 
         thiz.reinitCellBoardItems = function (items) {
@@ -36,7 +39,7 @@ angular.module(asterics.appServices)
             angular.forEach(items, function (item) {
                 var newItem;
                 if (item.type === asterics.const.CB_TYPE_SUBCB) {
-                    newItem = thiz.createCellBoardItemNavSubcellboard(item.title, item.faIcon, item.toState);
+                    newItem = utilService.createCellBoardItemSubCb(item.title, item.faIcon, item.toState);
                 } else if (item.type === asterics.envControl.HW_FS20_PCSENDER) {
                     newItem = thiz.createCellBoardItemPlugDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_FS20_PCSENDER);
                 } else if (item.type === asterics.envControl.HW_IRTRANS_USB) {
@@ -91,7 +94,7 @@ angular.module(asterics.appServices)
                         createIrElement('i18n_ec_left', 'arrow-left'),
                         createIrElement('i18n_ec_ok', 'check-circle-o')
                     ];
-                case asterics.envControl.SUBSTATE_ADD_NUMBERS:
+                case asterics.envControl.DEVICE_IR_NUMBERS:
                     return [
                         createIrElement('1', 'circle'),
                         createIrElement('2', 'circle'),
@@ -109,7 +112,7 @@ angular.module(asterics.appServices)
             }
         };
 
-        thiz.getIcon = function(device) {
+        thiz.getIcon = function (device) {
             switch (device) {
                 case asterics.envControl.DEVICE_AMB_LAMP:
                     return 'sun-o';
@@ -127,12 +130,14 @@ angular.module(asterics.appServices)
                     return 'wifi';
                 case asterics.envControl.DEVICE_PLUG_GENERIC:
                     return 'plug';
+                case asterics.envControl.DEVICE_IR_NUMBERS:
+                    return 'th';
                 default:
                     return;
             }
         };
 
-        thiz.scrollToEnd = function() {
+        thiz.scrollToEnd = function () {
             $timeout(function () {
                 $anchorScroll('end');
             });
