@@ -78,12 +78,39 @@ angular.module(asterics.appServices)
         };
 
         /**
+         * calls a delete handler of the hardware with the given ID, if it implements one.
+         * passes the given data to the delete handler
+         * @param hardwareId the hardware of which the delete handler should be called
+         * @param data is passed to the delete handler
+         */
+        thiz.handleDelete = function(hardwareId, data) {
+            var hardware = getSingleHardware(hardwareId);
+            if(hardware && _.isFunction(hardware.deleteHandler)) {
+                hardware.deleteHandler(data);
+            }
+        };
+
+        /**
          * returns all known hardware for the given list of hardware IDs
          * @param hardwareIds
          * @returns {*}
          */
         function getHardware(hardwareIds) {
             return _allHardware.filter(hardware => _.includes(hardwareIds, hardware.getName()));
+        }
+
+        /**
+         * returns all known hardware for the given list of hardware IDs
+         * @param hardwareIds
+         * @returns {*}
+         */
+        function getSingleHardware(hardwareId) {
+            var list = _allHardware.filter(hardware => hardwareId == hardware.getName());
+            if(list.length == 1) {
+                return list[0];
+            } else {
+                return null;
+            }
         }
 
         function getOneConnectedHardwareInternal(possibleHardwareList, ignoreHardware) {

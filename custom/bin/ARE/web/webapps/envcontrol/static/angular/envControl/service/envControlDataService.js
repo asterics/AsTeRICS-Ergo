@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q' , 'hardwareService', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q, hardwareService) {
         var thiz = this;
         var _dataFilename = "ecdata";
         var _saveTimestamp = -1;
@@ -12,9 +12,11 @@ angular.module(asterics.appServices)
         var _additionalDeviceData = {};
         var _clipBoard = {};
         var _undoCellBoards = {};
+        var _deletedElements = []; //stores recently deleted elements that will be used to call a possible delete handler
         var _callbackToCallOnNewData = null;
 
         thiz.getCellBoard = function (cellBoardName) {
+            processDeleteHandlers();
             var def = $q.defer();
             _initDeferred.promise.then(function () {
                 def.resolve(_cellBoards[cellBoardName]);
@@ -50,9 +52,12 @@ angular.module(asterics.appServices)
         };
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
+            processDeleteHandlers();
+            _deletedElements = [element];
             _undoCellBoards = angular.copy(_cellBoards);
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
             if (element.type === asterics.const.CB_TYPE_SUBCB && element.toState) {
+                _deletedElements = _deletedElements.concat(_cellBoards[element.toState]);
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
                 delete _cellBoards[element.toState];
                 _.pull(_dynamicCellBoardIds, element.toState);
@@ -65,6 +70,7 @@ angular.module(asterics.appServices)
 
         thiz.undoRemove = function () {
             _cellBoards = _undoCellBoards;
+            _deletedElements = [];
             thiz.saveData();
         };
 
@@ -155,6 +161,21 @@ angular.module(asterics.appServices)
         thiz.hasData = function() {
             return _cellBoards[asterics.envControl.STATE_MAIN].length > 0;
         };
+
+        /**
+         * processes possible previously deleted items to call their delete handlers
+         * is not called directly in delete thiz.removeCellBoardElement because it is possible that the deletion is undone
+         */
+        function processDeleteHandlers() {
+            if(!_.isEmpty(_deletedElements)) {
+                _deletedElements.forEach(function (element) {
+                    if(_.includes(asterics.envControl.COMPUTER_HARDWARE, element.type)) {
+                        hardwareService.handleDelete(element.type, element);
+                    }
+                });
+                _deletedElements = [];
+            }
+        }
 
         function addCellBoardElement(cellBoardName, element) {
             initCellBoard(cellBoardName);
