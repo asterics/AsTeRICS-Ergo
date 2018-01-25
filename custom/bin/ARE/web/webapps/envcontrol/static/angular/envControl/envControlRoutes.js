@@ -70,22 +70,37 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/addsub/:cellBoardId',
             template: '<env-control-add-sub/>'
         })
-        .state(asterics.envControl.STATE_ADD_FS20, {
-            url: '/fs20/:cellBoardId',
+        .state(asterics.envControl.STATE_ADD_PLUG_GENERIC, {
+            url: '/pluggeneric/:cellBoardId',
             template: '<env-control-add-fs selected-icon="$resolve.selectedIcon"/>',
             resolve: {
                 selectedIcon: function() {
                     return "plug";
                 }
+            },
+            params: {
+                headerI18n: null,
+                device: null,
+                hardware: null
             }
         })
-        .state(asterics.envControl.STATE_ADD_IR, {
-            url: '/ir/:cellBoardId',
-            template: '<env-control-add-ir/>'
+        .state(asterics.envControl.STATE_ADD_IR_GENERIC, {
+            url: '/irgeneric/:cellBoardId',
+            template: '<env-control-add-ir is-device-learn="true"/>',
+            params: {
+                headerI18n: null,
+                device: null,
+                hardware: null
+            }
         })
-        .state(asterics.envControl.STATE_ADD_IR_DEVICE, {
-            url: '/irdevice/:cellBoardId',
-            template: '<env-control-add-ir is-device-learn="true"/>'
+        .state(asterics.envControl.STATE_ADD_IR_CMD_GENERIC, {
+            url: '/ircmdgeneric/:cellBoardId',
+            template: '<env-control-add-ir/>',
+            params: {
+                headerI18n: null,
+                device: null,
+                hardware: null
+            }
         })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
@@ -117,6 +132,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/connectioncheck',
             template: '<connection-check/>',
             params: {
+                headerI18n: null,
                 deviceId: null
             }
         });

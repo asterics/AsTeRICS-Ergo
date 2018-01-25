@@ -7,7 +7,7 @@ angular.module(asterics.appComponents)
             thiz.connectedHardware = null;
             thiz.notConnected = {};
             thiz.deviceId = $stateParams.deviceId;
-            thiz.headerI18n = 'i18n_ec_irmass_header_' + thiz.deviceId;
+            thiz.headerI18n = $stateParams.headerI18n || 'i18n_ec_irmass_header_' + thiz.deviceId;
             var _somethingNotified = false;
 
             thiz.$onInit = function () {
@@ -19,7 +19,7 @@ angular.module(asterics.appComponents)
                 //TODO: remove this
                 //only temporary solution to make table-lamp working as always
                 //-> needs implementation to also allow to configure a table lamp e.g. with IRTrans or Flipmouse.
-                if(thiz.deviceId == asterics.envControl.DEVICE_TABLELAMP) {
+                if(thiz.deviceId == asterics.envControl.DEVICE_TABLELAMP || thiz.deviceId == asterics.envControl.DEVICE_PLUG_GENERIC) {
                     thiz.possibleHardware = _.without(thiz.possibleHardware, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IRTRANS_USB);
                 }
 
