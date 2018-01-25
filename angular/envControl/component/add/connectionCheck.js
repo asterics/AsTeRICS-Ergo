@@ -25,12 +25,12 @@ angular.module(asterics.appComponents)
                 }
 
                 hardwareService.getOneConnectedHardware(thiz.possibleHardware).then(function (response) {
+                    var params = angular.copy($stateParams);
+                    params.headerI18n = thiz.headerI18n;
                     if (response) {
                         thiz.connectedHardware = response;
                         thiz.notConnected[thiz.connectedHardware.getName()] = false;
                         var timeout = _somethingNotified ? 500 : 0;
-                        var params = angular.copy($stateParams);
-                        params.headerI18n = thiz.headerI18n;
                         $timeout(function () {
                             params.hardware = thiz.connectedHardware;
                             $state.go(asterics.envControl.STATE_ADD + '.' + thiz.deviceId, params);
