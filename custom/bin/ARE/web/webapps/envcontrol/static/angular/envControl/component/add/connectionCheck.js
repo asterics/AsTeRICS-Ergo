@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'hardwareService', '$timeout', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, hardwareService, $timeout) {
             var thiz = this;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.connectedHardware = null;
             thiz.notConnected = {};
             thiz.deviceId = $stateParams.device;

@@ -20,6 +20,7 @@ asterics.const.ServerEventTypes = {
 
 asterics.const.STATE_HOME = 'home';
 asterics.const.HOME_STATES = [asterics.const.STATE_HOME];
+asterics.const.NAVIGATION_IGNORE_STATES = asterics.const.NAVIGATION_IGNORE_STATES || [];
 
 asterics.const.I18N_DE = 'de';
 asterics.const.I18N_EN = 'en';

@@ -13,7 +13,7 @@ angular.module(asterics.appComponents)
             
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_ADD)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.isConnected = null;
             thiz.neededHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG];
 

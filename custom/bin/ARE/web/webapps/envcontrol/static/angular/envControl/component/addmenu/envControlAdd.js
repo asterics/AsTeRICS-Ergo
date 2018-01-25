@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {},
         controller: ['utilService', 'envControlUtilService', function (utilService, envControlUtilService) {
             var thiz = this;
-            thiz.cellBoardConfig = [utilService.createCellBoardItemNav('i18n_back', 'arrow-left', asterics.envControl.STATE_MAIN)];
+            thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.cellBoardChoose = [
                 envControlUtilService.createCellBoardItemAdd(asterics.envControl.DEVICE_AMB_LAMP),
                 envControlUtilService.createCellBoardItemAdd(asterics.envControl.DEVICE_TABLELAMP),
