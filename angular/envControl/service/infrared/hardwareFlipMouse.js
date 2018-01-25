@@ -40,6 +40,19 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
+        /**
+         * handles the deletion of an cellboard element -> deletes the corresponding code also on
+         * the FlipMouse
+         * @param item
+         */
+        thiz.deleteHandler = function(item) {
+            if(item.code) {
+                console.log("FlipMouse: deleting command <" + item.code + ">");
+                var cmd = 'AT IC ' + item.code;
+                areService.sendDataToInputPort(componentName, portName, cmd, thiz.canceler);
+            }
+        };
+
         function isConnectedInternal(def, wasRescanStart) {
             irAction('AT', _testTimeout).then(function (response) {
                 if (response.indexOf(LIPMOUSE_IN_RESCAN) !== -1) {

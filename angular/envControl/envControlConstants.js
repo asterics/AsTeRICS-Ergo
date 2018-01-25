@@ -19,6 +19,11 @@ asterics.envControl.HW_IR_BULB = 'HW_IR_BULB';
 asterics.envControl.HW_IR_FLIPMOUSE = 'HW_IR_FLIPMOUSE';
 asterics.envControl.HW_GROUP_IR = 'HW_GROUP_IR';
 asterics.envControl.HW_GROUP_PLUG = 'HW_GROUP_PLUG';
+asterics.envControl.COMPUTER_HARDWARE = [
+    asterics.envControl.HW_FS20_PCSENDER,
+    asterics.envControl.HW_IRTRANS_USB,
+    asterics.envControl.HW_IR_FLIPMOUSE
+];
 
 asterics.envControl.IRLEARN_TIMEOUT = 'IRLEARN_TIMEOUT';
 
