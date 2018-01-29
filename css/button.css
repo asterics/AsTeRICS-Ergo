@@ -68,7 +68,11 @@ button {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
 }
 
-button:focus, *:focus {
+button:focus, *:focus, a:focus span {
     border-style: solid;
     border-color: red;
+}
+
+a.nofocus {
+    border-style: none; !important;
 }
