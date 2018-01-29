@@ -1,5 +1,5 @@
 <div>
-    <div class="asterics-fade padding-top-little" ng-if="$ctrl.neededHardware.length > 0">
+    <div class="asterics-fade" ng-if="$ctrl.neededHardware.length > 0">
         <p ng-if="$ctrl.selectedCount > 1"><b translate="i18n_ec_you_need_devices"/></p>
         <p ng-if="$ctrl.selectedCount <= 1"><b translate="i18n_ec_you_need_devices_singular"/></p>
         <hardware-list list="$ctrl.neededHardware" hardware-amounts="$ctrl.neededHardwareAmounts" navigate-function="$ctrl.goToHelp(hardware)"/>

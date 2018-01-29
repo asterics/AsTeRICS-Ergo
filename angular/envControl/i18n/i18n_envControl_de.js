@@ -25,11 +25,6 @@ asterics.i18n_envControl_de = {
     i18n_ec_help_at: 'bei',
     i18n_ec_help_from_producer: 'vom Hersteller',
     i18n_ec_help_introtext: 'Derzeit können AsTeRICS Ergo Steuerungen über folgende Hardware realisiert werden:',
-    i18n_ec_help_controlplug: 'FS20-System',
-    i18n_ec_help_controlplug_text: 'Mit dem "FS20"-System ist es möglich Steckdosen mit AsTeRICS zu steuern. Es können Geräte über die Steckdose ein- oder ausgeschalten werden (z.B. eine Tischlampe).',
-    i18n_ec_help_replaceremote: 'IrTrans USB',
-    i18n_ec_help_replaceremote_text: 'Mit dem "IrTrans"-System ist es möglich beinahe alle gängigen Fernbedienungen (Infrarot) zu ersetzen. Dadurch können z.B. Fernseher über AsTeRICS gesteuert werden.',
-    i18n_ec_help_moreinfo_about: 'Informationen zu benötigter Hardware für',
 
     //help irtrans
     i18n_ec_text_help_irtrans: 'Der <b>IrTrans</b> ist ein Gerät, welches Befehle von <b>Fernbedienungen</b> (Infrarot) <b>lernen</b> und wieder aussenden kann. Dadurch ist es möglich <b>Fernbedienungen</b> von Geräten wie z.B. einem Fernseher mit AsTeRICS zu <b>ersetzen</b>.',
@@ -221,8 +216,14 @@ asterics.i18n_envControl_de = {
 
     //help controls menu
     i18n_ec_supported_hardware: 'Von AsTeRICS Ergo unterstützte Hardware',
-    i18n_ec_ir_bulbs: 'Infrarot Glühbirnen',
-    i18n_ec_ir_bulbs_desc: 'Infrarot Glühbirnen können mit einer Fernbedienung gesteuert werden. In Kombination mit IrTrans kann damit die Steuerung einer Beleuchtung realisiert werden.',
+    i18n_ec_helpmenu_HW_FS20_PCSENDER: 'FS20-System',
+    i18n_ec_helpmenutext_HW_FS20_PCSENDER: 'Steuerung von Steckdosen (z.B. Steuerung von Tischlampe)',
+    i18n_ec_helpmenu_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_helpmenutext_HW_IRTRANS_USB: 'Ersetzen von Fernbedienungen (z.B. Steuerung von Fernseher)',
+    i18n_ec_helpmenu_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Ersetzen von Fernbedienungen (z.B. Steuerung von Fernseher)',
+    i18n_ec_helpmenu_HW_IR_BULB: 'Infrarot Glühbirnen',
+    i18n_ec_helpmenutext_HW_IR_BULB: 'Über Fernbedienung steuerbare Glühbirnen (z.B. für Raumlicht)',
 
     //Help Fs20
     i18n_ec_need_one_sender: 'Sie benötigten <b>pro</b> zu steuerndem <b>Gerät einen Zwischenstecker</b>. Insgesamt benötigen Sie nur <b>einen Sender</b>.',
