@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q' , 'hardwareService', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q, hardwareService) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q' , 'hardwareService', 'envControlHelpDataService', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q, hardwareService, envControlHelpDataService) {
         var thiz = this;
         var _dataFilename = "ecdata";
         var _saveTimestamp = -1;
@@ -169,7 +169,7 @@ angular.module(asterics.appServices)
         function processDeleteHandlers() {
             if(!_.isEmpty(_deletedElements)) {
                 _deletedElements.forEach(function (element) {
-                    if(_.includes(asterics.envControl.COMPUTER_HARDWARE, element.type)) {
+                    if(envControlHelpDataService.isComputerConfigured(element.type)) {
                         hardwareService.handleDelete(element.type, element);
                     }
                 });

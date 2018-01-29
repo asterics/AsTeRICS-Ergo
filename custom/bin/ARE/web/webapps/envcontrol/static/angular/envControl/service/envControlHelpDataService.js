@@ -234,6 +234,15 @@ angular.module(asterics.appServices)
         };
 
         /**
+         * checks if a given hardware is computer configured (e.g. irtrans, fs20 pc sender, ...)
+         * @param hardwareId the id of the hardware to check
+         * @return true, if the given hardware is computer configured, false otherwise
+         */
+        thiz.isComputerConfigured = function(hardwareId) {
+            return _.includes(_computerConfiguredHardware, hardwareId);
+        };
+
+        /**
          * resets all data to the original state
          */
         thiz.resetData = function () {
@@ -242,7 +251,7 @@ angular.module(asterics.appServices)
             _accessories = angular.copy(data._accessories);
             _hardwareAlternatives = angular.copy(data._hardwareAlternatives);
             _originalState = true;
-            _computerConfiguredHardware = data._computerConfiguredDevices;
+            _computerConfiguredHardware = data._computerConfiguredHardware;
         };
 
         /**
@@ -388,7 +397,7 @@ angular.module(asterics.appServices)
             data._accessories[asterics.envControl.HW_IRTRANS_USB] = [asterics.envControl.HW_USB_CABLE_AB];
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]);
             data._hardwareAlternatives.push([[asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]);
-            data._computerConfiguredDevices = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE];
+            data._computerConfiguredHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE];
             thiz.resetData();
         }
     }]);
