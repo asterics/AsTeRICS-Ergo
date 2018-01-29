@@ -104,6 +104,17 @@ angular.module(asterics.appServices)
             return _accessories[hardwareName];
         };
 
+        thiz.getNeededAccessoriesForList = function (hardwareNames) {
+            var returnList = [];
+            hardwareNames.forEach(function (name) {
+                var acc = _accessories[name];
+                if(acc) {
+                    returnList = returnList.concat(acc);
+                }
+            });
+            return returnList;
+        };
+
         thiz.getAlternatives = function (deviceSelectionMap) {
             var devicesList = getSelectedDevicesList(deviceSelectionMap);
             var alternatives = {};

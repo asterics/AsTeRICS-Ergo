@@ -1,0 +1,14 @@
+<div>
+    <div class="row">
+        <div ng-repeat="hardware in $ctrl.list">
+            <div class="col-xs-6 col-sm-3 col-lg-2">
+                <span ng-if="$ctrl.hardwareAmounts[hardware]">{{$ctrl.hardwareAmounts[hardware]}}x</span>
+                <a href="" ng-click="$ctrl.navigate(hardware)">
+                    <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
+                         alt="{{ 'i18n_ec_' + hardware | translate}}"/>
+                    <p>{{ 'i18n_ec_' + hardware | translate}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
