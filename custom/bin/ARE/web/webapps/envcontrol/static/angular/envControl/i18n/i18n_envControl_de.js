@@ -207,7 +207,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_needed_hardware2: 'Hintergrund und Bestellinfos zu benötigter Hardware.',
     i18n_ec_hardware_installation: 'Installation der Hardware',
     i18n_ec_hardware_installation2: 'Bereits bestellte Hardware am PC installieren.',
-    i18n_ec_faq: 'Häufig gestellte Fragen (FAQ)',
+    i18n_ec_faq: 'FAQs',
 
     //FAQ
     i18n_ec_faq2: 'Häufig gestellte Fragen',
