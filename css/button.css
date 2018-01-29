@@ -1,23 +1,19 @@
 /* Material style */
 button.subfolder-button {
-    border: none;
     cursor: pointer;
     color: black;
     padding: 15px 40px;
     border-radius: 2px;
     font-size: 22px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
     background: #f7ecb5;
 }
 
 button.action-button {
-    border: none;
     cursor: pointer;
     color: black;
     padding: 15px 40px;
     border-radius: 2px;
     font-size: 22px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
     background: #afd9ee;
 }
 
@@ -63,6 +59,13 @@ button:after {
 
 button.clicked:focus:not(:active)::after {
     animation: ripple 1s ease-out;
+}
+
+button {
+    border-style: solid;
+    border-width: medium;
+    border-color: transparent;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
 }
 
 button:focus, *:focus {
