@@ -17,7 +17,11 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
+                var stateName = 'home.envControl.help/controls/' + hardware;
+                if(!$state.get(stateName)) {
+                    return;
+                }
+                $state.go(stateName);
             };
 
             thiz.getNeededAccessoires = function (hardwareName) {
@@ -58,6 +62,11 @@ angular.module(asterics.appComponents)
                 thiz.alternativeHardare = envControlHelpDataService.getAlternatives(thiz.deviceSelectionMap);
                 thiz.alternativeHardwareForDevices = Object.keys(thiz.alternativeHardare);
                 thiz.showAlternatives = shouldShowAlternatives();
+                var accessoires = envControlHelpDataService.getNeededAccessoriesForList(thiz.neededHardware);
+                thiz.neededHardware = thiz.neededHardware.concat(accessoires);
+                accessoires.forEach(function (accessoire) {
+                    thiz.neededHardwareAmounts[accessoire] = 1;
+                });
                 if (!_.isEmpty(thiz.neededHardware) && stateUtilService.hasStateChangedSinceLastCall()) {
                     envControlUtilService.scrollToEnd();
                 }
