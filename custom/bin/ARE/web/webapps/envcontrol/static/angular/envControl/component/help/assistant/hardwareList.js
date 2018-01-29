@@ -3,7 +3,9 @@ angular.module(asterics.appComponents)
         bindings: {
             navigateFunction: '&',
             list: '<',
-            hardwareAmounts: '<'
+            hardwareAmounts: '<',
+            titlePrefix: '@',
+            additionalTextPrefix: '@'
         },
         controller: ['utilService', function (utilService) {
             var thiz = this;

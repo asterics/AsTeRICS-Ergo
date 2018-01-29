@@ -9,6 +9,7 @@ angular.module(asterics.appServices)
         var _hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
         var _originalState = true;
         var _computerConfiguredHardware = [];
+        var _hardwareWithHelp = [];
 
         thiz.setDeviceSelectionMap = function (map) {
             data._deviceSelectionMap = map;
@@ -229,6 +230,9 @@ angular.module(asterics.appServices)
          * @return {*}
          */
         thiz.getComputerConfiguredHardware = function(device) {
+            if(!device) {
+                return _computerConfiguredHardware;
+            }
             var neededHardware = thiz.getNeededHardware(device);
             return _.intersection(_computerConfiguredHardware, neededHardware);
         };
@@ -242,6 +246,10 @@ angular.module(asterics.appServices)
             return _.includes(_computerConfiguredHardware, hardwareId);
         };
 
+        thiz.getHardwareWithHelp = function () {
+            return _hardwareWithHelp;
+        };
+
         /**
          * resets all data to the original state
          */
@@ -251,7 +259,8 @@ angular.module(asterics.appServices)
             _accessories = angular.copy(data._accessories);
             _hardwareAlternatives = angular.copy(data._hardwareAlternatives);
             _originalState = true;
-            _computerConfiguredHardware = data._computerConfiguredHardware;
+            _computerConfiguredHardware = angular.copy(data._computerConfiguredHardware);
+            _hardwareWithHelp = angular.copy(data._hardwareWithHelp);
         };
 
         /**
@@ -398,6 +407,7 @@ angular.module(asterics.appServices)
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]);
             data._hardwareAlternatives.push([[asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]);
             data._computerConfiguredHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE];
+            data._hardwareWithHelp = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IR_BULB];
             thiz.resetData();
         }
     }]);

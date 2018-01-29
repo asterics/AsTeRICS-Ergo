@@ -25,11 +25,6 @@ asterics.i18n_envControl_en = {
     i18n_ec_help_at: 'at',
     i18n_ec_help_from_producer: 'from producer',
     i18n_ec_help_introtext: 'Currently it is possible to control the environment with AsTeRICS Ergo by using the following hardware:',
-    i18n_ec_help_controlplug: 'FS20-System',
-    i18n_ec_help_controlplug_text: 'The FS20 system allows to control sockets with AsTeRICS Ergo. Consequently, it is possible to switch devices, which are connected to a socket, on and off (e.g. table lamp, fan).',
-    i18n_ec_help_replaceremote: 'IrTrans USB',
-    i18n_ec_help_replaceremote_text: 'The IrTrans system allows to replace almost every commonly used infrared remote control. Thus it is possible to control e.g. a TV or radio using AsTeRICS Ergo.',
-    i18n_ec_help_moreinfo_about: 'More information about needed hardware for',
 
     //help irtrans
     i18n_ec_text_help_irtrans: 'The <b>IrTrans</b> is a device, which can <b>learn</b> commands from (infrared) <b>remote-controls</b> and send them out again. Thus it is possible to <b>replace remote controls</b> of various devices (e.g. TV, DVD player) with AsTeRICS Ergo.',
@@ -221,8 +216,14 @@ asterics.i18n_envControl_en = {
 
     //help controls menu
     i18n_ec_supported_hardware: 'Supported Hardware',
-    i18n_ec_ir_bulbs: 'Infrared Light Bulbs',
-    i18n_ec_ir_bulbs_desc: 'Infrared light bulbs can be controlled via remote control. Hence it is possible to control the ambient light using infrared light bulbs and the IrTrans.',
+    i18n_ec_helpmenu_HW_FS20_PCSENDER: 'FS20-System',
+    i18n_ec_helpmenutext_HW_FS20_PCSENDER: 'Control sockets (e.g. a table lamp)',
+    i18n_ec_helpmenu_HW_IRTRANS_USB: 'IrTrans USB',
+    i18n_ec_helpmenutext_HW_IRTRANS_USB: 'Replace remote controls (e.g. for controlling a TV)',
+    i18n_ec_helpmenu_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Replace remote controls (e.g. for controlling a TV)',
+    i18n_ec_helpmenu_HW_IR_BULB: 'Infrared Bulbs',
+    i18n_ec_helpmenutext_HW_IR_BULB: 'Light bulbs controllable by remote control (e.g. for ambient light)',
 
     //Help Fs20
     i18n_ec_need_one_sender: 'You need a <b>FS20 adapter plug for each device</b>, which you intend to control with the FS20 system. In total <b>one PC transmitter</b> is sufficient.',
