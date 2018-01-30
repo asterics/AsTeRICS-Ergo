@@ -4,7 +4,7 @@ angular.module(asterics.appComponents)
         bindings: {
             isDeviceLearn: '@'
         },
-        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$translate', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $translate) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$translate', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $translate, envControlUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
@@ -46,7 +46,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function () {
-                $state.go('home.envControl.help/controls/' + thiz.irHardware.getName());
+                envControlUtilService.goToHelp(thiz.irHardware.getName());
             };
 
             function startTrainCodes() {

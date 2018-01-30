@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', function (hardwareService, utilService, $timeout, $anchorScroll) {
+    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', '$state', function (hardwareService, utilService, $timeout, $anchorScroll, $state) {
         var thiz = this;
 
         thiz.createCellBoardItemPlugDevice = function (title, faIcon, code, hardwareDevice) {
@@ -141,6 +141,20 @@ angular.module(asterics.appServices)
             $timeout(function () {
                 $anchorScroll('end');
             });
+        };
+
+        thiz.goToHelp = function (hardware) {
+            var params = {
+                hardwareId: hardware
+            };
+            $state.go(asterics.envControl.STATE_HELP_HARDWARE, params);
+        };
+
+        thiz.goToAdd = function (device) {
+            var stateparams = {
+                device: device
+            };
+            $state.go(asterics.envControl.STATE_CONNECTION_CHECK, stateparams);
         };
 
         function createIrElement(label, icon) {

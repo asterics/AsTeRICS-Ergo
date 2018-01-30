@@ -17,11 +17,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                var stateName = 'home.envControl.help/controls/' + hardware;
-                if(!$state.get(stateName)) {
-                    return;
-                }
-                $state.go(stateName);
+                envControlUtilService.goToHelp(hardware);
             };
 
             thiz.getNeededAccessoires = function (hardwareName) {

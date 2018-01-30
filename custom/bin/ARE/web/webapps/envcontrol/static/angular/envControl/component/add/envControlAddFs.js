@@ -5,7 +5,7 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $scope) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$scope', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $scope, envControlUtilService) {
             var thiz = this;
             thiz.device = $stateParams.device;
             thiz.hardware = $stateParams.hardware;
@@ -29,7 +29,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
+                envControlUtilService.goToHelp(hardware);
             };
 
             thiz.goToFs20Help = function () {

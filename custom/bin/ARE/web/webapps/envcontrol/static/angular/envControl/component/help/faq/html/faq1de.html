@@ -1,18 +1,18 @@
 <div>Mit AsTeRICS Ergo können 2 Arten von Geräten gesteuert werden:
     <ol>
         <li>Mit AsTeRICS Ergo können die meisten Geräte, die mit einer Infrarot-Fernbedienung bedient werden, gesteuert
-            werden. Hierfür wird ein <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRTRANS')">IrTrans</a>
+            werden. Hierfür wird ein <a href="" ng-click="$ctrl.goToHelp('asterics.envControl.HW_IRTRANS_USB')">IrTrans</a>
             benötigt.</br>
             Beispiele:
             <ul>
-                <li><a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD_TV')">Fernseher</a></li>
-                <li><a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD_DVD')">DVD-Player</a></li>
-                <li><a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD_HIFI')">Radio/CD-Player</a></li>
+                <li><a href="" ng-click="$ctrl.goToAdd('asterics.envControl.DEVICE_TV')">Fernseher</a></li>
+                <li><a href="" ng-click="$ctrl.goToAdd('asterics.envControl.DEVICE_DVD')">DVD-Player</a></li>
+                <li><a href="" ng-click="$ctrl.goToAdd('asterics.envControl.DEVICE_HIFI')">Radio/CD-Player</a></li>
                 <li>Staubsaugerroboter</li>
                 <li><a ui-sref="home.envControl.help/faq({open: 10})">Jalousien</a></li>
                 <li>...</li>
             </ul>
-            Wenn <a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_IRBULB')">Infrarot-Glühbirnen</a>
+            Wenn <a href="" ng-click="$ctrl.goToHelp('asterics.envControl.HW_IR_BULB')">Infrarot-Glühbirnen</a>
             verwendet werden, kann mit AsTeRICS Ergo auch das <a
                     ui-sref="home.envControl.help/faq({open: 9})">Raumlicht</a> gesteuert
             werden.
@@ -20,12 +20,12 @@
         <li>
             Außerdem können Geräte gesteuert werden, die an der Steckdose hängen und per Schalter ein- und ausgeschaltet
             werden. Hierfür wird das <a href=""
-                                        ng-click="$ctrl.toState('asterics.envControl.STATE_HELP_FS20')">FS20-System</a>
+                                        ng-click="$ctrl.goToHelp('asterics.envControl.HW_FS20_PLUG')">FS20-System</a>
             benötigt.
             </br>
             Beispiele:
             <ul>
-                <li><a href="" ng-click="$ctrl.toState('asterics.envControl.STATE_ADD_LAMP')">Tisch-/Stehlampen</a></li>
+                <li><a href="" ng-click="$ctrl.goToAdd('asterics.envControl.DEVICE_TABLELAMP')">Tisch-/Stehlampen</a></li>
                 <li>Lavalampen</li>
                 <li>Ventilatoren</li>
                 <li>...</li>

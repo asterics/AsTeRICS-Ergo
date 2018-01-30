@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('noHardwareFound', {
         bindings: {},
-        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', function ($stateParams, utilService, envControlHelpDataService, $translate, $state) {
+        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'envControlUtilService', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, envControlUtilService) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.headerI18n = $stateParams.headerI18n;
@@ -32,7 +32,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
+                envControlUtilService.goToHelp(hardware);
             };
 
             thiz.goToInstall = function() {
