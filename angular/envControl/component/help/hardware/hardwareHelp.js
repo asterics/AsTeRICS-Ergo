@@ -16,5 +16,5 @@ angular.module(asterics.appComponents)
                 $state.go(stateName);
             };
         }],
-        templateUrl: "angular/envControl/component/help/controls/envControlHelpControls.html"
+        templateUrl: "angular/envControl/component/help/hardware/hardwareHelp.html"
     });
