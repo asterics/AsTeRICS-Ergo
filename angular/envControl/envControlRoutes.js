@@ -16,9 +16,9 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/help/devices',
             template: '<env-control-help-select/>'
         })
-        .state(asterics.envControl.STATE_HELP_CONTROLS, {
-            url: '/help/controls',
-            template: '<env-control-help-controls/>'
+        .state(asterics.envControl.STATE_HELP_HARDWARE, {
+            url: '/help/hardware/:hardwareId',
+            template: '<hardware-help-menu/>',
         })
         .state(asterics.envControl.STATE_HELP_INSTALL, {
             url: '/help/install',
