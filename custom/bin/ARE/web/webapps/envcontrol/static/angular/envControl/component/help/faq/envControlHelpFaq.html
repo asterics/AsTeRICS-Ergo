@@ -10,7 +10,7 @@
     <p translate="i18n_ec_faq_click_question"/>
     <div class="row-fluid">
         <span>Suche:</span>
-        <input type="text" ng-model="$ctrl.searchText" ng-change="$ctrl.search()"/>
+        <input id="searchInput" type="text" ng-model="$ctrl.searchText" ng-change="$ctrl.search()" autofocus/>
         <br/><br/>
     </div>
     <uib-accordion close-others="true">

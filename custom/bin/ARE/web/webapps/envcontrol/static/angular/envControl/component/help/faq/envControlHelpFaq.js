@@ -81,8 +81,9 @@ angular.module(asterics.appComponents)
                 return utilService.getLocalPort();
             };
 
-            init();
-            function init() {
+
+            thiz.$onInit = function () {
+                $('#searchInput').focus();
                 utilService.getLocalIP().then(function(response) {
                     thiz.localIP = response;
                 });
@@ -96,7 +97,7 @@ angular.module(asterics.appComponents)
                         });
                     }
                 }
-            }
+            };
 
             function initFaqs(lang) {
                 thiz.searchFaqs = thiz.faqs = envControlTextService.getFaqs(lang);
