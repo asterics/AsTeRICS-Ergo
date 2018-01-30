@@ -68,7 +68,7 @@ button {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
 }
 
-button:focus, *:focus, a:focus span {
+button:focus, *:focus, a:focus span, a:focus p {
     border-style: solid;
     border-color: red;
 }
