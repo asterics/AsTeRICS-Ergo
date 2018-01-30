@@ -12,5 +12,5 @@ angular.module(asterics.appComponents)
                 $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
             };
         }],
-        templateUrl: "angular/envControl/component/help/controls/envControlHelpIrtrans.html"
+        templateUrl: "angular/envControl/component/help/hardware/pages/HW_IRTRANS_USB.html"
     });
