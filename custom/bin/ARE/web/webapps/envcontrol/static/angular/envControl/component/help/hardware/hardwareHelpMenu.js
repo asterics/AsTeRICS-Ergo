@@ -1,10 +1,10 @@
 angular.module(asterics.appComponents)
-    .component('envControlHelpControls', {
+    .component('hardwareHelpMenu', {
         bindings: {
         },
-        controller: ['utilService', '$state', 'envControlHelpDataService', function (utilService, $state, envControlHelpDataService) {
+        controller: ['utilService', '$state', 'envControlHelpDataService', '$stateParams', function (utilService, $state, envControlHelpDataService, $stateParams) {
             var thiz = this;
-            thiz.currentState = encodeURI($state.current.name);
+            thiz.hardwareId = $stateParams.hardwareId;
             thiz.hardwareList = envControlHelpDataService.getHardwareWithHelp();
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
 
@@ -16,5 +16,5 @@ angular.module(asterics.appComponents)
                 $state.go(stateName);
             };
         }],
-        templateUrl: "angular/envControl/component/help/hardware/hardwareHelp.html"
+        templateUrl: "angular/envControl/component/help/hardware/hardwareHelpMenu.html"
     });
