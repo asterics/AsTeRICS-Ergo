@@ -13,5 +13,5 @@ angular.module(asterics.appComponents)
                 $state.go('home.envControl.help/install/' + asterics.envControl.HW_FS20_PCSENDER);
             };
         }],
-        templateUrl: "angular/envControl/component/help/controls/envControlHelpFs.html"
+        templateUrl: "angular/envControl/component/help/hardware/pages/HW_FS20_PCSENDER.html"
     });

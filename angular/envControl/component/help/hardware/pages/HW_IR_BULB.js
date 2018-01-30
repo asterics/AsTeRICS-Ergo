@@ -8,5 +8,5 @@ angular.module(asterics.appComponents)
             thiz.irbulbLinks = asterics.envControl.LINKS[asterics.envControl.HW_IR_BULB];
 
         }],
-        templateUrl: "angular/envControl/component/help/controls/envControlHelpBulb.html"
+        templateUrl: "angular/envControl/component/help/hardware/pages/HW_IR_BULB.html"
     });
