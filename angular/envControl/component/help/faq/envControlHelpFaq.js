@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', '$interval', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', function (utilService, $state, $stateParams, $anchorScroll, $timeout, $interval, envControlTextService, $scope, $rootScope, $sce, $translate) {
+        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', '$interval', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', 'envControlUtilService', function (utilService, $state, $stateParams, $anchorScroll, $timeout, $interval, envControlTextService, $scope, $rootScope, $sce, $translate, envControlUtilService) {
             var thiz = this;
             thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.faqs = [];
@@ -26,9 +26,12 @@ angular.module(asterics.appComponents)
                 return $state.go(eval(state));
             };
 
-            thiz.toDeviceLearn = function(device) {
-                var params = {device: eval(device)};
-                $state.go(asterics.envControl.STATE_CONNECTION_CHECK, params);
+            thiz.goToHelp = function (hardwareConstant) {
+                envControlUtilService.goToHelp(eval(hardwareConstant));
+            };
+
+            thiz.goToAdd = function (deviceConstant) {
+                envControlUtilService.goToAdd(eval(deviceConstant));
             };
 
             thiz.getTitle = function (faq) {

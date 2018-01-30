@@ -4,11 +4,11 @@ angular.module(asterics.appComponents)
             connectedHardware: '<',
             device: '<'
         },
-        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', function ($stateParams, utilService, envControlHelpDataService, $translate, $state) {
+        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', 'envControlUtilService', function ($stateParams, utilService, envControlHelpDataService, envControlUtilService) {
             var thiz = this;
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
+                envControlUtilService.goToHelp(hardware);
             };
 
             thiz.$onInit = function () {

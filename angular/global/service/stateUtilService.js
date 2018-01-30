@@ -120,7 +120,7 @@ angular.module(asterics.appServices)
 
             //if we got to a state, where we already were (circle) or if the state history does not contain a home state
             //-> clear history and add only home states
-            if (_.some(_stateHistory, {'name': to.name}) ||
+            if (_.some(_stateHistory, {'name': to.name, 'params': toParams}) ||
                 _.intersection(asterics.const.HOME_STATES, _.map(_stateHistory, 'name')).length == 0) {
                 _stateHistory = [];
                 angular.forEach(asterics.const.HOME_STATES, function (stateName) {

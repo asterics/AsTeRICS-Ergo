@@ -42,22 +42,6 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
                 skipConnectionTest: false
             }
         })
-        .state(asterics.envControl.STATE_HELP_FS20, {
-            url: '/help/controls/HW_FS20_PCSENDER',
-            template: '<env-control-help-fs/>'
-        })
-        .state(asterics.envControl.STATE_HELP_FS20_PLUG, {
-            url: '/help/controls/STATE_HELP_FS20_PLUG',
-            template: '<env-control-help-fs/>'
-        })
-        .state(asterics.envControl.STATE_HELP_IRTRANS, {
-            url: '/help/controls/HW_IRTRANS_USB',
-            template: '<env-control-help-irtrans/>'
-        })
-        .state(asterics.envControl.STATE_HELP_IRBULB, {
-            url: '/help/controls/HW_IR_BULB',
-            template: '<env-control-help-irbulb/>'
-        })
         .state(asterics.envControl.STATE_ADD, {
             url: '/add',
             template: '<env-control-add/>'

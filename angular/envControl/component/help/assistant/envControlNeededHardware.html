@@ -25,7 +25,7 @@
                         <span ng-if="$index < alternative[0].length-1">+</span>
                     </span>]
                     {{'i18n_ec_with'| translate}}
-                    [<span ng-repeat="hw in alternative[1]"><a href="" ng-click="$ctrl.goToHelp(alternative)">{{ 'i18n_ec_' + hw | translate}}</a><span ng-if="$index < alternative[0].length-1"> + </span></span>]
+                    [<span ng-repeat="hw in alternative[1]"><a href="" ng-click="$ctrl.goToHelp(hw)">{{ 'i18n_ec_' + hw | translate}}</a><span ng-if="$index < alternative[0].length-1"> + </span></span>]
                 </li>
                 <li ng-if="!$ctrl.isOriginalState()">
                     <button ng-click="$ctrl.resetAlternatives()"><i class="fa fa-undo"/> Reset</button>

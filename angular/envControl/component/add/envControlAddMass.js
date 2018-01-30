@@ -132,7 +132,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToHelp = function () {
-                $state.go('home.envControl.help/controls/' + thiz.irHardware.getName());
+                envControlUtilService.goToHelp(thiz.irHardware.getName());
             };
 
             thiz.getAdditionalInstructions = function () {
