@@ -11,5 +11,5 @@
         <p translate="i18n_ec_help_introtext"/>
         <hardware-list list="$ctrl.hardwareList" navigate-function="$ctrl.goToHelp(hardware)" title-prefix="helpmenu" additional-text-prefix="helpmenutext"/>
     </div>
-    <div ng-if="$ctrl.hardwareId" ng-include="$ctrl.getHtmlPath(faq)"/>
+    <div ng-if="$ctrl.htmlPath" ng-include="$ctrl.htmlPath"/>
 </div>
