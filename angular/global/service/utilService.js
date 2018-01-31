@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('utilService', ['$state', 'stateUtilService', '$q', '$translate', function ($state, stateUtilService, $q, $translate) {
+    .service('utilService', ['$state', 'stateUtilService', '$q', '$translate', 'httpWrapper', function ($state, stateUtilService, $q, $translate, $http) {
         var thiz = this;
         var _defaultPort = "8091";
 
@@ -68,6 +68,10 @@ angular.module(asterics.appServices)
             return thiz.getBaseUrl() + "rest/";
         };
 
+        thiz.getBaseUrlWithPath = function () {
+            return thiz.getBaseUrl() + '/webapps/envControl/static/';
+        };
+
         thiz.getWebsocketUrl = function () {
             return "ws://" + window.location.hostname + ":8092/ws/astericsData";
         };
@@ -120,5 +124,18 @@ angular.module(asterics.appServices)
                 returnList.push(new prototypeFunction(element));
             });
             return returnList;
+        };
+
+        thiz.existsFile = function (path) {
+            var def = $q.defer();
+            $http({
+                method: 'GET',
+                url: thiz.getBaseUrlWithPath() + path
+            }).then(function (response) {
+                def.resolve(true);
+            }, function (error) {
+                def.resolve(false);
+            });
+            return def.promise;
         };
     }]);
