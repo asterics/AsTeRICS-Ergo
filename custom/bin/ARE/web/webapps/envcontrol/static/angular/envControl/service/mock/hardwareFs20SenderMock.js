@@ -4,6 +4,8 @@ angular.module(asterics.appServices)
         var houseCodeLength = 8;
         var _plugged = true;
         thiz.canceler = $q.defer();
+        var FS20_TOGGLE_CODE = 18;
+        var FS20_LEARN_CODE = 23;
 
         thiz.getName = function() {
             return asterics.envControl.HW_FS20_PCSENDER;
@@ -15,11 +17,11 @@ angular.module(asterics.appServices)
         };
 
         thiz.send = function (code) {
-            return thiz.fs20Action(code, asterics.envControl.FS20_TOGGLE_CODE);
+            return thiz.fs20Action(code, FS20_TOGGLE_CODE);
         };
 
         thiz.trainCode = function (code) {
-            return thiz.fs20Action(code, asterics.envControl.FS20_LEARN_CODE)
+            return thiz.fs20Action(code, FS20_LEARN_CODE);
         };
 
         thiz.isConnected = function () {
