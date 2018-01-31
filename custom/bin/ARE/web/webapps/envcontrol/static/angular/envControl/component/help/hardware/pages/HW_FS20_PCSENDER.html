@@ -18,7 +18,7 @@
             <img src="angular/envControl/img/HW_FS20_PLUG.jpg" alt="{{'i18n_ec_HW_FS20_PLUG' | translate}}"/>
             <div>{{'i18n_ec_HW_FS20_PLUG' | translate}}</div>
             <ul>
-                <li ng-repeat="linkObject in $ctrl.fs20plugLinks">
+                <li ng-repeat="linkObject in $ctrl.links['HW_FS20_PLUG']">
                     <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
                 </li>
             </ul>
@@ -30,7 +30,7 @@
             <img src="angular/envControl/img/HW_FS20_PCSENDER.jpg" alt="{{'i18n_ec_HW_FS20_PCSENDER' | translate}}"/>
             <div>{{'i18n_ec_HW_FS20_PCSENDER' | translate}}</div>
             <ul>
-                <li ng-repeat="linkObject in $ctrl.fs20senderLinks">
+                <li ng-repeat="linkObject in $ctrl.links['HW_FS20_PCSENDER']">
                     <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
                 </li>
             </ul>
@@ -39,7 +39,7 @@
     <p>
         <div translate="i18n_ec_to_fs20_hint_set"/>
         <ul>
-            <li ng-repeat="linkObject in $ctrl.fs20setLinks">
+            <li ng-repeat="linkObject in $ctrl.links['HW_FS20_SET']">
                 <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
             </li>
         </ul>
