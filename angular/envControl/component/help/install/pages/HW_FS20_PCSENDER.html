@@ -1,0 +1,32 @@
+<div>
+    <h3 translate="i18n_ec_install_fs20_header"/>
+    <p translate="i18n_ec_install_fs20_header2"/>
+    <ol class="install-help">
+        <li>
+            <span translate="i18n_ec_install_fs20_p1"/>
+            <div class="row">
+                <img class="img-row col-xs-3" src="angular/envControl/img/fs20-usba.png"
+                     alt="FS20-Sender with USB-A"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+            </div>
+        </li>
+        <li>
+            <span translate="i18n_ec_install_fs20_p2"/>
+        </li>
+        <li>
+            <span translate="i18n_ec_install_fs20_p3"/><br/>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('fs20Patch')"><span translate="i18n_ec_install_fs20_check"/></button>
+            <span ng-if="$ctrl.hardwareMethodCallResults['fs20Patch']">
+                <i class="fa fa-check"/> <span translate="i18n_ec_install_fs20_check_success"/>
+            </span>
+        </li>
+        <li ng-if="$ctrl.hardwareMethodCallResults['fs20Patch']">
+            <span translate="i18n_ec_install_fs20_p23"/>
+        </li>
+        <li ng-if="$ctrl.hardwareMethodCallResults['fs20Patch']">
+            <span translate="i18n_ec_install_fs20_test"/>
+            <button ng-click="$ctrl.test()" translate="i18n_ec_test"></button>
+            <hardware-test register-function="$ctrl.testRegisterFunction(testFunction)" hardware-id="$ctrl.hardwareId">
+        </li>
+    </ol>
+</div>

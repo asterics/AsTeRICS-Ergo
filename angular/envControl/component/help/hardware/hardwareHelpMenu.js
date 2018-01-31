@@ -15,6 +15,10 @@ angular.module(asterics.appComponents)
                 envControlUtilService.goToHelp(hardware);
             };
 
+            thiz.goToInstall = function (hardware) {
+                envControlUtilService.goToInstall(hardware);
+            };
+
             thiz.$onInit = function () {
                 if(_helpMapping[thiz.hardwareId]) {
                     thiz.hardwareId = _helpMapping[thiz.hardwareId];

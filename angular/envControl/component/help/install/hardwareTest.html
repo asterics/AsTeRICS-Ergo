@@ -1,0 +1,17 @@
+<div>
+    <div ng-if="$ctrl.hasTested">
+        <div ng-if="$ctrl.testResult == null">
+            <span translate="i18n_ec_testing"/>
+            <i class="fa fa-spinner fa-pulse fa-fw"/>
+        </div>
+        <span ng-if="$ctrl.testResult == false">
+                    <i class="fa fa-2x fa-times"/> <span translate="i18n_ec_test_failed"/></br>
+            <span ng-if="$ctrl.testFailedHint" translate="{{$ctrl.testFailedHint}}"/>
+                </span>
+        <span ng-if="$ctrl.testResult == true">
+                    <i class="fa fa-2x fa-check"/> <span translate="i18n_ec_test_success1"/>
+                    <a ui-sref="home.envControl.add" translate="i18n_ec_newelement"/> <span
+                translate="i18n_ec_test_success2"/>
+                </span>
+    </div>
+</div>

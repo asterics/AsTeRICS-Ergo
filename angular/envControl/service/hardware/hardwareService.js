@@ -12,6 +12,25 @@ angular.module(asterics.appServices)
         _hardwareMap[asterics.envControl.HW_GROUP_IR] = _irHardware;
         _hardwareMap[asterics.envControl.HW_GROUP_PLUG] = _plugHardware;
 
+        thiz.isConnected = function (hardwareId) {
+            return getSingleHardware(hardwareId).isConnected();
+        };
+
+        /**
+         * calls a specific method of a hardware device by method name
+         *
+         * @param hardwareId the ID of the hardware to call a method of
+         * @param methodName the name of the method to call
+         * @return the result of the invoked method or null if the method was not found on the hardware device
+         */
+        thiz.callSpecialHardwareMethod = function (hardwareId, methodName) {
+            var hardware = getSingleHardware(hardwareId);
+            if(hardware && hardware[methodName] && _.isFunction(hardware[methodName])) {
+                return hardware[methodName]();
+            }
+            return null;
+        };
+
         /**
          * returns exactly one connected hardware for a given hardware list of hardware IDs. If several hardware instances
          * for the given list are connected the hardware with higher priority is returned.

@@ -36,10 +36,6 @@ angular.module(asterics.appComponents)
                 thiz.goToHelp(asterics.envControl.HW_FS20_PCSENDER);
             };
 
-            thiz.goToFs20Install = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_FS20_PCSENDER);
-            };
-
             $scope.$watch(function () {
                 return thiz.selectedLabel
             }, function () {

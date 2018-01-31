@@ -21,26 +21,15 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<hardware-help-menu/>',
         })
         .state(asterics.envControl.STATE_HELP_INSTALL, {
-            url: '/help/install',
-            template: '<env-control-help-install/>'
+            url: '/help/install/:hardwareId',
+            template: '<install-help-menu/>',
+            params: {
+                skipConnectionTest: null
+            }
         })
         .state(asterics.envControl.STATE_HELP_FAQ, {
             url: '/help/faq/:open',
             template: '<env-control-help-faq/>'
-        })
-        .state(asterics.envControl.STATE_HELP_INSTALL_IR, {
-            url: '/help/install/irtrans',
-            template: '<ec-help-install-irtrans/>',
-            params: {
-                skipConnectionTest: false
-            }
-        })
-        .state(asterics.envControl.STATE_HELP_INSTALL_FS20, {
-            url: '/help/install/fs20',
-            template: '<ec-help-install-fs20/>',
-            params: {
-                skipConnectionTest: false
-            }
         })
         .state(asterics.envControl.STATE_ADD, {
             url: '/add',

@@ -150,11 +150,25 @@ angular.module(asterics.appServices)
             $state.go(asterics.envControl.STATE_HELP_HARDWARE, params);
         };
 
+        thiz.goToInstall = function (hardware, skipConnectionTest) {
+            thiz.hardwareId = hardware;
+            var params = {
+                hardwareId: hardware,
+                skipConnectionTest: skipConnectionTest
+            };
+            $state.go(asterics.envControl.STATE_HELP_INSTALL, params);
+        };
+
         thiz.goToAdd = function (device) {
             var stateparams = {
                 device: device
             };
             $state.go(asterics.envControl.STATE_CONNECTION_CHECK, stateparams);
+        };
+
+        thiz.goToFaq = function (faqId) {
+            var params = {open: faqId};
+            $state.go(asterics.envControl.STATE_HELP_FAQ, params);
         };
 
         function createIrElement(label, icon) {
