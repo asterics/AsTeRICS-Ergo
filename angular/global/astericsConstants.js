@@ -1,5 +1,6 @@
 var asterics = asterics || {};
 asterics.const = asterics.const || {};
+asterics.const.MODELVERSION = '1.1.0';
 asterics.const.WEBAPP_NAME = 'envcontrol';
 
 asterics.const.CELLB_MODE_NORMAL = 'CB_MODE_NORMAL';
