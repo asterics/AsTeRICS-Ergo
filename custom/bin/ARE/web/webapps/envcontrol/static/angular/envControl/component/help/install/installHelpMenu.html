@@ -26,5 +26,5 @@
                 translate="i18n_ec_already_installed2"/>
         </p>
     </div>
-    <div ng-if="$ctrl.hardwareId && ($ctrl.isConnected == false || $ctrl.skipConnectionTest)" ng-include="$ctrl.getHtmlPath(faq)"/>
+    <div ng-if="$ctrl.hardwareId && ($ctrl.isConnected == false || $ctrl.skipConnectionTest) && $ctrl.htmlPath" ng-include="$ctrl.htmlPath"/>
 </div>
