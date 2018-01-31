@@ -1,7 +1,7 @@
 angular.module(asterics.appServices)
     .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q' , 'hardwareService', 'envControlHelpDataService', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q, hardwareService, envControlHelpDataService) {
         var thiz = this;
-        var _dataFilename = "ecdata";
+        var _dataFilename = "ecdata" + asterics.const.MODELVERSION;
         var _saveTimestamp = -1;
         var _initDeferred = $q.defer();
 
