@@ -10,7 +10,7 @@ angular.module(asterics.appServices)
 
         thiz.send = function (cmd) {
             var def = $q.defer();
-            console.log("sending mocked FlipMouse command: " + cmd);
+            console.log("sending mocked FLipMouse command: " + cmd);
             def.resolve();
             return def.promise;
         };
@@ -19,7 +19,7 @@ angular.module(asterics.appServices)
             var def = $q.defer();
             $timeout(function () {
                 var cmd = "CODE" + new Date().getTime();
-                console.log("learned mocked FlipMouse command: " + cmd);
+                console.log("learned mocked FLipMouse command: " + cmd);
                 def.resolve(cmd);
             }, 500);
             return def.promise;
