@@ -47,7 +47,7 @@ angular.module(asterics.appServices)
          */
         thiz.deleteHandler = function(item) {
             if(item.code) {
-                console.log("FlipMouse: deleting command <" + item.code + ">");
+                console.log("FLipMouse: deleting command <" + item.code + ">");
                 var cmd = 'AT IC ' + item.code;
                 areService.sendDataToInputPort(componentName, portName, cmd, thiz.canceler);
             }

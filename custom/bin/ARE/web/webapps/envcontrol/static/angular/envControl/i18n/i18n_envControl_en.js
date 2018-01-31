@@ -81,7 +81,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
     i18n_ec_HW_USB_CABLE_AB: 'USB cable (type A - type B)',
     i18n_ec_HW_IR_BULB: 'IR light bulb',
-    i18n_ec_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_HW_IR_FLIPMOUSE: 'FLipMouse',
     i18n_ec_HW_IR_PLUG: 'Infrared Plug',
 
     //addmenu
@@ -216,7 +216,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_helpmenutext_HW_FS20_PCSENDER: 'Control sockets (e.g. a table lamp)',
     i18n_ec_helpmenu_HW_IRTRANS_USB: 'IrTrans USB',
     i18n_ec_helpmenutext_HW_IRTRANS_USB: 'Replace remote controls (e.g. for controlling a TV)',
-    i18n_ec_helpmenu_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_helpmenu_HW_IR_FLIPMOUSE: 'FLipMouse',
     i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Replace remote controls (e.g. for controlling a TV)',
     i18n_ec_helpmenu_HW_IR_BULB: 'Infrared Bulbs',
     i18n_ec_helpmenutext_HW_IR_BULB: 'Light bulbs controllable by remote control (e.g. for ambient light)',
@@ -301,7 +301,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_helpinstall_header2: 'If you have already bought the required hardware to control the environment, please select one of the following links to install the hardware:',
     i18n_ec_installhelp_HW_IRTRANS_USB: 'Install IrTrans',
     i18n_ec_installhelp_HW_FS20_PCSENDER: 'Install the FS20 system',
-    i18n_ec_installhelp_HW_IR_FLIPMOUSE: 'Install the FlipMouse',
+    i18n_ec_installhelp_HW_IR_FLIPMOUSE: 'Install the FLipMouse',
 
     //links
     i18n_ec_link_fs20sender_amazon: 'FS20 PC transmitter at Amazon',

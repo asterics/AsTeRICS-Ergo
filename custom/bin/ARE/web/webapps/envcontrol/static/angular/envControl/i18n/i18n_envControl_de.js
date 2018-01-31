@@ -81,7 +81,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_HW_IRTRANS_USB: 'IrTrans USB',
     i18n_ec_HW_USB_CABLE_AB: 'USB Kabel (Typ A - Typ B)',
     i18n_ec_HW_IR_BULB: 'IR Glühbirne',
-    i18n_ec_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_HW_IR_FLIPMOUSE: 'FLipMouse',
     i18n_ec_HW_IR_PLUG: 'Infrarot Stecker',
 
     //addmenu
@@ -216,7 +216,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_helpmenutext_HW_FS20_PCSENDER: 'Steuerung von Steckdosen (z.B. Steuerung von Tischlampe)',
     i18n_ec_helpmenu_HW_IRTRANS_USB: 'IrTrans USB',
     i18n_ec_helpmenutext_HW_IRTRANS_USB: 'Ersetzen von Fernbedienungen (z.B. Steuerung von Fernseher)',
-    i18n_ec_helpmenu_HW_IR_FLIPMOUSE: 'FlipMouse',
+    i18n_ec_helpmenu_HW_IR_FLIPMOUSE: 'FLipMouse',
     i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Ersetzen von Fernbedienungen (z.B. Steuerung von Fernseher)',
     i18n_ec_helpmenu_HW_IR_BULB: 'Infrarot Glühbirnen',
     i18n_ec_helpmenutext_HW_IR_BULB: 'Über Fernbedienung steuerbare Glühbirnen (z.B. für Raumlicht)',
@@ -301,7 +301,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_helpinstall_header2: 'Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:',
     i18n_ec_installhelp_HW_IRTRANS_USB: 'IrTrans installieren',
     i18n_ec_installhelp_HW_FS20_PCSENDER: 'FS20 installieren',
-    i18n_ec_installhelp_HW_IR_FLIPMOUSE: 'FlipMouse installieren',
+    i18n_ec_installhelp_HW_IR_FLIPMOUSE: 'FLipMouse installieren',
 
     //links
     i18n_ec_link_fs20sender_amazon: 'FS20 PC-Sender bei Amazon',
