@@ -28,7 +28,7 @@ asterics.i18n_envControl_de = {
 
     //help irtrans
     i18n_ec_text_help_irtrans: 'Der <b>IrTrans</b> ist ein Gerät, welches Befehle von <b>Fernbedienungen</b> (Infrarot) <b>lernen</b> und wieder aussenden kann. Dadurch ist es möglich <b>Fernbedienungen</b> von Geräten wie z.B. einem Fernseher mit AsTeRICS zu <b>ersetzen</b>.',
-    i18n_ec_help_irtranshint_supported_device: 'Derzeit wird von AsTeRICS-Ergo nur die Version "<b>IrTrans USB</b>" unterstützt, bitte achten Sie bei einer Bestellung darauf diese Version zu bestellen.',
+    i18n_ec_help_irtranshint_supported_device: 'Derzeit wird von AsTeRICS Ergo nur die Version "<b>IrTrans USB</b>" unterstützt, bitte achten Sie bei einer Bestellung darauf diese Version zu bestellen.',
     i18n_ec_help_irtrans_text_tolink: 'Klicken Sie auf einen der folgenden <b>Links</b> um zu <b>Anbietern von IrTrans</b> zu gelangen:',
 
     //help fs20
@@ -178,7 +178,7 @@ asterics.i18n_envControl_de = {
 
     //selection wizard
     i18n_ec_choose_controls: 'Auswahl Steuerungsmöglichkeiten',
-    i18n_ec_which_devices: 'Welche Geräte möchten Sie mit AsTeRICS-Ergo steuern?',
+    i18n_ec_which_devices: 'Welche Geräte möchten Sie mit AsTeRICS Ergo steuern?',
     i18n_ec_device_not_in_list: 'Das gewünschte Gerät ist nicht in der Liste?',
     i18n_ec_devices_more_possibilities: 'Weitere Möglichkeiten',
     i18n_ec_you_need_devices: 'Die folgende Hardware wird empfohlen um diese Geräte zu steuern:',
@@ -237,7 +237,7 @@ asterics.i18n_envControl_de = {
 
     //help ir-bulb
     i18n_ec_help_irbulb: 'Hilfe - IR Glühbirne',
-    i18n_ec_help_irbulb_p1: 'Eine Infrarot Glühbirne kann mit einer <b>Fernbedienung gesteuert</b> werden. Dadurch ist es möglich mithilfe von AsTeRICS-Ergo die Steuerung einer <b>Raumbeleuchtung</b> zu realisieren.',
+    i18n_ec_help_irbulb_p1: 'Eine Infrarot Glühbirne kann mit einer <b>Fernbedienung gesteuert</b> werden. Dadurch ist es möglich mithilfe von AsTeRICS Ergo die Steuerung einer <b>Raumbeleuchtung</b> zu realisieren.',
     i18n_ec_help_irbulb_p2: 'Eine IR-Glühbirne wird ganz normal <b>wie jede andere Glühbirne</b> in eine <b>bestehende Lampe geschraubt</b>.',
     i18n_ec_help_irbulb_p3: 'Es gibt viele verschiedene Anbieter und Modelle von IR-Glühbirnen, klicken Sie auf einen der folgenden Links um zu ausgewählten Angeboten zu gelangen:',
 

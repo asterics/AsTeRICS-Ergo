@@ -225,7 +225,7 @@ asterics.envControl.faq.en  = [
     },
     {
         id: 38,
-        title: 'How is it possible to use AsTeRICS-Ergo on a Smartphone or Tablet?',
+        title: 'How is it possible to use AsTeRICS Ergo on a Smartphone or Tablet?',
         language: 'en',
         keywords: []
     },
