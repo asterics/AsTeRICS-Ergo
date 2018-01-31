@@ -36,6 +36,9 @@ angular.module(asterics.appComponents)
 
             thiz.getTitle = function (faq) {
                 var _title = faq.title;
+                if($stateParams.open && thiz.faqs[$stateParams.open-1].title == _title) {
+                    _title = '<mark style="background-color: #FFFF00">' + _title + '</mark>'
+                }
                 if (thiz.searchText) {
                     _title = _.replace(_title, new RegExp(thiz.searchText, 'ig'), '<b>$&</b>');
                 }
