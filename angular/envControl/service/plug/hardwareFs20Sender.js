@@ -6,6 +6,9 @@ angular.module(asterics.appServices)
         var houseCodeLength = 8;
         thiz.canceler = $q.defer();
         var _testTimeout = 3000;
+        var FS20_TOGGLE_CODE = 18;
+        var FS20_LEARN_CODE = 23;
+        var FS20_TEST_CODE = 28;
 
         thiz.getName = function() {
             return asterics.envControl.HW_FS20_PCSENDER;
@@ -17,18 +20,18 @@ angular.module(asterics.appServices)
         };
 
         thiz.send = function (code) {
-            return thiz.fs20Action(code, asterics.envControl.FS20_TOGGLE_CODE);
+            return thiz.fs20Action(code, FS20_TOGGLE_CODE);
         };
 
         thiz.trainCode = function (code) {
-            return thiz.fs20Action(code, asterics.envControl.FS20_LEARN_CODE)
+            return thiz.fs20Action(code, FS20_LEARN_CODE);
         };
 
         thiz.isConnected = function () {
             var def = $q.defer();
 
             //do first check without resolving -> avoids error that return is true, but FS20 not really connected, e.g. in power save mode
-            thiz.fs20Action('1111_1111', '28', _testTimeout).finally(function () {
+            thiz.fs20Action('1111_1111', FS20_TEST_CODE, _testTimeout).finally(function () {
                 check(2); //do real check n times, sometimes no correct value after first times
             });
 
@@ -37,7 +40,7 @@ angular.module(asterics.appServices)
                 if (count < 0) {
                     def.resolve(false);
                 } else {
-                    thiz.fs20Action('1111_1111', '28', _testTimeout).then(success, function () {
+                    thiz.fs20Action('1111_1111', FS20_TEST_CODE, _testTimeout).then(success, function () {
                         $timeout(function () {
                             check(count);
                         }, 3000);

@@ -2,9 +2,6 @@ var asterics = asterics || {};
 asterics.const = asterics.const || {};
 asterics.envControl = asterics.envControl || {};
 
-asterics.envControl.FS20_TOGGLE_CODE = 18;
-asterics.envControl.FS20_LEARN_CODE = 23;
-
 //not used anymore, just for comatibility resons:
 asterics.envControl.CB_TYPE_FS20 = 'HW_FS20_PCSENDER';
 asterics.envControl.CB_TYPE_IR = 'HW_IRTRANS_USB';
