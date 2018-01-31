@@ -103,21 +103,24 @@ angular.module(asterics.appServices)
         };
 
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+            //console.log("changed to state: " + to.name);
             _stateHasChanged = true;
             callAllStateChangeFunctions();
             var lastElement = thiz.getLastState();
             if (lastElement && lastElement.name === to.name) {
                 _stateHistory.pop(); // moved back to last state -> remove it from history
             } else if (from.name) { //moved to new state -> add it to history
-                _stateHistory.push({
-                    name: from.name,
-                    params: fromParams
-                });
+                if (!_.includes(asterics.const.NAVIGATION_IGNORE_STATES, from.name)) {
+                    _stateHistory.push({
+                        name: from.name,
+                        params: fromParams
+                    });
+                }
             }
 
             //if we got to a state, where we already were (circle) or if the state history does not contain a home state
             //-> clear history and add only home states
-            if (_.some(_stateHistory, {'name': to.name}) ||
+            if (_.some(_stateHistory, {'name': to.name, 'params': toParams}) ||
                 _.intersection(asterics.const.HOME_STATES, _.map(_stateHistory, 'name')).length == 0) {
                 _stateHistory = [];
                 angular.forEach(asterics.const.HOME_STATES, function (stateName) {

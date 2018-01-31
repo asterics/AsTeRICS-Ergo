@@ -98,6 +98,7 @@ ol li {
 
 .img-row {
     padding-bottom: 15px;
+    padding-top: 15px;
     max-height: 100px;
     width: auto !important;
 }

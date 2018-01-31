@@ -1,4 +1,6 @@
+var asterics = asterics || {};
 asterics.const = asterics.const || {};
+asterics.const.MODELVERSION = '1.1.0';
 asterics.const.WEBAPP_NAME = 'envcontrol';
 
 asterics.const.CELLB_MODE_NORMAL = 'CB_MODE_NORMAL';
@@ -19,6 +21,7 @@ asterics.const.ServerEventTypes = {
 
 asterics.const.STATE_HOME = 'home';
 asterics.const.HOME_STATES = [asterics.const.STATE_HOME];
+asterics.const.NAVIGATION_IGNORE_STATES = asterics.const.NAVIGATION_IGNORE_STATES || [];
 
 asterics.const.I18N_DE = 'de';
 asterics.const.I18N_EN = 'en';
@@ -35,7 +38,7 @@ asterics.const.MSG_ERROR = 'error';
 asterics.const.EVENT_LANG_CHANGED = 'languageChanged';
 
 asterics.const.PULL_RELOAD_INTERVAL_MS = 500;
-asterics.const.WEBSOCKET_TIMEOUT = 10000;
+asterics.const.WEBSOCKET_TIMEOUT = 11000;
 
 asterics.const.OS_IS_WIN10 = (window.navigator.userAgent.indexOf("Windows NT 10.0") != -1);
 asterics.const.OS_IS_WIN7 = (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1);

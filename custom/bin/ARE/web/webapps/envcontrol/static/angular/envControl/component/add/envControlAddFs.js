@@ -5,40 +5,36 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'envControlFsService', 'utilService', '$stateParams', 'stateUtilService', '$scope', function (envControlDataService, $state, envControlFsService, utilService, $stateParams, stateUtilService, $scope) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$scope', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $scope, envControlUtilService) {
             var thiz = this;
+            thiz.device = $stateParams.device;
+            thiz.hardware = $stateParams.hardware;
+            thiz.headerI18n = $stateParams.headerI18n;
+            
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
-            thiz.code = envControlDataService.getNewFs20Code();
             thiz.isConnected = null;
             thiz.neededHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG];
 
             thiz.addCellBoardItemAndReturn = function () {
-                envControlFsService.trainCode(thiz.code);
-                envControlDataService.addCellBoardElementFs20(thiz.selectedLabel, thiz.selectedIcon, thiz.code, thiz.cbToAdd);
+                var additionalData = envControlDataService.getAdditionalDeviceData(thiz.hardware.getName()) || [];
+                var code = thiz.hardware.getNewCode(additionalData);
+                additionalData.push(code);
+                envControlDataService.setAdditionalDeviceData(additionalData, thiz.hardware.getName());
+                thiz.hardware.trainCode(code);
+                envControlDataService.addCellBoardElementPlug(thiz.selectedLabel, thiz.selectedIcon, code, thiz.cbToAdd, thiz.hardware.getName());
                 envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
             };
 
             thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
+                envControlUtilService.goToHelp(hardware);
             };
 
             thiz.goToFs20Help = function () {
                 thiz.goToHelp(asterics.envControl.HW_FS20_PCSENDER);
             };
-
-            thiz.goToFs20Install = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_FS20_PCSENDER);
-            };
-
-            init();
-            function init() {
-                envControlFsService.isConnected().then(function (isConnected) {
-                    thiz.isConnected = isConnected;
-                });
-            }
 
             $scope.$watch(function () {
                 return thiz.selectedLabel

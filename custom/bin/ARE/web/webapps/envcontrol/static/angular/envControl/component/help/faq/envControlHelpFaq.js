@@ -3,7 +3,7 @@ angular.module(asterics.appComponents)
         bindings: {
             hideBack: '<',
         },
-        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', '$interval', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', function (utilService, $state, $stateParams, $anchorScroll, $timeout, $interval, envControlTextService, $scope, $rootScope, $sce, $translate) {
+        controller: ['utilService', '$state', '$stateParams', '$anchorScroll', '$timeout', '$interval', 'envControlTextService', '$scope', '$rootScope', '$sce', '$translate', 'envControlUtilService', function (utilService, $state, $stateParams, $anchorScroll, $timeout, $interval, envControlTextService, $scope, $rootScope, $sce, $translate, envControlUtilService) {
             var thiz = this;
             thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.faqs = [];
@@ -26,8 +26,19 @@ angular.module(asterics.appComponents)
                 return $state.go(eval(state));
             };
 
+            thiz.goToHelp = function (hardwareConstant) {
+                envControlUtilService.goToHelp(eval(hardwareConstant));
+            };
+
+            thiz.goToAdd = function (deviceConstant) {
+                envControlUtilService.goToAdd(eval(deviceConstant));
+            };
+
             thiz.getTitle = function (faq) {
                 var _title = faq.title;
+                if($stateParams.open && thiz.faqs[$stateParams.open-1].title == _title) {
+                    _title = '<mark style="background-color: #FFFF00">' + _title + '</mark>'
+                }
                 if (thiz.searchText) {
                     _title = _.replace(_title, new RegExp(thiz.searchText, 'ig'), '<b>$&</b>');
                 }
@@ -73,8 +84,9 @@ angular.module(asterics.appComponents)
                 return utilService.getLocalPort();
             };
 
-            init();
-            function init() {
+
+            thiz.$onInit = function () {
+                $('#searchInput').focus();
                 utilService.getLocalIP().then(function(response) {
                     thiz.localIP = response;
                 });
@@ -88,7 +100,7 @@ angular.module(asterics.appComponents)
                         });
                     }
                 }
-            }
+            };
 
             function initFaqs(lang) {
                 thiz.searchFaqs = thiz.faqs = envControlTextService.getFaqs(lang);

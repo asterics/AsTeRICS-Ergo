@@ -15,6 +15,7 @@
     <script type="application/javascript" src="loadScripts.js"></script>
     <script type="application/javascript" src="areCommunicatorLight.js"></script>
     <script type="application/javascript" src="utils.js"></script>
+    <script type="application/javascript" src="../angular/envControl/envControlConstants.js"></script>
 
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/button.css">
@@ -33,9 +34,24 @@
                     <h1 id="heading">AsTeRICS Ergo</h1>
                 </div>
                 <div id="backbutton" class="col-sm-3 col-lg-2 cb-element" style="padding-top: 1em">
-                    <button tabindex="-1" onclick="javascript:goToFullVersion();"><i class="fa fa-cog"></i>
+                    <button onclick="javascript:goToFullVersion();"><i class="fa fa-cog"></i>
                         Full Mode
                     </button>
+                </div>
+                <div id="scanningDiv1" class="col-sm-3 col-lg-2 cb-element" style="padding-top: 1em">
+                    <button id="scanningButton" onclick="javascript:startScanning();">
+                        <i class="fa fa-ellipsis-h"></i>
+                        <span id="scanningButtonText">Start Scanning</span>
+                    </button>
+                </div>
+                <div id="scanningDiv2" class="col-sm-3 col-lg-2" style="padding-top: 1em">
+                    <div class="row">
+                        <div class="col-xs-4">Speed:</div>
+                        <div class="col-xs-8">
+                            <input type="range" min="200" max="2500" value="1700" id="scanningSlider"
+                                   onchange="javascript:scanningSpeedChanged(event)">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="controls">
@@ -44,7 +60,7 @@
         </div>
         <div id="spacer" style="padding-top: 50px;"/>
         <div id="footer">
-            <span class="footer-text">AsTeRICS-Ergo Version 4.0.0, </span>
+            <span class="footer-text">AsTeRICS-Ergo Version 4.1.0-alpha1, </span>
             <span class="footer-text">www.asterics-foundation.org</span>
         </div>
     </div>
@@ -56,9 +72,10 @@
 
     //get and check data
     var data = parseJson(decodeURIComponent(getWebappData('envControl', 'ecdata')));
-    var keys = getKeys(data._cellBoards);
     if (MODE_COMPATIBILITY) {
         removeElement('backbutton');
+        removeElement('scanningDiv1');
+        removeElement('scanningDiv2');
         removeElement('footer');
         document.getElementById("heading").style.fontSize = "1.4em";
     }
@@ -71,7 +88,9 @@
     }
 
     //create headings and buttons
-    var headings = getHeadings(data._cellBoards[keys[0]]);
+    var mainCbName = 'home.envControl';
+    var headings = ['Main'].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'translatedTitle'));
+    var keys = [mainCbName].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'toState'));
     for (var i = 0; i < keys.length; i++) {
         var cellboard = data._cellBoards[keys[i]];
         var actionButtons = getActionButtons(cellboard);
@@ -85,12 +104,23 @@
         }
     }
 
-    function irSend(code) {
+    function irTransSend(code) {
+        log("sending to irTrans: " + code);
+        extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
     }
 
+    function irFlipMouseSend(code) {
+        log("sending to FlipMouse: " + code);
+        extraWait = true;
+        setClickedClassToButtons();
+        sendDataToInputPort('LipMouse.1', 'send', 'AT IP ' + code);
+    }
+
     function fs20Send(code) {
+        log("sending to FS20: " + code);
+        extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('FS20Sender.1', 'Action', '@FS20:' + code + '_18');
     }
@@ -112,6 +142,53 @@
         }
     }
 
+    //Scanning
+    var scanTime = 1000;
+    var scanning = false;
+    var extraWait = false;
+
+    function doScanning(buttons, currentIndex) {
+        if (!scanning) {
+            return;
+        }
+        if (extraWait) {
+            extraWait = false;
+            setTimeout(function () {
+                doScanning(buttons, currentIndex);
+            }, 1000);
+            return;
+        }
+        var buttons = buttons || document.getElementsByClassName('action-button');
+        var currentIndex = currentIndex || 0;
+        if (currentIndex > buttons.length - 1) {
+            currentIndex = 0;
+        }
+        buttons[currentIndex].focus();
+        setTimeout(function () {
+            doScanning(buttons, currentIndex + 1);
+        }, scanTime);
+    }
+
+    function startScanning() {
+        var button = document.getElementById('scanningButton');
+        button.setAttribute('onclick', 'javascript:stopScanning()');
+        document.getElementById('scanningButtonText').innerHTML = 'Stop Scanning';
+        scanning = true;
+        doScanning();
+    }
+
+    function stopScanning() {
+        var button = document.getElementById('scanningButton');
+        button.setAttribute('onclick', 'javascript:startScanning()');
+        document.getElementById('scanningButtonText').innerHTML = 'Start Scanning';
+        scanning = false;
+    }
+
+    function scanningSpeedChanged(evt) {
+        scanTime = 2700 - evt.target.value;
+        console.log('set scan time to ' + scanTime + 'ms');
+    }
+
     function appendElement(element) {
         document.getElementById("controls").appendChild(element);
     }
@@ -120,25 +197,28 @@
         window.location.replace("../index.html#!/home/envcontrol");
     }
 
-    function getHeadings(mainCellboard) {
-        var headings = ['Main'];
+    function getSubCbPropertyList(mainCellboard, property) {
+        var properties = [];
         for (var i = 0; i < mainCellboard.length; i++) {
             if (mainCellboard[i].type === 'CB_TYPE_SUBCB') {
-                headings.push(mainCellboard[i].translatedTitle);
+                properties.push(mainCellboard[i][property]);
             }
         }
-        return headings;
+        return properties;
     }
 
     function getActionButtons(cellboard) {
         var buttons = [];
         for (var i = 0; i < cellboard.length; i++) {
             var elem = cellboard[i];
-            if (elem.type === 'CB_TYPE_FS20') {
+            if (elem.type === asterics.envControl.HW_FS20_PCSENDER) {
                 var button = createButton(elem.translatedTitle, elem.faIcon, "fs20Send('" + elem.code + "')");
                 buttons.push(button);
-            } else if (elem.type === 'CB_TYPE_IR') {
-                var button = createButton(elem.translatedTitle, elem.faIcon, "irSend('" + elem.code + "')");
+            } else if (elem.type === asterics.envControl.HW_IRTRANS_USB) {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "irTransSend('" + elem.code + "')");
+                buttons.push(button);
+            } else if (elem.type === asterics.envControl.HW_IR_FLIPMOUSE) {
+                var button = createButton(elem.translatedTitle, elem.faIcon, "irFlipMouseSend('" + elem.code + "')");
                 buttons.push(button);
             }
         }
@@ -146,7 +226,13 @@
     }
 
     function isDataEmpty(data) {
-        return !data || !data._cellBoards || !data._cellBoards['home.envControl'] || data._cellBoards['home.envControl'].length == 0;
+        return !data || !data._cellBoards || !data._cellBoards[asterics.envControl.STATE_MAIN] || data._cellBoards[asterics.envControl.STATE_MAIN].length == 0;
+    }
+
+    function log(string) {
+        if(!MODE_COMPATIBILITY) {
+            console.log(string);
+        }
     }
 </script>
 </body>

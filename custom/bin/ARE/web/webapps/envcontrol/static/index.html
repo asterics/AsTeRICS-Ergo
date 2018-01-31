@@ -47,6 +47,7 @@
 
         <!-- global -->
         <script src="angular/global/astericsConstants.js"></script>
+        <script src="angular/global/service/httpWrapper.js"></script>
         <script src="angular/global/service/areService.js"></script>
         <script src="angular/global/service/areWebsocketService.js"></script>
         <script src="angular/global/service/areSaveService.js"></script>
@@ -63,8 +64,10 @@
         <script src="angular/envControl/envControlPrototypes.js"></script>
         <script src="angular/envControl/envControlRoutes.js"></script>
         <script src="angular/envControl/service/envControlService.js"></script>
-        <script src="angular/envControl/service/envControlFsService.js"></script>
-        <script src="angular/envControl/service/envControlIRService.js"></script>
+        <script src="angular/envControl/service/hardware/hardwareService.js"></script>
+        <script src="angular/envControl/service/plug/hardwareFs20Sender.js"></script>
+        <script src="angular/envControl/service/infrared/hardwareIrTrans.js"></script>
+        <script src="angular/envControl/service/infrared/hardwareFlipMouse.js"></script>
         <script src="angular/envControl/service/envControlUtilService.js"></script>
         <script src="angular/envControl/service/envControlDataService.js"></script>
         <script src="angular/envControl/service/envControlHelpDataService.js"></script>
@@ -77,18 +80,19 @@
         <script src="angular/envControl/component/add/envControlAddMass.js"></script>
         <script src="angular/envControl/component/add/envControlAddFs.js"></script>
         <script src="angular/envControl/component/add/envControlAddIr.js"></script>
+        <script src="angular/envControl/component/add/noHardwareFound.js"></script>
+        <script src="angular/envControl/component/add/connectionCheck.js"></script>
+        <script src="angular/envControl/component/add/hardwareMessage.js"></script>
         <script src="angular/envControl/component/help/envControlHelp.js"></script>
-        <script src="angular/envControl/component/help/envControlHelpSelect.js"></script>
+        <script src="angular/envControl/component/help/assistant/envControlHelpSelect.js"></script>
+        <script src="angular/envControl/component/help/assistant/envControlNeededHardware.js"></script>
+        <script src="angular/envControl/component/help/assistant/hardwareList.js"></script>
         <script src="angular/envControl/component/help/faq/envControlHelpFaq.js"></script>
         <script src="angular/envControl/component/help/faq/envControlFaqDe.js"></script>
         <script src="angular/envControl/component/help/faq/envControlFaqEn.js"></script>
-        <script src="angular/envControl/component/help/controls/envControlHelpControls.js"></script>
-        <script src="angular/envControl/component/help/install/envControlHelpInstall.js"></script>
-        <script src="angular/envControl/component/help/install/ecHelpInstallFs20.js"></script>
-        <script src="angular/envControl/component/help/install/ecHelpInstallIrtrans.js"></script>
-        <script src="angular/envControl/component/help/controls/envControlHelpFs.js"></script>
-        <script src="angular/envControl/component/help/controls/envControlHelpIrtrans.js"></script>
-        <script src="angular/envControl/component/help/controls/envControlHelpBulb.js"></script>
+        <script src="angular/envControl/component/help/hardware/hardwareHelpMenu.js"></script>
+        <script src="angular/envControl/component/help/install/installHelpMenu.js"></script>
+        <script src="angular/envControl/component/help/install/hardwareTest.js"></script>
 
         <script src="angular/app-bootstrap.js"></script>
     </body>

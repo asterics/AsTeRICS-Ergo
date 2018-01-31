@@ -4,17 +4,20 @@ angular.module(asterics.appComponents)
         bindings: {
             isDeviceLearn: '@'
         },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$scope', function (envControlDataService, $state, envControlIRService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $scope) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$anchorScroll', '$timeout', '$translate', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $anchorScroll, $timeout, $translate, envControlUtilService) {
             var thiz = this;
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
+
+            thiz.addDevice = $stateParams.device;
+            thiz.irHardware = $stateParams.hardware;
+            thiz.headerI18n = $stateParams.headerI18n;
+            thiz.hardwareI18nParams = {hardware: $translate.instant('i18n_ec_' + thiz.irHardware.getName())};
             thiz.selectedLabel = null;
             thiz.selectedDeviceName = null;
             thiz.learnItems = [];
-            thiz.code = null;
             thiz.selectedIcon = 'wifi';
             thiz.inTrain = false;
-            thiz.isConnected = null;
 
             thiz.addCellBoardItemAndReturn = function () {
                 var cbToAddButtons = thiz.cbToAdd;
@@ -22,7 +25,7 @@ angular.module(asterics.appComponents)
                     cbToAddButtons = envControlDataService.addSubCellboard(thiz.selectedDeviceName, 'building-o', thiz.cbToAdd);
                 }
                 angular.forEach(thiz.learnItems, function (item) {
-                    envControlDataService.addCellBoardElementIrTrans(item.name, thiz.selectedIcon, item.code, cbToAddButtons);
+                    envControlDataService.addCellBoardElementIr(item.name, thiz.selectedIcon, item.code, cbToAddButtons, thiz.irHardware.getName());
                 });
                 envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
@@ -35,31 +38,21 @@ angular.module(asterics.appComponents)
             };
 
             thiz.$onInit = function () {
-                thiz.headerTitle = thiz.isDeviceLearn ? 'i18n_ec_ir_header_device' : 'i18n_ec_ir_header';
                 if (thiz.cbToAdd !== asterics.envControl.STATE_MAIN) {
                     thiz.headerTitle = 'i18n_ec_ir_headerto';
                     thiz.deviceNameParam = {device: stateUtilService.getLastPartUpper(thiz.cbToAdd)};
                 }
-                envControlIRService.isConnected().then(function (isConnected) {
-                    thiz.isConnected = isConnected;
-                    if (isConnected) {
-                        startTrainCodes();
-                    }
-                });
+                startTrainCodes();
             };
 
-            thiz.goToIrTransHelp = function () {
-                $state.go('home.envControl.help/controls/' + asterics.envControl.HW_IRTRANS_USB);
-            };
-
-            thiz.goToIrTransInstall = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
+            thiz.goToHelp = function () {
+                envControlUtilService.goToHelp(thiz.irHardware.getName());
             };
 
             function startTrainCodes() {
-                envControlIRService.irLearn().then(function (response) {
+                thiz.irHardware.irLearn().then(function (response) {
                     if (thiz.selectedLabel) {
-                        var item = generateIrTransItem(thiz.selectedLabel, response);
+                        var item = generateLearnItem(thiz.selectedLabel, response);
                         thiz.learnItems.push(item);
                         thiz.selectedLabel = null;
                         scrollToEnd();
@@ -81,7 +74,7 @@ angular.module(asterics.appComponents)
                 });
             }
 
-            function generateIrTransItem(name, code) {
+            function generateLearnItem(name, code) {
                 return {
                     name: name,
                     code: code
@@ -91,7 +84,9 @@ angular.module(asterics.appComponents)
             //aborting all current learning when leaving the page
             stateUtilService.addOneTimeStateChangeFunction(function () {
                 thiz.inTrain = false;
-                envControlIRService.abortAction();
+                if(thiz.device) {
+                    thiz.irHardware.abortAction();
+                }
             });
         }],
         templateUrl: "angular/envControl/component/add/envControlAddIr.html"
