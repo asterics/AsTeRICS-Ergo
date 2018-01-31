@@ -161,11 +161,7 @@ asterics.i18n_envControl_de = {
     'home': 'Home',
     'home.envControl': 'Umgebungssteuerung',
     'home.envControl.help': 'Hilfe',
-    'home.envControl.help/controls': 'Steuerungsmöglichkeiten',
     'home.envControl.help/install': 'Installation',
-    'home.envControl.help/controls/HW_IRTRANS_USB': 'IrTrans',
-    'home.envControl.help/controls/HW_IR_BULB': 'IR-Glühbirne',
-    'home.envControl.help/controls/HW_FS20_PCSENDER': 'FS20',
     'home.envControl.help/install/HW_IRTRANS_USB': 'IrTrans',
     'home.envControl.help/install/HW_FS20_PCSENDER': 'FS20',
     'home.envControl.add': 'Neue Steuerung',
@@ -288,7 +284,9 @@ asterics.i18n_envControl_de = {
     //install FS20
     i18n_ec_install_fs20_header: 'Installation von FS20.',
     i18n_ec_install_fs20_header2: 'Wenn Sie bereits einen FS20-Sender besitzen, können Sie diesen wie folgt installieren:',
-    i18n_ec_check_fs20_installed: 'Es wird geprüft ob FS20 bereits installiert ist',
+    i18n_ec_check_installed: 'Es wird geprüft ob {{hardware}} bereits installiert ist',
+    i18n_ec_already_installed1: '{{hardware}} ist bereits erfolgreich installiert und kann verwendet werden. Klicken Sie auf',
+    i18n_ec_already_installed2: 'um eine Steuerung einzurichten.',
     i18n_ec_install_fs20_p1: 'Stecken Sie den FS20-Sender mit dem USB-Kabel an dem Computer an.',
     i18n_ec_install_fs20_p2: 'Warten Sie 10 Sekunden um die Installation des FS20 PC-Senders abzuwarten.',
     i18n_ec_install_fs20_p3: 'Klicken Sie auf "Überprüfen", um sicherzustellen dass FS20 auf diesem Computer einwandfrei funktioniert. Dabei kann es zu einer Sicherheitsabfrage kommen, die Sie mit "Ja" bestätigen müssen.',
@@ -297,14 +295,13 @@ asterics.i18n_envControl_de = {
     i18n_ec_install_fs20_p23: 'Stecken Sie den FS20-Sender nochmal vom PC ab und danach wieder an.',
     i18n_ec_install_fs20_test: 'Klicken Sie auf "Testen" um die korrekte Installation zu prüfen.',
     i18n_ec_test_success2_fs20: 'um eine Steuerung mit FS20 einzurichten.',
-    i18n_ec_fs20_already_installed1: 'FS20 ist bereits erfolgreich installiert und kann verwendet werden. Klicken Sie auf',
-    i18n_ec_fs20_already_installed2: 'um eine Steuerung mit FS20 einzurichten.',
 
     //help install menu
-    i18n_ec_helpinstall_header: 'Installationshilfen.',
+    i18n_ec_helpinstall_header: 'Installation von Hardware',
     i18n_ec_helpinstall_header2: 'Wenn Sie bereits benötigte Hardware für die Umgebungssteuerung besitzen und diese Installieren möchten, klicken Sie auf einen der folgenden Links:',
-    i18n_ec_helpinstall_install_irtrans: 'IrTrans installieren',
-    i18n_ec_helpinstall_install_fs20: 'FS20 installieren',
+    i18n_ec_installhelp_HW_IRTRANS_USB: 'IrTrans installieren',
+    i18n_ec_installhelp_HW_FS20_PCSENDER: 'FS20 installieren',
+    i18n_ec_installhelp_HW_IR_FLIPMOUSE: 'FlipMouse installieren',
 
     //links
     i18n_ec_link_fs20sender_amazon: 'FS20 PC-Sender bei Amazon',

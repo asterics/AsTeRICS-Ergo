@@ -35,8 +35,8 @@ angular.module(asterics.appComponents)
                 envControlUtilService.goToHelp(hardware);
             };
 
-            thiz.goToInstall = function() {
-                $state.go('home.envControl.help/install/' + thiz.computerConfiguredHardware, {skipConnectionTest: true});
+            thiz.goToInstall = function(hardware) {
+                envControlUtilService.goToInstall(hardware, true)
             };
 
             function getComputerConfiguredHardware() {

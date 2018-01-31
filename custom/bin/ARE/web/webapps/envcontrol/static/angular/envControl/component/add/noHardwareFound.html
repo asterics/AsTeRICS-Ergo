@@ -8,5 +8,5 @@
     <asterics-message message-level="warn" message-code="i18n_ec_no_hardware_detected" message-args="$ctrl.i18nArgDevice"/>
     <env-control-needed-hardware device-selection-map="$ctrl.deviceSelectionMap" update-function="$ctrl.refresh()"/>
     <br/>
-    <p ng-if="$ctrl.computerConfiguredHardware">{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall()">{{'i18n_ec_to_installation_generic' | translate}} {{'i18n_ec_' + $ctrl.computerConfiguredHardware | translate}}</a></p>
+    <p ng-if="$ctrl.computerConfiguredHardware">{{'i18n_ec_have_needed_hardware' | translate}} <a href="" ng-click="$ctrl.goToInstall($ctrl.computerConfiguredHardware)">{{'i18n_ec_to_installation_generic' | translate}} {{'i18n_ec_' + $ctrl.computerConfiguredHardware | translate}}</a></p>
 </div>
