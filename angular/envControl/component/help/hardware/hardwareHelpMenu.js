@@ -4,6 +4,7 @@ angular.module(asterics.appComponents)
         },
         controller: ['utilService', '$state', 'envControlHelpDataService', '$stateParams', 'envControlUtilService', function (utilService, $state, envControlHelpDataService, $stateParams, envControlUtilService) {
             var thiz = this;
+            thiz.links = asterics.envControl.LINKS;
             thiz.hardwareId = $stateParams.hardwareId;
             thiz.hardwareList = envControlHelpDataService.getHardwareWithHelp();
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
@@ -16,6 +17,9 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToInstall = function (hardware) {
+                if(!hardware) {
+                    hardware = thiz.hardwareId;
+                }
                 envControlUtilService.goToInstall(hardware);
             };
 

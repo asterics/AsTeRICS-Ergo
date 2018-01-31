@@ -24,7 +24,7 @@
                 <img src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans"/>
                 <div class=" text-center">IrTrans-USB</div>
                 <ul>
-                    <li ng-repeat="linkObject in $ctrl.irtransLinks">
+                    <li ng-repeat="linkObject in $ctrl.links['HW_IRTRANS_USB']">
                         <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
                     </li>
                 </ul>
@@ -36,7 +36,7 @@
                 <img src="angular/envControl/img/usbab.png" alt="USB Cable"/>
                 <div class=" text-center">{{'i18n_ec_HW_USB_CABLE_AB' | translate}}</div>
                 <ul>
-                    <li ng-repeat="linkObject in $ctrl.usbcableLinks">
+                    <li ng-repeat="linkObject in $ctrl.links['HW_USB_CABLE_AB']">
                         <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
                     </li>
                 </ul>
