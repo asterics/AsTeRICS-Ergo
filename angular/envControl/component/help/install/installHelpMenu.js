@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('installHelpMenu', {
         bindings: {},
-        controller: ['utilService', '$state', 'envControlHelpDataService', '$stateParams', 'envControlUtilService', 'hardwareService', '$translate', function (utilService, $state, envControlHelpDataService, $stateParams, envControlUtilService, hardwareService, $translate) {
+        controller: ['utilService', '$state', 'envControlHelpDataService', '$stateParams', 'envControlUtilService', 'hardwareService', '$translate', '$rootScope', function (utilService, $state, envControlHelpDataService, $stateParams, envControlUtilService, hardwareService, $translate, $rootScope) {
             var thiz = this;
             thiz.constants = asterics.const;
             thiz.hardwareId = $stateParams.hardwareId;
@@ -15,6 +15,7 @@ angular.module(asterics.appComponents)
             thiz.inCheck = false;
             thiz.testFunction = null;
             thiz.hardwareMethodCallResults = {};
+            thiz.htmlPath = null;
 
             thiz.goToHelp = function (hardware) {
                 $state.params.skipConnectionTest = true;
@@ -31,10 +32,6 @@ angular.module(asterics.appComponents)
             thiz.goToFaq = function (faqId) {
                 $state.params.skipConnectionTest = true;
                 envControlUtilService.goToFaq(faqId);
-            };
-
-            thiz.getHtmlPath = function () {
-                return 'angular/envControl/component/help/install/pages/' + thiz.hardwareId + '.html'
             };
 
             thiz.test = function () {
@@ -70,8 +67,29 @@ angular.module(asterics.appComponents)
                 hardwareService.isConnected(thiz.hardwareId).then(function (response) {
                     thiz.inCheck = false;
                     thiz.isConnected = response;
+                    getHtmlPath(thiz.hardwareId, $translate.use());
                 });
             }
+
+            function getHtmlPath(hardwareId, lang) {
+                if(!hardwareId) {
+                    return;
+                }
+                var base = 'angular/envControl/component/help/install/pages/';
+                var localized = base + hardwareId + '_' + lang + '.html';
+                var nonLocalized = base + hardwareId + '.html';
+                utilService.existsFile(localized).then(function (response) {
+                    if(response) {
+                        thiz.htmlPath = localized;
+                    } else {
+                        thiz.htmlPath = nonLocalized;
+                    }
+                });
+            }
+
+            $rootScope.$on(asterics.const.EVENT_LANG_CHANGED, function (event, lang) {
+                getHtmlPath(thiz.hardwareId, lang);
+            });
         }],
         templateUrl: "angular/envControl/component/help/install/installHelpMenu.html"
     });
