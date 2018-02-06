@@ -28,7 +28,11 @@ angular.module(asterics.appComponents)
             };
 
             thiz.goToSimpleVersion = function goToSimpleVersion() {
-                window.location.replace("./simple/");
+                var url = './simple/';
+                if(asterics.const.IS_MOCK_MODE) {
+                   url += '?' + encodeURIComponent(envControlDataService.getDataJSON());
+                }
+                window.location.replace(url);
             };
 
             thiz.showSimpleVersion = function() {
