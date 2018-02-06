@@ -11,18 +11,31 @@ function encodeParam(text) {
     return encoded;
 }
 
-function getWebappData(webappId, filepath) {
+function getWebappData(webappId, filepath, successCallback, errorCallback) {
     if (!webappId || !filepath) return;
 
     var url = _baseURI + "storage/webapps/" + encodeParam(webappId) + "/" + encodeParam(filepath);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false); // false for synchronous request
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState === 4) {
+            if (xmlHttp.status === 200) {
+                successCallback(xmlHttp.responseText);
+            } else {
+                errorCallback();
+            }
+        }
+    };
+    xmlHttp.open("GET", url);
     xmlHttp.send();
     return xmlHttp.responseText;
 }
 
 function sendDataToInputPort(componentId, portId, value) {
     if (!componentId || !portId || !value) return;
+    if(MODE_MOCK) {
+        console.log('not sending data because of mock mode...');
+        return;
+    }
 
     //use GET sendDataToInputPort() for legacy reasons (phones that do only support GET requests)
     var url = _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/ports/" + encodeParam(portId) + "/data/" + encodeParam(value);
