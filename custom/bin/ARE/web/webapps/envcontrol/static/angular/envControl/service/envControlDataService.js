@@ -5,6 +5,7 @@ angular.module(asterics.appServices)
         var _saveTimestamp = -1;
         var _initDeferred = $q.defer();
 
+        var _data = {};
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
         var _cellBoardDeviceMapping = {};
@@ -150,12 +151,16 @@ angular.module(asterics.appServices)
         };
 
         thiz.saveData = function saveData() {
-            var data = {};
-            data._cellBoards = _cellBoards;
-            data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
-            data._dynamicCellBoardIds = _dynamicCellBoardIds;
-            data._additionalDeviceData = _additionalDeviceData;
-            _saveTimestamp = areSaveService.saveData(_dataFilename, data);
+            _data = {};
+            _data._cellBoards = _cellBoards;
+            _data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
+            _data._dynamicCellBoardIds = _dynamicCellBoardIds;
+            _data._additionalDeviceData = _additionalDeviceData;
+            _saveTimestamp = areSaveService.saveData(_dataFilename, _data);
+        };
+
+        thiz.getDataJSON = function () {
+            return JSON.stringify(_data);
         };
 
         thiz.hasData = function() {
