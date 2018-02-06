@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2017_12_21_14_12" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_2_6_11_4" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -145,6 +145,9 @@
         <outputPort portTypeID="receivedBytes">
           <properties />
         </outputPort>
+        <outputPort portTypeID="opPortStatus">
+          <properties />
+        </outputPort>
       </ports>
       <properties>
         <property name="ComPort" value="COM4" />
@@ -190,8 +193,25 @@
       </ports>
       <properties />
       <layout>
-        <posX>1138</posX>
-        <posY>178</posY>
+        <posX>1142</posX>
+        <posY>88</posY>
+      </layout>
+    </component>
+    <component id="WebSocket.1.1.1" type_id="asterics.WebSocket">
+      <description>This plugin uses a websocket connection to send and read data. The default websocket URI is ws://{hostname}:8082/ws/astericsData. You have to start the ARE with --webservice flag. You can test the connection with http://localhost:8082/
+        </description>
+      <ports>
+        <inputPort portTypeID="InA">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="OutA">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties />
+      <layout>
+        <posX>1146</posX>
+        <posY>238</posY>
       </layout>
     </component>
   </components>
@@ -257,6 +277,16 @@
       <target>
         <component id="LipMouse.1" />
         <port id="send" />
+      </target>
+    </channel>
+    <channel id="binding.7">
+      <source>
+        <component id="LipMouse.1" />
+        <port id="opPortStatus" />
+      </source>
+      <target>
+        <component id="WebSocket.1.1.1" />
+        <port id="InA" />
       </target>
     </channel>
   </channels>
