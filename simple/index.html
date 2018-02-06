@@ -71,35 +71,52 @@
 <script type="application/javascript">
 
     //get and check data
-    var data = parseJson(decodeURIComponent(getWebappData('envControl', 'ecdata1.1.0')));
-    if (MODE_COMPATIBILITY) {
-        removeElement('backbutton');
-        removeElement('scanningDiv1');
-        removeElement('scanningDiv2');
-        removeElement('footer');
-        document.getElementById("heading").style.fontSize = "1.4em";
-    }
-    if (isDataEmpty(data)) {
-        if (!MODE_COMPATIBILITY) {
-            goToFullVersion();
-        } else {
-            appendElement(createText('No elements. Please start AsTeRICS Ergo on a computer and configure devices.'));
+    var MODE_MOCK = false;
+    var getParam = window.location.search.substr(1);
+    if(getParam && getParam.length > 0) {
+        //mock mode: get data from GET parameter
+        MODE_MOCK = true;
+        console.log("GET parameter specified, so parsing data from parameter and mocking all requests (mock mode)...");
+        var getParam = window.location.search.substr(1);
+        if(getParam && getParam.length > 0) {
+            gotDataCallback(getParam);
         }
+    } else {
+        //normal non-mock mode: get data from AsTeRICS webserver
+        getWebappData('envControl', 'ecdata1.1.0', gotDataCallback);
     }
 
-    //create headings and buttons
-    var mainCbName = 'home.envControl';
-    var headings = ['Main'].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'translatedTitle'));
-    var keys = [mainCbName].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'toState'));
-    for (var i = 0; i < keys.length; i++) {
-        var cellboard = data._cellBoards[keys[i]];
-        var actionButtons = getActionButtons(cellboard);
-        var heading = headings.shift();
-        if (actionButtons.length > 0) {
-            var titleElem = createTitle(heading, 'row col-xs-12');
-            appendElement(titleElem);
-            for (var j = 0; j < actionButtons.length; j++) {
-                appendElement(actionButtons[j]);
+    function gotDataCallback(data) {
+        data = parseJson(decodeURIComponent(data));
+        if (MODE_COMPATIBILITY) {
+            removeElement('backbutton');
+            removeElement('scanningDiv1');
+            removeElement('scanningDiv2');
+            removeElement('footer');
+            document.getElementById("heading").style.fontSize = "1.4em";
+        }
+        if (isDataEmpty(data)) {
+            if (!MODE_COMPATIBILITY) {
+                goToFullVersion();
+            } else {
+                appendElement(createText('No elements. Please start AsTeRICS Ergo on a computer and configure devices.'));
+            }
+        }
+
+        //create headings and buttons
+        var mainCbName = 'home.envControl';
+        var headings = ['Main'].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'translatedTitle'));
+        var keys = [mainCbName].concat(getSubCbPropertyList(data._cellBoards[mainCbName], 'toState'));
+        for (var i = 0; i < keys.length; i++) {
+            var cellboard = data._cellBoards[keys[i]];
+            var actionButtons = getActionButtons(cellboard);
+            var heading = headings.shift();
+            if (actionButtons.length > 0) {
+                var titleElem = createTitle(heading, 'row col-xs-12');
+                appendElement(titleElem);
+                for (var j = 0; j < actionButtons.length; j++) {
+                    appendElement(actionButtons[j]);
+                }
             }
         }
     }
@@ -194,7 +211,11 @@
     }
 
     function goToFullVersion() {
-        window.location.replace("../index.html#!/home/envcontrol");
+        if(MODE_MOCK) {
+            window.location.replace("../mock.html#!/home/envcontrol");
+        } else {
+            window.location.replace("../index.html#!/home/envcontrol");
+        }
     }
 
     function getSubCbPropertyList(mainCellboard, property) {
