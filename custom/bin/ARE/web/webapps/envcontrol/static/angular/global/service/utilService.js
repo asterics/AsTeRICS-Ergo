@@ -132,7 +132,11 @@ angular.module(asterics.appServices)
                 method: 'GET',
                 url: thiz.getBaseUrlWithPath() + path
             }).then(function (response) {
-                def.resolve(true);
+                if(!response || !response.status == 200) {
+                    def.resolve(false);
+                } else{
+                    def.resolve(true);
+                }
             }, function (error) {
                 def.resolve(false);
             });
