@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('utilService', ['$state', 'stateUtilService', '$q', '$translate', 'httpWrapper', function ($state, stateUtilService, $q, $translate, $http) {
+    .service('utilService', ['$state', 'stateUtilService', '$q', '$translate', '$http', function ($state, stateUtilService, $q, $translate, $http) {
         var thiz = this;
         var _defaultPort = "8091";
 
