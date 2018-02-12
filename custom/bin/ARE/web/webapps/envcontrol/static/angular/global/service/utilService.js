@@ -68,10 +68,6 @@ angular.module(asterics.appServices)
             return thiz.getBaseUrl() + "rest/";
         };
 
-        thiz.getBaseUrlWithPath = function () {
-            return thiz.getBaseUrl() + '/webapps/envControl/static/';
-        };
-
         thiz.getWebsocketUrl = function () {
             return "ws://" + window.location.hostname + ":8092/ws/astericsData";
         };
@@ -130,7 +126,7 @@ angular.module(asterics.appServices)
             var def = $q.defer();
             $http({
                 method: 'GET',
-                url: thiz.getBaseUrlWithPath() + path
+                url: path
             }).then(function (response) {
                 if(!response || !response.status == 200) {
                     def.resolve(false);
