@@ -10,6 +10,7 @@ ASAPI.enableACSPortConnection=1
 background_color=-11435361
 ARE.hotKey.pauseModel=
 ARE.hotKey.startModel=
+ARE.hotKey.editModel=
 ThreadPoolTasks.submitTimeout=20000
 ASAPI.enableAREAutoDetection=0
 ASAPI.ACSPortNumber=9090
