@@ -95,5 +95,66 @@
         <script src="angular/envControl/component/help/install/hardwareTest.js"></script>
 
         <script src="angular/app-bootstrap.js"></script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+        <script>
+            if (annyang) {
+                // Let's define our first command. First the text we expect, and then the function it should call
+                var commands = {
+                    'press *command': parseAction,
+                    'click *command': parseAction,
+                    'go to *command': parseAction,
+                    '(go) back': function () {
+                        console.log('detected back!');
+                        $('button')[1].click();
+                    }
+                };
+
+                // Add our commands to annyang
+                annyang.addCommands(commands);
+
+                /*annyang.addCallback('result', function(phrases) {
+                    console.log("I think the user said: ", phrases[0]);
+                    console.log("But then again, it could be any of the following: ", phrases);
+                });*/
+
+                // Start listening. You can call this here, or attach this call to an event, button, etc.
+                annyang.start({ autoRestart: true, continuous: true });
+
+
+                function parseAction(command) {
+                    console.log('detected string: ' + command);
+                    var index = parseIndex(command);
+                    console.log('index: ' + index);
+                    if(index) {
+                        $('.subfolder-button, .action-button')[index-1].click();
+                    }
+                }
+
+                function parseIndex(string) {
+                    if(['1', 'one'].includes(string.toLocaleLowerCase())) {
+                        return 1;
+                    } else if(['2', 'to', 'two'].includes(string.toLocaleLowerCase())) {
+                        return 2;
+                    } else if(['3', 'three'].includes(string.toLocaleLowerCase())) {
+                        return 3;
+                    } else if(['4', 'four', 'for'].includes(string.toLocaleLowerCase())) {
+                        return 4;
+                    } else if(['5', 'five'].includes(string.toLocaleLowerCase())) {
+                        return 5;
+                    } else if(['6', 'six'].includes(string.toLocaleLowerCase())) {
+                        return 6;
+                    } else if(['7', 'seven'].includes(string.toLocaleLowerCase())) {
+                        return 7;
+                    } else if(['8', 'eight'].includes(string.toLocaleLowerCase())) {
+                        return 8;
+                    } else if(['9', 'nine'].includes(string.toLocaleLowerCase())) {
+                        return 9;
+                    } else if(['10', 'ten'].includes(string.toLocaleLowerCase())) {
+                        return 10;
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
