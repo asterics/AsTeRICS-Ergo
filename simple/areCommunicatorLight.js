@@ -27,7 +27,6 @@ function getWebappData(webappId, filepath, successCallback, errorCallback) {
     };
     xmlHttp.open("GET", url);
     xmlHttp.send();
-    return xmlHttp.responseText;
 }
 
 function sendDataToInputPort(componentId, portId, value) {
@@ -40,7 +39,6 @@ function sendDataToInputPort(componentId, portId, value) {
     //use GET sendDataToInputPort() for legacy reasons (phones that do only support GET requests)
     var url = _baseURI + "runtime/model/components/" + encodeParam(componentId) + "/ports/" + encodeParam(portId) + "/data/" + encodeParam(value);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false); // false for synchronous request
+    xmlHttp.open("GET", url); // false for synchronous request
     xmlHttp.send(value);
-    return xmlHttp.responseText;
 }
