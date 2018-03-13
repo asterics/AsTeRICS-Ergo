@@ -69,7 +69,7 @@ angular.module(asterics.appComponents)
                 }
             };
 
-            this.showFolderIcon = function(item) {
+            thiz.showFolderIcon = function(item) {
                 return item.type === asterics.const.CB_TYPE_SUBCB;
             };
 
