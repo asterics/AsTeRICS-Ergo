@@ -233,13 +233,13 @@
         for (var i = 0; i < cellboard.length; i++) {
             var elem = cellboard[i];
             if (elem.type === asterics.envControl.HW_FS20_PCSENDER) {
-                var button = createButton(elem.translatedTitle, elem.faIcon, "fs20Send('" + elem.code + "')");
+                var button = createButton(elem.translatedTitle, elem.faIcon, "this.focus();fs20Send('" + elem.code + "')");
                 buttons.push(button);
             } else if (elem.type === asterics.envControl.HW_IRTRANS_USB) {
-                var button = createButton(elem.translatedTitle, elem.faIcon, "irTransSend('" + elem.code + "')");
+                var button = createButton(elem.translatedTitle, elem.faIcon, "this.focus();irTransSend('" + elem.code + "')");
                 buttons.push(button);
             } else if (elem.type === asterics.envControl.HW_IR_FLIPMOUSE) {
-                var button = createButton(elem.translatedTitle, elem.faIcon, "irFlipMouseSend('" + elem.code + "')");
+                var button = createButton(elem.translatedTitle, elem.faIcon, "this.focus();irFlipMouseSend('" + elem.code + "')");
                 buttons.push(button);
             }
         }
