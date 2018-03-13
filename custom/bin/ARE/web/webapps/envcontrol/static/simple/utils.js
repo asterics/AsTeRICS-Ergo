@@ -15,6 +15,8 @@ function createButton(caption, faIcon, onClickFunctionCall) {
     btn = appendClass(btn, 'action-button');
     if (!MODE_COMPATIBILITY) {
         btn = wrapInDiv(btn);
+    } else {
+        btn.style.cssText += "margin-bottom: 5px;";
     }
     btn = appendClass(btn, 'col-xs-12 col-sm-3 col-lg-2 cb-element');
     return btn;
