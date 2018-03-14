@@ -76,7 +76,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState, deviceType) {
-            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
+            title = thiz.getNonConflictingLabel(title, parentCellBoardState);
             var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
             var navToCbElement = utilService.createCellBoardItemSubCb(title, faIcon, newStateName);
             _cellBoardDeviceMapping[newStateName] = deviceType;
@@ -118,7 +118,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getNonConflictingLabel = function (label, parentState) {
-            var newLabel = label;
+            var newLabel = replaceSlahesAndDots(label); // remove slashes and dots with whitespaces in order to not interfere with states and paths
             var count = 1;
             while (thiz.existsLabel(newLabel, parentState)) {
                 newLabel = label + ' (' + count.toString() + ')';
@@ -131,6 +131,7 @@ angular.module(asterics.appServices)
             if(!label) {
                 return false;
             }
+            label = replaceSlahesAndDots(label).toLowerCase();
             return _.includes(getCbButtonLabels(parentState, true), label.toString().trim().toLowerCase());
         };
 
@@ -209,6 +210,10 @@ angular.module(asterics.appServices)
                 list = list.concat(values);
             });
             return list;
+        }
+
+        function replaceSlahesAndDots(label) {
+            return label.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' ').trim();
         }
 
         init();
