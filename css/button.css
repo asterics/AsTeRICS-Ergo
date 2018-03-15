@@ -5,6 +5,7 @@ button.subfolder-button {
     border-radius: 2px;
     font-size: 22px;
     background: #f7ecb5;
+    padding: 0;
 }
 
 button.action-button {
@@ -13,6 +14,7 @@ button.action-button {
     border-radius: 2px;
     font-size: 22px;
     background: #afd9ee;
+    padding: 0;
 }
 
 /* Ripple magic */
@@ -64,7 +66,7 @@ button {
     border-width: medium;
     border-color: transparent;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
-    padding: 0;
+    padding: 0 1em;
 }
 
 .cb-element {
