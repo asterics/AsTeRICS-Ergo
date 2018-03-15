@@ -53,6 +53,10 @@ angular.module(asterics.appServices)
             }
         };
 
+        thiz.getRandomCode = function(codesToSkip) {
+            return ''; //TODO implement to get random code for FLipMouse
+        };
+
         function isConnectedInternal(def, wasRescanStart) {
             irAction('AT', _testTimeout).then(function (response) {
                 if (response.indexOf(LIPMOUSE_IN_RESCAN) !== -1) {
