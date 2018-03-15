@@ -1,7 +1,7 @@
 angular.module(asterics.appComponents)
     .component('connectionCheck', {
         bindings: {},
-        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'hardwareService', '$timeout', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, hardwareService, $timeout) {
+        controller: ['$stateParams', 'utilService', 'envControlHelpDataService', '$translate', '$state', 'hardwareService', '$timeout', 'stateUtilService', function ($stateParams, utilService, envControlHelpDataService, $translate, $state, hardwareService, $timeout, stateUtilService) {
             var thiz = this;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.connectedHardware = null;
@@ -18,10 +18,10 @@ angular.module(asterics.appComponents)
                 thiz.possibleHardware = envControlHelpDataService.getComputerConfiguredHardwarePossibilities(thiz.deviceId);
 
                 //TODO: remove this
-                //only temporary solution to make table-lamp working as always
-                //-> needs implementation to also allow to configure a table lamp e.g. with IRTrans or Flipmouse.
+                //only temporary solution to make table-lamp working only with FS20 or IrTrans (FlipMouse not supported yet)
+                //remove if FlipMouse support for adding a tablelamp was implemented
                 if (thiz.deviceId == asterics.envControl.DEVICE_TABLELAMP || thiz.deviceId == asterics.envControl.DEVICE_PLUG_GENERIC) {
-                    thiz.possibleHardware = _.without(thiz.possibleHardware, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IRTRANS_USB);
+                    thiz.possibleHardware = _.without(thiz.possibleHardware, asterics.envControl.HW_IR_FLIPMOUSE);
                 }
 
                 hardwareService.getOneConnectedHardware(thiz.possibleHardware).then(function (response) {
@@ -33,7 +33,12 @@ angular.module(asterics.appComponents)
                         var timeout = _somethingNotified ? 500 : 0;
                         $timeout(function () {
                             params.hardware = thiz.connectedHardware;
-                            $state.go(asterics.envControl.STATE_ADD + '.' + thiz.deviceId, params);
+                            var stateName = asterics.envControl.STATE_ADD + '.' + thiz.deviceId + thiz.connectedHardware.getName();
+                            if(stateUtilService.existsState(stateName)) {
+                                $state.go(stateName, params);
+                            } else {
+                                $state.go(asterics.envControl.STATE_ADD + '.' + thiz.deviceId, params);
+                            }
                         }, timeout);
                     } else {
                         $timeout(function () {
