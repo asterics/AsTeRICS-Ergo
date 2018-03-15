@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', '$state', function (hardwareService, utilService, $timeout, $anchorScroll, $state) {
+    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', '$state', '$translate', function (hardwareService, utilService, $timeout, $anchorScroll, $state, $translate) {
         var thiz = this;
 
         thiz.createCellBoardItemPlugDevice = function (title, faIcon, code, hardwareDevice) {
@@ -169,6 +169,21 @@ angular.module(asterics.appServices)
         thiz.goToFaq = function (faqId) {
             var params = {open: faqId};
             $state.go(asterics.envControl.STATE_HELP_FAQ, params);
+        };
+
+        /**
+         * returns a object needed for "translate-values" parameter of pascalprecht.translate module
+         * e.g. getTranslatedValueObject('placeholder', i18n_my_text) will return {'placeholder' : '<translated "i18n_my_text"'}
+         * @param objectKey
+         * @param translationKey
+         */
+        thiz.getTranslatedValueObject = function (objectKey, translationKey) {
+            var object = {};
+            if(translationKey.indexOf('i18n_ec_') == -1) {
+                translationKey = 'i18n_ec_' + translationKey;
+            }
+            object[objectKey] = $translate.instant(translationKey);
+            return object;
         };
 
         function createIrElement(label, icon) {
