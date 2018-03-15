@@ -353,6 +353,7 @@ angular.module(asterics.appServices)
             data._hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
             data._deviceMappings[asterics.envControl.DEVICE_TABLELAMP] = {
                 hardware: [
+                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG],
                     /*[asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB],*/
                     [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]
                 ]
