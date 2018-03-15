@@ -9,6 +9,10 @@ angular.module(asterics.appServices)
         var _learnWaitSeconds = 5;
         var _testTimeout = 6000;
         var _lastLearnStartTime;
+        var _randomCodes = ['5D01000000003126010137003F007C003E007C09F926F20000003F003E003F007E007D003F003F000000014D53313230303030303030303030303030345331303030323130303032303133355331323030303030303030303030303030',
+            '4C0100000000202700006000E1177E00000000000000000000002700240023000000000000000000000002283030303130313130313131303130303230303031303030313030303130313130',
+            '4C0100000000202700006000E1177E00000000000000000000002700240023000000000000000000000002283030303130313131303031303130303230303031303030303131303130313130'];
+        var _nextRandomCode = 0;
         thiz.canceler = $q.defer();
 
         thiz.getName = function() {
@@ -53,6 +57,11 @@ angular.module(asterics.appServices)
         thiz.abortAction = function () {
             thiz.canceler.resolve();
             thiz.canceler = $q.defer();
+        };
+
+        thiz.getRandomCode = function(codesToSkip) {
+            var possibilites = _.difference(_randomCodes, codesToSkip);
+            return possibilites.length > 0 ? possibilites[0] : _randomCodes[0];
         };
 
         function irAction(cmd, timeout) {
