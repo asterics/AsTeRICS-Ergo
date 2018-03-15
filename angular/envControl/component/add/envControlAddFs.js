@@ -5,17 +5,15 @@ angular.module(asterics.appComponents)
             selectedLabel: '<',
             selectedIcon: '<'
         },
-        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', 'stateUtilService', '$scope', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $stateParams, stateUtilService, $scope, envControlUtilService) {
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', '$scope', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $stateParams, $scope, envControlUtilService) {
             var thiz = this;
             thiz.device = $stateParams.device;
             thiz.hardware = $stateParams.hardware;
             thiz.headerI18n = $stateParams.headerI18n;
             
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
-            thiz.stateLastPart = stateUtilService.getLastPart($state.current.name);
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
-            thiz.isConnected = null;
-            thiz.neededHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG];
+            thiz.translatedDevice = envControlUtilService.getTranslatedValueObject('device', thiz.device);
 
             thiz.addCellBoardItemAndReturn = function () {
                 var additionalData = envControlDataService.getAdditionalDeviceData(thiz.hardware.getName()) || [];
