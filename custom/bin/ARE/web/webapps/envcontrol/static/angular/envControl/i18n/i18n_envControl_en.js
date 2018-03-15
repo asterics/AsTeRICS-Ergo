@@ -145,18 +145,22 @@ asterics.i18n_envControl_en = {
     //add fs20
     i18n_ec_fs_header: 'Control new device via plug',
     i18n_ec_fs_choosename: 'Please choose a name for the device',
-    i18n_ec_fs_device_on_pluggeneric: '<b>Preparation:</b></br>Turn ON the device, which you wish to control.',
-    i18n_ec_fs_device_on_lamp: '<b>Preparation:</b></br>Turn ON the lamp, which you wish to control.',
+    i18n_ec_fs_device_on: '<b>Preparation:</b></br>Turn ON the {{device}}, which you wish to control.',
     i18n_ec_fs_adapt_plug: 'Plug the FS20-adapter plug in a socket.',
-    i18n_ec_fs_plug_in_pluggeneric: 'Plug the device, which you wish to control, in the FS20-adapter plug.',
-    i18n_ec_fs_plug_in_lamp: 'Plug the lamp, which you wish to control, in the FS20-adapter plug.',
-    i18n_ec_fs_press_button: '<b>Press and hold the grey button on the FS20-adapter</b> plug until it starts blinking red (that takes approximately <b>10 seconds</b>).',
+    i18n_ec_fs_plug_in: 'Plug the {{device}}, which you wish to control, in the FS20-adapter plug.',
+    i18n_ec_fs_press_button: '<b>Press and hold the grey button on the FS20-adapter</b> plug until it starts blinking red (this takes approximately <b>10 seconds</b>).',
     i18n_ec_fs_button_blinking: 'Ok, button is blinking!',
     i18n_ec_fs_text_finish: '<b>Check if the grey button blinks red</b> and click on "Finish" to complete the setup.',
     i18n_ec_fs_boughtfs20: 'Have you already purchased a <b>FS20 PC transmitter</b> and a <b>FS20 adapter plug</b>?',
     i18n_ec_fs_boughtfs20_no: '<b>No</b>, go to more information and ordering options',
     i18n_ec_fs_boughtfs20_yes: '<b>Yes</b>, go to installation of the FS20 system',
-    
+
+    //add plug device with ir plug
+    i18n_ec_irplug_adapt_plug: 'Plug the infrared plug in a socket.',
+    i18n_ec_irplug_press_button: '<b>Press and hold the button on the infrared plug</b> until the lamp starts blinking.',
+    i18n_ec_irplug_text_finish: '<b>Check if the lamp blinks</b> and click on "Finish" to complete the setup.',
+    i18n_ec_irplug_plug_in: 'Plug the {{device}}, which you wish to control, in the infrared plug.',
+
     //states
     'home': 'Home',
     'home.envControl': 'Environmental Control',
@@ -173,6 +177,7 @@ asterics.i18n_envControl_en = {
     'home.envControl.add.fs20': 'Plug',
     'home.envControl.add.ir': 'Remote control',
     'home.envControl.add.lamp': 'Lamp',
+    'home.envControl.add.lampHW_FS20_PCSENDER': 'Lamp',
     'home.envControl.add.amblight': 'Ambient Light',
     'home.envControl.add/more': 'More',
 

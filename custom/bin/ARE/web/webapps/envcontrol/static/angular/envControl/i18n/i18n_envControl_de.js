@@ -145,17 +145,21 @@ asterics.i18n_envControl_de = {
     //add fs20
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
     i18n_ec_fs_choosename: 'Bitte Namen für das neue Gerät auswählen',
-    i18n_ec_fs_device_on_pluggeneric: '<b>Vorbereitung:</b></br>Schalten Sie das zu steuernde Gerät EIN.',
-    i18n_ec_fs_device_on_lamp: '<b>Vorbereitung:</b></br>Schalten Sie die zu steuernde Lampe EIN.',
+    i18n_ec_fs_device_on: '<b>Vorbereitung:</b></br>Schalten Sie das zu steuernde Gerät/Lampe EIN.',
     i18n_ec_fs_adapt_plug: 'Stecken Sie den FS20-Zwischenstecker in eine Steckdose.',
-    i18n_ec_fs_plug_in_pluggeneric: 'Stecken Sie das zu steuernde Gerät an den FS20-Zwischenstecker an.',
-    i18n_ec_fs_plug_in_lamp: 'Stecken Sie die zu steuernde Lampe an den FS20-Zwischenstecker an.',
+    i18n_ec_fs_plug_in: 'Stecken Sie das zu steuernde Gerät/Lampe an den FS20-Zwischenstecker an.',
     i18n_ec_fs_press_button: '<b>Halten Sie den grauen Knopf am FS20-Zwischenstecker gedrückt</b>, bis er rot zu blinken beginnt (ca. <b>10 Sekunden</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: '<b>Überprüfen Sie ob der graue Knopf rot blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
     i18n_ec_fs_boughtfs20: 'Haben Sie bereits einen <b>FS20 PC-Sender</b> und einen <b>FS20 Zwischenstecker</b> gekauft?',
     i18n_ec_fs_boughtfs20_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
     i18n_ec_fs_boughtfs20_yes: '<b>Ja</b>, zur Installation des FS20 PC-Senders',
+
+    //add plug device with ir plug
+    i18n_ec_irplug_adapt_plug: 'Stecken Sie den Infrarot Stecker in eine Steckdose.',
+    i18n_ec_irplug_press_button: '<b>Halten Sie den Knopf am Infrarot Stecker gedrückt</b>, bis das Lämpchen zu blinken beginnt.',
+    i18n_ec_irplug_text_finish: '<b>Überprüfen Sie ob das Lämpchen blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
+    i18n_ec_irplug_plug_in: 'Stecken Sie das zu steuernde Gerät/Lampe an den Infrarot Stecker an.',
 
     //states
     'home': 'Home',
@@ -173,6 +177,7 @@ asterics.i18n_envControl_de = {
     'home.envControl.add.fs20': 'Steckdose',
     'home.envControl.add.ir': 'Fernbedienung',
     'home.envControl.add.lamp': 'Lampe',
+    'home.envControl.add.lampHW_FS20_PCSENDER': 'Lampe',
     'home.envControl.add.amblight': 'Raumlicht',
     'home.envControl.add/more': 'Mehr',
 
