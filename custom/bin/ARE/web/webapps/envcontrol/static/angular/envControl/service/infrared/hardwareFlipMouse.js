@@ -54,7 +54,7 @@ angular.module(asterics.appServices)
         };
 
         thiz.getRandomCode = function(codesToSkip) {
-            return ''; //TODO implement to get random code for FLipMouse
+            return new Date().getTime().toString(); //TODO implement to get random code for FLipMouse
         };
 
         function isConnectedInternal(def, wasRescanStart) {
