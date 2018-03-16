@@ -227,6 +227,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Replace remote controls (e.g. for controlling a TV)',
     i18n_ec_helpmenu_HW_IR_BULB: 'Infrared Bulbs',
     i18n_ec_helpmenutext_HW_IR_BULB: 'Light bulbs controllable by remote control (e.g. for ambient light)',
+    i18n_ec_helpmenu_HW_IR_PLUG: 'Infrared Plug',
+    i18n_ec_helpmenutext_HW_IR_PLUG: 'Plugs controllable by remote control (e.g. control a table lamp)',
 
     //Help Fs20
     i18n_ec_need_one_sender: 'You need a <b>FS20 adapter plug for each device</b>, which you intend to control with the FS20 system. In total <b>one PC transmitter</b> is sufficient.',
@@ -322,5 +324,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_link_usbcable_amazon: 'USB cable (Type A - Type B) at Amazon',
     i18n_ec_link_irbulb_amazon: 'IR bulb 1 at Amazon',
     i18n_ec_link_irbulb_amazon2: 'IR bulb 2 at Amazon',
-    i18n_ec_link_irbulb_conrad: 'IR bulb at Conrad'
+    i18n_ec_link_irbulb_conrad: 'IR bulb at Conrad',
+    i18n_ec_link_irplug_amazon: 'Infrared Plug at Amazon',
+    i18n_ec_link_irplug_perl: 'Infrared Plug at Perl'
 };
