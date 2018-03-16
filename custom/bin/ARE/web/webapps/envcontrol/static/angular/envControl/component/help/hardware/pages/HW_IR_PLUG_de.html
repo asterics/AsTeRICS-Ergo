@@ -1,0 +1,22 @@
+<div>
+    <h2>Hilfe - Infrarot Stecker</h2>
+    <div class="col-lg-8">
+        <h3>Allgemeine Informationen</h3>
+        <p><b>Infrarot Stecker</b> können über ein Infrarot Signal einer <b>Fernbedienung ein- bzw. ausgeschaltet</b> werden. Dadurch ist die <b>Steuerung einer Steckdose</b>
+            in Kombination mit einem IrTrans USB oder der FLipMouse möglich. So kann beispielsweise eine Tischlampe oder ein Ventilator ein- und ausgeschaltet werden.
+        </p>
+        <h3>Bestellung</h3>
+        <p>
+            Klicken Sie auf einen der folgenden Links um einen <b>Infrarot Stecker zu bestellen</b></b>:
+        </p>
+        <ul>
+            <li ng-repeat="linkObject in $ctrl.links['HW_IR_PLUG']">
+                <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <img src="angular/envControl/img/HW_IR_PLUG.jpg" alt="{{'i18n_ec_HW_IR_PLUG' | translate}}"/>
+        <div class=" text-center">{{'i18n_ec_HW_IR_PLUG' | translate}}</div>
+    </div>
+</div>
