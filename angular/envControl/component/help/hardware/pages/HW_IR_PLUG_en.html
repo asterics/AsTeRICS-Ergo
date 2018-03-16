@@ -1,0 +1,23 @@
+<div>
+    <h2>Help - Infrared Plug</h2>
+    <div class="col-lg-8">
+        <h3>General information</h3>
+        <p>An <b>infrared plug</b> can be <b>turned on and off</b> with the infrared signal of a <b>remote control</b>. Therefore it is possible to control a <b>power socket</b>
+            in combination with an IrTrans USB or the FLipMouse.
+            For example a table lamp or a fan can be turned on and off.
+        </p>
+        <h3>Order possibilities</h3>
+        <p>
+            Click on one of the following links to <b>order a infrared plug</b>:
+        </p>
+        <ul>
+            <li ng-repeat="linkObject in $ctrl.links['HW_IR_PLUG']">
+                <a target="_blank" href="{{linkObject.link}}" translate="{{linkObject.label}}"/>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <img src="angular/envControl/img/HW_IR_PLUG.jpg" alt="{{'i18n_ec_HW_IR_PLUG' | translate}}"/>
+        <div class=" text-center">{{'i18n_ec_HW_IR_PLUG' | translate}}</div>
+    </div>
+</div>
