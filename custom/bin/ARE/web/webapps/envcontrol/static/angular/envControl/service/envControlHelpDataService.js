@@ -353,9 +353,9 @@ angular.module(asterics.appServices)
             data._hardwareAlternatives = []; //a list of lists, where each list defines equal hardware that can be interchanged
             data._deviceMappings[asterics.envControl.DEVICE_TABLELAMP] = {
                 hardware: [
-                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG],
-                    /*[asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB],*/
-                    [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]
+                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]
+                    /*[asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_BULB],
+                    [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]*/
                 ]
             };
             data._deviceMappings[asterics.envControl.DEVICE_AMB_LAMP] = {
@@ -395,7 +395,7 @@ angular.module(asterics.appServices)
             };
             data._deviceMappings[asterics.envControl.DEVICE_PLUG_GENERIC] = {
                 hardware: [
-                    [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]
+                    [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]
                 ]
             };
             data._hardwareAmount[asterics.envControl.HW_FS20_PCSENDER] = 1;
@@ -406,7 +406,7 @@ angular.module(asterics.appServices)
             data._hardwareAmount[asterics.envControl.HW_IR_PLUG] = undefined;
             data._accessories[asterics.envControl.HW_IRTRANS_USB] = [asterics.envControl.HW_USB_CABLE_AB];
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]);
-            data._hardwareAlternatives.push([[asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG], [asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG]]);
+            data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG], [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]]);
             data._computerConfiguredHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE];
             data._hardwareWithHelp = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IR_BULB];
             thiz.resetData();
