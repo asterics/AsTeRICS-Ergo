@@ -408,7 +408,7 @@ angular.module(asterics.appServices)
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB], [asterics.envControl.HW_IR_FLIPMOUSE]]);
             data._hardwareAlternatives.push([[asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_PLUG], [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_FS20_PLUG]]);
             data._computerConfiguredHardware = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE];
-            data._hardwareWithHelp = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IR_BULB];
+            data._hardwareWithHelp = [asterics.envControl.HW_FS20_PCSENDER, asterics.envControl.HW_IRTRANS_USB, asterics.envControl.HW_IR_FLIPMOUSE, asterics.envControl.HW_IR_BULB, asterics.envControl.HW_IR_PLUG];
             thiz.resetData();
         }
     }]);
