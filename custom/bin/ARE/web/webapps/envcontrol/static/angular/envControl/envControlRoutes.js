@@ -46,12 +46,12 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_ADD_PLUG_GENERIC, {
             url: '/pluggeneric/:cellBoardId',
-            template: '<env-control-add-fs selected-icon="$resolve.selectedIcon"/>',
-            resolve: {
-                selectedIcon: function () {
-                    return "plug";
-                }
-            },
+            template: '<add-plug-device-ir-plug>',
+            params: getAddParams()
+        })
+        .state(asterics.envControl.STATE_ADD_PLUG_GENERIC + asterics.envControl.HW_FS20_PCSENDER, {
+            url: '/pluggeneric/' + asterics.envControl.HW_FS20_PCSENDER + '/:cellBoardId',
+            template: '<env-control-add-fs>',
             params: getAddParams()
         })
         .state(asterics.envControl.STATE_ADD_IR_GENERIC, {
@@ -64,17 +64,14 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             template: '<env-control-add-ir/>',
             params: getAddParams()
         })
+        .state(asterics.envControl.STATE_ADD_LAMP + asterics.envControl.HW_FS20_PCSENDER, {
+            url: '/lamp/' + asterics.envControl.HW_FS20_PCSENDER,
+            template: '<env-control-add-fs/>',
+            params: getAddParams()
+        })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
-            template: '<env-control-add-fs selected-label="$resolve.selectedLabel" selected-icon="$resolve.selectedIcon"/>',
-            resolve: {
-                selectedLabel: function ($translate) {
-                    return $translate.instant('i18n_ec_lamp');
-                },
-                selectedIcon: function () {
-                    return "lightbulb-o";
-                }
-            },
+            template: '<add-plug-device-ir-plug/>',
             params: getAddParams()
         })
         .state(asterics.envControl.STATE_NO_HARDWARE_FOUND, {

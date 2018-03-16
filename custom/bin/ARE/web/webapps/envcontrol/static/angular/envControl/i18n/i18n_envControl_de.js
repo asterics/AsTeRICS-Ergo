@@ -57,6 +57,7 @@ asterics.i18n_envControl_de = {
 
     //devices
     i18n_ec_lamp: 'Tisch-/Stehlampe',
+    i18n_ec_lamp_in_text: 'Lampe',
     i18n_ec_amblight: 'Raumlicht',
     i18n_ec_tv: 'Fernseher',
     i18n_ec_dvd: 'DVD-Player',
@@ -65,6 +66,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_shutters: 'Jalousien',
     i18n_ec_irgeneric: 'Anderes Fernbedienungs-Gerät',
     i18n_ec_pluggeneric: 'Anderes Steckdosen-Gerät',
+    i18n_ec_pluggeneric: 'Gerät',
     i18n_ec_irgeneric_additional: 'Gemeint sind alle Geräte, die mit einer Infrarot-Fernbedienung gesteuert werden können.',
     i18n_ec_pluggeneric_additional: 'Gemeint sind alle Geräte, die über eine Steckdose angesteckt werden und nur eingeschaltet oder ausgeschaltet werden sollen.',
     i18n_ec_numbers: 'Nummern',
@@ -145,17 +147,21 @@ asterics.i18n_envControl_de = {
     //add fs20
     i18n_ec_fs_header: 'Neues Gerät über Steckdose steuern',
     i18n_ec_fs_choosename: 'Bitte Namen für das neue Gerät auswählen',
-    i18n_ec_fs_device_on_pluggeneric: '<b>Vorbereitung:</b></br>Schalten Sie das zu steuernde Gerät EIN.',
-    i18n_ec_fs_device_on_lamp: '<b>Vorbereitung:</b></br>Schalten Sie die zu steuernde Lampe EIN.',
+    i18n_ec_fs_device_on: '<b>Vorbereitung:</b></br>Schalten Sie das zu steuernde Gerät/Lampe EIN.',
     i18n_ec_fs_adapt_plug: 'Stecken Sie den FS20-Zwischenstecker in eine Steckdose.',
-    i18n_ec_fs_plug_in_pluggeneric: 'Stecken Sie das zu steuernde Gerät an den FS20-Zwischenstecker an.',
-    i18n_ec_fs_plug_in_lamp: 'Stecken Sie die zu steuernde Lampe an den FS20-Zwischenstecker an.',
+    i18n_ec_fs_plug_in: 'Stecken Sie das zu steuernde Gerät/Lampe an den FS20-Zwischenstecker an.',
     i18n_ec_fs_press_button: '<b>Halten Sie den grauen Knopf am FS20-Zwischenstecker gedrückt</b>, bis er rot zu blinken beginnt (ca. <b>10 Sekunden</b>).',
     i18n_ec_fs_button_blinking: 'Ok, Button blinkt!',
     i18n_ec_fs_text_finish: '<b>Überprüfen Sie ob der graue Knopf rot blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
     i18n_ec_fs_boughtfs20: 'Haben Sie bereits einen <b>FS20 PC-Sender</b> und einen <b>FS20 Zwischenstecker</b> gekauft?',
     i18n_ec_fs_boughtfs20_no: '<b>Nein</b>, zu Infos und Bestellmöglichkeiten',
     i18n_ec_fs_boughtfs20_yes: '<b>Ja</b>, zur Installation des FS20 PC-Senders',
+
+    //add plug device with ir plug
+    i18n_ec_irplug_adapt_plug: 'Stecken Sie den Infrarot Stecker in eine Steckdose.',
+    i18n_ec_irplug_press_button: '<b>Halten Sie den Knopf am Infrarot Stecker gedrückt</b>, bis das Lämpchen zu blinken beginnt.',
+    i18n_ec_irplug_text_finish: '<b>Überprüfen Sie ob das Lämpchen blinkt</b> und klicken Sie auf "Fertigstellen" um die Steuerungsmöglichkeit hinzuzufügen.',
+    i18n_ec_irplug_plug_in: 'Stecken Sie das zu steuernde Gerät/Lampe an den Infrarot Stecker an.',
 
     //states
     'home': 'Home',
@@ -173,6 +179,7 @@ asterics.i18n_envControl_de = {
     'home.envControl.add.fs20': 'Steckdose',
     'home.envControl.add.ir': 'Fernbedienung',
     'home.envControl.add.lamp': 'Lampe',
+    'home.envControl.add.lampHW_FS20_PCSENDER': 'Lampe',
     'home.envControl.add.amblight': 'Raumlicht',
     'home.envControl.add/more': 'Mehr',
 
@@ -220,6 +227,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Ersetzen von Fernbedienungen (z.B. Steuerung von Fernseher)',
     i18n_ec_helpmenu_HW_IR_BULB: 'Infrarot Glühbirnen',
     i18n_ec_helpmenutext_HW_IR_BULB: 'Über Fernbedienung steuerbare Glühbirnen (z.B. für Raumlicht)',
+    i18n_ec_helpmenu_HW_IR_PLUG: 'Infrarot Stecker',
+    i18n_ec_helpmenutext_HW_IR_PLUG: 'Über Fernbedienung steuerbarer Stecker (z.B. zur Steuerung von Tischlampe)',
 
     //Help Fs20
     i18n_ec_need_one_sender: 'Sie benötigten <b>pro</b> zu steuerndem <b>Gerät einen Zwischenstecker</b>. Insgesamt benötigen Sie nur <b>einen Sender</b>.',
@@ -315,5 +324,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_link_usbcable_amazon: 'USB Kabel (Typ A - Typ B) bei Amazon',
     i18n_ec_link_irbulb_amazon: 'IR Glühbirne 1 bei Amazon',
     i18n_ec_link_irbulb_amazon2: 'IR Glühbirne 2 bei Amazon',
-    i18n_ec_link_irbulb_conrad: 'IR Glühbirne bei Conrad'
+    i18n_ec_link_irbulb_conrad: 'IR Glühbirne bei Conrad',
+    i18n_ec_link_irplug_amazon: 'Infrarot Stecker bei Amazon',
+    i18n_ec_link_irplug_perl: 'Infrarot Stecker bei Perl'
 };

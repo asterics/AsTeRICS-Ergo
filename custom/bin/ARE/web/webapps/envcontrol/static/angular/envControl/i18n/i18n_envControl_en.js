@@ -57,6 +57,7 @@ asterics.i18n_envControl_en = {
 
     //devices
     i18n_ec_lamp: 'Table/Floor-Lamp',
+    i18n_ec_lamp_in_text: 'lamp',
     i18n_ec_amblight: 'Ambient Light',
     i18n_ec_tv: 'Television',
     i18n_ec_dvd: 'DVD-Player',
@@ -65,6 +66,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_shutters: 'Blinds',
     i18n_ec_irgeneric: 'Other remote-controlled device',
     i18n_ec_pluggeneric: 'Other socket device',
+    i18n_ec_pluggeneric_in_text: 'device',
     i18n_ec_irgeneric_additional: 'All devices that can be controlled by an infrared remote control',
     i18n_ec_pluggeneric_additional: 'All devices that are connected to an electric socket and should only be turned on and off.',
     i18n_ec_numbers: 'Numbers',
@@ -145,18 +147,22 @@ asterics.i18n_envControl_en = {
     //add fs20
     i18n_ec_fs_header: 'Control new device via plug',
     i18n_ec_fs_choosename: 'Please choose a name for the device',
-    i18n_ec_fs_device_on_pluggeneric: '<b>Preparation:</b></br>Turn ON the device, which you wish to control.',
-    i18n_ec_fs_device_on_lamp: '<b>Preparation:</b></br>Turn ON the lamp, which you wish to control.',
+    i18n_ec_fs_device_on: '<b>Preparation:</b></br>Turn ON the {{device}}, which you wish to control.',
     i18n_ec_fs_adapt_plug: 'Plug the FS20-adapter plug in a socket.',
-    i18n_ec_fs_plug_in_pluggeneric: 'Plug the device, which you wish to control, in the FS20-adapter plug.',
-    i18n_ec_fs_plug_in_lamp: 'Plug the lamp, which you wish to control, in the FS20-adapter plug.',
-    i18n_ec_fs_press_button: '<b>Press and hold the grey button on the FS20-adapter</b> plug until it starts blinking red (that takes approximately <b>10 seconds</b>).',
+    i18n_ec_fs_plug_in: 'Plug the {{device}}, which you wish to control, in the FS20-adapter plug.',
+    i18n_ec_fs_press_button: '<b>Press and hold the grey button on the FS20-adapter</b> plug until it starts blinking red (this takes approximately <b>10 seconds</b>).',
     i18n_ec_fs_button_blinking: 'Ok, button is blinking!',
     i18n_ec_fs_text_finish: '<b>Check if the grey button blinks red</b> and click on "Finish" to complete the setup.',
     i18n_ec_fs_boughtfs20: 'Have you already purchased a <b>FS20 PC transmitter</b> and a <b>FS20 adapter plug</b>?',
     i18n_ec_fs_boughtfs20_no: '<b>No</b>, go to more information and ordering options',
     i18n_ec_fs_boughtfs20_yes: '<b>Yes</b>, go to installation of the FS20 system',
-    
+
+    //add plug device with ir plug
+    i18n_ec_irplug_adapt_plug: 'Plug the infrared plug in a socket.',
+    i18n_ec_irplug_press_button: '<b>Press and hold the button on the infrared plug</b> until the lamp starts blinking.',
+    i18n_ec_irplug_text_finish: '<b>Check if the lamp blinks</b> and click on "Finish" to complete the setup.',
+    i18n_ec_irplug_plug_in: 'Plug the {{device}}, which you wish to control, in the infrared plug.',
+
     //states
     'home': 'Home',
     'home.envControl': 'Environmental Control',
@@ -173,6 +179,7 @@ asterics.i18n_envControl_en = {
     'home.envControl.add.fs20': 'Plug',
     'home.envControl.add.ir': 'Remote control',
     'home.envControl.add.lamp': 'Lamp',
+    'home.envControl.add.lampHW_FS20_PCSENDER': 'Lamp',
     'home.envControl.add.amblight': 'Ambient Light',
     'home.envControl.add/more': 'More',
 
@@ -220,6 +227,8 @@ asterics.i18n_envControl_en = {
     i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Replace remote controls (e.g. for controlling a TV)',
     i18n_ec_helpmenu_HW_IR_BULB: 'Infrared Bulbs',
     i18n_ec_helpmenutext_HW_IR_BULB: 'Light bulbs controllable by remote control (e.g. for ambient light)',
+    i18n_ec_helpmenu_HW_IR_PLUG: 'Infrared Plug',
+    i18n_ec_helpmenutext_HW_IR_PLUG: 'Plugs controllable by remote control (e.g. control a table lamp)',
 
     //Help Fs20
     i18n_ec_need_one_sender: 'You need a <b>FS20 adapter plug for each device</b>, which you intend to control with the FS20 system. In total <b>one PC transmitter</b> is sufficient.',
@@ -315,5 +324,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_link_usbcable_amazon: 'USB cable (Type A - Type B) at Amazon',
     i18n_ec_link_irbulb_amazon: 'IR bulb 1 at Amazon',
     i18n_ec_link_irbulb_amazon2: 'IR bulb 2 at Amazon',
-    i18n_ec_link_irbulb_conrad: 'IR bulb at Conrad'
+    i18n_ec_link_irbulb_conrad: 'IR bulb at Conrad',
+    i18n_ec_link_irplug_amazon: 'Infrared Plug at Amazon',
+    i18n_ec_link_irplug_perl: 'Infrared Plug at Perl'
 };

@@ -29,6 +29,7 @@ angular.module(asterics.appServices)
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
+            title = thiz.getNonConflictingLabel(title, cellBoard);
             var element = envControlUtilService.createCellBoardItemPlugDevice(title, faIcon, code, plugHardware);
             _cellBoards[cellBoard].push(element);
         };
@@ -48,6 +49,7 @@ angular.module(asterics.appServices)
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
+            title = thiz.getNonConflictingLabel(title, cellBoard);
             var element = envControlUtilService.createCellBoardItemIrDevice(title, faIcon, code, irHardware);
             _cellBoards[cellBoard].push(element);
         };
@@ -166,6 +168,17 @@ angular.module(asterics.appServices)
 
         thiz.hasData = function() {
             return _cellBoards[asterics.envControl.STATE_MAIN].length > 0;
+        };
+
+        thiz.getCodes = function (hardwareConstant) {
+            var buttons = _.flatten(Object.values(_cellBoards));
+            var codes = [];
+            buttons.forEach(function (button) {
+                if(button.type == hardwareConstant && button.code) {
+                    codes.push(button.code);
+                }
+            });
+            return codes;
         };
 
         /**

@@ -73,7 +73,7 @@ angular.module(asterics.appComponents)
 
             function shouldShowAlternatives() {
                 return (thiz.hardwareAlternatives && thiz.hardwareAlternatives.length > 0) ||
-                    (thiz.alternativeHardare && thiz.alternativeHardare.length > 0);
+                    (thiz.alternativeHardare && Object.keys(thiz.alternativeHardare).length > 0);
             }
 
             function countSelected() {

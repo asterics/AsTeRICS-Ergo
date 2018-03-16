@@ -8,7 +8,7 @@ angular.module(asterics.appServices)
         var _plugHardware = [hardwareFs20Sender];
         var _hardwareMap = {};                    //stores all hardware hardware group
         var _lastConnectedHardwareMap = {};        //stores one last connection status of hardware by hardwareId
-        var _allHardware = _irHardware.concat(_plugHardware);     //list of all known hardware instances
+        var _allHardware = _plugHardware.concat(_irHardware);     //list of all known hardware instances
         _hardwareMap[asterics.envControl.HW_GROUP_IR] = _irHardware;
         _hardwareMap[asterics.envControl.HW_GROUP_PLUG] = _plugHardware;
 

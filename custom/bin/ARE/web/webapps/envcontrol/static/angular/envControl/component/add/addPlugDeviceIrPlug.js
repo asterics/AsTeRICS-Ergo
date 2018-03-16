@@ -1,5 +1,5 @@
 angular.module(asterics.appComponents)
-    .component('envControlAddFs', {
+    .component('addPlugDeviceIrPlug', {
 
         bindings: {},
         controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$stateParams', '$scope', 'envControlUtilService', '$translate', function (envControlDataService, $state, hardwareService, utilService, $stateParams, $scope, envControlUtilService, $translate) {
@@ -12,25 +12,18 @@ angular.module(asterics.appComponents)
             
             thiz.cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
-            thiz.translatedDevice = envControlUtilService.getTranslatedValueObject('device', thiz.device);
+            thiz.translatedDevice = envControlUtilService.getTranslatedValueObject('device', thiz.device + '_in_text');
 
             thiz.addCellBoardItemAndReturn = function () {
-                var additionalData = envControlDataService.getAdditionalDeviceData(thiz.hardware.getName()) || [];
-                var code = thiz.hardware.getNewCode(additionalData);
-                additionalData.push(code);
-                envControlDataService.setAdditionalDeviceData(additionalData, thiz.hardware.getName());
-                thiz.hardware.trainCode(code);
-                envControlDataService.addCellBoardElementPlug(thiz.selectedLabel, thiz.selectedIcon, code, thiz.cbToAdd, thiz.hardware.getName());
+                var code = thiz.hardware.getRandomCode(envControlDataService.getCodes(thiz.hardware.getName()));
+                thiz.hardware.send(code);
+                envControlDataService.addCellBoardElementIr(thiz.selectedLabel, thiz.selectedIcon, code, thiz.cbToAdd, thiz.hardware.getName());
                 envControlDataService.saveData();
                 $state.go(thiz.cbToAdd);
             };
 
-            thiz.goToHelp = function (hardware) {
-                envControlUtilService.goToHelp(hardware);
-            };
-
-            thiz.goToFs20Help = function () {
-                thiz.goToHelp(asterics.envControl.HW_FS20_PCSENDER);
+            thiz.goToHelp = function () {
+                envControlUtilService.goToHelp(thiz.hardware);
             };
 
             $scope.$watch(function () {
@@ -41,5 +34,5 @@ angular.module(asterics.appComponents)
                 }
             });
         }],
-        templateUrl: "angular/envControl/component/add/envControlAddFs.html"
+        templateUrl: "angular/envControl/component/add/addPlugDeviceIrPlug.html"
     });

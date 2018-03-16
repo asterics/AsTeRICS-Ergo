@@ -52,9 +52,9 @@ asterics.envControl.STATE_HELP_FAQ = 'home.envControl.help/faq';
 asterics.envControl.STATE_ADD = 'home.envControl.add';
 asterics.envControl.STATE_ADDMORE = 'home.envControl.add/more';
 asterics.envControl.STATE_ADDSUB = 'home.envControl.addsub';
-asterics.envControl.STATE_ADD_LAMP = 'home.envControl.add.lamp';
 asterics.envControl.STATE_NO_HARDWARE_FOUND = 'home.envControl.add.nohardware';
 asterics.envControl.STATE_CONNECTION_CHECK = 'home.envControl.add.connectioncheck';
+asterics.envControl.STATE_ADD_LAMP = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_TABLELAMP;
 asterics.envControl.STATE_ADD_TV = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_TV;
 asterics.envControl.STATE_ADD_DVD = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_DVD;
 asterics.envControl.STATE_ADD_HIFI = asterics.envControl.STATE_ADD + '.' + asterics.envControl.DEVICE_HIFI;
@@ -94,4 +94,8 @@ asterics.envControl.LINKS[asterics.envControl.HW_FS20_PCSENDER] = [
 ];
 asterics.envControl.LINKS[asterics.envControl.HW_FS20_SET] = [
     {link: "https://www.amazon.de/gp/product/B0062WN2E6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=astericsfound-21&camp=1638&creative=6742&linkCode=as2&creativeASIN=B0062WN2E6&linkId=62376edd1d82977c5c2d7e8db0b59387", label: "i18n_ec_link_fs20set_amazon"}
+];
+asterics.envControl.LINKS[asterics.envControl.HW_IR_PLUG] = [
+    {link: "https://www.amazon.de/gp/product/B003KUDRCA/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=astericsfound-21&creative=6742&linkCode=as2&creativeASIN=B003KUDRCA&linkId=557a51fe51c5b381f022346dd6af18f5", label: "i18n_ec_link_irplug_amazon"},
+    {link: "https://www.pearl.at/at-a-PX2151-1430.shtml", label: "i18n_ec_link_irplug_perl"}
 ];
