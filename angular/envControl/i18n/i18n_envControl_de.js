@@ -227,6 +227,8 @@ asterics.i18n_envControl_de = {
     i18n_ec_helpmenutext_HW_IR_FLIPMOUSE: 'Ersetzen von Fernbedienungen (z.B. Steuerung von Fernseher)',
     i18n_ec_helpmenu_HW_IR_BULB: 'Infrarot Glühbirnen',
     i18n_ec_helpmenutext_HW_IR_BULB: 'Über Fernbedienung steuerbare Glühbirnen (z.B. für Raumlicht)',
+    i18n_ec_helpmenu_HW_IR_PLUG: 'Infrarot Stecker',
+    i18n_ec_helpmenutext_HW_IR_PLUG: 'Über Fernbedienung steuerbarer Stecker (z.B. zur Steuerung von Tischlampe)',
 
     //Help Fs20
     i18n_ec_need_one_sender: 'Sie benötigten <b>pro</b> zu steuerndem <b>Gerät einen Zwischenstecker</b>. Insgesamt benötigen Sie nur <b>einen Sender</b>.',
@@ -322,5 +324,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_link_usbcable_amazon: 'USB Kabel (Typ A - Typ B) bei Amazon',
     i18n_ec_link_irbulb_amazon: 'IR Glühbirne 1 bei Amazon',
     i18n_ec_link_irbulb_amazon2: 'IR Glühbirne 2 bei Amazon',
-    i18n_ec_link_irbulb_conrad: 'IR Glühbirne bei Conrad'
+    i18n_ec_link_irbulb_conrad: 'IR Glühbirne bei Conrad',
+    i18n_ec_link_irplug_amazon: 'Infrarot Stecker bei Amazon',
+    i18n_ec_link_irplug_perl: 'Infrarot Stecker bei Perl'
 };
