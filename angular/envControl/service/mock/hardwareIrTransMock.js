@@ -40,6 +40,10 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
+        thiz.getRandomCode = function(codesToSkip) {
+            return new Date().getTime().toString();
+        };
+
         //only for mock mode:
         thiz.setDevicePlugged = function (plugged) {
             _plugged = plugged;

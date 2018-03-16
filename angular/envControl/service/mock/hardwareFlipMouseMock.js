@@ -33,6 +33,10 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
+        thiz.getRandomCode = function(codesToSkip) {
+            return new Date().getTime().toString();
+        };
+
         //aborts a current action, closes websocket
         thiz.abortAction = function () {
             thiz.canceler.resolve();
