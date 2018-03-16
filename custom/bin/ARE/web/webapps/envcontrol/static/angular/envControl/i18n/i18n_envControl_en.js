@@ -57,6 +57,7 @@ asterics.i18n_envControl_en = {
 
     //devices
     i18n_ec_lamp: 'Table/Floor-Lamp',
+    i18n_ec_lamp_in_text: 'lamp',
     i18n_ec_amblight: 'Ambient Light',
     i18n_ec_tv: 'Television',
     i18n_ec_dvd: 'DVD-Player',
@@ -65,6 +66,7 @@ asterics.i18n_envControl_en = {
     i18n_ec_shutters: 'Blinds',
     i18n_ec_irgeneric: 'Other remote-controlled device',
     i18n_ec_pluggeneric: 'Other socket device',
+    i18n_ec_pluggeneric_in_text: 'device',
     i18n_ec_irgeneric_additional: 'All devices that can be controlled by an infrared remote control',
     i18n_ec_pluggeneric_additional: 'All devices that are connected to an electric socket and should only be turned on and off.',
     i18n_ec_numbers: 'Numbers',
