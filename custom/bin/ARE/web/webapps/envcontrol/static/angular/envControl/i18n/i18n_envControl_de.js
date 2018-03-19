@@ -66,7 +66,7 @@ asterics.i18n_envControl_de = {
     i18n_ec_shutters: 'Jalousien',
     i18n_ec_irgeneric: 'Anderes Fernbedienungs-Gerät',
     i18n_ec_pluggeneric: 'Anderes Steckdosen-Gerät',
-    i18n_ec_pluggeneric: 'Gerät',
+    i18n_ec_pluggeneric_in_text: 'Gerät',
     i18n_ec_irgeneric_additional: 'Gemeint sind alle Geräte, die mit einer Infrarot-Fernbedienung gesteuert werden können.',
     i18n_ec_pluggeneric_additional: 'Gemeint sind alle Geräte, die über eine Steckdose angesteckt werden und nur eingeschaltet oder ausgeschaltet werden sollen.',
     i18n_ec_numbers: 'Nummern',
