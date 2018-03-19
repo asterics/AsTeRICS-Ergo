@@ -59,6 +59,8 @@ angular.module(asterics.appComponents)
             thiz.$onInit = function () {
                 if (thiz.hardwareId && !$stateParams.skipConnectionTest) {
                     connectionCheck();
+                } else {
+                    getHtmlPath(thiz.hardwareId, $translate.use());
                 }
             };
 
