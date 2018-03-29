@@ -1,25 +1,118 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="D:\z_Code\AsTeRICS-Ergo\custom\bin\ARE\models\autostart-firststeps.acs_2017_3_27_17_24" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\autostart.acs_2018_3_29_11_3" version="20130320">
   <components>
-    <component id="ApplicationLauncher.1" type_id="asterics.ApplicationLauncher">
+    <component id="ApplicationLauncher.3" type_id="asterics.ApplicationLauncher">
       <description>starts external software applications via path and  filename (.exe)</description>
       <ports>
         <inputPort portTypeID="filename">
           <properties />
         </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
       </ports>
       <properties>
+        <property name="executeOnPlatform" value="MACOSX" />
+        <property name="executionMode" value="START_APPLICATION" />
+        <property name="defaultApplication" value="sensible-browser" />
+        <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="True" />
+        <property name="autoClose" value="False" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>650</posX>
+        <posY>504</posY>
+      </layout>
+    </component>
+    <component id="ApplicationLauncher.2" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="executeOnPlatform" value="LINUX" />
+        <property name="executionMode" value="START_APPLICATION" />
+        <property name="defaultApplication" value="sensible-browser" />
+        <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="True" />
+        <property name="autoClose" value="False" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>650</posX>
+        <posY>319</posY>
+      </layout>
+    </component>
+    <component id="ApplicationLauncher" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="executeOnPlatform" value="WINDOWS" />
+        <property name="executionMode" value="START_APPLICATION" />
         <property name="defaultApplication" value="explorer" />
         <property name="arguments" value="http://localhost:8091/webapps/envcontrol/static/" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="True" />
-        <property name="autoClose" value="true" />
+        <property name="autoClose" value="False" />
         <property name="onlyByEvent" value="false" />
       </properties>
       <layout>
-        <posX>40</posX>
-        <posY>40</posY>
+        <posX>651</posX>
+        <posY>138</posY>
       </layout>
     </component>
   </components>
