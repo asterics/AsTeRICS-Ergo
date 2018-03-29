@@ -1,0 +1,10 @@
+Package: asterics-ergo
+Version: 4.0.1
+Section: unknown
+Maintainer: Asterics Foundation
+Priority: optional
+Architecture: all
+Provides: asterics-ergo
+Description: AsTeRICS Ergo - https://github.com/asterics/AsTeRICS-Ergo
+Recommends: oracle-java8-installer
+Depends: libhidapi-libusb0
