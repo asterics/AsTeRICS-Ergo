@@ -1,0 +1,21 @@
+<div>
+    <h3>Installation of FLipMouse</h3>
+    <p>If you already have a FLipMouse, follow these instructions to install it:</p>
+    <ol class="install-help">
+        <li>
+            Connect the FLipMouse to the computer using an USB micro cable.
+            <div class="row">
+                <img class="img-row col-xs-7" style="max-height: 150px;" src="angular/envControl/img/HW_IR_FLIPMOUSE.jpg"
+                     alt="FLipMouse"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/usbamicro.png"
+                     alt="USB Cable (Type A - micro)"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+            </div>
+        </li>
+        <li>
+            Click on "Check" in order to verify the correct installation.
+            <button ng-click="$ctrl.test()" translate="i18n_ec_test"></button>
+            <hardware-test register-function="$ctrl.testRegisterFunction(testFunction)" hardware-id="$ctrl.hardwareId">
+        </li>
+    </ol>
+</div>

@@ -6,10 +6,13 @@ ThreadPool.ModelExecutor.size=1
 showErrorDialogs=0
 ARE.hotKey.stopModel=
 ARE.gui.font.size=18
-ASAPI.enableACSPortConnection=0
+ASAPI.enableACSPortConnection=1
 background_color=-11435361
 ARE.hotKey.pauseModel=
 ARE.hotKey.startModel=
+ARE.hotKey.editModel=
 ThreadPoolTasks.submitTimeout=20000
 ASAPI.enableAREAutoDetection=0
 ASAPI.ACSPortNumber=9090
+# If true the CIMPortManager starts in raw mode, where COM connections can be used directly without CIM protocol
+CIM.mode.raw=true

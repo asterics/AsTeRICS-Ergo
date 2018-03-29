@@ -1,16 +1,17 @@
 <div>
-    <div ng-repeat="item in $ctrl.chooseItems track by $index">
-        <div ng-if="$ctrl.isVisible(item)" class="col-xs-12 col-sm-3 col-lg-2 cb-element">
-            <button title="{{$ctrl.getTooltip(item)}}" ng-click="$ctrl.itemClicked(item)" ng-disabled="$ctrl.isDisabled(item)" ng-class="$ctrl.getClass(item)" context-menu="$ctrl.getContextMenuOptions(item)">
+    <div ng-repeat="item in $ctrl.chooseItems track by $index" ng-if="$ctrl.isVisible(item)" class="col-xs-12 col-sm-3 col-lg-2 cb-element">
+        <button title="{{$ctrl.getTooltip(item)}}" ng-click="$ctrl.itemClicked(item)" onclick="this.focus()" ng-disabled="$ctrl.isDisabled(item)" ng-class="$ctrl.getClass(item)" context-menu="$ctrl.getContextMenuOptions(item)">
+            <div ng-if="$ctrl.showFolderIcon(item)" style="position: absolute; z-index: 1; top: 15px; left: 15px;">
+                <i class="fa fa-folder-open"/>
+            </div>
+            <div>
                 <div>
-                    <div>
-                        <i ng-class="$ctrl.getFaClass(item)"/>
-                    </div>
-                    <div>
-                        <span translate="{{item.title}}" translate-values="{{item.translateParams}}"/>
-                    </div>
+                    <i ng-class="$ctrl.getFaClass(item)"/>
                 </div>
-            </button>
-        </div>
+                <div>
+                    <span translate="{{item.title}}" translate-values="{{item.translateParams}}"/>
+                </div>
+            </div>
+        </button>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2017_10_11_14_54" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_2_6_11_4" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -130,9 +130,94 @@
         <posY>579</posY>
       </layout>
     </component>
+    <component id="LipMouse.1" type_id="asterics.SerialPort">
+      <description>This plugin can send and receive data from a serial (COM) port.</description>
+      <ports>
+        <inputPort portTypeID="send">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="sendBytes">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="received">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="receivedBytes">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="opPortStatus">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="ComPort" value="COM4" />
+        <property name="BaudRate" value="9600" />
+        <property name="sendStringTerminator" value="3" />
+        <property name="receiveStringTerminator" value="3" />
+        <property name="sendBytesBufferSize" value="1" />
+        <property name="cimId" value="0xa401" />
+      </properties>
+      <layout>
+        <posX>844</posX>
+        <posY>173</posY>
+      </layout>
+    </component>
+    <component id="TextSender.1.1" type_id="asterics.TextSender">
+      <description>Send text when gets event</description>
+      <ports>
+        <inputPort portTypeID="setText">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="output">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="text" value="IP mycommand" />
+      </properties>
+      <layout>
+        <posX>563</posX>
+        <posY>173</posY>
+      </layout>
+    </component>
+    <component id="WebSocket.1.1" type_id="asterics.WebSocket">
+      <description>This plugin uses a websocket connection to send and read data. The default websocket URI is ws://{hostname}:8082/ws/astericsData. You have to start the ARE with --webservice flag. You can test the connection with http://localhost:8082/
+        </description>
+      <ports>
+        <inputPort portTypeID="InA">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="OutA">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties />
+      <layout>
+        <posX>1142</posX>
+        <posY>88</posY>
+      </layout>
+    </component>
+    <component id="WebSocket.1.1.1" type_id="asterics.WebSocket">
+      <description>This plugin uses a websocket connection to send and read data. The default websocket URI is ws://{hostname}:8082/ws/astericsData. You have to start the ARE with --webservice flag. You can test the connection with http://localhost:8082/
+        </description>
+      <ports>
+        <inputPort portTypeID="InA">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="OutA">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties />
+      <layout>
+        <posX>1146</posX>
+        <posY>238</posY>
+      </layout>
+    </component>
   </components>
   <channels>
     <channel id="binding.0">
+      <description />
       <source>
         <component id="TextSender.1" />
         <port id="output" />
@@ -143,6 +228,7 @@
       </target>
     </channel>
     <channel id="binding.1">
+      <description />
       <source>
         <component id="TextSender.1" />
         <port id="output" />
@@ -153,7 +239,6 @@
       </target>
     </channel>
     <channel id="binding.4">
-      <description />
       <source>
         <component id="FS20Sender.1" />
         <port id="output" />
@@ -164,12 +249,43 @@
       </target>
     </channel>
     <channel id="binding.3">
+      <description />
       <source>
         <component id="IrTrans.1" />
         <port id="outputResult" />
       </source>
       <target>
         <component id="WebSocket.2" />
+        <port id="InA" />
+      </target>
+    </channel>
+    <channel id="binding.6">
+      <source>
+        <component id="LipMouse.1" />
+        <port id="received" />
+      </source>
+      <target>
+        <component id="WebSocket.1.1" />
+        <port id="InA" />
+      </target>
+    </channel>
+    <channel id="binding.5">
+      <source>
+        <component id="TextSender.1.1" />
+        <port id="output" />
+      </source>
+      <target>
+        <component id="LipMouse.1" />
+        <port id="send" />
+      </target>
+    </channel>
+    <channel id="binding.7">
+      <source>
+        <component id="LipMouse.1" />
+        <port id="opPortStatus" />
+      </source>
+      <target>
+        <component id="WebSocket.1.1.1" />
         <port id="InA" />
       </target>
     </channel>

@@ -1,20 +1,23 @@
 angular.module(asterics.appServices)
-    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', 'envControlFsService', '$q', function (areSaveService, utilService, envControlUtilService, stateUtilService, envControlFsService, $q) {
+    .service('envControlDataService', ['areSaveService', 'utilService', 'envControlUtilService', 'stateUtilService', '$q' , 'hardwareService', 'envControlHelpDataService', function (areSaveService, utilService, envControlUtilService, stateUtilService, $q, hardwareService, envControlHelpDataService) {
         var thiz = this;
-        var _dataFilename = "ecdata";
+        var _dataFilename = "ecdata" + asterics.const.MODELVERSION;
         var _saveTimestamp = -1;
         var _initDeferred = $q.defer();
 
+        var _data = {};
         var _cellBoards = {};
         _cellBoards[asterics.envControl.STATE_MAIN] = [];
         var _cellBoardDeviceMapping = {};
         var _dynamicCellBoardIds = [];
-        var _fs20Codes = [];
+        var _additionalDeviceData = {};
         var _clipBoard = {};
         var _undoCellBoards = {};
+        var _deletedElements = []; //stores recently deleted elements that will be used to call a possible delete handler
         var _callbackToCallOnNewData = null;
 
         thiz.getCellBoard = function (cellBoardName) {
+            processDeleteHandlers();
             var def = $q.defer();
             _initDeferred.promise.then(function () {
                 def.resolve(_cellBoards[cellBoardName]);
@@ -22,31 +25,47 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
-        thiz.addCellBoardElementFs20 = function (title, faIcon, code, cellBoard) {
+        thiz.addCellBoardElementPlug = function (title, faIcon, code, cellBoard, plugHardware) {
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
-            var element = envControlUtilService.createCellBoardItemFs20(title, faIcon, code);
+            title = thiz.getNonConflictingLabel(title, cellBoard);
+            var element = envControlUtilService.createCellBoardItemPlugDevice(title, faIcon, code, plugHardware);
             _cellBoards[cellBoard].push(element);
-            _fs20Codes.push(code);
         };
 
-        thiz.addCellBoardElementIrTrans = function (title, faIcon, code, cellBoard) {
+        thiz.getAdditionalDeviceData = function (hardwareId) {
+            return _additionalDeviceData[hardwareId];
+        };
+
+        thiz.setAdditionalDeviceData = function(data, hardwareId) {
+            if(!hardwareId) {
+                return;
+            }
+            _additionalDeviceData[hardwareId] = data;
+        };
+
+        thiz.addCellBoardElementIr = function (title, faIcon, code, cellBoard, irHardware) {
             if (!cellBoard) {
                 cellBoard = asterics.envControl.STATE_MAIN;
             }
-            var element = envControlUtilService.createCellBoardItemIrTrans(title, faIcon, code);
+            title = thiz.getNonConflictingLabel(title, cellBoard);
+            var element = envControlUtilService.createCellBoardItemIrDevice(title, faIcon, code, irHardware);
             _cellBoards[cellBoard].push(element);
         };
 
         thiz.removeCellBoardElement = function (cellBoardName, element) {
+            processDeleteHandlers();
+            _deletedElements = [element];
             _undoCellBoards = angular.copy(_cellBoards);
             _cellBoards[cellBoardName] = _.without(_cellBoards[cellBoardName], element);
             if (element.type === asterics.const.CB_TYPE_SUBCB && element.toState) {
+                _deletedElements = _deletedElements.concat(_cellBoards[element.toState]);
                 _cellBoards[element.toState] = []; //delete items of sub-cellboard
+                delete _cellBoards[element.toState];
                 _.pull(_dynamicCellBoardIds, element.toState);
-            } else if (element.type === asterics.envControl.CB_TYPE_FS20 && element.code) {
-                _.pull(_fs20Codes, element.code);
+            } else if (element.type === asterics.envControl.HW_FS20_PCSENDER && element.code) {
+                _.pull(_additionalDeviceData[element.type], element.code);
             }
             thiz.saveData();
             return _cellBoards[cellBoardName];
@@ -54,13 +73,14 @@ angular.module(asterics.appServices)
 
         thiz.undoRemove = function () {
             _cellBoards = _undoCellBoards;
+            _deletedElements = [];
             thiz.saveData();
         };
 
         thiz.addSubCellboard = function (title, faIcon, parentCellBoardState, deviceType) {
-            title = title.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' '); // remove slashes and dots with whitespaces in order to not interfere with states and paths
+            title = thiz.getNonConflictingLabel(title, parentCellBoardState);
             var newStateName = stateUtilService.getNewSubStateName(parentCellBoardState, title);
-            var navToCbElement = envControlUtilService.createCellBoardItemNavSubcellboard(title, faIcon, newStateName);
+            var navToCbElement = utilService.createCellBoardItemSubCb(title, faIcon, newStateName);
             _cellBoardDeviceMapping[newStateName] = deviceType;
             addCellBoardElement(parentCellBoardState, navToCbElement);
             initCellBoard(newStateName);
@@ -99,12 +119,8 @@ angular.module(asterics.appServices)
             _clipBoard = {};
         };
 
-        thiz.getNewFs20Code = function () {
-            return envControlFsService.getNewFs20Code(_fs20Codes);
-        };
-
         thiz.getNonConflictingLabel = function (label, parentState) {
-            var newLabel = label;
+            var newLabel = replaceSlahesAndDots(label); // remove slashes and dots with whitespaces in order to not interfere with states and paths
             var count = 1;
             while (thiz.existsLabel(newLabel, parentState)) {
                 newLabel = label + ' (' + count.toString() + ')';
@@ -117,6 +133,7 @@ angular.module(asterics.appServices)
             if(!label) {
                 return false;
             }
+            label = replaceSlahesAndDots(label).toLowerCase();
             return _.includes(getCbButtonLabels(parentState, true), label.toString().trim().toLowerCase());
         };
 
@@ -137,13 +154,47 @@ angular.module(asterics.appServices)
         };
 
         thiz.saveData = function saveData() {
-            var data = {};
-            data._cellBoards = _cellBoards;
-            data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
-            data._dynamicCellBoardIds = _dynamicCellBoardIds;
-            data._fs20Codes = _fs20Codes;
-            _saveTimestamp = areSaveService.saveData(_dataFilename, data);
+            _data = {};
+            _data._cellBoards = _cellBoards;
+            _data._cellBoardDeviceMapping = _cellBoardDeviceMapping;
+            _data._dynamicCellBoardIds = _dynamicCellBoardIds;
+            _data._additionalDeviceData = _additionalDeviceData;
+            _saveTimestamp = areSaveService.saveData(_dataFilename, _data);
         };
+
+        thiz.getDataJSON = function () {
+            return JSON.stringify(_data);
+        };
+
+        thiz.hasData = function() {
+            return _cellBoards[asterics.envControl.STATE_MAIN].length > 0;
+        };
+
+        thiz.getCodes = function (hardwareConstant) {
+            var buttons = _.flatten(Object.values(_cellBoards));
+            var codes = [];
+            buttons.forEach(function (button) {
+                if(button.type == hardwareConstant && button.code) {
+                    codes.push(button.code);
+                }
+            });
+            return codes;
+        };
+
+        /**
+         * processes possible previously deleted items to call their delete handlers
+         * is not called directly in delete thiz.removeCellBoardElement because it is possible that the deletion is undone
+         */
+        function processDeleteHandlers() {
+            if(!_.isEmpty(_deletedElements)) {
+                _deletedElements.forEach(function (element) {
+                    if(envControlHelpDataService.isComputerConfigured(element.type)) {
+                        hardwareService.handleDelete(element.type, element);
+                    }
+                });
+                _deletedElements = [];
+            }
+        }
 
         function addCellBoardElement(cellBoardName, element) {
             initCellBoard(cellBoardName);
@@ -172,6 +223,10 @@ angular.module(asterics.appServices)
                 list = list.concat(values);
             });
             return list;
+        }
+
+        function replaceSlahesAndDots(label) {
+            return label.replace(/\./g, ' ').replace(/\//g, ' ').replace(/\s\s+/g, ' ').trim();
         }
 
         init();
@@ -209,7 +264,7 @@ angular.module(asterics.appServices)
                 _cellBoards = data._cellBoards || _cellBoards;
                 _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
                 _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
-                _fs20Codes = data._fs20Codes || _fs20Codes;
+                _additionalDeviceData = data._additionalDeviceData || _additionalDeviceData;
                 reinitCellBoards();
             }
             if (newTimestamp) {

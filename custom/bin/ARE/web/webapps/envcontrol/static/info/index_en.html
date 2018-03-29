@@ -45,11 +45,13 @@
         </div>
         <div class="row col-lg-8">
             <h2>Download</h2>
-            <p>Click on the following link in order to download the latest version of AsTeRICS Ergo:</p>
+            <p>Click on the following link in order to download the latest version for Windows of AsTeRICS Ergo:</p>
             <p>
                 <a id="downloadLink"
                    href="https://github.com/asterics/AsTeRICS-Ergo/releases/download/v4.0.0/AsTeRICS.Ergo-javaembedded-4.0.0.exe">Download
                     AsTeRICS Ergo</a></p>
+            <p>In order to find versions for Linux or older releases, see <a href="https://github.com/asterics/AsTeRICS-Ergo/releases/">github.com</a>
+            </p>
         </div>
         <div class="row col-lg-8">
             <h2>Demo</h2>
@@ -97,10 +99,18 @@
 
 <script type="application/javascript">
     $.get('https://api.github.com/repos/asterics/AsTeRICS-Ergo/releases/latest', {}, function (response) {
-        var downloadLink = response.assets[0].browser_download_url;
+        var downloadLink = null;
         var version = response.tag_name;
-        $('#downloadLink').text('Download AsTeRICS Ergo (' + version + ')');
-        $('#downloadLink').attr('href', downloadLink);
+        for (var i = 0; i < response.assets.length; i++) {
+            if (response.assets[i].name.indexOf('.exe') !== -1) {
+                downloadLink = response.assets[i].browser_download_url;
+            }
+        }
+
+        if (downloadLink) {
+            $('#downloadLink').text('Download AsTeRICS Ergo (' + version + ')');
+            $('#downloadLink').attr('href', downloadLink);
+        }
     }, 'json');
 
     function onCheckboxChange(lang) {

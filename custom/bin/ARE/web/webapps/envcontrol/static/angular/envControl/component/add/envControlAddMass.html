@@ -2,39 +2,10 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceI18nParams}}"></h2>
+<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.headerI18nParams}}"></h2>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_irtrans_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
-<div ng-if="$ctrl.isConnected != null">
-    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
-        <span translate="i18n_ec_irmass_needhardware"/>
-        <ul>
-            <li ng-repeat="hardware in $ctrl.neededHardware">
-                <a href="" ng-click="$ctrl.goToHelp(hardware)">
-                    {{'i18n_ec_' + hardware | translate}}
-                </a>
-            </li>
-        </ul>
-    </asterics-message>
-</div>
-<div ng-if="$ctrl.isConnected == false">
-    <div class="col-lg-5">
-        <p translate="i18n_ec_irmass_boughtirtrans"/>
-        <ul>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransHelp()">
-                   <span translate="i18n_ec_irmass_bought_no"/>
-                </a>
-            </li>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransInstall()">
-                    <span translate="i18n_ec_irmass_bought_yes"/>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<div ng-if="$ctrl.isConnected">
+<div>
+    <hardware-message device="$ctrl.addDevice" connected-hardware="$ctrl.irHardware.getName()"/>
     <div class="col-lg-8">
         <ul>
             <li ng-model-options="{debounce: 500}">
@@ -42,7 +13,7 @@
                 <input type="text" id="inputLabel" ng-model="$ctrl.selectedLabel" maxlength="20"/><br/>
             </li>
             <li ng-if="$ctrl.selectedLabel">
-                <span translate="i18n_ec_irmass_text_keeporiginal"/><br/>
+                <span translate="i18n_ec_irmass_text_keeporiginal" translate-values="$ctrl.hardwareI18nParams"/><br/>
             </li>
             <li ng-if="$ctrl.selectedLabel">
                 <span translate="i18n_ec_irmass_text_starthint"/><br/>
@@ -88,9 +59,9 @@
         <span translate="i18n_ec_irtrans_error"/>
     </div>
 </div>
-<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToIrTransHelp()">
+<a href="" ng-click="$ctrl.goToHelp()">
     <div class="col-xs-6 col-md-4 col-lg-3">
-        <img src="angular/envControl/img/irtrans_learn.png" alt="IrTrans-USB"/>
-        <div class=" text-center"><span translate="i18n_ec_remote_directed_irtrans"/></div>
+        <img src="{{'angular/envControl/img/' + $ctrl.irHardware.getName() + '_learn.jpg'}}" alt="{{'i18n_ec_' + $ctrl.irHardware.getName() | translate}}"/>
+        <div class=" text-center"><span translate="{{'i18n_ec_' + $ctrl.irHardware.getName()}}"/></div>
     </div>
 </a>

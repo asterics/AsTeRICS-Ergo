@@ -1,26 +1,28 @@
 angular.module(asterics.appComponents)
     .component('envControlAddMass', {
 
-        bindings: {
-            learnItems: '<',
-            selectedLabel: '<',
-            selectedIcon: '<'
-        },
-        controller: ['envControlDataService', '$state', 'envControlIRService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', function (envControlDataService, $state, envControlIRService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService) {
+        bindings: {},
+        controller: ['envControlDataService', '$state', 'hardwareService', 'utilService', '$scope', '$stateParams', 'stateUtilService', '$translate', '$anchorScroll', '$timeout', 'envControlHelpDataService', 'envControlTextService', 'messageService', 'envControlUtilService', function (envControlDataService, $state, hardwareService, utilService, $scope, $stateParams, stateUtilService, $translate, $anchorScroll, $timeout, envControlHelpDataService, envControlTextService, messageService, envControlUtilService) {
             var thiz = this;
             var _cbToAdd = $stateParams.cellBoardId || asterics.envControl.STATE_MAIN;
             var _currentLearnItem = null;
-            var _addDevice = stateUtilService.getLastPart($state.current.name);
+            thiz.addDevice = $stateParams.device;
+
+            thiz.irHardware = $stateParams.hardware;
+            thiz.headerI18n = $stateParams.headerI18n;
 
             thiz.cellBoardConfig = [utilService.createCellBoardItemBack()];
             thiz.inLearn = false;
             thiz.learningAborted = false;
-            thiz.headerI18n = 'i18n_ec_irmass_header_' + _addDevice;
-            thiz.deviceI18nParams = {device: stateUtilService.getLastPartUpper(_cbToAdd)};
-            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + _addDevice;
-            thiz.isNumberLearn = _addDevice == 'numbers';
-            thiz.isConnected = null;
-            thiz.neededHardware = envControlHelpDataService.getNeededHardware(_addDevice) || [asterics.envControl.HW_IRTRANS_USB];
+            thiz.headerI18nParams = {device: $stateParams.cellBoardName};
+            thiz.hardwareI18nParams = {hardware: $translate.instant('i18n_ec_' + thiz.irHardware.getName())};
+            thiz.nameLabelI18n = 'i18n_ec_irmass_name_' + thiz.addDevice;
+            thiz.isNumberLearn = thiz.addDevice == 'numbers';
+            thiz.neededHardware = _.without(envControlHelpDataService.getNeededHardware(thiz.addDevice, thiz.irHardware.getName()), thiz.irHardware.getName());
+
+            thiz.learnItems = envControlUtilService.getIrElements(thiz.addDevice);
+            thiz.selectedIcon = envControlUtilService.getIcon(thiz.addDevice);
+            thiz.selectedLabel = $translate.instant('i18n_ec_' + thiz.addDevice);
 
             //learns the next item to learn, after success automatically learns next item.
             //if no item left or error on learning -> return
@@ -46,16 +48,17 @@ angular.module(asterics.appComponents)
                 }
 
                 function error(response) {
-                    if (response === asterics.envControl.IRTRANS_SOCKET_ERROR) {
+                    if (response !== asterics.envControl.IRLEARN_TIMEOUT) {
                         thiz.inLearn = false;
                         thiz.showError = true;
                         clearItems();
+                        abortLearning();
                     } else if (thiz.inLearn) {
                         thiz.trainCode();
                     }
                 }
 
-                envControlIRService.irLearn().then(success, error);
+                thiz.irHardware.irLearn().then(success, error);
                 if (!thiz.inLearn) {
                     scrollToEnd();
                 }
@@ -91,10 +94,10 @@ angular.module(asterics.appComponents)
 
             thiz.addCellBoardItemsAndReturn = function () {
                 abortLearning();
-                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, _addDevice);
+                var newCellboard = envControlDataService.addSubCellboard(thiz.selectedLabel, thiz.selectedIcon, _cbToAdd, thiz.addDevice);
                 angular.forEach(thiz.learnItems, function (e) {
                     if (e.code) {
-                        envControlDataService.addCellBoardElementIrTrans(e.label, e.icon, e.code, newCellboard);
+                        envControlDataService.addCellBoardElementIr(e.label, e.icon, e.code, newCellboard, thiz.irHardware.getName());
                     }
                 });
                 envControlDataService.saveData();
@@ -128,34 +131,20 @@ angular.module(asterics.appComponents)
                 return false;
             };
 
-            thiz.goToHelp = function (hardware) {
-                $state.go('home.envControl.help/controls/' + hardware);
-            };
-
-            thiz.goToIrTransHelp = function () {
-                thiz.goToHelp(asterics.envControl.HW_IRTRANS_USB);
-            };
-
-            thiz.goToIrTransInstall = function () {
-                $state.go('home.envControl.help/install/' + asterics.envControl.HW_IRTRANS_USB);
+            thiz.goToHelp = function () {
+                envControlUtilService.goToHelp(thiz.irHardware.getName());
             };
 
             thiz.getAdditionalInstructions = function () {
                 return envControlTextService.getAdditionalInstructions($state.current.name);
             };
 
-            init();
-
-            function init() {
-                envControlIRService.isConnected().then(function (isConnected) {
-                    thiz.isConnected = isConnected;
-                });
-            }
-
             function abortLearning() {
                 thiz.learningAborted = true;
                 thiz.inLearn = false;
-                envControlIRService.abortAction();
+                if (thiz.irHardware) {
+                    thiz.irHardware.abortAction();
+                }
             }
 
             function clearItems() {

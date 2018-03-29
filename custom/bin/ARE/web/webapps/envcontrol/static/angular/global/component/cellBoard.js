@@ -7,9 +7,10 @@ angular.module(asterics.appComponents)
             removeHandler: "&",
             moveHandler: "&"
         },
-        controller: ['$translate', function ($translate) {
+        controller: ['$translate', '$timeout', function ($translate, $timeout) {
             var thiz = this;
             var _deleteText = $translate.instant('i18n_ec_delete');
+            var _additionalClass = '';
             var _contextMenuOptions = [
                 [_deleteText, function ($itemScope, $event, modelValue, text, $li) {
                     thiz.removeHandler({item: $itemScope.item});
@@ -24,6 +25,7 @@ angular.module(asterics.appComponents)
             };
 
             thiz.itemClicked = function (item) {
+                _additionalClass = 'clicked';
                 switch (thiz.actionMode) {
                     case asterics.const.CELLB_MODE_DELETE: {
                         thiz.removeHandler({item: item});
@@ -37,10 +39,14 @@ angular.module(asterics.appComponents)
                         item.clickAction();
                     }
                 }
+                $timeout(function(){
+                    _additionalClass = '';
+                }, 1000);
             };
 
             thiz.getClass = function (item) {
-                return item && item.active ? 'active' : '';
+                var elementClass = item.class || '';
+                return item && item.active ? elementClass + ' active' : elementClass + ' ' + _additionalClass;
             };
 
             thiz.getFaClass = function (item) {
@@ -61,6 +67,10 @@ angular.module(asterics.appComponents)
                 } else {
                     return item.disabled;
                 }
+            };
+
+            thiz.showFolderIcon = function(item) {
+                return item.type === asterics.const.CB_TYPE_SUBCB;
             };
 
             thiz.isVisible = function (item) {

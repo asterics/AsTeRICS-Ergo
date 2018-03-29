@@ -5,7 +5,7 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
 
     $stateProvider
         .state(asterics.envControl.STATE_MAIN, {
-            url: '/envcontrol?showMockConfig?mockFs20Connected?mockIrConnected',
+            url: '/envcontrol?showConfig?fs20?irtrans?flipmouse',
             template: '<env-control-container/>'
         })
         .state(asterics.envControl.STATE_HELP, {
@@ -16,41 +16,20 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
             url: '/help/devices',
             template: '<env-control-help-select/>'
         })
-        .state(asterics.envControl.STATE_HELP_CONTROLS, {
-            url: '/help/controls',
-            template: '<env-control-help-controls/>'
+        .state(asterics.envControl.STATE_HELP_HARDWARE, {
+            url: '/help/hardware/:hardwareId',
+            template: '<hardware-help-menu/>',
         })
         .state(asterics.envControl.STATE_HELP_INSTALL, {
-            url: '/help/install',
-            template: '<env-control-help-install/>'
+            url: '/help/install/:hardwareId',
+            template: '<install-help-menu/>',
+            params: {
+                skipConnectionTest: null
+            }
         })
         .state(asterics.envControl.STATE_HELP_FAQ, {
             url: '/help/faq/:open',
             template: '<env-control-help-faq/>'
-        })
-        .state(asterics.envControl.STATE_HELP_INSTALL_IR, {
-            url: '/help/install/irtrans',
-            template: '<ec-help-install-irtrans/>'
-        })
-        .state(asterics.envControl.STATE_HELP_INSTALL_FS20, {
-            url: '/help/install/fs20',
-            template: '<ec-help-install-fs20/>'
-        })
-        .state(asterics.envControl.STATE_HELP_FS20, {
-            url: '/help/controls/HW_FS20_PCSENDER',
-            template: '<env-control-help-fs/>'
-        })
-        .state(asterics.envControl.STATE_HELP_FS20_PLUG, {
-            url: '/help/controls/STATE_HELP_FS20_PLUG',
-            template: '<env-control-help-fs/>'
-        })
-        .state(asterics.envControl.STATE_HELP_IRTRANS, {
-            url: '/help/controls/HW_IRTRANS_USB',
-            template: '<env-control-help-irtrans/>'
-        })
-        .state(asterics.envControl.STATE_HELP_IRBULB, {
-            url: '/help/controls/HW_IR_BULB',
-            template: '<env-control-help-irbulb/>'
         })
         .state(asterics.envControl.STATE_ADD, {
             url: '/add',
@@ -62,60 +41,71 @@ angular.module(asterics.appComponents).config(['$stateProvider', '$translateProv
         })
         .state(asterics.envControl.STATE_ADDSUB, {
             url: '/addsub/:cellBoardId',
-            template: '<env-control-add-sub/>'
+            template: '<env-control-add-sub/>',
+            params: getAddParams()
         })
-        .state(asterics.envControl.STATE_ADD_FS20, {
-            url: '/fs20/:cellBoardId',
-            template: '<env-control-add-fs selected-icon="$resolve.selectedIcon"/>',
-            resolve: {
-                selectedIcon: function() {
-                    return "plug";
-                }
-            }
+        .state(asterics.envControl.STATE_ADD_PLUG_GENERIC, {
+            url: '/pluggeneric/:cellBoardId',
+            template: '<add-plug-device-ir-plug>',
+            params: getAddParams()
         })
-        .state(asterics.envControl.STATE_ADD_IR, {
-            url: '/ir/:cellBoardId',
-            template: '<env-control-add-ir/>'
+        .state(asterics.envControl.STATE_ADD_PLUG_GENERIC + asterics.envControl.HW_FS20_PCSENDER, {
+            url: '/pluggeneric/' + asterics.envControl.HW_FS20_PCSENDER + '/:cellBoardId',
+            template: '<env-control-add-fs>',
+            params: getAddParams()
         })
-        .state(asterics.envControl.STATE_ADD_IR_DEVICE, {
-            url: '/irdevice/:cellBoardId',
-            template: '<env-control-add-ir is-device-learn="true"/>'
+        .state(asterics.envControl.STATE_ADD_IR_GENERIC, {
+            url: '/irgeneric/:cellBoardId',
+            template: '<env-control-add-ir is-device-learn="true"/>',
+            params: getAddParams()
+        })
+        .state(asterics.envControl.STATE_ADD_IR_CMD_GENERIC, {
+            url: '/ircmdgeneric/:cellBoardId',
+            template: '<env-control-add-ir/>',
+            params: getAddParams()
+        })
+        .state(asterics.envControl.STATE_ADD_LAMP + asterics.envControl.HW_FS20_PCSENDER, {
+            url: '/lamp/' + asterics.envControl.HW_FS20_PCSENDER,
+            template: '<env-control-add-fs/>',
+            params: getAddParams()
         })
         .state(asterics.envControl.STATE_ADD_LAMP, {
             url: '/lamp',
-            template: '<env-control-add-fs selected-label="$resolve.selectedLabel" selected-icon="$resolve.selectedIcon"/>',
-            resolve: {
-                selectedLabel: function ($translate) {
-                    return $translate.instant('i18n_ec_lamp');
-                },
-                selectedIcon: function() {
-                    return "lightbulb-o";
-                }
-            }
+            template: '<add-plug-device-ir-plug/>',
+            params: getAddParams()
+        })
+        .state(asterics.envControl.STATE_NO_HARDWARE_FOUND, {
+            url: '/nohardware',
+            template: '<no-hardware-found/>',
+            params: getAddParams()
+        })
+        .state(asterics.envControl.STATE_CONNECTION_CHECK, {
+            url: '/connectioncheck/:cellBoardId',
+            template: '<connection-check/>',
+            params: getAddParams()
         });
 
-    configRouteAddIrMass(asterics.envControl.DEVICE_AMB_LAMP, 'i18n_ec_amblight', 'sun-o');
-    configRouteAddIrMass(asterics.envControl.DEVICE_TV, 'i18n_ec_tv', 'tv');
-    configRouteAddIrMass(asterics.envControl.DEVICE_DVD, 'i18n_ec_dvd', 'circle');
-    configRouteAddIrMass(asterics.envControl.DEVICE_HIFI, 'i18n_ec_hifi', 'music');
-    configRouteAddIrMass(asterics.envControl.SUBSTATE_ADD_NUMBERS, 'i18n_ec_numbers', 'th');
+    configRouteAddIrMass(asterics.envControl.DEVICE_AMB_LAMP);
+    configRouteAddIrMass(asterics.envControl.DEVICE_TV);
+    configRouteAddIrMass(asterics.envControl.DEVICE_DVD);
+    configRouteAddIrMass(asterics.envControl.DEVICE_HIFI);
+    configRouteAddIrMass(asterics.envControl.DEVICE_IR_NUMBERS);
 
-    function configRouteAddIrMass(substateName, selectedLabel, selectedIcon) {
+    function configRouteAddIrMass(deviceId) {
         var configObject = {
-            url: '/' + substateName + "/:cellBoardId",
-            template: '<env-control-add-mass learn-items="$resolve.learnItems" selected-label="$resolve.selectedLabel" selected-icon="$resolve.selectedIcon"/>',
-            resolve: {
-                learnItems: function (envControlUtilService) {
-                    return envControlUtilService.getIrElements(substateName);
-                },
-                selectedLabel: function ($translate) {
-                    return $translate.instant(selectedLabel);
-                },
-                selectedIcon: function () {
-                    return selectedIcon;
-                }
-            }
+            url: '/' + deviceId + '/:cellBoardId',
+            template: '<env-control-add-mass/>',
+            params: getAddParams()
         };
-        $stateProvider.state(asterics.envControl.STATE_ADD + '.' + substateName, configObject);
+        $stateProvider.state(asterics.envControl.STATE_ADD + '.' + deviceId, configObject);
+    }
+
+    function getAddParams() {
+        return {
+            headerI18n: null,
+            device: null,
+            hardware: null,
+            cellBoardName: null
+        }
     }
 }]);

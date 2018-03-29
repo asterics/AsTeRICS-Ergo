@@ -1,0 +1,18 @@
+<div>
+    <div class="row">
+        <div ng-repeat="hardware in $ctrl.list">
+            <div class="col-xs-12 col-sm-3 col-lg-2" style="margin-top: 1.0em">
+                <span ng-if="$ctrl.hardwareAmounts[hardware]">{{$ctrl.hardwareAmounts[hardware]}}x</span>
+                <a href="" ng-click="$ctrl.navigate(hardware)" class="nofocus">
+                    <img class="img-row" ng-src="{{'angular/envControl/img/' + hardware + '.jpg'}}"
+                         alt="{{ 'i18n_ec_' + hardware | translate}}"/>
+                    <p ng-if="!$ctrl.titlePrefix">{{ 'i18n_ec_' + hardware | translate}}</p>
+                    <p ng-if="$ctrl.titlePrefix">{{ 'i18n_ec_' + $ctrl.titlePrefix + '_' + hardware | translate}}</p>
+                </a>
+                <div ng-if="$ctrl.additionalTextPrefix">
+                    {{ 'i18n_ec_' + $ctrl.additionalTextPrefix + '_' + hardware | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

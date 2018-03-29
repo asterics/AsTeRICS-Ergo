@@ -1,11 +1,13 @@
 angular.module(asterics.appServices)
-    .service('utilService', ['$state', 'stateUtilService', '$q', function ($state, stateUtilService, $q) {
+    .service('utilService', ['$state', 'stateUtilService', '$q', '$translate', '$http', function ($state, stateUtilService, $q, $translate, $http) {
         var thiz = this;
         var _defaultPort = "8091";
 
         thiz.createCellBoardItem = function (title, faIcon, type, clickAction) {
+            var translatedTitle = $translate.instant(title);
             return {
                 title: title,
+                translatedTitle: translatedTitle,
                 faIcon: faIcon,
                 type: type,
                 clickAction: clickAction,
@@ -34,6 +36,10 @@ angular.module(asterics.appServices)
             var element = thiz.createCellBoardItem(title, faIcon, asterics.const.CB_TYPE_SUBCB, function () {
                 $state.go(navState, stateParams);
             });
+            element.toState = navState;
+            element.tooltip = 'i18n_ec_tooltip_click_subcb';
+            element.tooltipParams = {device: title};
+            element.class = 'subfolder-button';
             return element;
         };
 
@@ -114,5 +120,22 @@ angular.module(asterics.appServices)
                 returnList.push(new prototypeFunction(element));
             });
             return returnList;
+        };
+
+        thiz.existsFile = function (path) {
+            var def = $q.defer();
+            $http({
+                method: 'GET',
+                url: path
+            }).then(function (response) {
+                if(!response || !response.status == 200) {
+                    def.resolve(false);
+                } else{
+                    def.resolve(true);
+                }
+            }, function (error) {
+                def.resolve(false);
+            });
+            return def.promise;
         };
     }]);

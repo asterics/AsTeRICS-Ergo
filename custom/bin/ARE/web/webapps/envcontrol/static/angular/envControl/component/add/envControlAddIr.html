@@ -2,39 +2,10 @@
     <cell-board choose-items="$ctrl.cellBoardConfig"/>
 </div>
 <div class="clearfix"/>
-<h2 translate="{{$ctrl.headerTitle}}" translate-values="{{$ctrl.deviceNameParam}}"/>
+<h2 translate="{{$ctrl.headerI18n}}" translate-values="{{$ctrl.deviceNameParam}}"/>
 <div class="clearfix"/>
-<p ng-if="$ctrl.isConnected == null"><span translate="i18n_ec_check_irtrans_installed"/> <span class="saving"><span>.</span><span>.</span><span>.</span></span></p>
-<div ng-if="$ctrl.isConnected != null">
-    <asterics-message  message-level="{{$ctrl.isConnected ? 'info' : 'warn'}}" transclude="true">
-        <span translate="i18n_ec_ir_neededhardware"/>
-        <ul>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransHelp()">
-                    {{'i18n_ec_HW_IRTRANS_USB' | translate}}
-                </a>
-            </li>
-        </ul>
-    </asterics-message>
-</div>
-<div ng-if="$ctrl.isConnected == false">
-    <div class="col-lg-5">
-        <p translate="i18n_ec_irmass_boughtirtrans"/>
-        <ul>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransHelp()">
-                    <span translate="i18n_ec_irmass_bought_no"/>
-                </a>
-            </li>
-            <li>
-                <a href="" ng-click="$ctrl.goToIrTransInstall()">
-                    <span translate="i18n_ec_irmass_bought_yes"/>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<div ng-if="$ctrl.isConnected">
+<hardware-message device="$ctrl.addDevice" connected-hardware="$ctrl.irHardware.getName()"/>
+<div>
     <div class="col-lg-8">
         <ul ng-if="$ctrl.isDeviceLearn">
             <li ng-model-options="{debounce: 500}">
@@ -44,10 +15,10 @@
         </ul>
         <ul ng-if="!$ctrl.isDeviceLearn || $ctrl.selectedDeviceName">
             <li>
-                <span translate="i18n_ec_ir_learn_instruction"/>
+                <span translate="i18n_ec_ir_learn_instruction" translate-values="$ctrl.hardwareI18nParams"/>
             </li>
             <li ng-repeat="item in $ctrl.learnItems track by $index">
-                Befehl "{{item.name}}" <i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}
+                <span translate="i18n_ec_ir_command"/> "{{item.name}}" <i class="fa fa-check"/> {{'i18n_ec_irmass_learned' | translate}}
             </li>
             <li ng-model-options="{debounce: 500}">
                 <label for="inputLabel">{{'i18n_ec_ir_choosename' | translate}}</label>
@@ -64,9 +35,9 @@
         </div>
     </div>
 </div>
-<a ng-if="$ctrl.isConnected != null" href="" ng-click="$ctrl.goToIrTransHelp()">
+<a href="" ng-click="$ctrl.goToHelp()">
     <div class="col-xs-6 col-md-4 col-lg-3">
-        <img src="angular/envControl/img/irtrans_learn.png" alt="IrTrans-USB"/>
-        <div class=" text-center"><span translate="i18n_ec_remote_directed_irtrans"/></div>
+        <img src="{{'angular/envControl/img/' + $ctrl.irHardware.getName() + '_learn.jpg'}}" alt="{{'i18n_ec_' + $ctrl.irHardware.getName() | translate}}"/>
+        <div class=" text-center"><span translate="{{'i18n_ec_' + $ctrl.irHardware.getName()}}"/></div>
     </div>
 </a>

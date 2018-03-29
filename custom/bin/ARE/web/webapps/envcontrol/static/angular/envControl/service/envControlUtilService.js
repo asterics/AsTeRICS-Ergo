@@ -1,31 +1,37 @@
 angular.module(asterics.appServices)
-    .service('envControlUtilService', ['envControlFsService', 'envControlIRService', 'utilService', '$timeout', '$anchorScroll', function (envControlFsService, envControlIRService, utilService, $timeout ,$anchorScroll) {
+    .service('envControlUtilService', ['hardwareService', 'utilService', '$timeout', '$anchorScroll', '$state', '$translate', function (hardwareService, utilService, $timeout, $anchorScroll, $state, $translate) {
         var thiz = this;
 
-        thiz.createCellBoardItemFs20 = function (title, faIcon, code) {
-            var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.CB_TYPE_FS20, function () {
-                envControlFsService.fs20Toggle(code);
+        thiz.createCellBoardItemPlugDevice = function (title, faIcon, code, hardwareDevice) {
+            var element = utilService.createCellBoardItem(title, faIcon, hardwareDevice, function () {
+                hardwareService.sendToHardware(code, hardwareDevice);
             });
             element.code = code;
             element.tooltip = 'i18n_ec_tooltip_click_fs20';
             element.tooltipParams = {device: title};
+            element.class = 'action-button';
             return element;
         };
 
-        thiz.createCellBoardItemIrTrans = function (title, faIcon, code) {
-            var element = utilService.createCellBoardItem(title, faIcon, asterics.envControl.CB_TYPE_IR, function () {
-                envControlIRService.irSend(code);
+        thiz.createCellBoardItemIrDevice = function (title, faIcon, code, hardwareDevice) {
+            var element = utilService.createCellBoardItem(title, faIcon, hardwareDevice, function () {
+                hardwareService.sendToHardware(code, hardwareDevice);
             });
             element.code = code;
+            element.class = 'action-button';
             return element;
         };
 
-        thiz.createCellBoardItemNavSubcellboard = function (title, faIcon, toState, stateParams) {
-            var element = utilService.createCellBoardItemSubCb(title, faIcon, toState, stateParams);
-            element.toState = toState;
-            element.tooltip = 'i18n_ec_tooltip_click_subcb';
-            element.tooltipParams = {device: title};
-            return element;
+        thiz.createCellBoardItemAdd = function (device, hasTooltip, stateParams) {
+            stateParams = stateParams || {};
+            stateParams.device = device;
+            var icon = thiz.getIcon(device);
+            var label = 'i18n_ec_' + device;
+            var item = utilService.createCellBoardItemNav(label, icon, asterics.envControl.STATE_CONNECTION_CHECK, stateParams);
+            if (hasTooltip) {
+                item.tooltip = 'i18n_ec_' + device + '_tooltip';
+            }
+            return item;
         };
 
         thiz.reinitCellBoardItems = function (items) {
@@ -33,11 +39,13 @@ angular.module(asterics.appServices)
             angular.forEach(items, function (item) {
                 var newItem;
                 if (item.type === asterics.const.CB_TYPE_SUBCB) {
-                    newItem = thiz.createCellBoardItemNavSubcellboard(item.title, item.faIcon, item.toState);
-                } else if (item.type === asterics.envControl.CB_TYPE_FS20) {
-                    newItem = thiz.createCellBoardItemFs20(item.title, item.faIcon, item.code);
-                } else if (item.type === asterics.envControl.CB_TYPE_IR) {
-                    newItem = thiz.createCellBoardItemIrTrans(item.title, item.faIcon, item.code);
+                    newItem = utilService.createCellBoardItemSubCb(item.title, item.faIcon, item.toState);
+                } else if (item.type === asterics.envControl.HW_FS20_PCSENDER) {
+                    newItem = thiz.createCellBoardItemPlugDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_FS20_PCSENDER);
+                } else if (item.type === asterics.envControl.HW_IRTRANS_USB) {
+                    newItem = thiz.createCellBoardItemIrDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_IRTRANS_USB);
+                } else if (item.type === asterics.envControl.HW_IR_FLIPMOUSE) {
+                    newItem = thiz.createCellBoardItemIrDevice(item.title, item.faIcon, item.code, asterics.envControl.HW_IR_FLIPMOUSE);
                 }
                 reinitList.push(newItem);
             });
@@ -86,7 +94,7 @@ angular.module(asterics.appServices)
                         createIrElement('i18n_ec_left', 'arrow-left'),
                         createIrElement('i18n_ec_ok', 'check-circle-o')
                     ];
-                case asterics.envControl.SUBSTATE_ADD_NUMBERS:
+                case asterics.envControl.DEVICE_IR_NUMBERS:
                     return [
                         createIrElement('1', 'circle'),
                         createIrElement('2', 'circle'),
@@ -104,10 +112,78 @@ angular.module(asterics.appServices)
             }
         };
 
-        thiz.scrollToEnd = function() {
+        thiz.getIcon = function (device) {
+            switch (device) {
+                case asterics.envControl.DEVICE_AMB_LAMP:
+                    return 'sun-o';
+                case asterics.envControl.DEVICE_TV:
+                    return 'tv';
+                case asterics.envControl.DEVICE_HIFI:
+                    return 'music';
+                case asterics.envControl.DEVICE_DVD:
+                    return 'circle';
+                case asterics.envControl.DEVICE_TABLELAMP:
+                    return 'lightbulb-o';
+                case asterics.envControl.DEVICE_IR_GENERIC:
+                    return 'building-o';
+                case asterics.envControl.DEVICE_IR_CMD_GENERIC:
+                    return 'wifi';
+                case asterics.envControl.DEVICE_PLUG_GENERIC:
+                    return 'plug';
+                case asterics.envControl.DEVICE_IR_NUMBERS:
+                    return 'th';
+                default:
+                    return;
+            }
+        };
+
+        thiz.scrollToEnd = function () {
             $timeout(function () {
                 $anchorScroll('end');
             });
+        };
+
+        thiz.goToHelp = function (hardware) {
+            var params = {
+                hardwareId: hardware
+            };
+            $state.go(asterics.envControl.STATE_HELP_HARDWARE, params);
+        };
+
+        thiz.goToInstall = function (hardware, skipConnectionTest) {
+            thiz.hardwareId = hardware;
+            var params = {
+                hardwareId: hardware,
+                skipConnectionTest: skipConnectionTest
+            };
+            $state.go(asterics.envControl.STATE_HELP_INSTALL, params);
+        };
+
+        thiz.goToAdd = function (device) {
+            var stateparams = {
+                device: device
+            };
+            $state.go(asterics.envControl.STATE_CONNECTION_CHECK, stateparams);
+        };
+
+        thiz.goToFaq = function (faqId) {
+            var params = {open: faqId};
+            $state.go(asterics.envControl.STATE_HELP_FAQ, params);
+        };
+
+        /**
+         * returns a object needed for "translate-values" parameter of pascalprecht.translate module
+         * e.g. getTranslatedValueObject('placeholder', i18n_my_text) will return {'placeholder' : '<translated "i18n_my_text"'}
+         * @param objectKey
+         * @param translationKey
+         */
+        thiz.getTranslatedValueObject = function (objectKey, translationKey) {
+            var object = {};
+            if(translationKey.indexOf('i18n_ec_') == -1) {
+                translationKey = 'i18n_ec_' + translationKey;
+            }
+            object[objectKey] = $translate.instant(translationKey);
+            return object;
         };
 
         function createIrElement(label, icon) {
