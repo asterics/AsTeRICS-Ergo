@@ -255,6 +255,19 @@
             console.log(string);
         }
     }
+
+    if(!MODE_COMPATIBILITY) {
+        window.onkeydown = function(e) {
+            var key = e.keyCode ? e.keyCode : e.which;
+            if(e.ctrlKey && e.altKey && key >= 49 && key <= 57) { //Ctrl + Alt + [1-9]
+                var num = key - 48;
+                var button = document.getElementsByClassName('action-button')[num-1];
+                if(button) {
+                    button.click();
+                }
+            }
+        }
+    }
 </script>
 </body>
 </html>
