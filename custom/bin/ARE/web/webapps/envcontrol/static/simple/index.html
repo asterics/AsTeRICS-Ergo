@@ -123,9 +123,14 @@
 
     function irTransSend(code) {
         log("sending to irTrans: " + code);
+        clearTimeout(window.lastTimeout);
         extraWait = true;
         setClickedClassToButtons();
         sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
+
+        window.lastTimeout = setTimeout(function() {
+            sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H3601000000000A26000021002A002900000000000000000000002B007900F70000000000000000000003010032303130303030303030');
+        }, 100);
     }
 
     function irFlipMouseSend(code) {
