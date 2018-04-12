@@ -128,7 +128,8 @@
         setClickedClassToButtons();
         sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H' + code);
 
-        window.lastTimeout = setTimeout(function() {
+        window.lastTimeout = setTimeout(function () {
+            console.log('stop');
             sendDataToInputPort('IrTrans.1', 'action', '@IRTRANS:sndhex H3601000000000A26000021002A002900000000000000000000002B007900F70000000000000000000003010032303130303030303030');
         }, 100);
     }
@@ -261,15 +262,21 @@
         }
     }
 
-    if(!MODE_COMPATIBILITY) {
-        window.onkeydown = function(e) {
+    window.lastpressed = new Date().getTime();
+    if (!MODE_COMPATIBILITY) {
+        window.onkeydown = function (e) {
             var key = e.keyCode ? e.keyCode : e.which;
-            if(e.ctrlKey && e.altKey && key >= 49 && key <= 57) { //Ctrl + Alt + [1-9]
-                var num = key - 48;
-                var button = document.getElementsByClassName('action-button')[num-1];
-                if(button) {
-                    button.click();
-                }
+            if (e.ctrlKey && e.altKey && key >= 49 && key <= 57) { //Ctrl + Alt + [1-9]
+                var diff = new Date().getTime() - window.lastpressed;
+                window.lastpressed = new Date().getTime();
+                window.lasttimeout = diff > 250 && !window.lasttimeout ? 180 : 0; //timeout because of first keyboard timeout of 250ms for repeated pressing
+                setTimeout(function () {
+                    var num = key - 48;
+                    var button = document.getElementsByClassName('action-button')[num - 1];
+                    if (button) {
+                        button.click();
+                    }
+                }, window.lasttimeout);
             }
         }
     }

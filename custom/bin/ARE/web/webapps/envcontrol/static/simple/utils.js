@@ -12,10 +12,6 @@ function createButton(caption, faIcon, onClickFunctionCall) {
     var att = document.createAttribute("onclick");
     att.value = 'javascript:' + onClickFunctionCall + ';';
     btn.setAttributeNode(att);
-    addAttribute(btn, 'onmousedown', 'javascript:console.log("onmousedown");');
-    addAttribute(btn, 'onmouseup', 'javascript:console.log("onmouseup");');
-    addAttribute(btn, 'touchstart', 'javascript:console.log("touchstart");');
-    addAttribute(btn, 'touchend', 'javascript:console.log("touchend");');
     btn = appendClass(btn, 'action-button');
     if (!MODE_COMPATIBILITY) {
         btn = wrapInDiv(btn);
