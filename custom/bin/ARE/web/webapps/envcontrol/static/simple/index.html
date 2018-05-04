@@ -13,6 +13,7 @@
 
     <!-- libs -->
     <script type="application/javascript" src="loadScripts.js"></script>
+    <script type="application/javascript" src="i18n.js"></script>
     <script type="application/javascript" src="areCommunicatorLight.js"></script>
     <script type="application/javascript" src="utils.js"></script>
     <script type="application/javascript" src="../angular/envControl/envControlConstants.js"></script>
@@ -35,23 +36,19 @@
                 </div>
                 <div id="backbutton" class="col-sm-3 col-lg-2" style="padding-top: 1em">
                     <button onclick="javascript:goToFullVersion();" style="width: 100%; height: 100%;"><i class="fa fa-cog"></i>
-                        Full Mode
+                        <span data-i18n="FULL_MODE"></span>
                     </button>
                 </div>
-                <div id="scanningDiv1" class="col-sm-3 col-lg-2" style="padding-top: 1em">
+                <div id="scanningDiv1" aria-hidden="true" class="col-sm-3 col-lg-2" style="padding-top: 1em">
                     <button id="scanningButton" onclick="javascript:startScanning();" style="width: 100%; height: 100%;">
                         <i class="fa fa-ellipsis-h"></i>
-                        <span id="scanningButtonText">Start Scanning</span>
+                        <span id="scanningButtonText" data-i18n="START_SCAN"></span>
                     </button>
                 </div>
-                <div id="scanningDiv2" class="col-sm-3 col-lg-2" style="padding-top: 1em">
-                    <div class="row">
-                        <div class="col-xs-4">Speed:</div>
-                        <div class="col-xs-8">
-                            <input type="range" min="200" max="2500" value="1700" id="scanningSlider"
-                                   onchange="javascript:scanningSpeedChanged(event)">
-                        </div>
-                    </div>
+                <div id="scanningDiv2" aria-hidden="true" class="col-sm-4 col-lg-3" style="padding-top: 1em">
+                    <label for="inputSpeed" data-i18n="SCAN_SPEED"></label>
+                    <input id="inputSpeed" type="range" min="200" max="2500" value="1700" id="scanningSlider"
+                           onchange="javascript:scanningSpeedChanged(event)">
                 </div>
             </div>
             <div id="controls">
@@ -189,7 +186,7 @@
     function startScanning() {
         var button = document.getElementById('scanningButton');
         button.setAttribute('onclick', 'javascript:stopScanning()');
-        document.getElementById('scanningButtonText').innerHTML = 'Stop Scanning';
+        document.getElementById('scanningButtonText').innerHTML = i18n.translate('STOP_SCAN');
         scanning = true;
         doScanning();
     }
@@ -197,7 +194,7 @@
     function stopScanning() {
         var button = document.getElementById('scanningButton');
         button.setAttribute('onclick', 'javascript:startScanning()');
-        document.getElementById('scanningButtonText').innerHTML = 'Start Scanning';
+        document.getElementById('scanningButtonText').innerHTML = i18n.translate('START_SCAN');
         scanning = false;
     }
 
@@ -257,6 +254,7 @@
     }
 
     if(!MODE_COMPATIBILITY) {
+        i18n.translatePage();
         window.onkeydown = function(e) {
             var key = e.keyCode ? e.keyCode : e.which;
             if(e.ctrlKey && e.altKey && key >= 49 && key <= 57) { //Ctrl + Alt + [1-9]
