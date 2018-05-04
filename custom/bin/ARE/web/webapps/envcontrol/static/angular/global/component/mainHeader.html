@@ -4,14 +4,14 @@
             <a ng-if="$ctrl.singlePageMode" class="col-md-4 col-sm-5 col-lg-3" href="./info/"><h1>AsTeRICS Ergo</h1></a>
             <a ng-if="!$ctrl.singlePageMode" class="col-md-4 col-sm-5 col-lg-3" ui-sref="home"><h1>AsTeRICS Ergo</h1></a>
             <div class="col-sm-3 lang-choose" style="padding-top: 1em">
-                <span>{{ 'i18n_choose_lang' | translate }}</span>
-                <select ng-model="$ctrl.selectedLanguage" ng-change="$ctrl.languageChanged()">
+                <label for="selectLang">{{ 'i18n_choose_lang' | translate }}</label>
+                <select id="selectLang" ng-model="$ctrl.selectedLanguage" ng-change="$ctrl.languageChanged()">
                     <option value="de">{{ 'i18n_lang_de' | translate }}</option>
                     <option value="en">{{ 'i18n_lang_en' | translate }}</option>
                 </select>
             </div>
             <div ng-if="!$ctrl.singlePageMode && $ctrl.showSimpleVersion()" id="simpleModeButton" class="col-sm-3" style="padding-top: 1em">
-                <button ng-click="$ctrl.goToSimpleVersion()" style="width: 100%; height: 100%;"><i class="fa fa-eye"></i>
+                <button ng-click="$ctrl.goToSimpleVersion()" role="link" style="width: 100%; height: 100%;"><i class="fa fa-eye"></i>
                     <span translate="i18n_simple_mode"/>
                 </button>
             </div>
