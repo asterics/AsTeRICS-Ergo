@@ -26,6 +26,19 @@
 
         <!-- libs -->
         <script src="javascript/lib/jquery.min.js"></script>
+        <script>
+            //check connection to ARE and redirect to mock mode if no connection
+            var hostname = window.location.hostname;
+            var port = window.location.port;
+            var baseUrl =  window.location.protocol + "//" + hostname + ":" + port + "/";
+            $.get(baseUrl + 'rest/runtime/model/state', function (data) {
+                    console.log('connection to ARE works! using real mode...');
+                }
+            ).fail(function () {
+                console.log('no connection to ARE! using mock mode...');
+                window.location.replace("./mock.html");
+            })
+        </script>
         <script src="javascript/lib/angular-1.6.0.min.js"></script>
         <script src="javascript/lib/angular-animate.min.js"></script>
         <script src="javascript/lib/angular-ui-router.min.js"></script>
