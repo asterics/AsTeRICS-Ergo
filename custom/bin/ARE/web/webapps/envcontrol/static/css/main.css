@@ -120,7 +120,7 @@ ol li {
 }
 
 #content {
-    padding-bottom: 8rem;
+    padding-bottom: 12rem;
 }
 
 #footer {
@@ -129,6 +129,7 @@ ol li {
     width: 100%;
     padding: 1rem;
     background-color: #efefef;
+    margin: 0;
     text-align: center;
 }
 

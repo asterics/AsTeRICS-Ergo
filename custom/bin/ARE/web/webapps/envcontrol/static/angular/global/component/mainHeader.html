@@ -29,8 +29,9 @@
             <div class="col-xs-12" ui-view=""/>
         </div>
     </div>
-    <div id="footer">
-        <span class="footer-text">AsTeRICS Ergo Version 4.1.0, </span>
-        <a class="footer-text" target="_blank" href="http://www.asterics-foundation.org">www.asterics-foundation.org</a>
+    <div id="footer" class="row">
+        <span ng-if="$ctrl.isMockMode" class="col-lg-4 col-xs-12" translate="i18n_mock_mode" style="color: #d36321"></span>
+        <span class="footer-text" ng-class="$ctrl.isMockMode ? 'col-lg-4 col-xs-12' : ''">AsTeRICS Ergo Version 4.1.0</span><span ng-if="!$ctrl.isMockMode" class="footer-text">, </span>
+        <a class="footer-text" ng-class="$ctrl.isMockMode ? 'col-lg-4 col-xs-12' : ''" target="_blank" href="http://www.asterics-foundation.org">www.asterics-foundation.org</a>
     </div>
 </div>
