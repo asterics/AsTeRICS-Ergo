@@ -4,6 +4,13 @@ angular.module(asterics.appServices)
         var IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
         var IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
         var irTransName = 'IrTrans.1';
+        var installDriverLauncher = 'LaunchIrTransInstall';
+        var startIrserverLauncherWin = 'LaunchIrTransServerWin';
+        var startIrserverLauncherLinux = 'LaunchIrTransServerLinux';
+        var startIrserverLauncherLinux2 = 'LaunchIrTransServerLinux2';
+        var startIrserverLauncherMac = 'LaunchIrTransServerMac';
+        var eventLaunch = 'launchNow';
+        var irTransOkCommand = '3A01000000000E240400000000000000000000000000000000000000000000000000000000000000000002523131303030313131313131303131';
         var irTransActionInput = 'action';
         var learnCmdResponse = 'LEARN ';
         var _learnWaitSeconds = 5;
@@ -41,7 +48,7 @@ angular.module(asterics.appServices)
 
         thiz.isConnected = function () {
             var def = $q.defer();
-            irAction('snd irtrans,ok', _testTimeout).then(function (response) {
+            irAction('sndhex H' + irTransOkCommand, _testTimeout).then(function (response) {
                 if (response.indexOf(IRTRANS_SOCKET_ERROR) !== -1) {
                     def.resolve(false);
                 } else {
@@ -64,7 +71,41 @@ angular.module(asterics.appServices)
             return possibilites.length > 0 ? possibilites[0] : _randomCodes[0];
         };
 
+        thiz.startIrserver = function () {
+            areService.triggerEvent(startIrserverLauncherWin, eventLaunch);
+            areService.triggerEvent(startIrserverLauncherLinux, eventLaunch);
+            areService.triggerEvent(startIrserverLauncherLinux2, eventLaunch);
+            areService.triggerEvent(startIrserverLauncherMac, eventLaunch);
+        };
+
+        thiz.installDriver = function() {
+            areService.triggerEvent(installDriverLauncher, eventLaunch);
+        };
+
+        /**
+         * ir action with automatic start of irServer if command failed
+         * @param cmd
+         * @param timeout
+         * @return {e|*|promise}
+         */
         function irAction(cmd, timeout) {
+            var def = $q.defer();
+            irActionInternal(cmd, timeout).then(function(response) {
+                def.resolve(response);
+            }, function (errorRepsonse) {
+                thiz.startIrserver();
+                setTimeout(function () {
+                    irActionInternal(cmd, timeout).then(function (response) {
+                        def.resolve(response);
+                    }, function (errorResponse) {
+                        def.reject(errorResponse);
+                    });
+                }, 500);
+            });
+            return def.promise;
+        }
+
+        function irActionInternal(cmd, timeout) {
             var def = $q.defer();
             var actionString = '@IRTRANS:' + cmd;
             console.log("sending: " + actionString);
