@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_5_8_14_3" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_5_8_15_36" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -274,7 +274,7 @@
         <property name="executeOnPlatform" value="MACOSX" />
         <property name="executionMode" value="START_APPLICATION" />
         <property name="defaultApplication" value="open" />
-        <property name="arguments" value="-a Terminal &quot;`bash .\tools\start_irserver.sh`&quot;" />
+        <property name="arguments" value="-a Terminal &quot;`bash ./tools/start_irserver.sh`&quot;" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="false" />
@@ -350,7 +350,7 @@
         <property name="executeOnPlatform" value="LINUX" />
         <property name="executionMode" value="START_APPLICATION" />
         <property name="defaultApplication" value="xterm" />
-        <property name="arguments" value="-e &quot;sudo bash .\tools\start_irserver.sh&quot;" />
+        <property name="arguments" value="-e &quot;sudo bash ./tools/start_irserver.sh&quot;" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="false" />
@@ -388,7 +388,7 @@
         <property name="executeOnPlatform" value="LINUX" />
         <property name="executionMode" value="START_APPLICATION" />
         <property name="defaultApplication" value="lxterminal" />
-        <property name="arguments" value="-e &quot;sudo bash .\tools\start_irserver.sh&quot;" />
+        <property name="arguments" value="-e &quot;sudo bash ./tools/start_irserver.sh&quot;" />
         <property name="workingDirectory" value="." />
         <property name="closeCmd" value="" />
         <property name="autoLaunch" value="false" />
