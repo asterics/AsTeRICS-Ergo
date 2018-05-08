@@ -3,58 +3,10 @@
     <p translate="i18n_ec_install_irtrans_header2"/>
     <ol class="install-help">
         <li>
-            <span translate="i18n_ec_install_irtrans_p1"/>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('installDriver')">Install Driver</button>
         </li>
         <li>
-            <p translate="i18n_ec_install_irtrans_p21"/>
-            <p><a href="http://www.irtrans.de/download/setup.exe">{{'i18n_ec_install_irtrans_p22' | translate}}</a></p>
-            <p translate="i18n_ec_install_irtrans_p23"/>
-            <span translate="i18n_ec_install_irtrans_p24"/>
-        </li>
-        <li>
-            <p translate="i18n_ec_install_irtrans_p3"></p>
-            <p>
-                <span translate="i18n_ec_install_irtrans_p25"/> <a href="" ng-click="$ctrl.goToFaq(42)">FAQ</a>
-            </p>
-            <div class="row">
-                <img class="img-500" src="angular/envControl/img/install-irtrans-win-assistant1.png"
-                     alt="IrTrans Installationsfenster"/>
-                <img class="img-500" src="angular/envControl/img/install-irtrans-win-assistant2.png"
-                     alt="IrTrans Installationsfenster"/>
-            </div>
-        </li>
-        <li>
-            <span translate="i18n_ec_install_irtrans_p41"/> <a href="" ng-click="$ctrl.goToHelp('HW_IRTRANS_USB')">{{'i18n_ec_help' | translate}}</a>) <span translate="i18n_ec_install_irtrans_p42"/>
-            <div class="row">
-                <img class="img-row col-xs-3" src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
-                <img class="img-row col-xs-3" src="angular/envControl/img/usbab.png" alt="USB Stecker Typ B - USB Stecker Typ A"/>
-                <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
-            </div>
-        </li>
-        <li>
-            <p><b translate="i18n_ec_install_irtrans_p5"></b></p>
-            <div ng-if="$ctrl.constants.OS_IS_WIN7 || $ctrl.constants.OS_IS_OTHER">
-                <p translate="i18n_ec_install_irtrans_p5_win7_1"/>
-                <p><b translate="i18n_ec_install_irtrans_p5_win7_2"/></p>
-                <div class="row">
-                    <img src="angular/envControl/img/install-irtrans-win7-1.png" alt="IrTrans-USB Installationsmeldung Windows 7"/>
-                    <img src="angular/envControl/img/install-irtrans-win7-1b.png" alt="IrTrans-USB Installationsmeldung Windows 7"/>
-                </div>
-            </div>
-            <div ng-if="$ctrl.constants.OS_IS_WIN10">
-                <p translate="i18n_ec_install_irtrans_p5_win10_1"/>
-                <p translate="i18n_ec_install_irtrans_p5_win10_2"/>
-                <div class="row">
-                    <img src="angular/envControl/img/install-irtrans-win10-1.png" alt="IrTrans-USB Installationsfenster Windows 10"/>
-                </div>
-            </div>
-        </li>
-        <li>
-            <span translate="i18n_ec_install_irtrans_p6"/>
-            <div class="row">
-                <img class="img-responsive" ng-if="$ctrl.constants.OS_IS_WIN7 || $ctrl.constants.OS_IS_OTHER" src="angular/envControl/img/install-irtrans-win7-2.png" alt="IrTrans-Server"/>
-                <img class="img-responsive" ng-if="$ctrl.constants.OS_IS_WIN10" src="angular/envControl/img/install-irtrans-win10-2.png" alt="IrTrans-Server"/>
-            </div>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('startIrserver')">Start Server</button>
         </li>
         <li>
             <span translate="i18n_ec_install_irtrans_p7"/>
