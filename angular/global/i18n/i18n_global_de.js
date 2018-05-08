@@ -7,5 +7,6 @@ asterics.i18n_global_de = {
     i18n_back: 'Zurück',
     i18n_disclaimer: '<b>Achtung!</b><br/>Benützung auf eigene Gefahr! AsTeRICS Ergo darf nicht verwendet werden:<ul><li>im Zusammenhang mit lebenserhaltenden Maßnahmen</li><li>als Notfallsystem</li><li>zur Steuerung von Fortbewegungsmitteln (z.B. Rollstuhl)</li></ul>',
     i18n_click_on_app: 'Klicken Sie zum Starten auf einen der folgenden Buttons.',
-    i18n_simple_mode: 'Einfacher Modus'
+    i18n_simple_mode: 'Einfacher Modus',
+    i18n_mock_mode: 'Demo Modus - angesteckte Hardware wird simuliert'
 };
