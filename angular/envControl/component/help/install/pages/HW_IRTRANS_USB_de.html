@@ -1,0 +1,36 @@
+<div>
+    <h3>Installation von IrTrans-USB</h3>
+    <p>Wenn Sie bereits einen IrTrans-USB besitzen, können Sie diesen wie folgt installieren:</p>
+    <ol class="install-help">
+        <li>
+            <span>Verbinden Sie den IrTrans mit einem USB-Kabel mit dem Computer (USB Typ A-B, siehe </span><a href="" ng-click="$ctrl.goToHelp('HW_IRTRANS_USB')">{{'i18n_ec_help' | translate}}</a>).
+            <div class="row">
+                <img class="img-row col-xs-3" src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/usbab.png" alt="USB Stecker Typ B - USB Stecker Typ A"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+            </div>
+        </li>
+        <li ng-if="$ctrl.isWindows">
+            Installieren Sie den benötigten Treiber für Windows, indem Sie auf den Button "Treiber installieren" klicken.  Dabei wird es 2 Sicherheitsabfragen geben, die Sie mit "Ja" bestätigen müssen.<br/>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('installDriver')">Treiber installieren</button>
+            <span ng-if="$ctrl.hardwareMethodCallResults['installDriver']">
+                <span> </span><i class="fa fa-check"/><span> Treiber installiert!</span>
+            </span>
+        </li>
+        <li ng-if="$ctrl.isWindows">
+            Warten Sie 10 Sekunden auf die Fertigstellung der Hardwareinstallation.<br/>
+        </li>
+        <li>
+            Klicken Sie auf "Server Starten" um ein für den IrTrans benötigte Programm im Hintergrund zu starten. Nach dieser Installation wird es von AsTeRICS Ergo bei Bedarf automatisch gestartet.<br/>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('startIrserver')">Server Starten</button>
+            <span ng-if="$ctrl.hardwareMethodCallResults['startIrserver']">
+                <span> </span><i class="fa fa-check"/><span> Server gestartet!</span>
+            </span>
+        </li>
+        <li>
+            <span><b>Testen der Installation</b> - Klicken Sie auf "Testen" um die korrekte Installation zu prüfen.</span>
+            <button ng-click="$ctrl.test()"><span translate="i18n_ec_test"/></button>
+            <hardware-test register-function="$ctrl.testRegisterFunction(testFunction)" hardware-id="$ctrl.hardwareId" test-failed-hint="<i>Hinweis:</i> Wenn der Test nach Öffnen des 'IrTransServer' nicht sofort erfolgreich ist, warten Sie eine Minute und Versuchen Sie es danach erneut.">
+        </li>
+    </ol>
+</div>
