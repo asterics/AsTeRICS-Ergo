@@ -74,6 +74,7 @@ angular.module(asterics.appServices)
 
         thiz.startIrserver = function () {
             var def = $q.defer();
+            console.log('starting irserver for irTrans...');
             _additionalData[PROP_AUTOSTART_IRSERVER] = true;
             if(_.isFunction(_additionalDataUpdateFunction)) {
                 _additionalDataUpdateFunction(_additionalData, asterics.envControl.HW_IRTRANS_USB);
