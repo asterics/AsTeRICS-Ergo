@@ -42,7 +42,8 @@ asterics.const.WEBSOCKET_TIMEOUT = 11000;
 
 asterics.const.OS_IS_WIN10 = (window.navigator.userAgent.indexOf("Windows NT 10.0") != -1);
 asterics.const.OS_IS_WIN7 = (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1);
-asterics.const.OS_IS_OTHER = !(asterics.const.OS_IS_WIN7 || asterics.const.OS_IS_WIN10);
+asterics.const.OS_IS_WIN = ['Win32', 'Win64', 'Windows', 'WinCE'].indexOf(window.navigator.platform) > -1;
+asterics.const.OS_IS_OTHER = !(asterics.const.OS_IS_WIN7 || asterics.const.OS_IS_WIN10 || asterics.const.OS_IS_WIN);
 
 //browser detection see http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 // Internet Explorer 6-11
