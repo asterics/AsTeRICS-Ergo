@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_5_8_15_36" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_5_9_9_50" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -246,44 +246,6 @@
       <layout>
         <posX>1387</posX>
         <posY>106</posY>
-      </layout>
-    </component>
-    <component id="LaunchIrTransServerMac" type_id="asterics.ApplicationLauncher">
-      <description>starts external software applications via path and  filename (.exe)</description>
-      <ports>
-        <inputPort portTypeID="filename">
-          <properties />
-        </inputPort>
-        <inputPort portTypeID="arguments">
-          <properties />
-        </inputPort>
-        <inputPort portTypeID="stdIn">
-          <properties />
-        </inputPort>
-        <outputPort portTypeID="stdOut">
-          <properties />
-        </outputPort>
-        <outputPort portTypeID="stdErr">
-          <properties />
-        </outputPort>
-        <outputPort portTypeID="exitValue">
-          <properties />
-        </outputPort>
-      </ports>
-      <properties>
-        <property name="executeOnPlatform" value="MACOSX" />
-        <property name="executionMode" value="START_APPLICATION" />
-        <property name="defaultApplication" value="open" />
-        <property name="arguments" value="-a Terminal &quot;`bash ./tools/start_irserver.sh`&quot;" />
-        <property name="workingDirectory" value="." />
-        <property name="closeCmd" value="" />
-        <property name="autoLaunch" value="false" />
-        <property name="autoClose" value="true" />
-        <property name="onlyByEvent" value="false" />
-      </properties>
-      <layout>
-        <posX>1404</posX>
-        <posY>774</posY>
       </layout>
     </component>
     <component id="LaunchIrTransServerWin" type_id="asterics.ApplicationLauncher">

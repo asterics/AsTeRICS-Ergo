@@ -1,5 +1,5 @@
 angular.module(asterics.appServices)
-    .service('hardwareIrTrans', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q) {
+    .service('hardwareIrTrans', ['areService', 'areWebsocketService', '$q', '$timeout', function (areService, areWebsocketService, $q, $timeout) {
         var thiz = this;
         var IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
         var IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
@@ -8,7 +8,6 @@ angular.module(asterics.appServices)
         var startIrserverLauncherWin = 'LaunchIrTransServerWin';
         var startIrserverLauncherLinux = 'LaunchIrTransServerLinux';
         var startIrserverLauncherLinux2 = 'LaunchIrTransServerLinux2';
-        var startIrserverLauncherMac = 'LaunchIrTransServerMac';
         var eventLaunch = 'launchNow';
         var irTransOkCommand = '3A01000000000E240400000000000000000000000000000000000000000000000000000000000000000002523131303030313131313131303131';
         var irTransActionInput = 'action';
@@ -72,14 +71,25 @@ angular.module(asterics.appServices)
         };
 
         thiz.startIrserver = function () {
+            var def = $q.defer();
             areService.triggerEvent(startIrserverLauncherWin, eventLaunch);
             areService.triggerEvent(startIrserverLauncherLinux, eventLaunch);
             areService.triggerEvent(startIrserverLauncherLinux2, eventLaunch);
-            areService.triggerEvent(startIrserverLauncherMac, eventLaunch);
+            $timeout(function () {
+                    def.resolve(true)
+                }, 1000
+            );
+            return def.promise;
         };
 
         thiz.installDriver = function() {
+            var def = $q.defer();
             areService.triggerEvent(installDriverLauncher, eventLaunch);
+            $timeout(function () {
+                    def.resolve(true)
+                }, 1000
+            );
+            return def.promise;
         };
 
         /**
