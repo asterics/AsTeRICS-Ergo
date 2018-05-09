@@ -43,6 +43,7 @@ angular.module(asterics.appServices)
                 return;
             }
             _additionalDeviceData[hardwareId] = data;
+            thiz.saveData();
         };
 
         thiz.addCellBoardElementIr = function (title, faIcon, code, cellBoard, irHardware) {
@@ -234,6 +235,7 @@ angular.module(asterics.appServices)
         function init() {
             var promise1 = $q.defer();
             var promise2 = $q.defer();
+            hardwareService.setAdditionalDataCallBack(thiz.setAdditionalDeviceData);
             areSaveService.getSavedData(_dataFilename).then(function (response) {
                 if (response) {
                     setNewData(response);
@@ -265,6 +267,7 @@ angular.module(asterics.appServices)
                 _cellBoardDeviceMapping = data._cellBoardDeviceMapping || _cellBoardDeviceMapping;
                 _dynamicCellBoardIds = data._dynamicCellBoardIds || _dynamicCellBoardIds;
                 _additionalDeviceData = data._additionalDeviceData || _additionalDeviceData;
+                hardwareService.updateAdditionalData(_additionalDeviceData);
                 reinitCellBoards();
             }
             if (newTimestamp) {

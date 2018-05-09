@@ -3,6 +3,7 @@ angular.module(asterics.appServices)
         var thiz = this;
         var IRTRANS_SOCKET_ERROR = 'ERROR_SOCKET_NOT_OPEN';
         var IRTRANS_TIMEOUT_ERROR = 'TIMEOUT ERROR';
+        var PROP_AUTOSTART_IRSERVER = 'PROP_AUTOSTART_IRSERVER';
         var irTransName = 'IrTrans.1';
         var installDriverLauncher = 'LaunchIrTransInstall';
         var startIrserverLauncherWin = 'LaunchIrTransServerWin';
@@ -18,7 +19,8 @@ angular.module(asterics.appServices)
         var _randomCodes = ['5D01000000003126010137003F007C003E007C09F926F20000003F003E003F007E007D003F003F000000014D53313230303030303030303030303030345331303030323130303032303133355331323030303030303030303030303030',
             '4C0100000000202700006000E1177E00000000000000000000002700240023000000000000000000000002283030303130313130313131303130303230303031303030313030303130313130',
             '4C0100000000202700006000E1177E00000000000000000000002700240023000000000000000000000002283030303130313131303031303130303230303031303030303131303130313130'];
-        var _nextRandomCode = 0;
+        var _additionalData = {};
+        var _additionalDataUpdateFunction = null;
         thiz.canceler = $q.defer();
 
         thiz.getName = function() {
@@ -72,6 +74,10 @@ angular.module(asterics.appServices)
 
         thiz.startIrserver = function () {
             var def = $q.defer();
+            _additionalData[PROP_AUTOSTART_IRSERVER] = true;
+            if(_.isFunction(_additionalDataUpdateFunction)) {
+                _additionalDataUpdateFunction(_additionalData, asterics.envControl.HW_IRTRANS_USB);
+            }
             areService.triggerEvent(startIrserverLauncherWin, eventLaunch);
             areService.triggerEvent(startIrserverLauncherLinux, eventLaunch);
             areService.triggerEvent(startIrserverLauncherLinux2, eventLaunch);
@@ -92,8 +98,18 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
+        thiz.setAdditionalData = function (data) {
+            if(_additionalData) {
+                _additionalData = data;
+            }
+        };
+
+        thiz.setAdditionalDataUpdateFunction = function (fn) {
+            _additionalDataUpdateFunction = fn;
+        };
+
         /**
-         * ir action with automatic start of irServer if command failed
+         * ir action with automatic start of irServer if command failed (if _additionalData[PROP_AUTOSTART_IRSERVER] is set)
          * @param cmd
          * @param timeout
          * @return {e|*|promise}
@@ -103,14 +119,18 @@ angular.module(asterics.appServices)
             irActionInternal(cmd, timeout).then(function(response) {
                 def.resolve(response);
             }, function (errorRepsonse) {
-                thiz.startIrserver();
-                setTimeout(function () {
-                    irActionInternal(cmd, timeout).then(function (response) {
-                        def.resolve(response);
-                    }, function (errorResponse) {
-                        def.reject(errorResponse);
-                    });
-                }, 500);
+                if(!(_additionalData && _additionalData[PROP_AUTOSTART_IRSERVER])) {
+                    def.reject(errorRepsonse);
+                } else {
+                    thiz.startIrserver();
+                    setTimeout(function () {
+                        irActionInternal(cmd, timeout).then(function (response) {
+                            def.resolve(response);
+                        }, function (errorResponse) {
+                            def.reject(errorResponse);
+                        });
+                    }, 500);
+                }
             });
             return def.promise;
         }
