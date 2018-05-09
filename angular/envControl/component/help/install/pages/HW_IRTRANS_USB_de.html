@@ -16,6 +16,13 @@
             <span ng-if="$ctrl.hardwareMethodCallResults['installDriver']">
                 <span> </span><i class="fa fa-check"/><span> Treiber installiert!</span>
             </span>
+            <br/>
+            <br/>
+            <span><i>Hinweis: </i> Möglicherweise öffnen sich die Fenster für die Treiberinstallation im Hintergrund und müssen von der Taskleiste geöffnet werden:</span>
+            <div class="row">
+                <img class="img-500 center-block" src="angular/envControl/img/install-irtrans-driver.png"
+                     alt="IrTrans Treiber Installation"/>
+            </div>
         </li>
         <li ng-if="$ctrl.isWindows">
             Warten Sie 10 Sekunden auf die Fertigstellung der Hardwareinstallation.<br/>
