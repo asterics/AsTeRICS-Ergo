@@ -145,6 +145,9 @@
         <outputPort portTypeID="receivedBytes">
           <properties />
         </outputPort>
+        <outputPort portTypeID="opPortStatus">
+          <properties />
+        </outputPort>
       </ports>
       <properties>
         <property name="ComPort" value="COM4" />
@@ -152,6 +155,7 @@
         <property name="sendStringTerminator" value="3" />
         <property name="receiveStringTerminator" value="3" />
         <property name="sendBytesBufferSize" value="1" />
+        <property name="cimId" value="0xa401" />
       </properties>
       <layout>
         <posX>844</posX>
@@ -425,6 +429,16 @@
       <target>
         <component id="LipMouse.1" />
         <port id="send" />
+      </target>
+    </channel>
+    <channel id="binding.7">
+      <source>
+        <component id="LipMouse.1" />
+        <port id="opPortStatus" />
+      </source>
+      <target>
+        <component id="WebSocket.1.1.1" />
+        <port id="InA" />
       </target>
     </channel>
   </channels>
