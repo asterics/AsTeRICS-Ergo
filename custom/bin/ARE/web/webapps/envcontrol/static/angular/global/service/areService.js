@@ -94,6 +94,14 @@ angular.module(asterics.appServices)
             });
         };
 
+        thiz.triggerEvent = function (componentId, eventId) {
+            if (!componentId || !eventId) return;
+            return $http({
+                method: 'PUT',
+                url: utilService.getRestUrl() + "runtime/model/components/" + utilService.encodeParam(componentId) + "/events/" + utilService.encodeParam(eventId),
+            });
+        };
+
         /**********************************
          *    Subscription to SSE events
          **********************************/

@@ -16,6 +16,7 @@ angular.module(asterics.appComponents)
             thiz.testFunction = null;
             thiz.hardwareMethodCallResults = {};
             thiz.htmlPath = null;
+            thiz.isWindows = asterics.const.OS_IS_WIN;
 
             thiz.goToHelp = function (hardware) {
                 $state.params.skipConnectionTest = true;

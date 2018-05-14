@@ -40,6 +40,34 @@ angular.module(asterics.appServices)
             return def.promise;
         };
 
+        thiz.startIrserver = function () {
+            var def = $q.defer();
+            console.log('startIrserver in irTrans mock');
+            $timeout(function () {
+                    def.resolve(true)
+                }, 1000
+            );
+            return def.promise;
+        };
+
+        thiz.installDriver = function() {
+            var def = $q.defer();
+            console.log('installDriver in irTrans mock');
+            $timeout(function () {
+                    def.resolve(true)
+                }, 1000
+            );
+            return def.promise;
+        };
+
+        thiz.setAdditionalData = function (data) {
+            console.log('set additional data in irTrans mock: ' + data);
+        };
+
+        thiz.setAdditionalDataUpdateFunction = function (fn) {
+            console.log('set additionalDataUpdateFunction data in irTrans mock.');
+        };
+
         thiz.getRandomCode = function(codesToSkip) {
             return new Date().getTime().toString();
         };

@@ -1,0 +1,43 @@
+<div>
+    <h3>Installation of the IrTrans USB</h3>
+    <p>If you have already purchased an IrTrans USB, you can follow the instructions to install it:</p>
+    <ol class="install-help">
+        <li>
+            <span>Connect the IrTrans to the computer using an USB cable (type A-B, see </span><a href="" ng-click="$ctrl.goToHelp('HW_IRTRANS_USB')">{{'i18n_ec_help' | translate}}</a>).
+            <div class="row">
+                <img class="img-row col-xs-3" src="angular/envControl/img/HW_IRTRANS_USB.jpg" alt="IrTrans-USB"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/usbab.png" alt="USB Stecker Typ B - USB Stecker Typ A"/>
+                <img class="img-row col-xs-3" src="angular/envControl/img/pc.png" alt="PC"/>
+            </div>
+        </li>
+        <li ng-if="$ctrl.isWindows">
+            Install the needed driver for Windows by clicking on the button "Install Driver". There will be 2 confirmation prompts that have to be confirmed with "Yes".<br/>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('installDriver')">Install Driver</button>
+            <span ng-if="$ctrl.hardwareMethodCallResults['installDriver']">
+                <span> </span><i class="fa fa-check"/><span> driver installed!</span>
+            </span>
+            <br/>
+            <br/>
+            <span><i>Hint: </i> Maybe the windows for driver installation do not pop up but have to be opened from the taskbar:</span>
+            <div class="row">
+                <img class="img-500 center-block" src="angular/envControl/img/install-irtrans-driver.png"
+                     alt="IrTrans Treiber Installation"/>
+            </div>
+        </li>
+        <li ng-if="$ctrl.isWindows">
+            Wait 10 seconds in order to wait for completion of the hardware installation.<br/>
+        </li>
+        <li>
+            Click on "Start Server" in order to start the service program needed for IrTrans. After this installation it will be started automatically by AsTeRICS Ergo, if needed.<br/>
+            <button ng-click="$ctrl.callSpecialHardwareMethod('startIrserver')">Start Server</button>
+            <span ng-if="$ctrl.hardwareMethodCallResults['startIrserver']">
+                <span> </span><i class="fa fa-check"/><span> server started!</span>
+            </span>
+        </li>
+        <li>
+            <span><b>Test the installation</b> - Select "Test" to check whether the IrTrans has been installed successfully.</span>
+            <button ng-click="$ctrl.test()"><span translate="i18n_ec_test"/></button>
+            <hardware-test register-function="$ctrl.testRegisterFunction(testFunction)" hardware-id="$ctrl.hardwareId" test-failed-hint="<i>Hint: </i>If test is not successful wait a minute and restart with step (4).">
+        </li>
+    </ol>
+</div>

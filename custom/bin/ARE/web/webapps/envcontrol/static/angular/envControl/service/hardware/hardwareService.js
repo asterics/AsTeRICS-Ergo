@@ -9,6 +9,7 @@ angular.module(asterics.appServices)
         var _hardwareMap = {};                    //stores all hardware hardware group
         var _lastConnectedHardwareMap = {};        //stores one last connection status of hardware by hardwareId
         var _allHardware = _plugHardware.concat(_irHardware);     //list of all known hardware instances
+        var _additionalDataSaveCallback = null;
         _hardwareMap[asterics.envControl.HW_GROUP_IR] = _irHardware;
         _hardwareMap[asterics.envControl.HW_GROUP_PLUG] = _plugHardware;
 
@@ -107,6 +108,35 @@ angular.module(asterics.appServices)
             if(hardware && _.isFunction(hardware.deleteHandler)) {
                 hardware.deleteHandler(data);
             }
+        };
+
+        /**
+         * method that takes additional device data stored in config (map with key=deviceID, value=data) and distributes
+         * the data to the corresponding devices, if they implement a device.setAdditionalData() method.
+         * @param additionalData the map of additional data
+         */
+        thiz.updateAdditionalData = function(additionalData) {
+            if(additionalData) {
+                Object.keys(additionalData).forEach(function(key) {
+                    var hardware = getSingleHardware(key);
+                    if(hardware && _.isFunction(hardware.setAdditionalData)) {
+                        hardware.setAdditionalData(additionalData[key]);
+                    }
+                });
+            }
+        };
+
+        /**
+         * set a callback that should be called by hardwareInstances if they have new additional data to be stored
+         * @param fn
+         */
+        thiz.setAdditionalDataCallBack = function(fn) {
+            _additionalDataSaveCallback = fn;
+            _allHardware.forEach(function (hw) {
+                if(_.isFunction(hw.setAdditionalDataUpdateFunction)) {
+                    hw.setAdditionalDataUpdateFunction(_additionalDataSaveCallback);
+                }
+            });
         };
 
         /**

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_2_6_11_4" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\data\src\AsTeRICS-Ergo\custom\bin\ARE\models\envControl.acs_2018_5_9_9_50" version="20130320">
   <modelDescription>
     <shortDescription />
     <requirements />
@@ -214,10 +214,161 @@
         <posY>238</posY>
       </layout>
     </component>
+    <component id="LaunchIrTransInstall" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="executeOnPlatform" value="WINDOWS" />
+        <property name="executionMode" value="START_APPLICATION" />
+        <property name="defaultApplication" value="cscript" />
+        <property name="arguments" value="/E:JScript .\tools\IrTrans_Driver_Win\install.vbs" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="false" />
+        <property name="autoClose" value="true" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>1387</posX>
+        <posY>106</posY>
+      </layout>
+    </component>
+    <component id="LaunchIrTransServerWin" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="executeOnPlatform" value="WINDOWS" />
+        <property name="executionMode" value="START_APPLICATION" />
+        <property name="defaultApplication" value=".\tools\irserver.exe" />
+        <property name="arguments" value="USB" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="false" />
+        <property name="autoClose" value="true" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>1383</posX>
+        <posY>280</posY>
+      </layout>
+    </component>
+    <component id="LaunchIrTransServerLinux" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="executeOnPlatform" value="LINUX" />
+        <property name="executionMode" value="START_APPLICATION" />
+        <property name="defaultApplication" value="xterm" />
+        <property name="arguments" value="-e &quot;sudo bash ./tools/start_irserver.sh&quot;" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="false" />
+        <property name="autoClose" value="true" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>1390</posX>
+        <posY>441</posY>
+      </layout>
+    </component>
+    <component id="LaunchIrTransServerLinux2" type_id="asterics.ApplicationLauncher">
+      <description>starts external software applications via path and  filename (.exe)</description>
+      <ports>
+        <inputPort portTypeID="filename">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="arguments">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="stdIn">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="stdOut">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="stdErr">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="exitValue">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="executeOnPlatform" value="LINUX" />
+        <property name="executionMode" value="START_APPLICATION" />
+        <property name="defaultApplication" value="lxterminal" />
+        <property name="arguments" value="-e &quot;sudo bash ./tools/start_irserver.sh&quot;" />
+        <property name="workingDirectory" value="." />
+        <property name="closeCmd" value="" />
+        <property name="autoLaunch" value="false" />
+        <property name="autoClose" value="true" />
+        <property name="onlyByEvent" value="false" />
+      </properties>
+      <layout>
+        <posX>1399</posX>
+        <posY>608</posY>
+      </layout>
+    </component>
   </components>
   <channels>
     <channel id="binding.0">
-      <description />
       <source>
         <component id="TextSender.1" />
         <port id="output" />
@@ -228,7 +379,6 @@
       </target>
     </channel>
     <channel id="binding.1">
-      <description />
       <source>
         <component id="TextSender.1" />
         <port id="output" />
@@ -239,6 +389,7 @@
       </target>
     </channel>
     <channel id="binding.4">
+      <description />
       <source>
         <component id="FS20Sender.1" />
         <port id="output" />
@@ -249,7 +400,6 @@
       </target>
     </channel>
     <channel id="binding.3">
-      <description />
       <source>
         <component id="IrTrans.1" />
         <port id="outputResult" />
@@ -260,6 +410,7 @@
       </target>
     </channel>
     <channel id="binding.6">
+      <description />
       <source>
         <component id="LipMouse.1" />
         <port id="received" />
@@ -270,6 +421,7 @@
       </target>
     </channel>
     <channel id="binding.5">
+      <description />
       <source>
         <component id="TextSender.1.1" />
         <port id="output" />
