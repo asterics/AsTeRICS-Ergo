@@ -62,7 +62,9 @@ angular.module(asterics.appServices)
                     return _deviceMappings[device].hardware[0];
                 } else {
                     var allPossibilities = thiz.getHardwarePossibilities(device);
-                    return allPossibilities.filter(possibility => _.includes(possibility, existingHardware))[0];
+                    return allPossibilities.filter(function(possibility) {
+                        return _.includes(possibility, existingHardware)
+                    })[0];
                 }
             }
             return null;
@@ -98,7 +100,9 @@ angular.module(asterics.appServices)
         thiz.getComputerConfiguredHardwarePossibilities = function(device) {
             var allPossibilities = thiz.getHardwarePossibilities(device);
             var flattenedPossibilities = [].concat.apply([], allPossibilities);
-            return _.uniq(flattenedPossibilities).filter(element => _.includes(_computerConfiguredHardware, element));
+            return _.uniq(flattenedPossibilities).filter(function(element) {
+                return _.includes(_computerConfiguredHardware, element)
+            });
         };
 
         thiz.getNeededAccessories = function (hardwareName) {

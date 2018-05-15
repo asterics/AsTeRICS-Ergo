@@ -145,7 +145,9 @@ angular.module(asterics.appServices)
          * @returns {*}
          */
         function getHardware(hardwareIds) {
-            return _allHardware.filter(hardware => _.includes(hardwareIds, hardware.getName()));
+            return _allHardware.filter(function(hardware) {
+                return _.includes(hardwareIds, hardware.getName());
+            });
         }
 
         /**
@@ -154,7 +156,9 @@ angular.module(asterics.appServices)
          * @returns {*}
          */
         function getSingleHardware(hardwareId) {
-            var list = _allHardware.filter(hardware => hardwareId == hardware.getName());
+            var list = _allHardware.filter(function(hardware) {
+                return hardwareId == hardware.getName();
+            });
             if(list.length == 1) {
                 return list[0];
             } else {
@@ -168,7 +172,9 @@ angular.module(asterics.appServices)
             var returned = false;
             var promises = [];
             var hardwareInstances = getHardware(possibleHardwareList);
-            hardwareInstances = hardwareInstances.filter(e => e !== ignoreHardware); //remove ignored hardware
+            hardwareInstances = hardwareInstances.filter(function(e) { //remove ignored hardware
+                return e !== ignoreHardware;
+            });
             if (hardwareInstances.length == 0) {
                 returnDef.resolve(null);
             }

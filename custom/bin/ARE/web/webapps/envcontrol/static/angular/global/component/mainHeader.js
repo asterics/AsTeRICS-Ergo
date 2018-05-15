@@ -6,7 +6,7 @@ angular.module(asterics.appComponents)
             var thiz = this;
             thiz.singlePageMode = !!$stateParams.singlePageMode;
             thiz.breadCrumbStates = stateUtilService.getBreadCrumbStates();
-            thiz.isMockMode = window.location.href.includes("mock.html");
+            thiz.isMockMode = window.location.href.indexOf("mock.html") != -1;
             thiz.selectedLanguage = _.find(asterics.const.languages, function (lang) {
                     return _.includes(navigator.language, lang);
                 }) || asterics.const.I18N_DE;
