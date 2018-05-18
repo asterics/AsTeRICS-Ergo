@@ -1,4 +1,4 @@
 job1:
   script: 
     - cd C:\AsTeRICS-Ergo
-    - ant
+    - ant deploy
