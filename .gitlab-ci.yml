@@ -1,2 +1,4 @@
 job1:
-  script: "cd C:\AsTeRICS-Ergo;ant"
+  script: 
+    - cd C:\AsTeRICS-Ergo
+    - ant
