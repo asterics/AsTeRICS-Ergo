@@ -70,6 +70,10 @@
 
 	<!-- if you want to compile and modify something on your own, before the installer is created -->
 	<target name='before-deploy'>
+		<replace file="./package/windows/AsTeRICS Ergo.iss" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
+		<replace file="./package/linux/control" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
+		<replace file="./custom/bin/ARE/web/webapps/envcontrol/static/simple/index.html" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
+		<replace file="./custom/bin/ARE/web/webapps/envcontrol/static/angular/global/component/mainHeader.html" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
 	</target>
 	
 	<target name="deploy" depends="init-fx-tasks, cleanup, setup-staging-area, APE-copy-release, before-deploy, before-deploy-windows, before-deploy-linux, before-deploy-macosx, make-installer-only" description="Creates installer packages for this APE project. The result can be found in the build/deploy folder.">
