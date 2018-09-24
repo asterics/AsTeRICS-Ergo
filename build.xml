@@ -76,6 +76,6 @@
 		<replace file="./custom/bin/ARE/web/webapps/envcontrol/static/angular/global/component/mainHeader.html" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
 	</target>
 	
-	<target name="deploy" depends="init-fx-tasks, cleanup, setup-staging-area, APE-copy-release, before-deploy, before-deploy-windows, before-deploy-linux, before-deploy-macosx, make-installer-only" description="Creates installer packages for this APE project. The result can be found in the build/deploy folder.">
+	<target name="deploy" depends="before-deploy, init-fx-tasks, cleanup, setup-staging-area, APE-copy-release, before-deploy-windows, before-deploy-linux, before-deploy-macosx, make-installer-only" description="Creates installer packages for this APE project. The result can be found in the build/deploy folder.">
 	</target>
 </project>
