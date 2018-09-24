@@ -14,9 +14,6 @@
 # bash -ex jenkins-release-script.sh
 # --------------------------------------------------------
 
-# go to workspace root (AsTeRICS-Ergo folder)
-cd ..
-
 # checkout/update AsTeRICS repo
 if [ -d  ./AsTeRICS ]; then 
     cd ./AsTeRICS
