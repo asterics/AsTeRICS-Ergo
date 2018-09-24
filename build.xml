@@ -67,15 +67,25 @@
 	    </delete>	    
 	</target>
 
-
 	<!-- if you want to compile and modify something on your own, before the installer is created -->
 	<target name='before-deploy'>
+		<getversionnumber text="${fx.application.version}" property="app_version_number" />
 		<replace file="./package/windows/AsTeRICS Ergo.iss" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
-		<replace file="./package/linux/control" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
+		<replace file="./package/windows/AsTeRICS Ergo.iss" token="#{APPLICATION_VERSION_NUMBER}#" value="${app_version_number}"/>
+		<replace file="./package/linux/control" token="#{APPLICATION_VERSION_NUMBER}#" value="${app_version_number}"/>
 		<replace file="./custom/bin/ARE/web/webapps/envcontrol/static/simple/index.html" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
 		<replace file="./custom/bin/ARE/web/webapps/envcontrol/static/angular/global/component/mainHeader.html" token="#{APPLICATION_VERSION}#" value="${fx.application.version}"/>
 	</target>
 	
 	<target name="deploy" depends="before-deploy, init-fx-tasks, cleanup, setup-staging-area, APE-copy-release, before-deploy-windows, before-deploy-linux, before-deploy-macosx, make-installer-only" description="Creates installer packages for this APE project. The result can be found in the build/deploy folder.">
 	</target>
+	
+	<scriptdef name="getversionnumber" language="javascript">
+     <attribute name="text" />
+     <attribute name="property" />
+     <![CDATA[
+       var text = attributes.get("text");
+       project.setProperty(attributes.get("property"), text.match(/(\d+\.\d+\.\d+)/)[1]);
+     ]]>
+  </scriptdef>
 </project>
