@@ -1,5 +1,5 @@
 Package: asterics-ergo
-Version: #{APPLICATION_VERSION}#
+Version: 4.2.1
 Section: unknown
 Maintainer: Asterics Foundation
 Priority: optional

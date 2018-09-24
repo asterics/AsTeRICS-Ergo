@@ -3,8 +3,8 @@
 [Setup]
 AppId={{AsTeRICS Ergo}}
 AppName=AsTeRICS Ergo
-AppVersion=#{APPLICATION_VERSION}#
-;AppVerName=AsTeRICS Ergo #{APPLICATION_VERSION}#
+AppVersion=4.2.1
+;AppVerName=AsTeRICS Ergo 4.2.1
 AppPublisher=Asterics consortium
 AppComments=Assistive Technology for Occupational Therapy
 AppCopyright=Copyright (C) 2017
@@ -23,7 +23,7 @@ DefaultGroupName=Asterics consortium
 LicenseFile=
 ;WinXP or above
 MinVersion=0,5.1 
-OutputBaseFilename=AsTeRICS Ergo-#{APPLICATION_VERSION}#
+OutputBaseFilename=AsTeRICS Ergo-4.2.1
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin

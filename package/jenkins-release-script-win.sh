@@ -28,4 +28,4 @@ else
 fi
 
 # build release with ant
-ant deploy -Dfx.deploy.nativeBundles=exe -DARE.baseURI=./AsTeRICS/bin/ARE/ -DAPE.embedJava="true" -Dfx.platform.basedir="$1" -Dfx.application.version=$VERSION
+ant deploy -Dfx.deploy.nativeBundles=exe -DARE.baseURI=./AsTeRICS/bin/ARE/ -DAPE.embedJava="true" -Dfx.platform.basedir="$1" -Dfx.application.version=$VERSION -Dfx.application.name="AsTeRICS Ergo"
