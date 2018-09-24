@@ -9,10 +9,9 @@
 #    NOTE: Windows 10 seems to have an built in "bash" command, so the git bash has to be renamed in the
 #		   ProgramFiles/bin folder to another name, e.g. git-bash.exe
 # *) Apache Ant build system (http://ant.apache.org/)
-# *) Adapt the java path in the ant command below to point to a JRE installed on the build system
 # --------------------------------------------------------
 # run in jenkins with command:
-# bash -ex jenkins-release-script.sh
+# git-bash -ex ./package/jenkins-release-script-win.sh "C:\\Program Files (x86)\\Java\\jdk1.8.0_181\\jre\\"
 # --------------------------------------------------------
 
 # checkout/update AsTeRICS repo
@@ -29,4 +28,4 @@ else
 fi
 
 # build release with ant
-ant deploy -Dfx.deploy.nativeBundles=exe -DARE.baseURI=./AsTeRICS/bin/ARE/ -DAPE.embedJava="true" -Dfx.platform.basedir="C:\\Program Files (x86)\\Java\\jdk1.8.0_181\\jre\\" -Dfx.application.version=$VERSION
+ant deploy -Dfx.deploy.nativeBundles=exe -DARE.baseURI=./AsTeRICS/bin/ARE/ -DAPE.embedJava="true" -Dfx.platform.basedir=$1 -Dfx.application.version=$VERSION
