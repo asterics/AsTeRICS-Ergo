@@ -28,4 +28,4 @@ else
 fi
 
 # build release with ant
-ant deploy -Dfx.deploy.nativeBundles=$1 -DARE.baseURI=./AsTeRICS/bin/ARE/ -Dfx.application.version=$VERSION
+ant deploy -Dfx.deploy.nativeBundles=exe -DARE.baseURI=./AsTeRICS/bin/ARE/ -DAPE.embedJava="true" -Dfx.platform.basedir="C:\\Program Files (x86)\\Java\\jdk1.8.0_171\\jre\\" -Dfx.application.version=$VERSION
