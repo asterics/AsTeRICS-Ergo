@@ -85,7 +85,9 @@
      <attribute name="property" />
      <![CDATA[
        var text = attributes.get("text");
-       project.setProperty(attributes.get("property"), text.match(/(\d+\.\d+\.\d+)/)[1]);
+	   var matches = text.match(/(\d+\.\d+\.\d+)/);
+	   var ver = matches ? matches[1] : '4.0.0';
+       project.setProperty(attributes.get("property"), ver);
      ]]>
-  </scriptdef>
+	</scriptdef>
 </project>
