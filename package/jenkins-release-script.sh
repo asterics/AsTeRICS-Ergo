@@ -31,4 +31,4 @@ else
 fi
 
 # build release with ant
-ant deploy -Dfx.deploy.nativeBundles=exe -DARE.baseURI=./AsTeRICS/bin/ARE/ -Dfx.application.version=$VERSION
+ant deploy -Dfx.deploy.nativeBundles=$1 -DARE.baseURI=./AsTeRICS/bin/ARE/ -Dfx.application.version=$VERSION
