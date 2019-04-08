@@ -17,13 +17,13 @@
 # checkout/update AsTeRICS repo
 if [ -d  ./AsTeRICS ]; then 
     cd ./AsTeRICS
-	git pull
-	git checkout $ASTERICS_BRANCH
+	git pull --all
+	git checkout -f $ASTERICS_BRANCH
 	cd ..
 else
     git clone https://github.com/asterics/AsTeRICS.git
 	cd ./AsTeRICS
-	git checkout $ASTERICS_BRANCH
+	git checkout -f $ASTERICS_BRANCH
 	cd ..
 fi
 
